@@ -37,7 +37,7 @@ public class MesaDao {
         return criouMesa;
     }
 
-    public List<Mesa> listarMesa() throws SQLException {
+    public List<Mesa> listarTodasMesas() throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
         ResultSet rs = null;
@@ -63,8 +63,37 @@ public class MesaDao {
             connection.close();
         }
         return mesas;
+    }
+    
+        public List<Mesa> listarTodasMesasAtivas() throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        ResultSet rs = null;
+        List<Mesa> mesas = new ArrayList<>();
+        String sql = "SELECT * FROM mesa WHERE status = 'ativado'";
+        PreparedStatement ps = null;
+
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                Mesa mesa = new Mesa();
+                mesa.setIdMesa(rs.getInt("IDMESA"));
+                mesa.setStatus(rs.getString("STATUS"));
+                mesas.add(mesa);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return mesas;
 
     }
+    
         public Mesa listarMesaPorId(int numeroMesa) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();

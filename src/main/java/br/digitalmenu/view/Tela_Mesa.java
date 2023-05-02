@@ -16,14 +16,25 @@ public class Tela_Mesa extends javax.swing.JInternalFrame {
         initComponents();
         DefaultTableModel modelo = (DefaultTableModel) jtMesa.getModel();
         jtMesa.setRowSorter(new TableRowSorter(modelo));
-        listarJtable();
+        listarJtableTodasAtivas();
     }
 
     public void listarJtable() throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtMesa.getModel();
         modelo.setNumRows(0);
         MesaDao mesaDAO = new MesaDao();
-        for (Mesa mesa : mesaDAO.listarMesa()) {
+        for (Mesa mesa : mesaDAO.listarTodasMesas()) {
+            modelo.addRow(new Object[]{
+                mesa.getIdMesa(),
+                mesa.getStatus()
+            });
+        }
+    }
+        public void listarJtableTodasAtivas() throws SQLException {
+        DefaultTableModel modelo = (DefaultTableModel) jtMesa.getModel();
+        modelo.setNumRows(0);
+        MesaDao mesaDAO = new MesaDao();
+        for (Mesa mesa : mesaDAO.listarTodasMesasAtivas()) {
             modelo.addRow(new Object[]{
                 mesa.getIdMesa(),
                 mesa.getStatus()
@@ -242,7 +253,7 @@ public class Tela_Mesa extends javax.swing.JInternalFrame {
                     );
                 }
                 txt_NumeroMesa.setText("");
-                listarJtable();
+                listarJtableTodasAtivas();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
@@ -267,7 +278,7 @@ public class Tela_Mesa extends javax.swing.JInternalFrame {
                     mesaDAO.deletaMesa(mesa.getIdMesa());
                     JOptionPane.showMessageDialog(null, "Mesa deletada com sucesso!");
                     txt_NumeroMesa.setText("");
-                    listarJtable();
+                    listarJtableTodasAtivas();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                 }
@@ -308,7 +319,7 @@ public class Tela_Mesa extends javax.swing.JInternalFrame {
                 if (confirmar == JOptionPane.YES_OPTION) {
                     mesaDAO.updateMesa(mesaNova, mesaAtual.getIdMesa());
                     JOptionPane.showMessageDialog(null, "Mesa atualizada com sucesso!");
-                    listarJtable();
+                    listarJtableTodasAtivas();
                     txt_NumeroMesa.setText("");
                 } else if (confirmar == JOptionPane.NO_OPTION) {
                     JOptionPane.showMessageDialog(null, "Operação cancelada!");

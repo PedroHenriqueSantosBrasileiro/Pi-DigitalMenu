@@ -16,7 +16,7 @@ public class Abrir_Pedido extends javax.swing.JInternalFrame {
 
     public void listarMesa() throws SQLException {
         MesaDao mesaDao = new MesaDao();
-        for (Mesa mesa : mesaDao.listarMesa()) {
+        for (Mesa mesa : mesaDao.listarTodasMesas()) {
             cbox_Mesas.addItem(String.valueOf(mesa.getIdMesa()));
         }
     }
