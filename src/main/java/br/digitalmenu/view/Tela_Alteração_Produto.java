@@ -10,11 +10,10 @@ import javax.swing.JOptionPane;
 public class Tela_Alteração_Produto extends javax.swing.JFrame {
 
     public Tela_Alteração_Produto() {
-
+        initComponents();
     }
 
     public Produto produto;
-    
 
     public Tela_Alteração_Produto(Produto produto) throws SQLException {
         initComponents();
@@ -86,7 +85,7 @@ public class Tela_Alteração_Produto extends javax.swing.JFrame {
 
         jLabel2.setText("jLabel2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Atual"));
 

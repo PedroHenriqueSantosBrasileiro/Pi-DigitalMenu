@@ -12,6 +12,7 @@ public class Tela_ItensDoPedido extends javax.swing.JFrame {
     public double valorTotal = 0;
 
     public Tela_ItensDoPedido() {
+        initComponents();
     }
 
     public Tela_ItensDoPedido(int numeroPedido, int numeroMesa) throws SQLException {
@@ -60,7 +61,7 @@ public class Tela_ItensDoPedido extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lbl_FotoMesa.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\mesa.png"));
         lbl_FotoMesa.setText("jLabel1");
@@ -193,6 +194,7 @@ public class Tela_ItensDoPedido extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

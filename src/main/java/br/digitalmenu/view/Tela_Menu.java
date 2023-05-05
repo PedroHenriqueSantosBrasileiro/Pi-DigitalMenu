@@ -406,7 +406,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         filler_Right_8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 200), new java.awt.Dimension(0, 200), new java.awt.Dimension(32767, 200));
         filler_Left_8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 200), new java.awt.Dimension(0, 200), new java.awt.Dimension(32767, 200));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         pnl_PreCarrinho.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -494,11 +494,9 @@ public class Tela_Menu extends javax.swing.JFrame {
         lbl_NumeroDoPedido.setBackground(new java.awt.Color(204, 204, 255));
         lbl_NumeroDoPedido.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         lbl_NumeroDoPedido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_NumeroDoPedido.setBorder(null);
 
         lbl_NumeroDaMesa.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         lbl_NumeroDaMesa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_NumeroDaMesa.setBorder(null);
 
         lbl_FotoPedido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_FotoPedido.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\pedido.png"));
@@ -1704,7 +1702,8 @@ public class Tela_Menu extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1587, 804));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
