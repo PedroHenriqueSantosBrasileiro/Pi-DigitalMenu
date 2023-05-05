@@ -19,7 +19,7 @@ public class MesaDao {
         boolean criouMesa;
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
-        
+
         String sql = "INSERT INTO mesa (idmesa, status)"
                 + "VALUES (?, default)";
 
@@ -48,7 +48,7 @@ public class MesaDao {
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-            
+
             while (rs.next()) {
                 Mesa mesa = new Mesa();
                 mesa.setIdMesa(rs.getInt("IDMESA"));
@@ -64,8 +64,8 @@ public class MesaDao {
         }
         return mesas;
     }
-    
-        public List<Mesa> listarTodasMesasAtivas() throws SQLException {
+
+    public List<Mesa> listarTodasMesasAtivas() throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
         ResultSet rs = null;
@@ -76,7 +76,7 @@ public class MesaDao {
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-            
+
             while (rs.next()) {
                 Mesa mesa = new Mesa();
                 mesa.setIdMesa(rs.getInt("IDMESA"));
@@ -93,8 +93,8 @@ public class MesaDao {
         return mesas;
 
     }
-    
-        public Mesa listarMesaPorId(int numeroMesa) throws SQLException {
+
+    public Mesa listarMesaPorId(int numeroMesa) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
         ResultSet rs = null;
@@ -102,7 +102,7 @@ public class MesaDao {
         PreparedStatement ps = null;
 
         String sql = "SELECT * FROM MESA WHERE idmesa = ?";
-        
+
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, numeroMesa);
@@ -130,7 +130,7 @@ public class MesaDao {
 
         String sql = "UPDATE mesa SET IDMESA = ?, STATUS = ?"
                 + "WHERE IDMESA = ?";
-        
+
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, mesa.getIdMesa());
@@ -164,5 +164,39 @@ public class MesaDao {
             ps.close();
             connection.close();
         }
+    }
+
+    public boolean checkMesa(int idMesa) throws SQLException {//obtem mesa pelo id da mesa
+
+        //Conecta ao banco de dados por meio da classe de conexão
+        connection = new ConnectionFactory().recuperarConexao();
+        ResultSet resultado = null;
+        PreparedStatement ps = null;
+        boolean check = false;
+
+        try {
+            // Comando SQL na base = tabela de usuario
+            String sql = "select * from mesa WHERE idMesa = ?;";
+
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, idMesa);
+
+            resultado = ps.executeQuery();
+
+            //Para cada item retornado no comando (SQL) faça...      
+            if (resultado.next()) {
+                check = true;
+            }
+
+        } catch (SQLException e) { //Caso dê alguma exceção
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            // Após terminar, fecha a conexão, stmt, rs
+            resultado.close();
+            ps.close();
+            connection.close();
+        }
+        return check;
     }
 }

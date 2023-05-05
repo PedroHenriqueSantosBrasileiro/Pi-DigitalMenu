@@ -17,6 +17,7 @@ public class Tela_ResumoPedido extends javax.swing.JFrame {
     public DecimalFormat decimalFormat = new DecimalFormat("R$ 0.00");
 
     public Tela_ResumoPedido() {
+        initComponents();
     }
 
     public Tela_ResumoPedido(int numeroPedido, int numeroMesa) throws SQLException {
@@ -248,8 +249,8 @@ public class Tela_ResumoPedido extends javax.swing.JFrame {
                 pedidoDao.atualizaPedido(pedido);
                 JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
                 this.dispose();
-                Tela_Inicial telaInicial = null;
-                telaInicial = new Tela_Inicial();
+                Tela_Admin telaInicial = null;
+                telaInicial = new Tela_Admin();
                 telaInicial.setVisible(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
