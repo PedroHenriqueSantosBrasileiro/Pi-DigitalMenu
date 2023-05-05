@@ -7,9 +7,9 @@ import br.digitalmenu.model.Pedido;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-public class Abrir_Pedido extends javax.swing.JInternalFrame {
+public class XXXAbrir_Pedido extends javax.swing.JInternalFrame {
 
-    public Abrir_Pedido() throws SQLException {
+    public XXXAbrir_Pedido() throws SQLException {
         initComponents();
         listarMesa();
     }

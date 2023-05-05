@@ -20,6 +20,9 @@ public class Tela_Login extends javax.swing.JFrame {
         MesaDao mDAO = new MesaDao();
         listarMesa();
         
+        //coloca o focu no botao ok
+        this.getRootPane().setDefaultButton(btnOkUsuario);
+
         //Tira o minimizar/maximizar e fechar tela[testando]
         setUndecorated(true);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
@@ -322,8 +325,10 @@ public class Tela_Login extends javax.swing.JFrame {
 
     private void btnOkUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkUsuarioActionPerformed
         UsuarioDAO userDAO = new UsuarioDAO();
+        //Usuario user = new Usuario();
 
-        String acesso = null;//VARIAVEL TEMPORARIA DO TIPO DE ACESSO
+        String usuario = null;
+        String tipoAcesso = null;//VARIAVEL TEMPORARIA DO TIPO DE ACESSO
 
         if (txtLogin.getText().length() < 1) {
             JOptionPane.showMessageDialog(null, "Preencha o campo Login!");
@@ -342,18 +347,21 @@ public class Tela_Login extends javax.swing.JFrame {
                         System.out.println(user.getTipoacesso());
                         System.out.println(user.getStatus());
 
-                        acesso = user.getTipoacesso();
+                        tipoAcesso = user.getTipoacesso();
+                        usuario = user.getUsuario();
 
                     }
 
-                    System.out.println("acesso é:" + acesso);
-                    if (acesso.equalsIgnoreCase("administrador")) {
+                    System.out.println("acesso é:" + tipoAcesso);
+                    if (tipoAcesso.equalsIgnoreCase("administrador")) {
                         JOptionPane.showMessageDialog(null, "[Administrador] " + login, "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
-                        new Tela_Admin().setVisible(true);
+                        //new Tela_Admin().setVisible(true);
+                        new Tela_Admin(usuario, tipoAcesso).setVisible(true);
+                        //new Tela_Menu(pedidoDao.numeroPedido, mesa).setVisible(true);
 
-                    } else if (acesso.equalsIgnoreCase("atendente")) {
+                    } else if (tipoAcesso.equalsIgnoreCase("atendente")) {
                         JOptionPane.showMessageDialog(null, "[Atendente] " + login, "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
-                        new Tela_Atendente().setVisible(true);
+                        new Tela_Atendente(usuario, tipoAcesso).setVisible(true);
 
                     } else {
                         JOptionPane.showMessageDialog(null, "Usuario sem acesso! " + login, "Usuario não cadastrado!", JOptionPane.INFORMATION_MESSAGE);
@@ -392,9 +400,9 @@ public class Tela_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_showMouseClicked
 
     private void FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FecharActionPerformed
-        
+
         System.exit(0);
-        
+
     }//GEN-LAST:event_FecharActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

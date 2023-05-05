@@ -1,25 +1,26 @@
+
 package br.digitalmenu.view;
 
 import br.digitalmenu.dao.CategoriaDao;
 import br.digitalmenu.model.Categoria;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.JOptionPane;
 
-public class Tela_Categoria extends javax.swing.JInternalFrame {
+public class JFRAMETela_Categoria extends javax.swing.JFrame {
 
     int idCategoriaInicial = 0;
     String statusInicial = "";
 
-    public Tela_Categoria() throws SQLException {
-        initComponents();
+    public JFRAMETela_Categoria() throws SQLException {
+        initComponents();     
         DefaultTableModel modelo = (DefaultTableModel) jtCategoria.getModel();
         jtCategoria.setRowSorter(new TableRowSorter(modelo));
         listarJTable();
         txt_Numero_IdCategoria.setEnabled(false);
     }
-
+    
     public void listarJTable() throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtCategoria.getModel();
         modelo.setNumRows(0);
@@ -32,10 +33,14 @@ public class Tela_Categoria extends javax.swing.JInternalFrame {
         }
     }
 
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        tableCategoria = new javax.swing.JScrollPane();
+        jtCategoria = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         lbl_IdCategoria = new javax.swing.JLabel();
         lbl_NomeCategoria = new javax.swing.JLabel();
@@ -44,12 +49,49 @@ public class Tela_Categoria extends javax.swing.JInternalFrame {
         btn_Cadastrar = new javax.swing.JButton();
         btn_Atualizar = new javax.swing.JButton();
         btn_Deletar = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        tableCategoria = new javax.swing.JScrollPane();
-        jtCategoria = new javax.swing.JTable();
 
-        setClosable(true);
-        setResizable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Categoria");
+
+        jtCategoria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Id Categoria", "Nome"
+            }
+        ));
+        jtCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jtCategoriaMouseReleased(evt);
+            }
+        });
+        jtCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtCategoriaKeyReleased(evt);
+            }
+        });
+        tableCategoria.setViewportView(jtCategoria);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tableCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tableCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(185, 185, 185))
+        );
 
         lbl_IdCategoria.setText("Id da Categoria:");
 
@@ -118,45 +160,6 @@ public class Tela_Categoria extends javax.swing.JInternalFrame {
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        jtCategoria.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Id Categoria", "Nome"
-            }
-        ));
-        jtCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jtCategoriaMouseReleased(evt);
-            }
-        });
-        jtCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtCategoriaKeyReleased(evt);
-            }
-        });
-        tableCategoria.setViewportView(jtCategoria);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tableCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tableCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(185, 185, 185))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,28 +176,9 @@ public class Tela_Categoria extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(478, 473));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarActionPerformed
-
-        if (txt_NomeCategoria.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Erro: Deve ter ao menos 1 caractere!");
-        } else {
-            Categoria categoria = new Categoria();
-            categoria.setNomeCategoria(txt_NomeCategoria.getText());
-            CategoriaDao catDao = new CategoriaDao();
-            try {
-                catDao.criarCategoria(categoria);
-                listarJTable();
-                JOptionPane.showMessageDialog(this,
-                        "Categoria adicionada com sucesso!\nNome: "
-                        + categoria.getNomeCategoria());
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
-            }
-        }
-    }//GEN-LAST:event_btn_CadastrarActionPerformed
 
     private void jtCategoriaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtCategoriaMouseReleased
         if (jtCategoria.getSelectedRow() != -1) {
@@ -214,27 +198,47 @@ public class Tela_Categoria extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jtCategoriaKeyReleased
 
+    private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarActionPerformed
+
+        if (txt_NomeCategoria.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Erro: Deve ter ao menos 1 caractere!");
+        } else {
+            Categoria categoria = new Categoria();
+            categoria.setNomeCategoria(txt_NomeCategoria.getText());
+            CategoriaDao catDao = new CategoriaDao();
+            try {
+                catDao.criarCategoria(categoria);
+                listarJTable();
+                JOptionPane.showMessageDialog(this,
+                    "Categoria adicionada com sucesso!\nNome: "
+                    + categoria.getNomeCategoria());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btn_CadastrarActionPerformed
+
     private void btn_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtualizarActionPerformed
-        
+
         if (jtCategoria.getSelectedRow() != -1) {
             int confirma = JOptionPane.showConfirmDialog(
-                    this,
-                    "Dados atuais:\nId: "
-                    + idCategoriaInicial
-                    + "\nNome: "
-                    + statusInicial
-                    + "\nDADOS ATUALIZADOS:"
-                    + "\nID: "
-                    + txt_Numero_IdCategoria.getText()
-                    + "\nNome: "
-                    + txt_NomeCategoria.getText(),
-                    "CONFIRMAR ALTERÃ‡ÃƒO(Ã•ES)",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
+                this,
+                "Dados atuais:\nId: "
+                + idCategoriaInicial
+                + "\nNome: "
+                + statusInicial
+                + "\nDADOS ATUALIZADOS:"
+                + "\nID: "
+                + txt_Numero_IdCategoria.getText()
+                + "\nNome: "
+                + txt_NomeCategoria.getText(),
+                "CONFIRMAR ALTERÃ‡ÃƒO(Ã•ES)",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
             );
-//
+            //
             if (confirma == JOptionPane.YES_OPTION) {
-//
+                //
                 Categoria categoria = new Categoria();
                 categoria.setIdCategoria(Integer.parseInt(txt_Numero_IdCategoria.getText()));
                 categoria.setNomeCategoria(txt_NomeCategoria.getText());
@@ -264,13 +268,13 @@ public class Tela_Categoria extends javax.swing.JInternalFrame {
         if (jtCategoria.getSelectedRow() != -1) {
 
             int confirma = JOptionPane.showConfirmDialog(this,
-                    "Dados da categoria a deletar:\n ID: "
-                    + txt_Numero_IdCategoria.getText()
-                    + "\nNome: "
-                    + txt_NomeCategoria.getText(),
-                    "Confirmar deleÃ§Ã£o?",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
+                "Dados da categoria a deletar:\n ID: "
+                + txt_Numero_IdCategoria.getText()
+                + "\nNome: "
+                + txt_NomeCategoria.getText(),
+                "Confirmar deleÃ§Ã£o?",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
             );
 
             if (confirma == JOptionPane.YES_OPTION) {
