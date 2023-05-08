@@ -17,8 +17,8 @@ public class CategoriaDao {
 
         connection = new ConnectionFactory().recuperarConexao();
 
-        String sql = "INSERT INTO categoria (nome)"
-                + "VALUES (?)";
+        String sql = "INSERT INTO categoria (idcategoria, nome, status)"
+                + "VALUES (null, ?, default)";
         PreparedStatement ps = null;
 
         try {
@@ -40,7 +40,7 @@ public class CategoriaDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM categoria";
+        String sql = "SELECT idcategoria, nome, status FROM categoria";
 
         try {
             ps = connection.prepareStatement(sql);
@@ -50,6 +50,68 @@ public class CategoriaDao {
                 Categoria categoria = new Categoria();
                 categoria.setIdCategoria(rs.getInt("idcategoria"));
                 categoria.setNomeCategoria(rs.getString("nome"));
+                categoria.setStatus(rs.getString("status"));
+                listaDeCategorias.add(categoria);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return listaDeCategorias;
+    }
+
+    public List<Categoria> listarCategoriasAtivas() throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        List<Categoria> listaDeCategorias = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT idcategoria, nome, status FROM categoria WHERE status = 'ativado'";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Categoria categoria = new Categoria();
+                categoria.setIdCategoria(rs.getInt("idcategoria"));
+                categoria.setNomeCategoria(rs.getString("nome"));
+                categoria.setStatus(rs.getString("status"));
+                listaDeCategorias.add(categoria);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return listaDeCategorias;
+    }
+
+    public List<Categoria> listarCategoriasPorStatus(String status) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        List<Categoria> listaDeCategorias = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT idcategoria, nome, status FROM categoria WHERE status = ?";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, status);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Categoria categoria = new Categoria();
+                categoria.setIdCategoria(rs.getInt("idcategoria"));
+                categoria.setNomeCategoria(rs.getString("nome"));
+                categoria.setStatus(rs.getString("status"));
                 listaDeCategorias.add(categoria);
             }
         } catch (SQLException ex) {
@@ -67,14 +129,15 @@ public class CategoriaDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "UPDATE categoria SET idcategoria = ?, nome = ?"
+        String sql = "UPDATE categoria SET idcategoria = ?, nome = ?, status = ?"
                 + "WHERE idcategoria = ?";
-        
+
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, categoria.getIdCategoria());
             ps.setString(2, categoria.getNomeCategoria());
-            ps.setInt(3, idCategoriaInicial);
+            ps.setString(3, categoria.getStatus());
+            ps.setInt(4, idCategoriaInicial);
             ps.executeUpdate();
         } catch (SQLException ex) {
             throw ex;
@@ -84,12 +147,74 @@ public class CategoriaDao {
         }
     }
 
+    public Categoria listarCategoriaPorId(int id) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        PreparedStatement ps = null;
+        Categoria categoria = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT idcategoria, nome, status FROM categoria WHERE idcategoria = ?";
+
+        try {
+
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                categoria = new Categoria();
+                categoria.setIdCategoria(rs.getInt("idcategoria"));
+                categoria.setNomeCategoria(rs.getString("nome"));
+                categoria.setStatus(rs.getString("status"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return categoria;
+    }
+
+    public List<Categoria> listarCategoriaPorNome(String texto) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        List<Categoria> listaDeCategorias = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT idcategoria, nome, status FROM categoria WHERE nome LIKE CONCAT('%',?,'%')";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, texto);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Categoria categoria = new Categoria();
+                categoria.setIdCategoria(rs.getInt("idcategoria"));
+                categoria.setNomeCategoria(rs.getString("nome"));
+                categoria.setStatus(rs.getString("status"));
+                listaDeCategorias.add(categoria);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return listaDeCategorias;
+    }
+
     public void deleteCategoria(Categoria categoria) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "DELETE FROM categoria WHERE idcategoria = ?";
+        String sql = "UPDATE categoria SET status = 'Desativado' WHERE idcategoria = ?";
 
         try {
             ps = connection.prepareStatement(sql);

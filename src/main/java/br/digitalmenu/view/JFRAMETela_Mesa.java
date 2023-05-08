@@ -56,6 +56,10 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
             mesa.getStatus()
         });
     }
+    
+    public void limparTxtFields(){
+        txt_NumeroMesa.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -337,7 +341,7 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
                     //                            + mesa.getStatus()
                     );
                 }
-                txt_NumeroMesa.setText("");
+                limparTxtFields();
                 listarJtablePorStatus("Ativado");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -362,7 +366,7 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
                     Mesa mesa = mesaDAO.listarMesaPorId(Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()));
                     mesaDAO.deletaMesa(mesa.getIdMesa());
                     JOptionPane.showMessageDialog(null, "Mesa deletada com sucesso!");
-                    txt_NumeroMesa.setText("");
+                    limparTxtFields();
                     listarJtablePorStatus("Ativado");
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -387,6 +391,7 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
                     mesa.setStatus(panel.getComboBox_status_novo().getSelectedItem().toString());
                     mesaDao.updateMesa(mesa, Integer.parseInt(panel.getLbl_Id_Valor().getText()));
                     listarJtablePorStatus("Ativado");
+                    limparTxtFields();
                 } else {
                     JOptionPane.showMessageDialog(null, "CANCELADO");
 
