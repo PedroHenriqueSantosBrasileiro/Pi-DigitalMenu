@@ -3,6 +3,7 @@ package br.digitalmenu.view;
 
 import br.digitalmenu.dao.CategoriaDao;
 import br.digitalmenu.dao.ProdutoDao;
+import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Categoria;
 import br.digitalmenu.model.Produto;
 import java.sql.SQLException;
@@ -17,8 +18,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.text.JTextComponent;
 
-public class JFRAMETela_Produto extends javax.swing.JFrame {
+public class JFRAMETela_Produto extends Heuristica {
 
         String auxNome, auxCat, auxDesc, auxStatus;
     double auxPreco;
@@ -497,20 +499,12 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
+        boolean campo1 = verificarSeCampoEstaEmBranco(txtNome, "Nome");
+        boolean campo2 = verificarSeCampoEstaEmBranco(txtformatPreco, "Preço");
         
-        
-        if(txtNome.getText().equals("") && txtformatPreco.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "CAMPO NOME E PREÇO EM BRANCO");
-            txtformatPreco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
-            txtNome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
-        }else if(txtNome.getText().equals("")){
-            txtNome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
-            JOptionPane.showMessageDialog(null, "CAMPO NOME EM BRANCO" );
-        }else if(txtformatPreco.getText().equals("")){
-            txtformatPreco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
-            JOptionPane.showMessageDialog(null, "CAMPO DE PREÇO EM BRANCO");
-        }else{
-            Produto p = new Produto();
+        if(campo1 && campo2 == true){
+          
+        Produto p = new Produto();
         p.setNome(txtNome.getText());
         p.setPreco(Double.parseDouble(txtformatPreco.getText().replace(',', '.')));
         p.setDescricao(txtarea_Descricao.getText());
@@ -526,9 +520,10 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
+            
         }
         
-        
+          
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
@@ -801,4 +796,8 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
     private javax.swing.JTextArea txtarea_Descricao;
     private javax.swing.JFormattedTextField txtformatPreco;
     // End of variables declaration//GEN-END:variables
+
+    
+
+    
 }
