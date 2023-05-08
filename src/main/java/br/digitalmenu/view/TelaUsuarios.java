@@ -5,9 +5,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import br.digitalmenu.dao.UsuarioDAO;
+import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Usuario;
 
-public class TelaUsuarios extends javax.swing.JFrame {
+public class TelaUsuarios extends Heuristica {
 
     public TelaUsuarios() throws SQLException {
         initComponents();
@@ -254,44 +255,41 @@ public class TelaUsuarios extends javax.swing.JFrame {
             String tipoAcesso = null;
             String senha;
 
-            //validando campos
-            if (txtUsuario.getText().length() < 1) {
-                JOptionPane.showMessageDialog(null, "Preencha o campo usuário!");
-                txtUsuario.requestFocus();
-            } else if (txtSenha.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha o campo senha!");
-                txtSenha.requestFocus();
-            }else if(rdoGrupo1.getSelection() == null){ //se os tipos de acessos estiverem vazios      
-                JOptionPane.showMessageDialog(null, "Escolha o tipo de acesso!");
-                txtSenha.requestFocus();
-            }else {
+            boolean campo1 = this.verificarSeCampoEstaEmBranco(txtUsuario, "Usuário");
+            boolean campo2 = verificarSeCampoEstaEmBranco(txtSenha, "Senha");
 
-                if (rdoAdmin.isSelected()) {
-                    tipoAcesso = "administrador";
+            if (campo1 && campo1) {
+                if (rdoGrupo1.getSelection() == null) { //se os tipos de acessos estiverem vazios      
+                    JOptionPane.showMessageDialog(null, "Escolha o tipo de acesso!");
+                    txtSenha.requestFocus();
+                } else {
+                    if (rdoAdmin.isSelected()) {
+                        tipoAcesso = "administrador";
+                    }
+
+                    if (rdoPadrao.isSelected()) {
+                        tipoAcesso = "atendente";
+                    }
+
+                    usuario = txtUsuario.getText();
+                    usuario = usuario.toLowerCase();//faz o usuario ficar em letras minusculas
+
+                    senha = txtSenha.getText();
+
+                    user.setUsuario(usuario);
+                    user.setSenha(senha);
+                    user.setTipoacesso(tipoAcesso);
+                    String status = "ativado";//##### COMO PADRÃO, O USUARIO SERÁ CRIADO ATIVADO  ######
+                    user.setStatus(status);
+
+                    UsuarioDAO userDAO = new UsuarioDAO();
+
+                    userDAO.insereUsuario(user);
+                    JOptionPane.showMessageDialog(null, "Usuário criado com sucesso!");
+
+                    Limpar();
+                    ListaTabela();
                 }
-
-                if (rdoPadrao.isSelected()) {
-                    tipoAcesso = "atendente";
-                }
-
-                usuario = txtUsuario.getText();
-                usuario = usuario.toLowerCase();//faz o usuario ficar em letras minusculas
-
-                senha = txtSenha.getText();
-
-                user.setUsuario(usuario);
-                user.setSenha(senha);
-                user.setTipoacesso(tipoAcesso);
-                String status = "ativado";//##### COMO PADRÃO, O USUARIO SERÁ CRIADO ATIVADO  ######
-                user.setStatus(status);
-
-                UsuarioDAO userDAO = new UsuarioDAO();
-
-                userDAO.insereUsuario(user);
-                JOptionPane.showMessageDialog(null, "Usuário criado com sucesso!");
-
-                Limpar();
-                ListaTabela();
             }
 
         } catch (Exception e) {

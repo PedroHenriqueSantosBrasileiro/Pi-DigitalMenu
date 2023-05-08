@@ -1,6 +1,7 @@
 package br.digitalmenu.view;
 
 import br.digitalmenu.dao.CategoriaDao;
+import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Categoria;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -13,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class JFRAMETela_Categoria extends javax.swing.JFrame {
+public class JFRAMETela_Categoria extends Heuristica {
 
     int idCategoriaInicial = 0;
     String statusInicial = "";
@@ -404,11 +405,9 @@ public class JFRAMETela_Categoria extends javax.swing.JFrame {
     }//GEN-LAST:event_jtCategoriaKeyReleased
 
     private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarActionPerformed
-
-        if (txt_NomeCategoria.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Erro: Deve ter ao menos 1 caractere!");
-        } else {
-            Categoria categoria = new Categoria();
+        
+        if(verificarSeCampoEstaEmBranco(txt_NomeCategoria, "Categoria")){
+           Categoria categoria = new Categoria();
             categoria.setNomeCategoria(txt_NomeCategoria.getText());
             CategoriaDao catDao = new CategoriaDao();
             try {
@@ -420,8 +419,9 @@ public class JFRAMETela_Categoria extends javax.swing.JFrame {
             limparTxtFields();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
-            }
+            } 
         }
+        
     }//GEN-LAST:event_btn_CadastrarActionPerformed
 
     private void btn_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtualizarActionPerformed

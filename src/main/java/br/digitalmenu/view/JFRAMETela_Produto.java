@@ -3,6 +3,7 @@ package br.digitalmenu.view;
 
 import br.digitalmenu.dao.CategoriaDao;
 import br.digitalmenu.dao.ProdutoDao;
+import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Categoria;
 import br.digitalmenu.model.Produto;
 import java.sql.SQLException;
@@ -16,11 +17,15 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.text.JTextComponent;
 
-public class JFRAMETela_Produto extends javax.swing.JFrame {
+public class JFRAMETela_Produto extends Heuristica {
 
         String auxNome, auxCat, auxDesc, auxStatus;
     double auxPreco;
+    
+    Border border;
 
     public JFRAMETela_Produto() throws SQLException {
         initComponents();
@@ -29,6 +34,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) jtProduto.getModel();
         jtProduto.setRowSorter(new TableRowSorter(modelo));
         listarJTableProdutosAtivados();
+        border = txtformatPreco.getBorder();
     }
     
     public void listarJTableTodosProdutos() throws SQLException {
@@ -40,7 +46,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 prod.getIdProduto(),
                 prod.getNome(),
                 prod.getNomeCategoria(),
-                prod.getPreco(),
+                String.format("%.2f", prod.getPreco()),
                 prod.getDescricao(),
                 prod.getStatus()
             });
@@ -56,7 +62,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 prod.getIdProduto(),
                 prod.getNome(),
                 prod.getNomeCategoria(),
-                prod.getPreco(),
+                String.format("%.2f", prod.getPreco()),
                 prod.getDescricao(),
                 prod.getStatus()
             });
@@ -72,7 +78,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 produto.getIdProduto(),
                 produto.getNome(),
                 produto.getNomeCategoria(),
-                produto.getPreco(),
+                String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
             });
@@ -88,7 +94,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 produto.getIdProduto(),
                 produto.getNome(),
                 produto.getNomeCategoria(),
-                produto.getPreco(),
+                String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
             });
@@ -104,7 +110,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 produto.getIdProduto(),
                 produto.getNome(),
                 produto.getNomeCategoria(),
-                produto.getPreco(),
+                String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
             });
@@ -120,7 +126,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 produto.getIdProduto(),
                 produto.getNome(),
                 produto.getNomeCategoria(),
-                produto.getPreco(),
+                String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
             });
@@ -136,7 +142,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 produto.getIdProduto(),
                 produto.getNome(),
                 produto.getNomeCategoria(),
-                produto.getPreco(),
+                String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
             });
@@ -500,6 +506,11 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
+        boolean campo1 = verificarSeCampoEstaEmBranco(txtNome, "Nome");
+        boolean campo2 = verificarSeCampoEstaEmBranco(txtformatPreco, "Preço");
+        
+        if(campo1 && campo2 == true){
+          
         Produto p = new Produto();
         p.setNome(txtNome.getText());
         p.setPreco(Double.parseDouble(txtformatPreco.getText().replace(',', '.')));
@@ -511,10 +522,19 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
             pDao.createProduto(p);
             JOptionPane.showMessageDialog(null, "PRODUTO (" + p.getNome() + ") CRIADO COM SUCESSO!");
             listarJTableProdutosAtivados();
+
             
+
+            txtformatPreco.setBorder(border);
+            txtNome.setBorder(border);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
+            
+        }
+        
+          
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
@@ -789,4 +809,8 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
     private javax.swing.JTextArea txtarea_Descricao;
     private javax.swing.JFormattedTextField txtformatPreco;
     // End of variables declaration//GEN-END:variables
+
+    
+
+    
 }
