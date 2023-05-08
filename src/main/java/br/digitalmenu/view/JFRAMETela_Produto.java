@@ -44,7 +44,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 prod.getIdProduto(),
                 prod.getNome(),
                 prod.getNomeCategoria(),
-                prod.getPreco(),
+                String.format("%.2f", prod.getPreco()),
                 prod.getDescricao(),
                 prod.getStatus()
             });
@@ -60,7 +60,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 prod.getIdProduto(),
                 prod.getNome(),
                 prod.getNomeCategoria(),
-                prod.getPreco(),
+                String.format("%.2f", prod.getPreco()),
                 prod.getDescricao(),
                 prod.getStatus()
             });
@@ -76,7 +76,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 produto.getIdProduto(),
                 produto.getNome(),
                 produto.getNomeCategoria(),
-                produto.getPreco(),
+                String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
             });
@@ -92,7 +92,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 produto.getIdProduto(),
                 produto.getNome(),
                 produto.getNomeCategoria(),
-                produto.getPreco(),
+                String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
             });
@@ -108,7 +108,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 produto.getIdProduto(),
                 produto.getNome(),
                 produto.getNomeCategoria(),
-                produto.getPreco(),
+                String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
             });
@@ -124,7 +124,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 produto.getIdProduto(),
                 produto.getNome(),
                 produto.getNomeCategoria(),
-                produto.getPreco(),
+                String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
             });
@@ -140,7 +140,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
                 produto.getIdProduto(),
                 produto.getNome(),
                 produto.getNomeCategoria(),
-                produto.getPreco(),
+                String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
             });
