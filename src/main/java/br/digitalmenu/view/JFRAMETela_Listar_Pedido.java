@@ -5,8 +5,12 @@ import br.digitalmenu.model.Pedido;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -59,7 +63,7 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
     }
 
     public void listarJTablePorId(int numPedido) throws SQLException {
-        DefaultTableModel modelo2 = (DefaultTableModel) jtPedidoUnico.getModel();
+        DefaultTableModel modelo2 = (DefaultTableModel) jtPedido.getModel();
         modelo2.setNumRows(0);
         PedidoDao pedDao = new PedidoDao();
         Pedido p = pedDao.listarPedidoPorId(numPedido);
@@ -74,6 +78,55 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
 
     }
 
+    public void listarJTablePorMesa(int numMesa) throws SQLException {
+        DefaultTableModel modelo2 = (DefaultTableModel) jtPedido.getModel();
+        modelo2.setNumRows(0);
+        PedidoDao pedDao = new PedidoDao();
+        for (Pedido pedido : pedDao.listarPedidoPorMesa(numMesa)) {
+            modelo2.addRow(new Object[]{
+                pedido.getIdPedido(),
+                pedido.getId_Mesa(),
+                pedido.getTotal(),
+                pedido.getData(),
+                pedido.getHorarioPedido(),
+                pedido.getStatus()
+            });
+        }
+    }
+    
+        public void listarJTablePorStatus(String status) throws SQLException {
+        DefaultTableModel modelo2 = (DefaultTableModel) jtPedido.getModel();
+        modelo2.setNumRows(0);
+        PedidoDao pedDao = new PedidoDao();
+        for (Pedido pedido : pedDao.listarPedidoPorStatus(status)) {
+            modelo2.addRow(new Object[]{
+                pedido.getIdPedido(),
+                pedido.getId_Mesa(),
+                pedido.getTotal(),
+                pedido.getData(),
+                pedido.getHorarioPedido(),
+                pedido.getStatus()
+            });
+        }
+    }
+
+    /*
+        public void listarJTablePorId(int numPedido) throws SQLException {
+        DefaultTableModel modelo2 = (DefaultTableModel) jtPedidoUnico.getModel();
+        modelo2.setNumRows(0);
+        PedidoDao pedDao = new PedidoDao();
+        Pedido p = pedDao.listarPedidoPorId(numPedido);
+        modelo2.addRow(new Object[]{
+            p.getIdPedido(),
+            p.getId_Mesa(),
+            p.getTotal(),
+            p.getData(),
+            p.getHorarioPedido(),
+            p.getStatus()
+        });
+
+    }
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,6 +155,7 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         btn_BuscaID = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -186,8 +240,25 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
         });
 
         jButton4.setText("MESA");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("STATUS");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Todos");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -198,9 +269,11 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addGap(58, 58, 58)
                 .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addComponent(jButton5)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addGap(37, 37, 37))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +282,8 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -431,8 +505,80 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
+        try {
+            JPanel painel = new JPanel();
+            JLabel idPedido = new JLabel("Digite o ID: ");
+            JTextField digitarNumero = new JTextField(10);
+            painel.add(idPedido);
+            painel.add(digitarNumero);
+            int resultado = JOptionPane.showConfirmDialog(null, painel, "PESQUISAR POR ID", JOptionPane.OK_CANCEL_OPTION, -1);
+            if (resultado == JOptionPane.OK_OPTION) {
+                //tratar erro de entrada
+                listarJTablePorId(Integer.parseInt(digitarNumero.getText()));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        try {
+            // TODO add your handling code here:
+            listarJTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        try {
+            JPanel painel = new JPanel();
+            JLabel idMesa = new JLabel("Digite o número da mesa: ");
+            JTextField digitarNumero = new JTextField(10);
+            painel.add(idMesa);
+            painel.add(digitarNumero);
+            int resultado = JOptionPane.showConfirmDialog(null, painel, "PESQUISAR POR NÚMERO DA MESA", JOptionPane.OK_CANCEL_OPTION, -1);
+            if (resultado == JOptionPane.OK_OPTION) {
+                listarJTablePorMesa(Integer.parseInt(digitarNumero.getText()));
+                if (jtPedido.getRowCount() < 1){
+                    //
+                    // ERRO
+                    //      MSG DE BORDAS (CENTRALIZADAS JTBLES)
+                    //
+                    //
+                    JOptionPane.showMessageDialog(null, ("Não existem pedidos da mesa: " + idMesa));
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        JPanel painel = new JPanel();
+        JComboBox comboBox = new JComboBox();
+        comboBox.addItem("Aberto");
+        comboBox.addItem("Cancelado");
+        comboBox.addItem("Encerrado");
+        painel.add(new JLabel("Status: "));
+        painel.add(comboBox);
+        int result = JOptionPane.showConfirmDialog(null, painel, "FILTRAR POR STATUS", JOptionPane.OK_CANCEL_OPTION, -1);
+        if (result == JOptionPane.OK_OPTION) {
+            try {
+                String status = String.valueOf(comboBox.getSelectedItem());
+                listarJTablePorStatus(status);
+                if (jtPedido.getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "Não há produtos no status " + status);
+                    listarJTablePorStatus("ativado");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -481,6 +627,7 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
