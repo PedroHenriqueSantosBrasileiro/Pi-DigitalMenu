@@ -511,7 +511,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
             pDao.createProduto(p);
             JOptionPane.showMessageDialog(null, "PRODUTO (" + p.getNome() + ") CRIADO COM SUCESSO!");
             listarJTableProdutosAtivados();
-            limparTxtFields();
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
