@@ -16,11 +16,14 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 public class JFRAMETela_Produto extends javax.swing.JFrame {
 
         String auxNome, auxCat, auxDesc, auxStatus;
     double auxPreco;
+    
+    Border border;
 
     public JFRAMETela_Produto() throws SQLException {
         initComponents();
@@ -29,6 +32,7 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) jtProduto.getModel();
         jtProduto.setRowSorter(new TableRowSorter(modelo));
         listarJTableProdutosAtivados();
+        border = txtformatPreco.getBorder();
     }
     
     public void listarJTableTodosProdutos() throws SQLException {
@@ -493,7 +497,20 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
-        Produto p = new Produto();
+        
+        
+        if(txtNome.getText().equals("") && txtformatPreco.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "CAMPO NOME E PREÇO EM BRANCO");
+            txtformatPreco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+            txtNome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+        }else if(txtNome.getText().equals("")){
+            txtNome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+            JOptionPane.showMessageDialog(null, "CAMPO NOME EM BRANCO" );
+        }else if(txtformatPreco.getText().equals("")){
+            txtformatPreco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+            JOptionPane.showMessageDialog(null, "CAMPO DE PREÇO EM BRANCO");
+        }else{
+            Produto p = new Produto();
         p.setNome(txtNome.getText());
         p.setPreco(Double.parseDouble(txtformatPreco.getText().replace(',', '.')));
         p.setDescricao(txtarea_Descricao.getText());
@@ -504,9 +521,14 @@ public class JFRAMETela_Produto extends javax.swing.JFrame {
             pDao.createProduto(p);
             JOptionPane.showMessageDialog(null, "PRODUTO (" + p.getNome() + ") CRIADO COM SUCESSO!");
             listarJTableProdutosAtivados();
+            txtformatPreco.setBorder(border);
+            txtNome.setBorder(border);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
+        }
+        
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
