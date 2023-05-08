@@ -3,7 +3,11 @@ package br.digitalmenu.view;
 import br.digitalmenu.dao.MesaDao;
 import br.digitalmenu.model.Mesa;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -16,7 +20,7 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
         initComponents();
         DefaultTableModel modelo = (DefaultTableModel) jtMesa.getModel();
         jtMesa.setRowSorter(new TableRowSorter(modelo));
-        listarJtableTodasAtivas();
+        listarJtablePorStatus("Ativado");
     }
     
     public void listarJtable() throws SQLException {
@@ -30,15 +34,27 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
             });
         }
     }
-        public void listarJtableTodasAtivas() throws SQLException {
+      public void listarJtablePorStatus(String status) throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtMesa.getModel();
         modelo.setNumRows(0);
         MesaDao mesaDAO = new MesaDao();
-        for (Mesa mesa : mesaDAO.listarTodasMesasAtivas()) {
+        for (Mesa mesa : mesaDAO.listarTodasMesasPorStatus(status)) {
             modelo.addRow(new Object[]{
                 mesa.getIdMesa(),
-                mesa.getStatus()});
+                mesa.getStatus()
+            });
         }
+    }
+
+    public void listarJtablePorNumero(int numMesa) throws SQLException {
+        DefaultTableModel modelo = (DefaultTableModel) jtMesa.getModel();
+        modelo.setNumRows(0);
+        MesaDao mesaDao = new MesaDao();
+        Mesa mesa = mesaDao.listarMesaPorId(numMesa);
+        modelo.addRow(new Object[]{
+            mesa.getIdMesa(),
+            mesa.getStatus()
+        });
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,31 +66,29 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lbl_NumeroMesa = new javax.swing.JLabel();
-        txt_NumeroMesa = new javax.swing.JTextField();
-        btn_CadastrarMesa = new javax.swing.JButton();
-        btn_ExcluirMesa = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
         btn_AlterarMesa = new javax.swing.JButton();
-        checkbox_Status = new javax.swing.JCheckBox();
+        btn_ExcluirMesa = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        txt_NumeroMesa = new javax.swing.JTextField();
+        lbl_NumeroMesa = new javax.swing.JLabel();
+        btn_CadastrarMesa = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         tableMesa = new javax.swing.JScrollPane();
         jtMesa = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lbl_NumeroMesa.setText("Número da mesa");
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("OPÇÕES"));
 
-        txt_NumeroMesa.addActionListener(new java.awt.event.ActionListener() {
+        btn_AlterarMesa.setText("Atualizar");
+        btn_AlterarMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_NumeroMesaActionPerformed(evt);
-            }
-        });
-
-        btn_CadastrarMesa.setText("Cadastrar");
-        btn_CadastrarMesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_CadastrarMesaActionPerformed(evt);
+                btn_AlterarMesaActionPerformed(evt);
             }
         });
 
@@ -85,54 +99,88 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
             }
         });
 
-        btn_AlterarMesa.setText("Atualizar");
-        btn_AlterarMesa.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_AlterarMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_ExcluirMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(btn_AlterarMesa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_ExcluirMesa)
+                .addGap(24, 24, 24))
+        );
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("CADASTRO"));
+
+        txt_NumeroMesa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_NumeroMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AlterarMesaActionPerformed(evt);
+                txt_NumeroMesaActionPerformed(evt);
             }
         });
 
-        checkbox_Status.setText("ATIVADO");
+        lbl_NumeroMesa.setText("Número da mesa");
+
+        btn_CadastrarMesa.setText("Cadastrar");
+        btn_CadastrarMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CadastrarMesaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_NumeroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_NumeroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_CadastrarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(lbl_NumeroMesa)
+                .addGap(18, 18, 18)
+                .addComponent(txt_NumeroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_CadastrarMesa)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_NumeroMesa)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btn_CadastrarMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_NumeroMesa, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(107, 107, 107)
-                                .addComponent(checkbox_Status)
-                                .addGap(32, 32, 32))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_AlterarMesa)
-                                .addGap(67, 67, 67)))
-                        .addComponent(btn_ExcluirMesa)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(lbl_NumeroMesa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_NumeroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkbox_Status))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_CadastrarMesa)
-                    .addComponent(btn_ExcluirMesa)
-                    .addComponent(btn_AlterarMesa))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tableMesa.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -197,15 +245,48 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar"));
 
+        jButton1.setText("Número");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Status");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Todos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jButton1)
+                .addGap(61, 61, 61)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(31, 31, 31))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 46, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -223,8 +304,8 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -257,7 +338,7 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
                     );
                 }
                 txt_NumeroMesa.setText("");
-                listarJtableTodasAtivas();
+                listarJtablePorStatus("Ativado");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
@@ -282,7 +363,7 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
                     mesaDAO.deletaMesa(mesa.getIdMesa());
                     JOptionPane.showMessageDialog(null, "Mesa deletada com sucesso!");
                     txt_NumeroMesa.setText("");
-                    listarJtableTodasAtivas();
+                    listarJtablePorStatus("Ativado");
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                 }
@@ -295,44 +376,28 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ExcluirMesaActionPerformed
 
     private void btn_AlterarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AlterarMesaActionPerformed
-        if (jtMesa.getSelectedRow() != -1) {
-
+        if (jtMesa.getRowCount() != -1) {
             try {
-                String status = checkbox_Status.isSelected() ? "ATIVADO" : "DESATIVADO";
-                MesaDao mesaDAO = new MesaDao();
-                Mesa mesaAtual = mesaDAO.listarMesaPorId(Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()));
-                Mesa mesaNova = new Mesa();
-                mesaNova.setIdMesa(Integer.parseInt(txt_NumeroMesa.getText()));
-                mesaNova.setStatus(status);
+                MesaDao mesaDao = new MesaDao();
+                Mesa mesa = mesaDao.listarMesaPorId(Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()));
+                Panel_Alterar_Mesa panel = new Panel_Alterar_Mesa(mesa);
+                int resultado = JOptionPane.showConfirmDialog(null, panel, "ATUALIZAR MESA", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if (resultado == JOptionPane.OK_OPTION) {
+                    mesa.setIdMesa(Integer.parseInt(panel.getTxt_numero_Novo().getText()));
+                    mesa.setStatus(panel.getComboBox_status_novo().getSelectedItem().toString());
+                    mesaDao.updateMesa(mesa, Integer.parseInt(panel.getLbl_Id_Valor().getText()));
+                    listarJtablePorStatus("Ativado");
+                } else {
+                    JOptionPane.showMessageDialog(null, "CANCELADO");
 
-                int confirmar = JOptionPane.showConfirmDialog(
-                        this,
-                        "Dados atuais:\nMesa: "
-                        + mesaAtual.getIdMesa()
-                        + "\nStatus: "
-                        + mesaAtual.getStatus()
-                        + "\n\nDADO(S) ATUALIZADO(S):"
-                        + "\nMesa: "
-                        + mesaNova.getIdMesa()
-                        + "\nStatus: "
-                        + mesaNova.getStatus(),
-                        "CONFIRMAR ALTERAÇÃO?",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE
-                );
-                if (confirmar == JOptionPane.YES_OPTION) {
-                    mesaDAO.updateMesa(mesaNova, mesaAtual.getIdMesa());
-                    JOptionPane.showMessageDialog(null, "Mesa atualizada com sucesso!");
-                    listarJtableTodasAtivas();
-                    txt_NumeroMesa.setText("");
-                } else if (confirmar == JOptionPane.NO_OPTION) {
-                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
                 }
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
+
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha para alterar.");
+            JOptionPane.showMessageDialog(null, "Selecione uma linha");
         }
     }//GEN-LAST:event_btn_AlterarMesaActionPerformed
 
@@ -345,8 +410,6 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
         if (jtMesa.getSelectedRow() != -1) {
             txt_NumeroMesa.setText(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString());
             idMesaParaAlterar = Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString());
-            checkbox_Status.setSelected(jtMesa.getValueAt(jtMesa.getSelectedRow(), 1).toString().equalsIgnoreCase("ativado"));
-            statusxAux = checkbox_Status.isSelected() ? "ATIVADO" : "DESATIVADO";
         }
     }//GEN-LAST:event_jtMesaMouseReleased
 
@@ -359,8 +422,6 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
         if (jtMesa.getSelectedRow() != -1) {
             txt_NumeroMesa.setText(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString());
             idMesaParaAlterar = Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString());
-            checkbox_Status.setSelected(jtMesa.getValueAt(jtMesa.getSelectedRow(), 1).toString().equalsIgnoreCase("ativado"));
-            statusxAux = checkbox_Status.isSelected() ? "ATIVADO" : "DESATIVADO";
         }
     }//GEN-LAST:event_jtMesaKeyReleased
 
@@ -368,15 +429,70 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tableMesaKeyReleased
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            JPanel painel = new JPanel();
+            JLabel numeroMesa = new JLabel("Número: ");
+            JTextField digitarNumero = new JTextField(10);
+            painel.add(numeroMesa);
+            painel.add(digitarNumero);
+            int resultado = JOptionPane.showConfirmDialog(null, painel, "PESQUISAR POR NÚMERO", JOptionPane.OK_CANCEL_OPTION, -1);
+            if (resultado == JOptionPane.OK_OPTION) {
+                //tratar erro de entrada
+                listarJtablePorNumero(Integer.parseInt(digitarNumero.getText()));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+          
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        JPanel painel = new JPanel();
+        JComboBox comboBox = new JComboBox();
+        comboBox.addItem("Ativado");
+        comboBox.addItem("Desativado");
+        painel.add(new JLabel("Status: "));
+        painel.add(comboBox);
+        int result = JOptionPane.showConfirmDialog(null, painel, "ALTERAR MESA", JOptionPane.OK_CANCEL_OPTION, -1);
+        if (result == JOptionPane.OK_OPTION) {
+            try {
+                String status = String.valueOf(comboBox.getSelectedItem());
+                listarJtablePorStatus(status);
+                if (jtMesa.getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "Não há produtos no status " + status);
+                    listarJtablePorStatus("ativado");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+                try {
+            listarJtable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_AlterarMesa;
     private javax.swing.JButton btn_CadastrarMesa;
     private javax.swing.JButton btn_ExcluirMesa;
-    private javax.swing.JCheckBox checkbox_Status;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JTable jtMesa;
     private javax.swing.JLabel lbl_NumeroMesa;
     private javax.swing.JScrollPane tableMesa;

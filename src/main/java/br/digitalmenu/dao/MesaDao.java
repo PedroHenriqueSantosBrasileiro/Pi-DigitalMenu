@@ -65,17 +65,19 @@ public class MesaDao {
         return mesas;
     }
 
-    public List<Mesa> listarTodasMesasAtivas() throws SQLException {
+    public List<Mesa> listarTodasMesasPorStatus(String status) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
         ResultSet rs = null;
         List<Mesa> mesas = new ArrayList<>();
-        String sql = "SELECT * FROM mesa WHERE status = 'ativado'";
+        String sql = "SELECT * FROM mesa WHERE status = ?";
         PreparedStatement ps = null;
 
         try {
             ps = connection.prepareStatement(sql);
+            ps.setString(1, status);
             rs = ps.executeQuery();
+            
 
             while (rs.next()) {
                 Mesa mesa = new Mesa();
