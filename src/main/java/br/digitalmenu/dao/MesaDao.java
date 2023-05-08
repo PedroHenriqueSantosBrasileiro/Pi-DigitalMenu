@@ -150,8 +150,6 @@ public class MesaDao {
     public void deletaMesa(int idMesa) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
-//        String sql = "DELETE FROM mesa "
-//                + "WHERE IDMESA = ?";
         String sql = "UPDATE mesa SET status = 'desativado' WHERE IDMESA = ?";
 
         PreparedStatement ps = null;
