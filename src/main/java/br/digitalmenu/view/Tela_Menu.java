@@ -33,6 +33,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         lbl_NumeroDoPedido.setText(String.valueOf(numeroPedido));
         lbl_NumeroDaMesa.setText(String.valueOf(numeroMesa));
+        
         setTodos();
         setCat(lblId, 1);
         setFotos(1);
@@ -406,7 +407,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         filler_Right_8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 200), new java.awt.Dimension(0, 200), new java.awt.Dimension(32767, 200));
         filler_Left_8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 200), new java.awt.Dimension(0, 200), new java.awt.Dimension(32767, 200));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         pnl_PreCarrinho.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -1756,13 +1757,15 @@ public class Tela_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemonerLinhaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Tela_ResumoPedido telaResumo = null;
-        try {
-            telaResumo = new Tela_ResumoPedido(Integer.parseInt(lbl_NumeroDoPedido.getText()), Integer.parseInt(lbl_NumeroDaMesa.getText()));
-            telaResumo.setVisible(true);
+
+        try {   
+             this.dispose();//Fecha a tela menu
+             new Tela_ResumoPedido(Integer.parseInt(lbl_NumeroDoPedido.getText()), Integer.parseInt(lbl_NumeroDaMesa.getText())).setVisible(true);
+             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
+
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -1789,7 +1792,8 @@ public class Tela_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_Categoria_1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+       this.dispose();
+       
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btn_AdicionaQtde_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AdicionaQtde_1ActionPerformed

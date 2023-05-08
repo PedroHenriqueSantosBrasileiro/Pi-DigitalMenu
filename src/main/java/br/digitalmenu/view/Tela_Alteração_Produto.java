@@ -328,7 +328,8 @@ public class Tela_Alteração_Produto extends javax.swing.JFrame {
                     .addContainerGap(155, Short.MAX_VALUE)))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(601, 401));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_Nome_NovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Nome_NovoActionPerformed

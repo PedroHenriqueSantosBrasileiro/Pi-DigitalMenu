@@ -1,12 +1,17 @@
 package br.digitalmenu.view;
 
 import br.digitalmenu.dao.ItemDao;
+import br.digitalmenu.dao.MesaDao;
 import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.dao.ProdutoDao;
 import br.digitalmenu.model.Item;
+import br.digitalmenu.model.Mesa;
 import br.digitalmenu.model.Pedido;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -68,29 +73,24 @@ public class Tela_ResumoPedido extends javax.swing.JFrame {
         btn_Voltar = new javax.swing.JButton();
         btn_Encerrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         lbl_Pedido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_Pedido.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\pedido.png"));
-        lbl_Pedido.setBorder(null);
 
         lbl_Mesa.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\mesa.png"));
-        lbl_Mesa.setBorder(null);
 
         lbl_Total.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         lbl_Total.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_Total.setText("TOTAL:");
-        lbl_Total.setBorder(null);
 
         lbl_NumeroPedido.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         lbl_NumeroPedido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_NumeroPedido.setText("nº");
-        lbl_NumeroPedido.setBorder(null);
 
         lbl_NumeroMesa.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         lbl_NumeroMesa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_NumeroMesa.setText("nº");
-        lbl_NumeroMesa.setBorder(null);
 
         lbl_ValorTotal.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         lbl_ValorTotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -226,22 +226,30 @@ public class Tela_ResumoPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VoltarActionPerformed
-        // TODO add your handling code here:
+
         this.dispose();
+
+        //Reabre a tela menu com os atributos mesa e pedido
+        try {
+            new Tela_Menu(Integer.parseInt(lbl_NumeroPedido.getText()), Integer.parseInt(lbl_NumeroMesa.getText())).setVisible(true);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
 
     }//GEN-LAST:event_btn_VoltarActionPerformed
 
     private void btn_EncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EncerrarActionPerformed
 
-        int oonfirma = JOptionPane.showConfirmDialog(
+        int confirma = JOptionPane.showConfirmDialog(
                 this,
                 "Deseja encerrar o pedido?",
                 "Encerrar Pedido",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE
         );
-        if (oonfirma == JOptionPane.YES_OPTION) {
+        if (confirma == JOptionPane.YES_OPTION) {
             try {
+                //Fecha pedido
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(Integer.parseInt(lbl_NumeroPedido.getText()));
                 pedido.setStatus("Encerrado");
@@ -249,12 +257,28 @@ public class Tela_ResumoPedido extends javax.swing.JFrame {
                 pedidoDao.atualizaPedido(pedido);
                 JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
                 this.dispose();
-                Tela_Admin telaInicial = null;
-                telaInicial = new Tela_Admin();
-                telaInicial.setVisible(true);
+
+                int novoPedido = JOptionPane.showConfirmDialog(
+                        this,
+                        "Deseja criar um novo pedido?",
+                        "Novo Pedido",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE
+                );
+                if (novoPedido == JOptionPane.YES_OPTION) {
+                    //Cria novo pedido
+                    pedido.setIdPedido(Integer.parseInt(lbl_NumeroMesa.getText()));//seta o id do pedido
+                    pedidoDao.adicionarPedido(pedido);//cria pedido
+                    new Tela_Menu(pedidoDao.numeroPedido, Integer.parseInt(lbl_NumeroMesa.getText())).setVisible(true);//abre a tela menu
+                }else{
+                    //Caso não crie outro pedido, volta para tela login
+                    new Tela_Login().setVisible(true);
+                }
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
+
         }
     }//GEN-LAST:event_btn_EncerrarActionPerformed
 
