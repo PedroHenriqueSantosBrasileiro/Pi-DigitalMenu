@@ -1,6 +1,7 @@
 package br.digitalmenu.view;
 
 import br.digitalmenu.dao.MesaDao;
+import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Mesa;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
@@ -11,7 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-public class JFRAMETela_Mesa extends javax.swing.JFrame {
+public class JFRAMETela_Mesa extends Heuristica {
 
     int idMesaParaAlterar = 0;
     String statusxAux = "ativado";
@@ -318,8 +319,8 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_NumeroMesaActionPerformed
 
     private void btn_CadastrarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarMesaActionPerformed
-
-        if (!txt_NumeroMesa.getText().equalsIgnoreCase("")) {
+        
+        if(verificarSeCampoEstaEmBranco(txt_NumeroMesa, "Numer da mesa")){
             Mesa mesa = new Mesa();
             mesa.setIdMesa(Integer.parseInt(txt_NumeroMesa.getText()));
             //            String status = checkbox_Status.isSelected() ? "ATIVADO" : "DESATIVADO";
@@ -335,16 +336,17 @@ public class JFRAMETela_Mesa extends javax.swing.JFrame {
                             + mesa.getIdMesa()
                     //                            + "\nStatus: "
                     //                            + mesa.getStatus()
+                            
                     );
+                    this.txt_NumeroMesa.setText("");
                 }
                 txt_NumeroMesa.setText("");
                 listarJtablePorStatus("Ativado");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Insira um número de mesa.");
         }
+
     }//GEN-LAST:event_btn_CadastrarMesaActionPerformed
 
     private void btn_ExcluirMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExcluirMesaActionPerformed
