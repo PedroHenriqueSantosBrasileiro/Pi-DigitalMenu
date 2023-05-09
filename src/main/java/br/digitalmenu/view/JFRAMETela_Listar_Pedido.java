@@ -1,6 +1,7 @@
 package br.digitalmenu.view;
 
 import br.digitalmenu.dao.PedidoDao;
+import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Pedido;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -12,20 +13,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
+public class JFRAMETela_Listar_Pedido extends Heuristica {
 
     public int numeroPedido;
     public int numeroMesa;
 
     public JFRAMETela_Listar_Pedido() throws SQLException {
         initComponents();
-        DefaultTableModel modelo = (DefaultTableModel) jtPedido.getModel();
-        jtPedido.setRowSorter(new TableRowSorter(modelo));
+        IniciaTabela(jtPedido);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable();
-    }
+    } 
+    
 
     public void setarCampos(JTable j) {
         if (j.getSelectedRow() != -1) {
@@ -346,7 +350,7 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
                 .addComponent(jButton8)
                 .addGap(41, 41, 41)
                 .addComponent(jButton6)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,8 +424,7 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
