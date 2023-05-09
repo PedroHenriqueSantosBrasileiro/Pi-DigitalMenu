@@ -8,8 +8,12 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 public class JFRAMETela_Mesa extends Heuristica {
@@ -19,10 +23,11 @@ public class JFRAMETela_Mesa extends Heuristica {
 
     public JFRAMETela_Mesa() throws SQLException {
         initComponents();
-        DefaultTableModel modelo = (DefaultTableModel) jtMesa.getModel();
-        jtMesa.setRowSorter(new TableRowSorter(modelo));
+        IniciaTabela(jtMesa);//Formata a tabela e centraliza pela classe heuristicas
         listarJtablePorStatus("Ativado");
     }
+    
+   
     
     public void listarJtable() throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtMesa.getModel();
@@ -87,6 +92,7 @@ public class JFRAMETela_Mesa extends Heuristica {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Mesas");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("OPÇÕES"));
 

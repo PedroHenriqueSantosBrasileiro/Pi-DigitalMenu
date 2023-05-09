@@ -18,7 +18,7 @@ public class Tela_Login extends javax.swing.JFrame {
         initComponents();
         //para popular o combobox
         listarMesa();
-        
+
         //coloca o focu no botao ok
         this.getRootPane().setDefaultButton(btnOkUsuario);
         //Tira o minimizar/maximizar e fechar tela[testando]
@@ -28,11 +28,10 @@ public class Tela_Login extends javax.swing.JFrame {
 
     public void listarMesa() throws SQLException {
         MesaDao mesaDao = new MesaDao();
-        for (Mesa mesa : mesaDao.listarTodasMesas()) {
+        for (Mesa mesa : mesaDao.listarTodasMesasPorStatus("ATIVADO")) {//lista todas as mesas ativas
             cboMesa.addItem(String.valueOf(mesa.getIdMesa()));
         }
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -294,28 +293,35 @@ public class Tela_Login extends javax.swing.JFrame {
 
     private void btnOkMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkMesaActionPerformed
 
+        MesaDao mDao = new MesaDao();
         if (cboMesa.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Escolha uma mesa! ", "Mesa não definida!", JOptionPane.WARNING_MESSAGE);
-
         } else {
-            Pedido pedido = new Pedido();
-            pedido.setIdPedido(Integer.parseInt(cboMesa.getSelectedItem().toString()));
-            PedidoDao pedidoDao = new PedidoDao();
-
+            int numeroMesa = Integer.parseInt(cboMesa.getSelectedItem().toString());
+            
             try {
-                pedidoDao.adicionarPedido(pedido);
-                int numeroMesa = Integer.parseInt(cboMesa.getSelectedItem().toString());
-                Tela_Menu telaMenu = null;
-                telaMenu = new Tela_Menu(pedidoDao.numeroPedido, numeroMesa);
-                this.dispose();
-                telaMenu.setVisible(true);
-                JOptionPane.showMessageDialog(null, String.format("Bem-Vindo!: [Mesa: %d]",
-                        numeroMesa), "Bem-Vindo!", JOptionPane.INFORMATION_MESSAGE);
+                if (mDao.checkMesa(numeroMesa)) {//Verifica se a mesa realmente existe e esta ativa
 
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Mesa invalida! ", "Mesa não definida!", JOptionPane.WARNING_MESSAGE);
+                    //cria novo pedido
+                    Pedido pedido = new Pedido();
+                    pedido.setIdPedido(numeroMesa);
+                    PedidoDao pedidoDao = new PedidoDao();
+                    
+                    //Adiciona pedido na tela menu
+                    pedidoDao.adicionarPedido(pedido);
+                    Tela_Menu telaMenu = null;
+                    telaMenu = new Tela_Menu(pedidoDao.numeroPedido, numeroMesa);
+                    this.dispose();
+                    telaMenu.setVisible(true);
+                    JOptionPane.showMessageDialog(null, String.format("Bem-Vindo!: [Mesa: %d]",
+                            numeroMesa), "Bem-Vindo!", JOptionPane.INFORMATION_MESSAGE);
+
+                }else{
+                    JOptionPane.showMessageDialog(null, "Mesa invalida! ", "Mesa não está em uso, ative o status da mesa!", JOptionPane.WARNING_MESSAGE);
+                }
+            } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
             }
-
         }
 
 
@@ -353,23 +359,23 @@ public class Tela_Login extends javax.swing.JFrame {
                     System.out.println("acesso é:" + tipoAcesso);
                     if (tipoAcesso.equalsIgnoreCase("administrador")) {
                         JOptionPane.showMessageDialog(null, "[Administrador] " + login, "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
-                        //new Tela_Admin().setVisible(true);
-                        new Tela_Admin(usuario, tipoAcesso).setVisible(true);
-                        //new Tela_Menu(pedidoDao.numeroPedido, mesa).setVisible(true);
+                        this.dispose();//fecha a tela login
+                        new Tela_Admin(usuario, tipoAcesso).setVisible(true);//abre a tela admin
 
                     } else if (tipoAcesso.equalsIgnoreCase("atendente")) {
                         JOptionPane.showMessageDialog(null, "[Atendente] " + login, "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
-                        new Tela_Atendente(usuario, tipoAcesso).setVisible(true);
+                        this.dispose();//fecha a tela login
+                        new Tela_Atendente(usuario, tipoAcesso).setVisible(true);//abre a tela atendente
 
                     } else {
                         JOptionPane.showMessageDialog(null, "Usuario sem acesso! " + login, "Usuario não cadastrado!", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos! ", "Inválido!", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos! ", "Verifique os dados inseridos!", JOptionPane.WARNING_MESSAGE);
                 }
 
             } catch (SQLException ex) {
-                Logger.getLogger(Tela_Login.class.getName()).log(Level.SEVERE, null, ex);
+               JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
             }
 
         }

@@ -4,6 +4,7 @@ import br.digitalmenu.dao.ItemDao;
 import br.digitalmenu.dao.MesaDao;
 import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.dao.ProdutoDao;
+import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Item;
 import br.digitalmenu.model.Mesa;
 import br.digitalmenu.model.Pedido;
@@ -12,11 +13,16 @@ import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-public class Tela_ResumoPedido extends javax.swing.JFrame {
+public class Tela_ResumoPedido extends Heuristica {
 
     public double valorTotal = 0;
     public DecimalFormat decimalFormat = new DecimalFormat("R$ 0.00");
@@ -29,10 +35,9 @@ public class Tela_ResumoPedido extends javax.swing.JFrame {
         initComponents();
         lbl_NumeroPedido.setText(String.valueOf(numeroPedido));
         lbl_NumeroMesa.setText(String.valueOf(numeroMesa));
-        DefaultTableModel modelo = (DefaultTableModel) jtResumo.getModel();
-        jtResumo.setRowSorter(new TableRowSorter(modelo));
+        IniciaTabela(jtResumo);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable(Integer.parseInt(lbl_NumeroPedido.getText()));
-    }
+    } 
 
     public void listarJTable(int numeroPedido) throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtResumo.getModel();

@@ -2,25 +2,28 @@ package br.digitalmenu.view;
 
 import br.digitalmenu.dao.ItemDao;
 import br.digitalmenu.dao.ProdutoDao;
+import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Item;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-public class Tela_ItensDoPedido extends javax.swing.JFrame {
+public class Tela_ItensDoPedido extends Heuristica {
 
     public double valorTotal = 0;
 
     public Tela_ItensDoPedido() {
         initComponents();
     }
+    
+    
 
     public Tela_ItensDoPedido(int numeroPedido, int numeroMesa) throws SQLException {
         initComponents();
         lbl_NumeroPedido.setText(String.valueOf(numeroPedido));
         lbl_NumeroMesa.setText(String.valueOf(numeroMesa));
-        DefaultTableModel modelo = (DefaultTableModel) jtItensDoPedido.getModel();
-        jtItensDoPedido.setRowSorter(new TableRowSorter(modelo));
+        
+        IniciaTabela(jtItensDoPedido);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable(numeroPedido);
         lbl_ValorTotal.setText(String.valueOf(valorTotal));
     }
@@ -62,6 +65,7 @@ public class Tela_ItensDoPedido extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Itens do pedido");
 
         lbl_FotoMesa.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\mesa.png"));
         lbl_FotoMesa.setText("jLabel1");
