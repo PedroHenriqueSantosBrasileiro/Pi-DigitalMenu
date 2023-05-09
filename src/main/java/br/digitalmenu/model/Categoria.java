@@ -4,6 +4,7 @@ public class Categoria {
 
     private int idCategoria;
     private String nomeCategoria;
+    private String status;
 
     public int getIdCategoria() {
         return idCategoria;
@@ -19,6 +20,14 @@ public class Categoria {
 
     public void setNomeCategoria(String nomeCategoria) {
         this.nomeCategoria = nomeCategoria;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

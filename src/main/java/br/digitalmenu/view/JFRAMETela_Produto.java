@@ -155,6 +155,13 @@ public class JFRAMETela_Produto extends Heuristica {
             cboxCategoria.addItem(categoria.getNomeCategoria());
         }
     }
+    
+    public void limparTxtFields(){
+        txtId.setText("");
+        txtNome.setText("");
+        txtarea_Descricao.setText("");
+        txtformatPreco.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -515,8 +522,12 @@ public class JFRAMETela_Produto extends Heuristica {
             pDao.createProduto(p);
             JOptionPane.showMessageDialog(null, "PRODUTO (" + p.getNome() + ") CRIADO COM SUCESSO!");
             listarJTableProdutosAtivados();
+
+            
+
             txtformatPreco.setBorder(border);
             txtNome.setBorder(border);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
@@ -546,6 +557,7 @@ public class JFRAMETela_Produto extends Heuristica {
                     pDao.deletaProduto(p);
                     JOptionPane.showMessageDialog(null, "Produto deletado com sucesso!");
                     listarJTableProdutosAtivados();
+                    limparTxtFields();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                 }
@@ -577,6 +589,7 @@ public class JFRAMETela_Produto extends Heuristica {
                 ProdutoDao pDao = new ProdutoDao();
                 pDao.alterarProduto(p);
                 listarJTableProdutosAtivados();
+                limparTxtFields();
                 
             } else if (opcao == JOptionPane.CANCEL_OPTION){
                 JOptionPane.showMessageDialog(null, "cancelado");
