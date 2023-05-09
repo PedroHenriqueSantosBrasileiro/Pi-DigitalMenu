@@ -10,6 +10,7 @@ public class Item {
     private String status;
     private String horaComanda;
 
+
     public int getId_pedido() {
         return id_pedido;
     }
@@ -65,5 +66,9 @@ public class Item {
     public void setHoraComanda(String horaComanda) {
         this.horaComanda = horaComanda;
     }
+
+ 
+       
+    
 
 }
