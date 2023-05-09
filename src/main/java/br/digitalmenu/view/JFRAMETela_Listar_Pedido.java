@@ -5,6 +5,7 @@ import br.digitalmenu.model.Pedido;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Box;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -93,13 +94,61 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
             });
         }
     }
-    
-        public void listarJTablePorStatus(String status) throws SQLException {
+
+    public void listarJTablePorStatus(String status) throws SQLException {
         DefaultTableModel modelo2 = (DefaultTableModel) jtPedido.getModel();
         modelo2.setNumRows(0);
         PedidoDao pedDao = new PedidoDao();
         for (Pedido pedido : pedDao.listarPedidoPorStatus(status)) {
             modelo2.addRow(new Object[]{
+                pedido.getIdPedido(),
+                pedido.getId_Mesa(),
+                pedido.getTotal(),
+                pedido.getData(),
+                pedido.getHorarioPedido(),
+                pedido.getStatus()
+            });
+        }
+    }
+
+    public void listarJtablePorFaixaDePreco(double valor1, double valor2) throws SQLException {
+        DefaultTableModel modelo = (DefaultTableModel) jtPedido.getModel();
+        modelo.setNumRows(0);
+        PedidoDao pedidoDao = new PedidoDao();
+        for (Pedido pedido : pedidoDao.listarProdutoPorFaixaDePreco(valor1, valor2)) {
+            modelo.addRow(new Object[]{
+                pedido.getIdPedido(),
+                pedido.getId_Mesa(),
+                pedido.getTotal(),
+                pedido.getData(),
+                pedido.getHorarioPedido(),
+                pedido.getStatus()
+            });
+        }
+    }
+
+    public void listarJtablePorDia(String valor1) throws SQLException {
+        DefaultTableModel modelo = (DefaultTableModel) jtPedido.getModel();
+        modelo.setNumRows(0);
+        PedidoDao pedidoDao = new PedidoDao();
+        for (Pedido pedido : pedidoDao.listarProdutoPorDia(valor1)) {
+            modelo.addRow(new Object[]{
+                pedido.getIdPedido(),
+                pedido.getId_Mesa(),
+                pedido.getTotal(),
+                pedido.getData(),
+                pedido.getHorarioPedido(),
+                pedido.getStatus()
+            });
+        }
+    }
+
+    public void listarJtablePorFaixaDeData(String valor1, String valor2) throws SQLException {
+        DefaultTableModel modelo = (DefaultTableModel) jtPedido.getModel();
+        modelo.setNumRows(0);
+        PedidoDao pedidoDao = new PedidoDao();
+        for (Pedido pedido : pedidoDao.listarProdutoPorFaixaDia(valor1, valor2)) {
+            modelo.addRow(new Object[]{
                 pedido.getIdPedido(),
                 pedido.getId_Mesa(),
                 pedido.getTotal(),
@@ -156,12 +205,9 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        btn_BuscaID = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        txtStatus1 = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtPedidoUnico = new javax.swing.JTable();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar Pedidos");
@@ -260,6 +306,27 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setText("Total");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setText("Data");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText("Dia");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -267,13 +334,19 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton3)
-                .addGap(58, 58, 58)
+                .addGap(33, 33, 33)
                 .addComponent(jButton4)
-                .addGap(41, 41, 41)
+                .addGap(31, 31, 31)
                 .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
+                .addComponent(jButton7)
+                .addGap(31, 31, 31)
+                .addComponent(jButton9)
+                .addGap(18, 18, 18)
+                .addComponent(jButton8)
+                .addGap(41, 41, 41)
                 .addComponent(jButton6)
-                .addGap(37, 37, 37))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +356,10 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton4)
                     .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(jButton6)
+                    .addComponent(jButton7)
+                    .addComponent(jButton8)
+                    .addComponent(jButton9))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -307,17 +383,16 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_Mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_Data)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtformated_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(273, Short.MAX_VALUE))
+                        .addComponent(lbl_Data))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(lbl_Total)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtformated_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))))
+                        .addComponent(txtformated_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtformated_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
@@ -335,80 +410,17 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
                     .addComponent(txt_IdPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_Mesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtformated_Data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_Status)
-                            .addComponent(lbl_Total)
-                            .addComponent(txtformated_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jButton2)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_Status)
+                    .addComponent(lbl_Total)
+                    .addComponent(txtformated_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        btn_BuscaID.setText("Buscar Por ID");
-        btn_BuscaID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_BuscaIDActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("ver itens");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jtPedidoUnico.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Mesa", "Total", "Data", "Horario", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jtPedidoUnico);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_BuscaID)
-                .addGap(18, 18, 18)
-                .addComponent(txtStatus1)
-                .addGap(37, 37, 37)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_BuscaID)
-                    .addComponent(jButton1)
-                    .addComponent(txtStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -417,15 +429,12 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(119, 119, 119))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -477,32 +486,6 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
         setarCampos(jtPedido);
     }//GEN-LAST:event_jtPedidoKeyReleased
 
-    private void btn_BuscaIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscaIDActionPerformed
-        try {
-            listarJTablePorId(Integer.parseInt(txtStatus1.getText()));
-            limparTodosCampos();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }//GEN-LAST:event_btn_BuscaIDActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
-        if (jtPedidoUnico.getRowCount() == 1) {
-            numeroPedido = Integer.parseInt(String.valueOf(jtPedidoUnico.getValueAt(0, 0)));
-            numeroMesa = Integer.parseInt(String.valueOf(jtPedidoUnico.getValueAt(0, 1)));
-            try {
-                Tela_ItensDoPedido telaItensDoPedido = new Tela_ItensDoPedido(numeroPedido, numeroMesa);
-                telaItensDoPedido.setVisible(true);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Digite um pedido.");
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         try {
@@ -542,13 +525,14 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
             int resultado = JOptionPane.showConfirmDialog(null, painel, "PESQUISAR POR NÚMERO DA MESA", JOptionPane.OK_CANCEL_OPTION, -1);
             if (resultado == JOptionPane.OK_OPTION) {
                 listarJTablePorMesa(Integer.parseInt(digitarNumero.getText()));
-                if (jtPedido.getRowCount() < 1){
+                if (jtPedido.getRowCount() < 1) {
                     //
                     // ERRO
                     //      MSG DE BORDAS (CENTRALIZADAS JTBLES)
                     //
                     //
-                    JOptionPane.showMessageDialog(null, ("Não existem pedidos da mesa: " + idMesa));
+                    JOptionPane.showMessageDialog(null, String.format("Não existem pedidos na mesa %s",digitarNumero.getText()));
+                    listarJTable();
                 }
             }
         } catch (Exception e) {
@@ -572,13 +556,93 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
                 listarJTablePorStatus(status);
                 if (jtPedido.getRowCount() == 0) {
                     JOptionPane.showMessageDialog(null, "Não há produtos no status " + status);
-                    listarJTablePorStatus("ativado");
+                    listarJTable();
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        JTextField valorInicial = new JTextField(10);
+        JTextField valorFinal = new JTextField(10);
+        JPanel myPanel = new JPanel();
+        myPanel.add(new JLabel("De:"));
+        myPanel.add(valorInicial);
+        myPanel.add(Box.createHorizontalStrut(10)); // a spacer
+        myPanel.add(new JLabel("Até:"));
+        myPanel.add(valorFinal);
+
+        int result = JOptionPane.showConfirmDialog(null, myPanel,
+                "Informe a faixa de valor:", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            try {
+                double valor1 = Double.parseDouble(valorInicial.getText().replace(',', '.'));
+                double valor2 = Double.parseDouble(valorFinal.getText().replace(',', '.'));
+                listarJtablePorFaixaDePreco(valor1, valor2);
+                if (jtPedido.getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "Faixa de preço não encontrada.");
+                    listarJTable();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        JTextField valorInicial = new JTextField(10);
+        JTextField valorFinal = new JTextField(10);
+        JPanel myPanel = new JPanel();
+        myPanel.add(new JLabel("De: (dd//mm/aaa)"));
+        myPanel.add(valorInicial);
+        myPanel.add(Box.createHorizontalStrut(10)); // a spacer
+        myPanel.add(new JLabel("Até: (dd//mm/aaa)"));
+        myPanel.add(valorFinal);
+
+        int result = JOptionPane.showConfirmDialog(null, myPanel,
+                "Informe a data:", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            try {
+                String valor1 = valorInicial.getText();
+                String valor2 = valorFinal.getText();
+                listarJtablePorFaixaDeData(valor1, valor2);
+                if (jtPedido.getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "Faixa de data não encontrada.");
+                    listarJTable();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
+        }
+
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        JTextField valorInicial = new JTextField(10);
+        JPanel myPanel = new JPanel();
+        myPanel.add(new JLabel("Data: (dd//mm/aaa)"));
+        myPanel.add(valorInicial);
+
+        int result = JOptionPane.showConfirmDialog(null, myPanel,
+                "Informe a data:", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            try {
+                String data = valorInicial.getText();
+                listarJtablePorDia(data);
+                if (jtPedido.getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "Nao existem pedido na data informada.");
+                    listarJTable();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -621,27 +685,24 @@ public class JFRAMETela_Listar_Pedido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_BuscaID;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtPedido;
-    private javax.swing.JTable jtPedidoUnico;
     private javax.swing.JLabel lbl_Data;
     private javax.swing.JLabel lbl_IdPedido;
     private javax.swing.JLabel lbl_Mesa;
     private javax.swing.JLabel lbl_Status;
     private javax.swing.JLabel lbl_Total;
-    private javax.swing.JTextField txtStatus1;
     private javax.swing.JTextField txt_IdPedido;
     private javax.swing.JTextField txt_Mesa;
     private javax.swing.JTextField txt_Status;
