@@ -1,8 +1,10 @@
 package br.digitalmenu.view;
 
 import br.digitalmenu.dao.ItemDao;
+import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.dao.ProdutoDao;
 import br.digitalmenu.model.Item;
+import br.digitalmenu.model.Pedido;
 import br.digitalmenu.model.Produto;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
@@ -1792,7 +1794,48 @@ public class Tela_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_Categoria_1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       this.dispose();
+/*
+        int confirma = JOptionPane.showConfirmDialog(
+                this,
+                "Deseja encerrar o pedido?",
+                "Encerrar Pedido",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+        if (confirma == JOptionPane.YES_OPTION) {
+            try {
+                //Fecha pedido
+                Pedido pedido = new Pedido();
+                pedido.setIdPedido(Integer.parseInt(lbl_NumeroPedido.getText()));
+                pedido.setStatus("Encerrado");
+                PedidoDao pedidoDao = new PedidoDao();
+                pedidoDao.atualizaPedido(pedido);
+                JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
+                this.dispose();
+
+                int novoPedido = JOptionPane.showConfirmDialog(
+                        this,
+                        "Deseja criar um novo pedido?",
+                        "Novo Pedido",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE
+                );
+                if (novoPedido == JOptionPane.YES_OPTION) {
+                    //Cria novo pedido
+                    pedido.setIdPedido(Integer.parseInt(lbl_NumeroMesa.getText()));//seta o id do pedido
+                    pedidoDao.adicionarPedido(pedido);//cria pedido
+                    new Tela_Menu(pedidoDao.numeroPedido, Integer.parseInt(lbl_NumeroMesa.getText())).setVisible(true);//abre a tela menu
+                }else{
+                    //Caso não crie outro pedido, volta para tela login
+                    new Tela_Login().setVisible(true);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
+
+        }     */ 
+this.dispose;
        
     }//GEN-LAST:event_jButton5ActionPerformed
 

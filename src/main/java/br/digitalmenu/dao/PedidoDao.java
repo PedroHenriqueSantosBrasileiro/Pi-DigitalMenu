@@ -178,6 +178,126 @@ public class PedidoDao {
         return pedidos;
     }
 
+    public List<Pedido> listarProdutoPorFaixaDePreco(double valorInicial, double valorFinal) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Pedido> listaDePedidos = new ArrayList<>();
+
+        String sql = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data, '%d/%m/%Y') as data, DATE_FORMAT(data,'%H:%i:%s') as horario, status "
+                + "FROM pedido "
+                + "WHERE total BETWEEN ? and ? order by total";
+        /*
+        +----------+----------------------------------------+------+-----+-------------------+-------------------+
+        | Field    | Type                                   | Null | Key | Default           | Extra             |
+        +----------+----------------------------------------+------+-----+-------------------+-------------------+
+        | IDPEDIDO | int                                    | NO   | PRI | NULL              | auto_increment    |
+        | TOTAL    | decimal(7,2)                           | NO   |     | 0.00              |                   |
+        | DATA     | datetime                               | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+        | STATUS   | enum('ABERTO','ENCERRADO','CANCELADO') | NO   |     | ABERTO            |                   |
+        | ID_MESA  | int                                    | NO   | MUL | NULL              |                   |
+        +----------+----------------------------------------+------+-----+-------------------+-------------------+
+         */
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setDouble(1, valorInicial);
+            ps.setDouble(2, valorFinal);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Pedido p = new Pedido();
+                p.setIdPedido(rs.getInt("idpedido"));
+                p.setId_Mesa(rs.getInt("id_mesa"));
+                p.setTotal(rs.getDouble("total"));
+                p.setData(rs.getString("data"));
+                p.setHorarioPedido(rs.getString("horario"));
+                p.setStatus(rs.getString("status"));
+                listaDePedidos.add(p);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return listaDePedidos;
+    }
+
+    public List<Pedido> listarProdutoPorDia(String data) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Pedido> listaDePedidos = new ArrayList<>();
+
+        String sql = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data, '%d/%m/%Y') as data, DATE_FORMAT(data,'%H:%i:%s') as horario, status "
+                + "FROM pedido "
+                + "WHERE DATE_FORMAT(data, '%d/%m/%Y') = ?";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, data);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Pedido p = new Pedido();
+                p.setIdPedido(rs.getInt("idpedido"));
+                p.setId_Mesa(rs.getInt("id_mesa"));
+                p.setTotal(rs.getDouble("total"));
+                p.setData(rs.getString("data"));
+                p.setHorarioPedido(rs.getString("horario"));
+                p.setStatus(rs.getString("status"));
+                listaDePedidos.add(p);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return listaDePedidos;
+    }
+
+    public List<Pedido> listarProdutoPorFaixaDia(String dataInicial, String dataFinal) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Pedido> listaDePedidos = new ArrayList<>();
+
+        String sql = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data, '%d/%m/%Y') as data, DATE_FORMAT(data,'%H:%i:%s') as horario, status "
+                + "FROM pedido "
+                + "WHERE DATE_FORMAT(data, '%d/%m/%Y') >= ? and DATE_FORMAT(data, '%d/%m/%Y') <= ?";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, dataInicial);
+            ps.setString(2, dataFinal);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Pedido p = new Pedido();
+                p.setIdPedido(rs.getInt("idpedido"));
+                p.setId_Mesa(rs.getInt("id_mesa"));
+                p.setTotal(rs.getDouble("total"));
+                p.setData(rs.getString("data"));
+                p.setHorarioPedido(rs.getString("horario"));
+                p.setStatus(rs.getString("status"));
+                listaDePedidos.add(p);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return listaDePedidos;
+    }
+
     public void atualizaPedido(Pedido pedido) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
