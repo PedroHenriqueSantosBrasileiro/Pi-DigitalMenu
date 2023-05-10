@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class PedidoDao {
@@ -346,6 +348,36 @@ public class PedidoDao {
             connection.close();
         }
         return deletado;
+    }
+
+    public List<Pedido> vendasPorDia() {
+        ArrayList<Pedido> pedidos = new ArrayList<>();
+        String sql = "select sum(total) as Total, date_format(data,'%d/%m/%Y')  as Data from pedido group by date_format(data,'%d/%m/%Y')";
+        connection = new ConnectionFactory().recuperarConexao();
+        PreparedStatement psmt = null;
+        ResultSet rst = null;
+        try {
+
+            psmt = connection.prepareStatement(sql);
+            psmt.execute();
+
+            rst = psmt.getResultSet();
+
+            while (rst.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setTotal(rst.getDouble(1));
+                pedido.setData(rst.getString(2));
+                pedidos.add(pedido);
+            }
+
+            rst.close();
+            psmt.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return pedidos;
     }
 
 }
