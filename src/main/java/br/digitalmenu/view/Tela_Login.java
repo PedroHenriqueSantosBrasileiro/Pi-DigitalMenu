@@ -152,6 +152,12 @@ public class Tela_Login extends javax.swing.JFrame {
             }
         });
 
+        txtLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLoginActionPerformed(evt);
+            }
+        });
+
         lblSenha.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
         lblSenha.setForeground(new java.awt.Color(255, 255, 255));
         lblSenha.setText("Senha");
@@ -412,6 +418,10 @@ public class Tela_Login extends javax.swing.JFrame {
     private void cboMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMesaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboMesaActionPerformed
+
+    private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLoginActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
