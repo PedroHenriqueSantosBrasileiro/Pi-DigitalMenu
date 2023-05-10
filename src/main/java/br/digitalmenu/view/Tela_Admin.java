@@ -4,6 +4,7 @@ import br.digitalmenu.dao.MesaDao;
 import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.model.Mesa;
 import br.digitalmenu.model.Pedido;
+import java.awt.Graphics;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,12 +15,14 @@ public class Tela_Admin extends javax.swing.JFrame {
 
     public Tela_Admin(String usuario, String tipoAcesso) {
         initComponents();
-        
+
+        jDesktopPane1.enable(false);//Deixa a cor do fundo a mostra, deixa o jDesktop desativado
+
         //Casting para a primeira letra do tipoAcesso ficar em Maiusculo
         tipoAcesso = String.valueOf(tipoAcesso);
         String s1 = tipoAcesso.substring(0, 1).toUpperCase();
         String tipoAcessoMaisculo = s1 + tipoAcesso.substring(1);
-        
+
         //Seta a label usuario e tipo de acesso
         lblUsuario.setText(String.valueOf(usuario));
         lblTipoAcesso.setText(String.valueOf(tipoAcessoMaisculo));
@@ -33,11 +36,11 @@ public class Tela_Admin extends javax.swing.JFrame {
         pblBotoes = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         btnUsuarios = new javax.swing.JButton();
-        btnMesas = new javax.swing.JButton();
         btnListarPedidos = new javax.swing.JButton();
-        btnCategoria = new javax.swing.JButton();
         btnProdutos = new javax.swing.JButton();
         btnMesas1 = new javax.swing.JButton();
+        btnCategoria = new javax.swing.JButton();
+        btnMesas = new javax.swing.JButton();
         pnlTopo = new javax.swing.JPanel();
         lblTipoAcesso = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
@@ -58,6 +61,8 @@ public class Tela_Admin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jDesktopPane1.setBackground(new java.awt.Color(224, 222, 217));
+
         pblBotoes.setBackground(new java.awt.Color(246, 242, 233));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -73,16 +78,6 @@ public class Tela_Admin extends javax.swing.JFrame {
             }
         });
 
-        btnMesas.setBackground(new java.awt.Color(171, 68, 35));
-        btnMesas.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-        btnMesas.setForeground(new java.awt.Color(255, 255, 255));
-        btnMesas.setText("Mesas");
-        btnMesas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMesasActionPerformed(evt);
-            }
-        });
-
         btnListarPedidos.setBackground(new java.awt.Color(171, 68, 35));
         btnListarPedidos.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         btnListarPedidos.setForeground(new java.awt.Color(255, 255, 255));
@@ -90,16 +85,6 @@ public class Tela_Admin extends javax.swing.JFrame {
         btnListarPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListarPedidosActionPerformed(evt);
-            }
-        });
-
-        btnCategoria.setBackground(new java.awt.Color(171, 68, 35));
-        btnCategoria.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-        btnCategoria.setForeground(new java.awt.Color(255, 255, 255));
-        btnCategoria.setText("<html> <html> <body> <p> Categorias dos produtos</p> </body> </html>");
-        btnCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCategoriaActionPerformed(evt);
             }
         });
 
@@ -123,27 +108,50 @@ public class Tela_Admin extends javax.swing.JFrame {
             }
         });
 
+        btnCategoria.setBackground(new java.awt.Color(171, 68, 35));
+        btnCategoria.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        btnCategoria.setForeground(new java.awt.Color(255, 255, 255));
+        btnCategoria.setText("<html> <html> <body> <h><div style=\"text-align:center\"> Categorias de produtos</h></center> </body> </html>");
+        btnCategoria.setActionCommand("<html> <html> <body> <p> Categorias de produtos</p> </body> </html>");
+        btnCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCategoriaActionPerformed(evt);
+            }
+        });
+
+        btnMesas.setBackground(new java.awt.Color(171, 68, 35));
+        btnMesas.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        btnMesas.setForeground(new java.awt.Color(255, 255, 255));
+        btnMesas.setText("Mesas");
+        btnMesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMesasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pblBotoesLayout = new javax.swing.GroupLayout(pblBotoes);
         pblBotoes.setLayout(pblBotoesLayout);
         pblBotoesLayout.setHorizontalGroup(
             pblBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pblBotoesLayout.createSequentialGroup()
-                .addGroup(pblBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pblBotoesLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pblBotoesLayout.createSequentialGroup()
+                .addGroup(pblBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pblBotoesLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pblBotoesLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pblBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pblBotoesLayout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(btnMesas1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnListarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pblBotoesLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnListarPedidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnProdutos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMesas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pblBotoesLayout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addComponent(btnMesas1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
         pblBotoesLayout.setVerticalGroup(
             pblBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,18 +159,18 @@ public class Tela_Admin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnListarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(btnCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 23, Short.MAX_VALUE)
+                .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnMesas1)
-                .addGap(26, 26, 26))
+                .addContainerGap())
         );
 
         pnlTopo.setBackground(new java.awt.Color(246, 242, 233));
@@ -221,7 +229,6 @@ public class Tela_Admin extends javax.swing.JFrame {
         btnRelatorio.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         btnRelatorio.setForeground(new java.awt.Color(255, 255, 255));
         btnRelatorio.setText("<html> <html> <body> <p> Gerar relatório</p> </body> </html>");
-        btnRelatorio.setActionCommand("<html> <html> <body> <p> Gerar relatório</p> </body> </html>");
         btnRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRelatorioActionPerformed(evt);
@@ -249,8 +256,8 @@ public class Tela_Admin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAbrirPedidoJFRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -265,8 +272,7 @@ public class Tela_Admin extends javax.swing.JFrame {
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(pnlTopo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jDesktopPane1Layout.createSequentialGroup()
                 .addComponent(pblBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -353,8 +359,10 @@ public class Tela_Admin extends javax.swing.JFrame {
 
         try {
             new JFRAMETela_Mesa().setVisible(true);
+
         } catch (SQLException ex) {
-            Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Admin.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -362,8 +370,10 @@ public class Tela_Admin extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         try {
             new JFRAMETela_Categoria().setVisible(true);
+
         } catch (SQLException ex) {
-            Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Admin.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -371,8 +381,10 @@ public class Tela_Admin extends javax.swing.JFrame {
     private void mnuitemProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuitemProdutoActionPerformed
         try {
             new JFRAMETela_Produto().setVisible(true);
+
         } catch (SQLException ex) {
-            Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Admin.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_mnuitemProdutoActionPerformed
@@ -381,8 +393,10 @@ public class Tela_Admin extends javax.swing.JFrame {
 
         try {
             new JFRAMETela_Listar_Pedido().setVisible(true);
+
         } catch (SQLException ex) {
-            Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Admin.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_mnuItemPedidoActionPerformed
@@ -391,8 +405,10 @@ public class Tela_Admin extends javax.swing.JFrame {
 
         try {
             new TelaUsuarios().setVisible(true);
+
         } catch (SQLException ex) {
-            Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Admin.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
@@ -400,8 +416,10 @@ public class Tela_Admin extends javax.swing.JFrame {
 
         try {
             new JFRAMETela_Mesa().setVisible(true);
+
         } catch (SQLException ex) {
-            Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Admin.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnMesasActionPerformed
 
@@ -411,7 +429,7 @@ public class Tela_Admin extends javax.swing.JFrame {
         MesaDao mesaDao = new MesaDao();
         JComboBox jcb = new JComboBox();//combo box do JOption pane
         try {
-            for (Mesa mesa : mesaDao.listarTodasMesas()) {
+            for (Mesa mesa : mesaDao.listarTodasMesasPorStatus("ATIVADO")) {//lista todas as mesas ativas
                 jcb.addItem(String.valueOf(mesa.getIdMesa()));
 
             }
@@ -420,19 +438,22 @@ public class Tela_Admin extends javax.swing.JFrame {
         }
 
         JOptionPane.showMessageDialog(null, jcb, "Selecione a mesa:", JOptionPane.QUESTION_MESSAGE);
-        int mesa = Integer.parseInt(jcb.getSelectedItem().toString());
 
-        //SETA O ID DO PEDIDO
-        pedido.setIdPedido(Integer.parseInt(jcb.getSelectedItem().toString()));
+        int numeroMesa = Integer.parseInt(jcb.getSelectedItem().toString());
 
-        PedidoDao pedidoDao = new PedidoDao();
         try {
-            pedidoDao.adicionarPedido(pedido);
-            new Tela_Menu(pedidoDao.numeroPedido, mesa).setVisible(true);
-            //this.dispose();
+            if (mesaDao.checkMesa(numeroMesa)) {//Verifica se a mesa realmente existe e esta ativa
+                //Cria pedido
+                pedido.setIdPedido(Integer.parseInt(jcb.getSelectedItem().toString()));
+                PedidoDao pedidoDao = new PedidoDao();
+                pedidoDao.adicionarPedido(pedido);
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
+                //Abre tela menu com o numero do pedido e mesa
+                new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
+                //this.dispose();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
         }
 
 
@@ -442,8 +463,10 @@ public class Tela_Admin extends javax.swing.JFrame {
 
         try {
             new JFRAMETela_Categoria().setVisible(true);
+
         } catch (SQLException ex) {
-            Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Admin.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnCategoriaActionPerformed
@@ -452,8 +475,10 @@ public class Tela_Admin extends javax.swing.JFrame {
 
         try {
             new JFRAMETela_Listar_Pedido().setVisible(true);
+
         } catch (SQLException ex) {
-            Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Admin.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnListarPedidosActionPerformed
@@ -462,8 +487,10 @@ public class Tela_Admin extends javax.swing.JFrame {
 
         try {
             new JFRAMETela_Produto().setVisible(true);
+
         } catch (SQLException ex) {
-            Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Admin.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnProdutosActionPerformed
@@ -477,8 +504,10 @@ public class Tela_Admin extends javax.swing.JFrame {
         this.dispose();
         try {
             new Tela_Login().setVisible(true);
+
         } catch (SQLException ex) {
-            Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Admin.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnMesas1ActionPerformed

@@ -176,7 +176,7 @@ public class MesaDao {
 
         try {
             // Comando SQL na base = tabela de usuario
-            String sql = "select * from mesa WHERE idMesa = ?;";
+            String sql = "select * from mesa WHERE idMesa = ? AND STATUS = 'ATIVADO';";
 
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idMesa);

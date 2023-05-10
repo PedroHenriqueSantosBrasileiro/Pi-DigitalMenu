@@ -106,7 +106,7 @@ public class UsuarioDAO {
 
         try {
             // Comando SQL na base = tabela de usuario
-            String sql = "select * from usuario WHERE usuario = ? AND senha = ?;";//###
+            String sql = "select * from usuario WHERE usuario = ? AND senha = ? AND STATUS = 'ATIVADO';";
 
             //Executa a query (comando SQL)
             ps = connection.prepareStatement(sql);

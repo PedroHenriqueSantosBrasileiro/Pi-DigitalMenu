@@ -7,15 +7,22 @@ import javax.swing.table.TableRowSorter;
 import br.digitalmenu.dao.UsuarioDAO;
 import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Usuario;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 
 public class TelaUsuarios extends Heuristica {
 
     public TelaUsuarios() throws SQLException {
         initComponents();
 
-        DefaultTableModel modelo = (DefaultTableModel) tblListaUsuarios.getModel();
-        tblListaUsuarios.setRowSorter(new TableRowSorter(modelo));
+        IniciaTabela(tblListaUsuarios);//Formata a tabela e centraliza pela classe heuristicas
         ListaTabela();
+        //DefaultTableModel modelo = (DefaultTableModel) tblListaUsuarios.getModel();
+        //tblListaUsuarios.setRowSorter(new TableRowSorter(modelo));
+       // ListaTabela();
 
     }
 
@@ -99,7 +106,7 @@ public class TelaUsuarios extends Heuristica {
         rdoAdmin.setText("Admin");
 
         rdoGrupo1.add(rdoPadrao);
-        rdoPadrao.setText("Padrão");
+        rdoPadrao.setText("Atendente");
 
         btnAdicionar.setText("Adicionar");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +137,7 @@ public class TelaUsuarios extends Heuristica {
                         .addComponent(rdoPadrao)
                         .addGap(18, 18, 18)
                         .addComponent(btnAdicionar)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         pnlSuperiorLayout.setVerticalGroup(
             pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,14 +208,15 @@ public class TelaUsuarios extends Heuristica {
         pnlGlobal.setLayout(pnlGlobalLayout);
         pnlGlobalLayout.setHorizontalGroup(
             pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTabelaConsulta)
-            .addGroup(pnlGlobalLayout.createSequentialGroup()
-                .addComponent(pnlSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGlobalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlInferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(pnlGlobalLayout.createSequentialGroup()
+                .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlTabelaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 1, Short.MAX_VALUE))
         );
         pnlGlobalLayout.setVerticalGroup(
             pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

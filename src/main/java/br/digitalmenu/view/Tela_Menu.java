@@ -1794,7 +1794,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_Categoria_1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-/*
+
         int confirma = JOptionPane.showConfirmDialog(
                 this,
                 "Deseja encerrar o pedido?",
@@ -1806,7 +1806,7 @@ public class Tela_Menu extends javax.swing.JFrame {
             try {
                 //Fecha pedido
                 Pedido pedido = new Pedido();
-                pedido.setIdPedido(Integer.parseInt(lbl_NumeroPedido.getText()));
+                pedido.setIdPedido(Integer.parseInt(lbl_NumeroDoPedido.getText()));
                 pedido.setStatus("Encerrado");
                 PedidoDao pedidoDao = new PedidoDao();
                 pedidoDao.atualizaPedido(pedido);
@@ -1822,9 +1822,9 @@ public class Tela_Menu extends javax.swing.JFrame {
                 );
                 if (novoPedido == JOptionPane.YES_OPTION) {
                     //Cria novo pedido
-                    pedido.setIdPedido(Integer.parseInt(lbl_NumeroMesa.getText()));//seta o id do pedido
+                    pedido.setIdPedido(Integer.parseInt(lbl_NumeroDaMesa.getText()));//seta o id do pedido
                     pedidoDao.adicionarPedido(pedido);//cria pedido
-                    new Tela_Menu(pedidoDao.numeroPedido, Integer.parseInt(lbl_NumeroMesa.getText())).setVisible(true);//abre a tela menu
+                    new Tela_Menu(pedidoDao.numeroPedido, Integer.parseInt(lbl_NumeroDaMesa.getText())).setVisible(true);//abre a tela menu
                 }else{
                     //Caso não crie outro pedido, volta para tela login
                     new Tela_Login().setVisible(true);
@@ -1834,8 +1834,8 @@ public class Tela_Menu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
 
-        }     */ 
-this.dispose;
+        }     
+
        
     }//GEN-LAST:event_jButton5ActionPerformed
 

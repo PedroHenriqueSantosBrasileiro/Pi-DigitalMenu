@@ -1,4 +1,3 @@
-
 package br.digitalmenu.view;
 
 import br.digitalmenu.dao.CategoriaDao;
@@ -16,27 +15,32 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 import javax.swing.text.JTextComponent;
 
 public class JFRAMETela_Produto extends Heuristica {
 
-        String auxNome, auxCat, auxDesc, auxStatus;
+    String auxNome, auxCat, auxDesc, auxStatus;
     double auxPreco;
-    
+
     Border border;
 
     public JFRAMETela_Produto() throws SQLException {
         initComponents();
-         viewCategoria();
+        viewCategoria();
         txtId.setEnabled(false);
-        DefaultTableModel modelo = (DefaultTableModel) jtProduto.getModel();
-        jtProduto.setRowSorter(new TableRowSorter(modelo));
+        IniciaTabela(jtProduto);//Formata a tabela e centraliza pela classe heuristicas
         listarJTableProdutosAtivados();
         border = txtformatPreco.getBorder();
     }
-    
+
+   
+
     public void listarJTableTodosProdutos() throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtProduto.getModel();
         modelo.setNumRows(0);
@@ -155,8 +159,8 @@ public class JFRAMETela_Produto extends Heuristica {
             cboxCategoria.addItem(categoria.getNomeCategoria());
         }
     }
-    
-    public void limparTxtFields(){
+
+    public void limparTxtFields() {
         txtId.setText("");
         txtNome.setText("");
         txtarea_Descricao.setText("");
@@ -508,47 +512,45 @@ public class JFRAMETela_Produto extends Heuristica {
 
         boolean campo1 = verificarSeCampoEstaEmBranco(txtNome, "Nome");
         boolean campo2 = verificarSeCampoEstaEmBranco(txtformatPreco, "Preço");
-        
-        if(campo1 && campo2 == true){
-          
-        Produto p = new Produto();
-        p.setNome(txtNome.getText());
-        p.setPreco(Double.parseDouble(txtformatPreco.getText().replace(',', '.')));
-        p.setDescricao(txtarea_Descricao.getText());
-        p.setNomeCategoria(cboxCategoria.getSelectedItem().toString());
-        //        p.setStatus(checkboxStatus.isSelected() ? "Ativado" : "Desativado");
-        ProdutoDao pDao = new ProdutoDao();
-        try {
-            pDao.createProduto(p);
-            JOptionPane.showMessageDialog(null, "PRODUTO (" + p.getNome() + ") CRIADO COM SUCESSO!");
-            listarJTableProdutosAtivados();
 
-            
+        if (campo1 && campo2 == true) {
 
-            txtformatPreco.setBorder(border);
-            txtNome.setBorder(border);
+            Produto p = new Produto();
+            p.setNome(txtNome.getText());
+            p.setPreco(Double.parseDouble(txtformatPreco.getText().replace(',', '.')));
+            p.setDescricao(txtarea_Descricao.getText());
+            p.setNomeCategoria(cboxCategoria.getSelectedItem().toString());
+            //        p.setStatus(checkboxStatus.isSelected() ? "Ativado" : "Desativado");
+            ProdutoDao pDao = new ProdutoDao();
+            try {
+                pDao.createProduto(p);
+                JOptionPane.showMessageDialog(null, "PRODUTO (" + p.getNome() + ") CRIADO COM SUCESSO!");
+                listarJTableProdutosAtivados();
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                txtformatPreco.setBorder(border);
+                txtNome.setBorder(border);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
+
         }
-            
-        }
-        
-          
+
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
 
         if (jtProduto.getSelectedRow() != -1) {
             int confirma = JOptionPane.showConfirmDialog(this,
-                "Deletar produto: "
-                + "\nID: "
-                + txtId.getText()
-                + "\nNome: "
-                + txtNome.getText(),
-                "CONFIRMA DELEÇÃO?",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE);
+                    "Deletar produto: "
+                    + "\nID: "
+                    + txtId.getText()
+                    + "\nNome: "
+                    + txtNome.getText(),
+                    "CONFIRMA DELEÇÃO?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
             if (confirma == JOptionPane.YES_OPTION) {
                 Produto p = new Produto();
                 p.setIdProduto(Integer.parseInt(txtId.getText()));
@@ -576,7 +578,7 @@ public class JFRAMETela_Produto extends Heuristica {
         try {
             produto = produtoDao.listarProdutoPorId(Integer.parseInt(txtId.getText()));
             Teste pteste = new Teste(produto);
-            
+
             int opcao = JOptionPane.showConfirmDialog(null, pteste, "Alterar Produto", JOptionPane.OK_CANCEL_OPTION);
             if (opcao == JOptionPane.OK_OPTION) {
                 Produto p = new Produto();
@@ -590,8 +592,8 @@ public class JFRAMETela_Produto extends Heuristica {
                 pDao.alterarProduto(p);
                 listarJTableProdutosAtivados();
                 limparTxtFields();
-                
-            } else if (opcao == JOptionPane.CANCEL_OPTION){
+
+            } else if (opcao == JOptionPane.CANCEL_OPTION) {
                 JOptionPane.showMessageDialog(null, "cancelado");
             }
         } catch (SQLException ex) {
@@ -632,7 +634,7 @@ public class JFRAMETela_Produto extends Heuristica {
         myPanel.add(valorFinal);
 
         int result = JOptionPane.showConfirmDialog(null, myPanel,
-            "Informe a faixa de preço", JOptionPane.OK_CANCEL_OPTION);
+                "Informe a faixa de preço", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
             try {
                 double valor1 = Double.parseDouble(valorInicial.getText().replace(',', '.'));
@@ -810,7 +812,4 @@ public class JFRAMETela_Produto extends Heuristica {
     private javax.swing.JFormattedTextField txtformatPreco;
     // End of variables declaration//GEN-END:variables
 
-    
-
-    
 }

@@ -102,4 +102,43 @@ public class ItemDao {
         }
         return item;
     }
+/*
+     TESTE- COLOCAR NO MODEL ITEM NOME, PRECO E TOTALQTDE
+    public Item listarItensQtdeTotalVendidaPorId(int idProduto) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        Item item = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT i.id_produto, p.nome, p.preco, SUM(i.qtde) as qtdeTotal FROM item i "
+                     +"INNER JOIN produto p "
+                     +"ON i.id_produto = p.idproduto "
+                     +"WHERE p.idproduto = ?";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, idProduto);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                item = new Item();
+                //item.setId_pedido(rs.getInt("id_pedido"));
+                item.setId_produto(rs.getInt("id_produto"));
+                item.setNome(rs.getString("p.nome"));
+                item.setPreco(rs.getDouble("p.preco"));
+                item.setTotalVendido(rs.getInt("qtdeTotal"));
+                // item.setSubtotal(rs.getDouble("subtotal"));
+                //item.setHoraComanda("horapedido");
+                //item.setStatus(rs.getString("status"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return item;
+    }*/
+    
 }
