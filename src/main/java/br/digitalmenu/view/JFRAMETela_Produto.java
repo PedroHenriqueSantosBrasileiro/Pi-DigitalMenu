@@ -569,7 +569,7 @@ public class JFRAMETela_Produto extends Heuristica {
         Produto produto;
         try {
             produto = produtoDao.listarProdutoPorId(Integer.parseInt(txtId.getText()));
-            Teste pteste = new Teste(produto);
+            Panel_Alterar_Produto pteste = new Panel_Alterar_Produto(produto);
 
             int opcao = JOptionPane.showConfirmDialog(null, pteste, "Alterar Produto", JOptionPane.OK_CANCEL_OPTION);
             if (opcao == JOptionPane.OK_OPTION) {

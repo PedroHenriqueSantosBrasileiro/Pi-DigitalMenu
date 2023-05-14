@@ -335,7 +335,6 @@ public class Tela_Atendente extends javax.swing.JFrame {
 
     private void btnAlteraProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlteraProdutosActionPerformed
 
-        new Tela_Alteração_Produto().setVisible(true);
 
     }//GEN-LAST:event_btnAlteraProdutosActionPerformed
 
