@@ -3,15 +3,9 @@ package br.digitalmenu.view;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import br.digitalmenu.dao.UsuarioDAO;
 import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Usuario;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
 
 public class TelaUsuarios extends Heuristica {
 
@@ -22,8 +16,7 @@ public class TelaUsuarios extends Heuristica {
         ListaTabela();
         //DefaultTableModel modelo = (DefaultTableModel) tblListaUsuarios.getModel();
         //tblListaUsuarios.setRowSorter(new TableRowSorter(modelo));
-       // ListaTabela();
-
+        // ListaTabela();
     }
 
     public void ListaTabela() throws SQLException {
@@ -40,18 +33,15 @@ public class TelaUsuarios extends Heuristica {
                 UsuarioLocal.getTipoacesso(),
                 UsuarioLocal.getStatus(),});
         }
-
     }
 
     public void Limpar() {
 
         ((DefaultTableModel) tblListaUsuarios.getModel()).setRowCount(0);
-
         // Limpando campos Text
         txtUsuario.setText("");
         txtSenha.setText("");
         rdoGrupo1.clearSelection();
-
         //Deixando o focu no primeiro campo
         txtUsuario.requestFocus();
     }

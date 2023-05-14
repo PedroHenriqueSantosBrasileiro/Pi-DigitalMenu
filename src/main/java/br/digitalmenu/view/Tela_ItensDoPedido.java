@@ -15,14 +15,12 @@ public class Tela_ItensDoPedido extends Heuristica {
     public Tela_ItensDoPedido() {
         initComponents();
     }
-    
-    
 
     public Tela_ItensDoPedido(int numeroPedido, int numeroMesa) throws SQLException {
         initComponents();
         lbl_NumeroPedido.setText(String.valueOf(numeroPedido));
         lbl_NumeroMesa.setText(String.valueOf(numeroMesa));
-        
+
         IniciaTabela(jtItensDoPedido);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable(numeroPedido);
         lbl_ValorTotal.setText(String.valueOf(valorTotal));
@@ -35,15 +33,15 @@ public class Tela_ItensDoPedido extends Heuristica {
         for (Item item : itensDao.listarItensPorPedido(numeroPedido)) {
             ProdutoDao produtoDao = new ProdutoDao();
             modelo.addRow(new Object[]{
-                item.getId_produto(),
-                produtoDao.listarProdutoPorId(item.getId_produto()).getNome(),
-                produtoDao.listarProdutoPorId(item.getId_produto()).getPreco(),
+                item.getProduto().getIdProduto(),
+                item.getProduto().getNome(),
+                item.getProduto().getPreco(),
                 item.getQtde(),
                 item.getSubtotal(),
                 item.getHoraComanda(),
                 item.getStatus()
             });
-            valorTotal +=  Double.parseDouble(String.valueOf(item.getSubtotal()));
+            valorTotal += Double.parseDouble(String.valueOf(item.getSubtotal()));
         }
     }
 
@@ -202,7 +200,6 @@ public class Tela_ItensDoPedido extends Heuristica {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

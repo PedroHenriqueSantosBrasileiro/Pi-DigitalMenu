@@ -77,7 +77,6 @@ public class MesaDao {
             ps = connection.prepareStatement(sql);
             ps.setString(1, status);
             rs = ps.executeQuery();
-            
 
             while (rs.next()) {
                 Mesa mesa = new Mesa();

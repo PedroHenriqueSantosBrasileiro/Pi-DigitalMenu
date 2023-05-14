@@ -28,8 +28,7 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
         initComponents();
         IniciaTabela(jtPedido);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable();
-    } 
-    
+    }
 
     public void setarCampos(JTable j) {
         if (j.getSelectedRow() != -1) {
@@ -58,10 +57,10 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
         for (Pedido pedido : pedDao.listarPedido()) {
             modelo.addRow(new Object[]{
                 pedido.getIdPedido(),
-                pedido.getId_Mesa(),
+                pedido.getMesa().getIdMesa(),
                 pedido.getTotal(),
                 pedido.getData(),
-                pedido.getHorarioPedido(),
+                pedido.getHorario(),
                 pedido.getStatus()
             });
         }
@@ -74,10 +73,10 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
         Pedido p = pedDao.listarPedidoPorId(numPedido);
         modelo2.addRow(new Object[]{
             p.getIdPedido(),
-            p.getId_Mesa(),
+            p.getMesa().getIdMesa(),
             p.getTotal(),
             p.getData(),
-            p.getHorarioPedido(),
+            p.getHorario(),
             p.getStatus()
         });
 
@@ -90,10 +89,10 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
         for (Pedido pedido : pedDao.listarPedidoPorMesa(numMesa)) {
             modelo2.addRow(new Object[]{
                 pedido.getIdPedido(),
-                pedido.getId_Mesa(),
+                pedido.getMesa().getIdMesa(),
                 pedido.getTotal(),
                 pedido.getData(),
-                pedido.getHorarioPedido(),
+                pedido.getHorario(),
                 pedido.getStatus()
             });
         }
@@ -106,10 +105,10 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
         for (Pedido pedido : pedDao.listarPedidoPorStatus(status)) {
             modelo2.addRow(new Object[]{
                 pedido.getIdPedido(),
-                pedido.getId_Mesa(),
+                pedido.getMesa().getIdMesa(),
                 pedido.getTotal(),
                 pedido.getData(),
-                pedido.getHorarioPedido(),
+                pedido.getHorario(),
                 pedido.getStatus()
             });
         }
@@ -122,10 +121,10 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
         for (Pedido pedido : pedidoDao.listarProdutoPorFaixaDePreco(valor1, valor2)) {
             modelo.addRow(new Object[]{
                 pedido.getIdPedido(),
-                pedido.getId_Mesa(),
+                pedido.getMesa().getIdMesa(),
                 pedido.getTotal(),
                 pedido.getData(),
-                pedido.getHorarioPedido(),
+                pedido.getHorario(),
                 pedido.getStatus()
             });
         }
@@ -138,10 +137,10 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
         for (Pedido pedido : pedidoDao.listarProdutoPorDia(valor1)) {
             modelo.addRow(new Object[]{
                 pedido.getIdPedido(),
-                pedido.getId_Mesa(),
+                pedido.getMesa().getIdMesa(),
                 pedido.getTotal(),
                 pedido.getData(),
-                pedido.getHorarioPedido(),
+                pedido.getHorario(),
                 pedido.getStatus()
             });
         }
@@ -154,10 +153,10 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
         for (Pedido pedido : pedidoDao.listarProdutoPorFaixaDia(valor1, valor2)) {
             modelo.addRow(new Object[]{
                 pedido.getIdPedido(),
-                pedido.getId_Mesa(),
+                pedido.getMesa().getIdMesa(),
                 pedido.getTotal(),
                 pedido.getData(),
-                pedido.getHorarioPedido(),
+                pedido.getHorario(),
                 pedido.getStatus()
             });
         }
@@ -490,7 +489,6 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
     }//GEN-LAST:event_jtPedidoKeyReleased
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
         try {
             JPanel painel = new JPanel();
             JLabel idPedido = new JLabel("Digite o ID: ");
@@ -510,7 +508,6 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
-            // TODO add your handling code here:
             listarJTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -518,7 +515,6 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
         try {
             JPanel painel = new JPanel();
             JLabel idMesa = new JLabel("Digite o número da mesa: ");
@@ -534,7 +530,7 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
                     //      MSG DE BORDAS (CENTRALIZADAS JTBLES)
                     //
                     //
-                    JOptionPane.showMessageDialog(null, String.format("Não existem pedidos na mesa %s",digitarNumero.getText()));
+                    JOptionPane.showMessageDialog(null, String.format("Não existem pedidos na mesa %s", digitarNumero.getText()));
                     listarJTable();
                 }
             }
@@ -544,7 +540,6 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
         JPanel painel = new JPanel();
         JComboBox comboBox = new JComboBox();
         comboBox.addItem("Aberto");
@@ -568,7 +563,6 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
         JTextField valorInicial = new JTextField(10);
         JTextField valorFinal = new JTextField(10);
         JPanel myPanel = new JPanel();
@@ -596,7 +590,6 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
         JTextField valorInicial = new JTextField(10);
         JTextField valorFinal = new JTextField(10);
         JPanel myPanel = new JPanel();
@@ -625,7 +618,6 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
         JTextField valorInicial = new JTextField(10);
         JPanel myPanel = new JPanel();
         myPanel.add(new JLabel("Data: (dd//mm/aaa)"));

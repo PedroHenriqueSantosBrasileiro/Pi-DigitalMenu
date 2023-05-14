@@ -12,9 +12,9 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.text.JTextComponent;
 
 public abstract class Heuristica extends javax.swing.JFrame {
-    
+
     Border bordaPadrao = new javax.swing.JTextField().getBorder();
-    
+
     public boolean verificarSeCampoEstaEmBranco(JTextComponent componente, String nomeCampo) {
 
         if (componente.getText().equals("")) {
@@ -29,7 +29,7 @@ public abstract class Heuristica extends javax.swing.JFrame {
         }
 
     }
-    
+
     public void IniciaTabela(JTable tabela) throws SQLException {
         //centraliza o Header
         TableCellRenderer rendererFromHeader = tabela.getTableHeader().getDefaultRenderer();
@@ -41,7 +41,7 @@ public abstract class Heuristica extends javax.swing.JFrame {
         centroRender.setHorizontalAlignment(JLabel.CENTER); //Alinha ao centro
         TableModel modelo = tabela.getModel();
         tabela.setRowSorter(new TableRowSorter(modelo));
-        
+
         for (int columnIndex = 0; columnIndex < modelo.getColumnCount(); columnIndex++) {
             tabela.getColumnModel().getColumn(columnIndex).setCellRenderer(centroRender);
         }

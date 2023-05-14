@@ -4,7 +4,6 @@ import br.digitalmenu.dao.MesaDao;
 import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.model.Mesa;
 import br.digitalmenu.model.Pedido;
-import java.awt.Graphics;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

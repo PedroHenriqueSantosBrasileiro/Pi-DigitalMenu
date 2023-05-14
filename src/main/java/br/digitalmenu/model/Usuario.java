@@ -1,17 +1,15 @@
-
 package br.digitalmenu.model;
 
 public class Usuario {
-    
+
     private int idusuario;
     private String usuario;
     private String senha;
     private String tipoacesso;
     private String status;
 
-
     public Usuario() {//construtor padrao
-        
+
     }
 
     public Usuario(String usuario, String senha, String tipoacesso, String status) {
@@ -20,7 +18,7 @@ public class Usuario {
         this.tipoacesso = tipoacesso;
         this.status = status;
     }
-    
+
     //getters and setters
     public int getIdusuario() {
         return idusuario;
@@ -61,7 +59,5 @@ public class Usuario {
     public void setStatus(String status) {
         this.status = status;
     }
-  
-    
-    
+
 }

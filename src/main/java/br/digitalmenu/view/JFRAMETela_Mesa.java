@@ -8,13 +8,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 public class JFRAMETela_Mesa extends Heuristica {
 
@@ -26,9 +21,7 @@ public class JFRAMETela_Mesa extends Heuristica {
         IniciaTabela(jtMesa);//Formata a tabela e centraliza pela classe heuristicas
         listarJtablePorStatus("Ativado");
     }
-    
-   
-    
+
     public void listarJtable() throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtMesa.getModel();
         modelo.setNumRows(0);
@@ -40,7 +33,8 @@ public class JFRAMETela_Mesa extends Heuristica {
             });
         }
     }
-      public void listarJtablePorStatus(String status) throws SQLException {
+
+    public void listarJtablePorStatus(String status) throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtMesa.getModel();
         modelo.setNumRows(0);
         MesaDao mesaDAO = new MesaDao();
@@ -62,10 +56,11 @@ public class JFRAMETela_Mesa extends Heuristica {
             mesa.getStatus()
         });
     }
-    
-    public void limparTxtFields(){
+
+    public void limparTxtFields() {
         txt_NumeroMesa.setText("");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -329,8 +324,8 @@ public class JFRAMETela_Mesa extends Heuristica {
     }//GEN-LAST:event_txt_NumeroMesaActionPerformed
 
     private void btn_CadastrarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarMesaActionPerformed
-        
-        if(verificarSeCampoEstaEmBranco(txt_NumeroMesa, "Numer da mesa")){
+
+        if (verificarSeCampoEstaEmBranco(txt_NumeroMesa, "Numer da mesa")) {
             Mesa mesa = new Mesa();
             mesa.setIdMesa(Integer.parseInt(txt_NumeroMesa.getText()));
             //            String status = checkbox_Status.isSelected() ? "ATIVADO" : "DESATIVADO";
@@ -346,7 +341,7 @@ public class JFRAMETela_Mesa extends Heuristica {
                             + mesa.getIdMesa()
                     //                            + "\nStatus: "
                     //                            + mesa.getStatus()
-                            
+
                     );
                     this.txt_NumeroMesa.setText("");
                 }
@@ -458,7 +453,7 @@ public class JFRAMETela_Mesa extends Heuristica {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
-          
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -486,7 +481,7 @@ public class JFRAMETela_Mesa extends Heuristica {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-                try {
+        try {
             listarJtable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());

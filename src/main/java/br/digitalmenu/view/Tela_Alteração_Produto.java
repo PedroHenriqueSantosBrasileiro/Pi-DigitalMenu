@@ -1,11 +1,9 @@
 package br.digitalmenu.view;
 
 import br.digitalmenu.dao.CategoriaDao;
-import br.digitalmenu.dao.ProdutoDao;
 import br.digitalmenu.model.Categoria;
 import br.digitalmenu.model.Produto;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 public class Tela_Alteração_Produto extends javax.swing.JFrame {
 
@@ -28,7 +26,7 @@ public class Tela_Alteração_Produto extends javax.swing.JFrame {
         txt_Nome_Novo.setText(String.valueOf(produto.getNome()));
         lbl_Preco_Atual.setText(String.valueOf(produto.getPreco()));
         txt_Preco_Novo.setText(String.valueOf(produto.getPreco()));
-        lbl_Categoria_Atual.setText(String.valueOf(produto.getNomeCategoria()));
+        lbl_Categoria_Atual.setText(String.valueOf(produto.getCategoria().getNomeCategoria()));
         cbox_Categoria_Novo.setSelectedItem(produto.getStatus());
         txtarea_Descricao_Atual.setText(String.valueOf(produto.getDescricao()));
         txtarea_Descricao_Novo.setText(String.valueOf(produto.getDescricao()));

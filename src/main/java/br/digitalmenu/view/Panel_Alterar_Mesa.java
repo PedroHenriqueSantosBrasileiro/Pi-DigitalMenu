@@ -9,26 +9,21 @@ import javax.swing.JTextField;
 public class Panel_Alterar_Mesa extends javax.swing.JPanel {
 
     public Mesa mesa;
-   
 
     public Panel_Alterar_Mesa(Mesa mesa) throws SQLException {
         initComponents();
         this.mesa = mesa;
         setDados();
     }
-    
 
-    
-    
-    public void setDados(){
+    public void setDados() {
         lbl_Id_Valor.setText(String.valueOf(mesa.getIdMesa()));
         lbl_numero_atual.setText(String.valueOf(mesa.getIdMesa()));
         txt_numero_Novo.setText(String.valueOf(mesa.getIdMesa()));
         lbl_Status_Atual.setText(mesa.getStatus());
         comboBox_status_novo.setSelectedItem(mesa.getStatus());
         System.out.println(mesa.getStatus());
-        
-        
+
     }
 
     public JComboBox<String> getComboBox_status_novo() {
@@ -42,9 +37,7 @@ public class Panel_Alterar_Mesa extends javax.swing.JPanel {
     public JLabel getLbl_Id_Valor() {
         return lbl_Id_Valor;
     }
-    
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

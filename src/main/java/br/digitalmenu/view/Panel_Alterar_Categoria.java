@@ -9,7 +9,6 @@ import javax.swing.JTextField;
 public class Panel_Alterar_Categoria extends javax.swing.JPanel {
 
     public Categoria categoria;
-   
 
     public Panel_Alterar_Categoria(Categoria categoria) throws SQLException {
         initComponents();
@@ -17,8 +16,8 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
         setDados();
 //        listarCategoriasComboBox();
     }
-    
-    public void setDados(){
+
+    public void setDados() {
         lbl_Id_Valor.setText(String.valueOf(categoria.getIdCategoria()));
         lbl_id_atual.setText(String.valueOf(categoria.getIdCategoria()));
         txt_id_novo.setText(String.valueOf(categoria.getIdCategoria()));
@@ -27,14 +26,13 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
         lbl_status_Atual1.setText(categoria.getStatus());
         comboBox_status_novo1.setSelectedItem(categoria.getStatus());
     }
-    
+
 //    public void listarCategoriasComboBox() throws SQLException{
 //        CategoriaDao catDao = new CategoriaDao();
 //        for (Categoria categoria : catDao.listarCategoria()){
 //            comboBox_status_novo1.addItem(categoria.getStatus());
 //        }
 //    }
-    
     public JComboBox<String> getComboBox_status_novo1() {
         return comboBox_status_novo1;
     }
@@ -46,10 +44,7 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
     public JTextField getTxt_nome_novo() {
         return txt_nome_novo;
     }
-    
-    
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

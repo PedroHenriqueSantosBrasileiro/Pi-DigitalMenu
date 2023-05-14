@@ -5,7 +5,7 @@ public class Mesa {
     private int idMesa;
     private String status;
 
-    public Mesa() {//construtor padrão
+    public Mesa() {
 
     }
 

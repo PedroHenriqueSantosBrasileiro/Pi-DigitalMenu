@@ -10,21 +10,20 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 public class JFRAMETela_Categoria extends Heuristica {
-    
+
     int idCategoriaInicial = 0;
     String statusInicial = "";
-    
+
     public JFRAMETela_Categoria() throws SQLException {
         initComponents();
         txt_Numero_IdCategoria.setEnabled(false);
         IniciaTabela(jtCategoria);
         listarJTableTodosAtivos();//Formata a tabela e centraliza pela classe heuristicas
-        
-    }
-    
 
-    
+    }
+
     public void listarJTableTodasCategorias() throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtCategoria.getModel();
         modelo.setNumRows(0);
@@ -37,7 +36,7 @@ public class JFRAMETela_Categoria extends Heuristica {
             });
         }
     }
-    
+
     public void listarJTableTodosAtivos() throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtCategoria.getModel();
         modelo.setNumRows(0);
@@ -50,7 +49,7 @@ public class JFRAMETela_Categoria extends Heuristica {
             });
         }
     }
-    
+
     public void listarJTablePorId(int id) throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtCategoria.getModel();
         modelo.setNumRows(0);
@@ -62,7 +61,7 @@ public class JFRAMETela_Categoria extends Heuristica {
             categoria.getStatus()
         });
     }
-    
+
     public void listarJTablePorNome(String texto) throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtCategoria.getModel();
         modelo.setNumRows(0);
@@ -75,7 +74,7 @@ public class JFRAMETela_Categoria extends Heuristica {
             });
         }
     }
-    
+
     public void listarJtablePorStatus(String status) throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtCategoria.getModel();
         modelo.setNumRows(0);
@@ -88,12 +87,12 @@ public class JFRAMETela_Categoria extends Heuristica {
             });
         }
     }
-    
+
     public void limparTxtFields() {
         txt_Numero_IdCategoria.setText("");
         txt_NomeCategoria.setText("");
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -403,7 +402,7 @@ public class JFRAMETela_Categoria extends Heuristica {
     }//GEN-LAST:event_jtCategoriaKeyReleased
 
     private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarActionPerformed
-        
+
         if (verificarSeCampoEstaEmBranco(txt_NomeCategoria, "Categoria")) {
             Categoria categoria = new Categoria();
             categoria.setNomeCategoria(txt_NomeCategoria.getText());
@@ -423,7 +422,7 @@ public class JFRAMETela_Categoria extends Heuristica {
     }//GEN-LAST:event_btn_CadastrarActionPerformed
 
     private void btn_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtualizarActionPerformed
-        
+
         if (jtCategoria.getRowCount() != -1) {
             try {
                 CategoriaDao categoriaDao = new CategoriaDao();
@@ -491,9 +490,9 @@ public class JFRAMETela_Categoria extends Heuristica {
     }//GEN-LAST:event_btn_AtualizarActionPerformed
 
     private void btn_DeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeletarActionPerformed
-        
+
         if (jtCategoria.getSelectedRow() != -1) {
-            
+
             int confirma = JOptionPane.showConfirmDialog(this,
                     "Dados da categoria a deletar:\n ID: "
                     + txt_Numero_IdCategoria.getText()
@@ -503,7 +502,7 @@ public class JFRAMETela_Categoria extends Heuristica {
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE
             );
-            
+
             if (confirma == JOptionPane.YES_OPTION) {
                 Categoria cat = new Categoria();
                 cat.setIdCategoria(Integer.parseInt(txt_Numero_IdCategoria.getText()));
@@ -530,7 +529,6 @@ public class JFRAMETela_Categoria extends Heuristica {
     }//GEN-LAST:event_txt_NomeCategoriaActionPerformed
 
     private void btn_pesquisa_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisa_idActionPerformed
-        // TODO add your handling code here:
         JPanel painel = new JPanel();
         JLabel lbl_numeroId = new JLabel("Número: ");
         JTextField txt_numeroId = new JTextField(10);
@@ -547,12 +545,11 @@ public class JFRAMETela_Categoria extends Heuristica {
         } else {
             JOptionPane.showMessageDialog(null, "op cancelada");
         }
-        
+
 
     }//GEN-LAST:event_btn_pesquisa_idActionPerformed
 
     private void btn_pesquisa_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisa_nomeActionPerformed
-        // TODO add your handling code here:
         JPanel painel = new JPanel();
         JLabel nomeProduto = new JLabel("Palavra: ");
         JTextField digitarPalavra = new JTextField(25);
@@ -584,7 +581,6 @@ public class JFRAMETela_Categoria extends Heuristica {
     }//GEN-LAST:event_brn_pesquisa_todosActionPerformed
 
     private void btn_pesquisa_statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisa_statusActionPerformed
-        // TODO add your handling code here:
         JPanel painel = new JPanel();
         JComboBox comboBox = new JComboBox();
         comboBox.addItem("Ativado");

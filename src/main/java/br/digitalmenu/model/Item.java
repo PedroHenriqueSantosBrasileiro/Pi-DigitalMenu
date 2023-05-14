@@ -2,29 +2,28 @@ package br.digitalmenu.model;
 
 public class Item {
 
-    private int id_pedido;
-    private int id_produto;
+    private Pedido pedido = new Pedido();
+    private Produto produto = new Produto();
     private int qtde;
     private double subtotal;
     private String observacao;
     private String status;
-    private String horaComanda;
+    private String horaPedido;
 
-
-    public int getId_pedido() {
-        return id_pedido;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setId_pedido(int id_pedido) {
-        this.id_pedido = id_pedido;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
-    public int getId_produto() {
-        return id_produto;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setId_produto(int id_produto) {
-        this.id_produto = id_produto;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public int getQtde() {
@@ -60,15 +59,11 @@ public class Item {
     }
 
     public String getHoraComanda() {
-        return horaComanda;
+        return horaPedido;
     }
 
     public void setHoraComanda(String horaComanda) {
-        this.horaComanda = horaComanda;
+        this.horaPedido = horaComanda;
     }
-
- 
-       
-    
 
 }
