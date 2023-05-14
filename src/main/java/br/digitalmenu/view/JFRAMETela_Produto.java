@@ -12,16 +12,10 @@ import javax.swing.Box;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
-import javax.swing.text.JTextComponent;
 
 public class JFRAMETela_Produto extends Heuristica {
 
@@ -39,8 +33,6 @@ public class JFRAMETela_Produto extends Heuristica {
         border = txtformatPreco.getBorder();
     }
 
-   
-
     public void listarJTableTodosProdutos() throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtProduto.getModel();
         modelo.setNumRows(0);
@@ -49,7 +41,7 @@ public class JFRAMETela_Produto extends Heuristica {
             modelo.addRow(new Object[]{
                 prod.getIdProduto(),
                 prod.getNome(),
-                prod.getNomeCategoria(),
+                prod.getCategoria().getNomeCategoria(),
                 String.format("%.2f", prod.getPreco()),
                 prod.getDescricao(),
                 prod.getStatus()
@@ -65,7 +57,7 @@ public class JFRAMETela_Produto extends Heuristica {
             modelo.addRow(new Object[]{
                 prod.getIdProduto(),
                 prod.getNome(),
-                prod.getNomeCategoria(),
+                prod.getCategoria().getNomeCategoria(),
                 String.format("%.2f", prod.getPreco()),
                 prod.getDescricao(),
                 prod.getStatus()
@@ -81,7 +73,7 @@ public class JFRAMETela_Produto extends Heuristica {
             modelo.addRow(new Object[]{
                 produto.getIdProduto(),
                 produto.getNome(),
-                produto.getNomeCategoria(),
+                produto.getCategoria().getNomeCategoria(),
                 String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
@@ -97,7 +89,7 @@ public class JFRAMETela_Produto extends Heuristica {
             modelo.addRow(new Object[]{
                 produto.getIdProduto(),
                 produto.getNome(),
-                produto.getNomeCategoria(),
+                produto.getCategoria().getNomeCategoria(),
                 String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
@@ -113,7 +105,7 @@ public class JFRAMETela_Produto extends Heuristica {
             modelo.addRow(new Object[]{
                 produto.getIdProduto(),
                 produto.getNome(),
-                produto.getNomeCategoria(),
+                produto.getCategoria().getNomeCategoria(),
                 String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
@@ -129,7 +121,7 @@ public class JFRAMETela_Produto extends Heuristica {
             modelo.addRow(new Object[]{
                 produto.getIdProduto(),
                 produto.getNome(),
-                produto.getNomeCategoria(),
+                produto.getCategoria().getNomeCategoria(),
                 String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
@@ -145,7 +137,7 @@ public class JFRAMETela_Produto extends Heuristica {
             modelo.addRow(new Object[]{
                 produto.getIdProduto(),
                 produto.getNome(),
-                produto.getNomeCategoria(),
+                produto.getCategoria().getNomeCategoria(),
                 String.format("%.2f", produto.getPreco()),
                 produto.getDescricao(),
                 produto.getStatus()
@@ -519,7 +511,7 @@ public class JFRAMETela_Produto extends Heuristica {
             p.setNome(txtNome.getText());
             p.setPreco(Double.parseDouble(txtformatPreco.getText().replace(',', '.')));
             p.setDescricao(txtarea_Descricao.getText());
-            p.setNomeCategoria(cboxCategoria.getSelectedItem().toString());
+            p.getCategoria().setNomeCategoria(cboxCategoria.getSelectedItem().toString());
             //        p.setStatus(checkboxStatus.isSelected() ? "Ativado" : "Desativado");
             ProdutoDao pDao = new ProdutoDao();
             try {
@@ -577,7 +569,7 @@ public class JFRAMETela_Produto extends Heuristica {
         Produto produto;
         try {
             produto = produtoDao.listarProdutoPorId(Integer.parseInt(txtId.getText()));
-            Teste pteste = new Teste(produto);
+            Panel_Alterar_Produto pteste = new Panel_Alterar_Produto(produto);
 
             int opcao = JOptionPane.showConfirmDialog(null, pteste, "Alterar Produto", JOptionPane.OK_CANCEL_OPTION);
             if (opcao == JOptionPane.OK_OPTION) {
@@ -585,7 +577,7 @@ public class JFRAMETela_Produto extends Heuristica {
                 p.setIdProduto(Integer.parseInt(pteste.getLbl_Id_Valor().getText()));
                 p.setNome(pteste.getTxt_Nome_Novo().getText());
                 p.setPreco(Double.parseDouble(pteste.getTxt_Preco_Novo().getText().replace(',', '.')));
-                p.setNomeCategoria(pteste.getCbox_Categoria_Novo().getSelectedItem().toString());
+                p.getCategoria().setNomeCategoria(pteste.getCbox_Categoria_Novo().getSelectedItem().toString());
                 p.setDescricao(pteste.getTxtarea_Descricao_Novo().getText());
                 p.setStatus(pteste.getCheckbox_Status_Novo().isSelected() ? "Ativado" : "Desativado");
                 ProdutoDao pDao = new ProdutoDao();

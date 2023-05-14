@@ -6,9 +6,8 @@ public class Produto {
     private String nome;
     private double preco;
     private String descricao;
-    private int idCategoria;
     private String status;
-    private String nomeCategoria;
+    private Categoria categoria = new Categoria();
 
     public int getIdProduto() {
         return idProduto;
@@ -42,14 +41,6 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -58,27 +49,12 @@ public class Produto {
         this.status = status;
     }
 
-    public String getNomeCategoria() {
-        return nomeCategoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setNomeCategoria(String nomeCategoria) {
-        this.nomeCategoria = nomeCategoria;
-    }
-
-    @Override
-    public String toString() {
-        String a
-                = this.idProduto + " " 
-                + this.nome 
-                + " " 
-                + this.preco + " " 
-                + this.descricao 
-                + " " 
-                + this.idCategoria 
-                + " " + this.status 
-                + " " + this.nomeCategoria;
-        return a;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
 }

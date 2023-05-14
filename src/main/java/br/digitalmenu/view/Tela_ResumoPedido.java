@@ -1,26 +1,15 @@
 package br.digitalmenu.view;
 
 import br.digitalmenu.dao.ItemDao;
-import br.digitalmenu.dao.MesaDao;
 import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.dao.ProdutoDao;
 import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Item;
-import br.digitalmenu.model.Mesa;
 import br.digitalmenu.model.Pedido;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 public class Tela_ResumoPedido extends Heuristica {
 
@@ -37,7 +26,7 @@ public class Tela_ResumoPedido extends Heuristica {
         lbl_NumeroMesa.setText(String.valueOf(numeroMesa));
         IniciaTabela(jtResumo);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable(Integer.parseInt(lbl_NumeroPedido.getText()));
-    } 
+    }
 
     public void listarJTable(int numeroPedido) throws SQLException {
         DefaultTableModel modelo = (DefaultTableModel) jtResumo.getModel();
@@ -46,17 +35,18 @@ public class Tela_ResumoPedido extends Heuristica {
         for (Item item : itensDao.listarItensPorPedido(numeroPedido)) {
             ProdutoDao prodDao = new ProdutoDao();
             modelo.addRow(new Object[]{
-                item.getId_produto(),
-                prodDao.listarProdutoPorId(item.getId_produto()).getNome(),
-                prodDao.listarProdutoPorId(item.getId_produto()).getPreco(),
+                item.getProduto().getIdProduto(),
+                item.getProduto().getNome(),
+                item.getProduto().getPreco(),
                 item.getQtde(),
                 item.getSubtotal(),
                 item.getHoraComanda(),
-                item.getStatus(),
-                valorTotal += item.getSubtotal()
+                item.getStatus()
             }
             );
+            valorTotal += item.getSubtotal();
         }
+
         lbl_ValorTotal.setText(String.valueOf(decimalFormat.format(valorTotal)));
     }
 
@@ -233,7 +223,6 @@ public class Tela_ResumoPedido extends Heuristica {
     private void btn_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VoltarActionPerformed
 
         this.dispose();
-
         //Reabre a tela menu com os atributos mesa e pedido
         try {
             new Tela_Menu(Integer.parseInt(lbl_NumeroPedido.getText()), Integer.parseInt(lbl_NumeroMesa.getText())).setVisible(true);
@@ -275,7 +264,7 @@ public class Tela_ResumoPedido extends Heuristica {
                     pedido.setIdPedido(Integer.parseInt(lbl_NumeroMesa.getText()));//seta o id do pedido
                     pedidoDao.adicionarPedido(pedido);//cria pedido
                     new Tela_Menu(pedidoDao.numeroPedido, Integer.parseInt(lbl_NumeroMesa.getText())).setVisible(true);//abre a tela menu
-                }else{
+                } else {
                     //Caso não crie outro pedido, volta para tela login
                     new Tela_Login().setVisible(true);
                 }

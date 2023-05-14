@@ -4,7 +4,6 @@ import br.digitalmenu.dao.MesaDao;
 import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.model.Mesa;
 import br.digitalmenu.model.Pedido;
-import java.awt.Graphics;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -497,6 +496,8 @@ public class Tela_Admin extends javax.swing.JFrame {
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
         // TODO add your handling code here:
+        TelaRelatorio telaRelatorio = new TelaRelatorio();
+        telaRelatorio.setVisible(true);
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
     private void btnMesas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesas1ActionPerformed

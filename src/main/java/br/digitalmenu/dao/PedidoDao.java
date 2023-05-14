@@ -60,10 +60,10 @@ public class PedidoDao {
             while (rs.next()) {
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(rs.getInt("idpedido"));
-                pedido.setId_Mesa(rs.getInt("id_mesa"));
+                pedido.getMesa().setIdMesa(rs.getInt("id_mesa"));
                 pedido.setTotal(rs.getDouble("total"));
                 pedido.setData(rs.getString("data"));
-                pedido.setHorarioPedido(rs.getString("horario"));
+                pedido.setHorario(rs.getString("horario"));
                 pedido.setStatus(rs.getString("status"));
                 listaDePedido.add(pedido);
             }
@@ -94,10 +94,10 @@ public class PedidoDao {
             while (rs.next()) {
                 pedido = new Pedido();
                 pedido.setIdPedido(rs.getInt("idpedido"));
-                pedido.setId_Mesa(rs.getInt("id_mesa"));
+                pedido.getMesa().setIdMesa(rs.getInt("id_mesa"));
                 pedido.setTotal(rs.getDouble("total"));
                 pedido.setData(rs.getString("data"));
-                pedido.setHorarioPedido(rs.getString("horario"));
+                pedido.setHorario(rs.getString("horario"));
                 pedido.setStatus(rs.getString("status"));
             }
         } catch (SQLException ex) {
@@ -128,10 +128,10 @@ public class PedidoDao {
             while (rs.next()) {
                 pedido = new Pedido();
                 pedido.setIdPedido(rs.getInt("idpedido"));
-                pedido.setId_Mesa(rs.getInt("id_mesa"));
+                pedido.getMesa().setIdMesa(rs.getInt("id_mesa"));
                 pedido.setTotal(rs.getDouble("total"));
                 pedido.setData(rs.getString("data"));
-                pedido.setHorarioPedido(rs.getString("horario"));
+                pedido.setHorario(rs.getString("horario"));
                 pedido.setStatus(rs.getString("status"));
                 pedidos.add(pedido);
             }
@@ -163,10 +163,10 @@ public class PedidoDao {
             while (rs.next()) {
                 pedido = new Pedido();
                 pedido.setIdPedido(rs.getInt("idpedido"));
-                pedido.setId_Mesa(rs.getInt("id_mesa"));
+                pedido.getMesa().setIdMesa(rs.getInt("id_mesa"));
                 pedido.setTotal(rs.getDouble("total"));
                 pedido.setData(rs.getString("data"));
-                pedido.setHorarioPedido(rs.getString("horario"));
+                pedido.setHorario(rs.getString("horario"));
                 pedido.setStatus(rs.getString("status"));
                 pedidos.add(pedido);
             }
@@ -190,17 +190,6 @@ public class PedidoDao {
         String sql = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data, '%d/%m/%Y') as data, DATE_FORMAT(data,'%H:%i:%s') as horario, status "
                 + "FROM pedido "
                 + "WHERE total BETWEEN ? and ? order by total";
-        /*
-        +----------+----------------------------------------+------+-----+-------------------+-------------------+
-        | Field    | Type                                   | Null | Key | Default           | Extra             |
-        +----------+----------------------------------------+------+-----+-------------------+-------------------+
-        | IDPEDIDO | int                                    | NO   | PRI | NULL              | auto_increment    |
-        | TOTAL    | decimal(7,2)                           | NO   |     | 0.00              |                   |
-        | DATA     | datetime                               | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
-        | STATUS   | enum('ABERTO','ENCERRADO','CANCELADO') | NO   |     | ABERTO            |                   |
-        | ID_MESA  | int                                    | NO   | MUL | NULL              |                   |
-        +----------+----------------------------------------+------+-----+-------------------+-------------------+
-         */
         try {
             ps = connection.prepareStatement(sql);
             ps.setDouble(1, valorInicial);
@@ -210,10 +199,10 @@ public class PedidoDao {
             while (rs.next()) {
                 Pedido p = new Pedido();
                 p.setIdPedido(rs.getInt("idpedido"));
-                p.setId_Mesa(rs.getInt("id_mesa"));
+                p.getMesa().setIdMesa(rs.getInt("id_mesa"));
                 p.setTotal(rs.getDouble("total"));
                 p.setData(rs.getString("data"));
-                p.setHorarioPedido(rs.getString("horario"));
+                p.setHorario(rs.getString("horario"));
                 p.setStatus(rs.getString("status"));
                 listaDePedidos.add(p);
             }
@@ -246,10 +235,10 @@ public class PedidoDao {
             while (rs.next()) {
                 Pedido p = new Pedido();
                 p.setIdPedido(rs.getInt("idpedido"));
-                p.setId_Mesa(rs.getInt("id_mesa"));
+                p.getMesa().setIdMesa(rs.getInt("id_mesa"));
                 p.setTotal(rs.getDouble("total"));
                 p.setData(rs.getString("data"));
-                p.setHorarioPedido(rs.getString("horario"));
+                p.setHorario(rs.getString("horario"));
                 p.setStatus(rs.getString("status"));
                 listaDePedidos.add(p);
             }
@@ -283,10 +272,10 @@ public class PedidoDao {
             while (rs.next()) {
                 Pedido p = new Pedido();
                 p.setIdPedido(rs.getInt("idpedido"));
-                p.setId_Mesa(rs.getInt("id_mesa"));
+                p.getMesa().setIdMesa(rs.getInt("id_mesa"));
                 p.setTotal(rs.getDouble("total"));
                 p.setData(rs.getString("data"));
-                p.setHorarioPedido(rs.getString("horario"));
+                p.setHorario(rs.getString("horario"));
                 p.setStatus(rs.getString("status"));
                 listaDePedidos.add(p);
             }
@@ -309,11 +298,6 @@ public class PedidoDao {
                 + "ON p.idpedido = i.id_pedido "
                 + "SET p.total = (SELECT SUM(subtotal) FROM item WHERE id_pedido = ?), p.status = ? "
                 + "WHERE p.idpedido = ? AND i.status = 'confirmado'";
-
-        /*
-        PARA DAR UPDATE - CANCELAR UM ITEM, tem q passar horario se nao cancela tudo
-        update itens set status = 'cancelado' where id_produto = 2 and horapedido = '01:36:40';
-         */
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, pedido.getIdPedido());
@@ -326,7 +310,6 @@ public class PedidoDao {
             ps.close();
             connection.close();
         }
-
     }
 
     public boolean deletarPedido(int numeroMesaDeletar) throws SQLException {

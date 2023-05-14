@@ -35,7 +35,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         lbl_NumeroDoPedido.setText(String.valueOf(numeroPedido));
         lbl_NumeroDaMesa.setText(String.valueOf(numeroMesa));
-        
+
         setTodos();
         setCat(lblId, 1);
         setFotos(1);
@@ -1716,8 +1716,8 @@ public class Tela_Menu extends javax.swing.JFrame {
 
         for (int i = 0; i < car.length; i++) {
             car[i] = new Item();
-            car[i].setId_pedido(Integer.parseInt(lbl_NumeroDoPedido.getText()));
-            car[i].setId_produto(Integer.parseInt(jtItens.getValueAt(i, 0).toString()));
+            car[i].getPedido().setIdPedido(Integer.parseInt(lbl_NumeroDoPedido.getText()));
+            car[i].getProduto().setIdProduto(Integer.parseInt(jtItens.getValueAt(i, 0).toString()));
             car[i].setQtde(Integer.parseInt(jtItens.getValueAt(i, 2).toString()));
             car[i].setSubtotal(Double.parseDouble(jtItens.getValueAt(i, 4).toString()));
             car[i].setObservacao(jtItens.getValueAt(i, 5).toString());
@@ -1760,10 +1760,10 @@ public class Tela_Menu extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        try {   
-             this.dispose();//Fecha a tela menu
-             new Tela_ResumoPedido(Integer.parseInt(lbl_NumeroDoPedido.getText()), Integer.parseInt(lbl_NumeroDaMesa.getText())).setVisible(true);
-             
+        try {
+            this.dispose();//Fecha a tela menu
+            new Tela_ResumoPedido(Integer.parseInt(lbl_NumeroDoPedido.getText()), Integer.parseInt(lbl_NumeroDaMesa.getText())).setVisible(true);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
@@ -1825,7 +1825,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                     pedido.setIdPedido(Integer.parseInt(lbl_NumeroDaMesa.getText()));//seta o id do pedido
                     pedidoDao.adicionarPedido(pedido);//cria pedido
                     new Tela_Menu(pedidoDao.numeroPedido, Integer.parseInt(lbl_NumeroDaMesa.getText())).setVisible(true);//abre a tela menu
-                }else{
+                } else {
                     //Caso não crie outro pedido, volta para tela login
                     new Tela_Login().setVisible(true);
                 }
@@ -1834,9 +1834,9 @@ public class Tela_Menu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
 
-        }     
+        }
 
-       
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btn_AdicionaQtde_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AdicionaQtde_1ActionPerformed

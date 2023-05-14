@@ -3,7 +3,7 @@ package br.digitalmenu.model;
 public class Pedido {
 
     private int idPedido;
-    private int id_Mesa;
+    private Mesa mesa = new Mesa();
     private double total;
     private String data;
     private String horario;
@@ -17,12 +17,12 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public int getId_Mesa() {
-        return id_Mesa;
+    public Mesa getMesa() {
+        return mesa;
     }
 
-    public void setId_Mesa(int id_Mesa) {
-        this.id_Mesa = id_Mesa;
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
     }
 
     public double getTotal() {
@@ -41,12 +41,12 @@ public class Pedido {
         this.data = data;
     }
 
-    public String getHorarioPedido() {
+    public String getHorario() {
         return horario;
     }
 
-    public void setHorarioPedido(String horarioPedido) {
-        this.horario = horarioPedido;
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
 
     public String getStatus() {

@@ -35,7 +35,6 @@ public class UsuarioDAO {
                 user.setSenha(rs.getString("senha")); // Define senha do usuario               
                 user.setTipoacesso(rs.getString("tipoacesso"));
                 user.setStatus(rs.getString("status"));
-
                 // Insere o usuario na lista Local
                 listaDeUsuarios.add(user);
 
@@ -65,7 +64,6 @@ public class UsuarioDAO {
                     + "(?, ?, ?, ?, ?)"; //4 INTERROGAÇOES
 
             ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            // ps = conexao.getConexao().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
             ps.setInt(1, user.getIdusuario());
             ps.setString(2, user.getUsuario());
@@ -93,7 +91,6 @@ public class UsuarioDAO {
             ps.close();
             connection.close();
         }
-
     }
 
     public boolean checkLogin(String usuario, String senha) throws SQLException {//obtem pizza pelo codigo do atendente
@@ -220,7 +217,7 @@ public class UsuarioDAO {
     }
 
     public void atualizaUsuario(Usuario user) throws SQLException {
-        
+
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 

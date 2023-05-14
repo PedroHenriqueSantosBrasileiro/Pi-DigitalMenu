@@ -22,8 +22,8 @@ public class ItemDao {
 
         try {
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, item.getId_pedido());
-            ps.setInt(2, item.getId_produto());
+            ps.setInt(1, item.getPedido().getIdPedido());
+            ps.setInt(2, item.getProduto().getIdProduto());
             ps.setInt(3, item.getQtde());
             ps.setDouble(4, item.getSubtotal());
             ps.setString(5, item.getObservacao());
@@ -45,7 +45,12 @@ public class ItemDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id_pedido, id_produto, qtde, subtotal, TIME_FORMAT(horapedido, '%T') as horapedido, status FROM item WHERE id_pedido = ?";
+        String sql = "SELECT p.idproduto, p.nome, p.preco, i.qtde, i.subtotal, TIME_FORMAT(horapedido, '%T') as horacomanda, i.status "
+                + "FROM item i "
+                + "INNER JOIN produto p "
+                + "ON p.idproduto = i.id_produto "
+                + "WHERE id_pedido = ?";
+
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idPedido);
@@ -53,12 +58,13 @@ public class ItemDao {
 
             while (rs.next()) {
                 item = new Item();
-                item.setId_pedido(rs.getInt("id_pedido"));
-                item.setId_produto(rs.getInt("id_produto"));
-                item.setQtde(rs.getInt("qtde"));
-                item.setSubtotal(rs.getDouble("subtotal"));
-                item.setHoraComanda(rs.getString("horapedido"));
-                item.setStatus(rs.getString("status"));
+                item.getProduto().setIdProduto(rs.getInt("p.idproduto"));
+                item.getProduto().setNome(rs.getString("p.nome"));
+                item.getProduto().setPreco(rs.getDouble("p.preco"));
+                item.setQtde(rs.getInt("i.qtde"));
+                item.setSubtotal(rs.getDouble("i.subtotal"));
+                item.setHoraComanda(rs.getString("horacomanda"));
+                item.setStatus(rs.getString("i.status"));
                 listaItem.add(item);
             }
         } catch (SQLException ex) {
@@ -86,8 +92,8 @@ public class ItemDao {
 
             while (rs.next()) {
                 item = new Item();
-                item.setId_pedido(rs.getInt("id_pedido"));
-                item.setId_produto(rs.getInt("id_produto"));
+                item.getPedido().setIdPedido(rs.getInt("id_pedido"));
+                item.getProduto().setIdProduto(rs.getInt("id_produto"));
                 item.setQtde(rs.getInt("qtde"));
                 item.setSubtotal(rs.getDouble("subtotal"));
                 item.setHoraComanda("horapedido");
@@ -102,43 +108,5 @@ public class ItemDao {
         }
         return item;
     }
-/*
-     TESTE- COLOCAR NO MODEL ITEM NOME, PRECO E TOTALQTDE
-    public Item listarItensQtdeTotalVendidaPorId(int idProduto) throws SQLException {
 
-        connection = new ConnectionFactory().recuperarConexao();
-        Item item = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        String sql = "SELECT i.id_produto, p.nome, p.preco, SUM(i.qtde) as qtdeTotal FROM item i "
-                     +"INNER JOIN produto p "
-                     +"ON i.id_produto = p.idproduto "
-                     +"WHERE p.idproduto = ?";
-        try {
-            ps = connection.prepareStatement(sql);
-            ps.setInt(1, idProduto);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                item = new Item();
-                //item.setId_pedido(rs.getInt("id_pedido"));
-                item.setId_produto(rs.getInt("id_produto"));
-                item.setNome(rs.getString("p.nome"));
-                item.setPreco(rs.getDouble("p.preco"));
-                item.setTotalVendido(rs.getInt("qtdeTotal"));
-                // item.setSubtotal(rs.getDouble("subtotal"));
-                //item.setHoraComanda("horapedido");
-                //item.setStatus(rs.getString("status"));
-            }
-        } catch (SQLException ex) {
-            throw ex;
-        } finally {
-            ps.close();
-            rs.close();
-            connection.close();
-        }
-        return item;
-    }*/
-    
 }

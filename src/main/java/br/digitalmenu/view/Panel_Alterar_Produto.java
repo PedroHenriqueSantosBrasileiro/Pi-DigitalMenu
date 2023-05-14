@@ -10,17 +10,16 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class Teste extends javax.swing.JPanel {
+public class Panel_Alterar_Produto extends javax.swing.JPanel {
 
     public Produto produto;
-   
 
-    public Teste(Produto produto) throws SQLException {
+    public Panel_Alterar_Produto(Produto produto) throws SQLException {
         initComponents();
         this.produto = produto;
         viewCategoria();
         setDados();
-        
+
     }
 
     public void viewCategoria() throws SQLException {
@@ -36,8 +35,8 @@ public class Teste extends javax.swing.JPanel {
         txt_Nome_Novo.setText(String.valueOf(produto.getNome()));
         lbl_Preco_Atual.setText(String.valueOf(produto.getPreco()));
         txt_Preco_Novo.setText(String.valueOf(produto.getPreco()));
-        lbl_Categoria_Atual.setText(String.valueOf(produto.getNomeCategoria()));
-        cbox_Categoria_Novo.setSelectedItem(produto.getNomeCategoria());
+        lbl_Categoria_Atual.setText(String.valueOf(produto.getCategoria().getNomeCategoria()));
+        cbox_Categoria_Novo.setSelectedItem(produto.getCategoria().getNomeCategoria());
         txtarea_Descricao_Atual.setText(String.valueOf(produto.getDescricao()));
         txtarea_Descricao_Novo.setText(String.valueOf(produto.getDescricao()));
 //        System.out.println(produto.getStatus());
@@ -78,7 +77,7 @@ public class Teste extends javax.swing.JPanel {
     public JLabel getLbl_Id_Valor() {
         return lbl_Id_Valor;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

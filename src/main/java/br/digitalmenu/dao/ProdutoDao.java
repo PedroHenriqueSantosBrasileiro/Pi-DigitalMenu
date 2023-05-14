@@ -26,8 +26,7 @@ public class ProdutoDao {
             ps.setString(1, p.getNome());
             ps.setDouble(2, p.getPreco());
             ps.setString(3, p.getDescricao());
-            ps.setString(4, p.getNomeCategoria());
-//            ps.setString(5, p.getStatus());
+            ps.setString(4, p.getCategoria().getNomeCategoria());
             ps.execute();
         } catch (SQLException ex) {
             throw ex;
@@ -59,9 +58,9 @@ public class ProdutoDao {
                 p.setNome(rs.getString("p.nome"));
                 p.setPreco(rs.getDouble("p.preco"));
                 p.setDescricao(rs.getString("p.descricao"));
-                p.setIdCategoria(rs.getInt("p.id_categoria"));
+                p.getCategoria().setIdCategoria(rs.getInt("p.id_categoria"));
                 p.setStatus(rs.getString("p.status"));
-                p.setNomeCategoria(rs.getString("c.nome"));
+                p.getCategoria().setNomeCategoria(rs.getString("c.nome"));
                 listaDeProdutos.add(p);
             }
         } catch (SQLException ex) {
@@ -97,9 +96,9 @@ public class ProdutoDao {
                 p.setNome(rs.getString("p.nome"));
                 p.setPreco(rs.getDouble("p.preco"));
                 p.setDescricao(rs.getString("p.descricao"));
-                p.setIdCategoria(rs.getInt("p.id_categoria"));
+                p.getCategoria().setIdCategoria(rs.getInt("p.id_categoria"));
                 p.setStatus(rs.getString("p.status"));
-                p.setNomeCategoria(rs.getString("c.nome"));
+                p.getCategoria().setNomeCategoria(rs.getString("c.nome"));
                 listaDeProdutos.add(p);
             }
         } catch (SQLException ex) {
@@ -134,9 +133,9 @@ public class ProdutoDao {
                 p.setNome(rs.getString("p.nome"));
                 p.setPreco(rs.getDouble("p.preco"));
                 p.setDescricao(rs.getString("p.descricao"));
-                p.setIdCategoria(rs.getInt("p.id_categoria"));
+                p.getCategoria().setIdCategoria(rs.getInt("p.id_categoria"));
                 p.setStatus(rs.getString("p.status"));
-                p.setNomeCategoria(rs.getString("c.nome"));
+                p.getCategoria().setNomeCategoria(rs.getString("c.nome"));
             }
         } catch (SQLException ex) {
             throw ex;
@@ -165,7 +164,7 @@ public class ProdutoDao {
             ps.setString(1, p.getNome());
             ps.setDouble(2, p.getPreco());
             ps.setString(3, p.getDescricao());
-            ps.setString(4, p.getNomeCategoria());
+            ps.setString(4, p.getCategoria().getNomeCategoria());
             ps.setString(5, p.getStatus());
             ps.setInt(6, p.getIdProduto());
             ps.executeUpdate();
@@ -183,7 +182,6 @@ public class ProdutoDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-//        String sql = "DELETE FROM produto WHERE idproduto = ?";
         String sql = "UPDATE PRODUTO SET STATUS = 'desativado' where idproduto = ?";
 
         try {
@@ -222,9 +220,8 @@ public class ProdutoDao {
                 p.setNome(rs.getString("p.nome"));
                 p.setPreco(rs.getDouble("p.preco"));
                 p.setDescricao(rs.getString("p.descricao"));
-                p.setIdCategoria(rs.getInt("p.id_categoria"));
-                p.setStatus(rs.getString("p.status"));
-                p.setNomeCategoria(rs.getString("c.nome"));
+                p.getCategoria().setStatus(rs.getString("p.status"));
+                p.getCategoria().setNomeCategoria(rs.getString("c.nome"));
                 listaDeProdutos.add(p);
             }
         } catch (SQLException ex) {
@@ -262,9 +259,9 @@ public class ProdutoDao {
                 p.setNome(rs.getString("p.nome"));
                 p.setPreco(rs.getDouble("p.preco"));
                 p.setDescricao(rs.getString("p.descricao"));
-                p.setIdCategoria(rs.getInt("p.id_categoria"));
+                p.getCategoria().setIdCategoria(rs.getInt("p.id_categoria"));
                 p.setStatus(rs.getString("p.status"));
-                p.setNomeCategoria(rs.getString("c.nome"));
+                p.getCategoria().setNomeCategoria(rs.getString("c.nome"));
                 listaDeProdutos.add(p);
             }
         } catch (SQLException ex) {
@@ -301,9 +298,9 @@ public class ProdutoDao {
                 p.setNome(rs.getString("p.nome"));
                 p.setPreco(rs.getDouble("p.preco"));
                 p.setDescricao(rs.getString("p.descricao"));
-                p.setIdCategoria(rs.getInt("p.id_categoria"));
+                p.getCategoria().setIdCategoria(rs.getInt("p.id_categoria"));
                 p.setStatus(rs.getString("p.status"));
-                p.setNomeCategoria(rs.getString("c.nome"));
+                p.getCategoria().setNomeCategoria(rs.getString("c.nome"));
                 listaDeProdutos.add(p);
             }
         } catch (SQLException ex) {
@@ -340,9 +337,9 @@ public class ProdutoDao {
                 p.setNome(rs.getString("p.nome"));
                 p.setPreco(rs.getDouble("p.preco"));
                 p.setDescricao(rs.getString("p.descricao"));
-                p.setIdCategoria(rs.getInt("p.id_categoria"));
+                p.getCategoria().setIdCategoria(rs.getInt("p.id_categoria"));
                 p.setStatus(rs.getString("p.status"));
-                p.setNomeCategoria(rs.getString("c.nome"));
+                p.getCategoria().setNomeCategoria(rs.getString("c.nome"));
                 listaDeProdutos.add(p);
             }
         } catch (SQLException ex) {
@@ -379,9 +376,9 @@ public class ProdutoDao {
                 p.setNome(rs.getString("p.nome"));
                 p.setPreco(rs.getDouble("p.preco"));
                 p.setDescricao(rs.getString("p.descricao"));
-                p.setIdCategoria(rs.getInt("p.id_categoria"));
+                p.getCategoria().setIdCategoria(rs.getInt("p.id_categoria"));
                 p.setStatus(rs.getString("p.status"));
-                p.setNomeCategoria(rs.getString("c.nome"));
+                p.getCategoria().setNomeCategoria(rs.getString("c.nome"));
                 listaDeProdutos.add(p);
             }
         } catch (SQLException ex) {
