@@ -1826,6 +1826,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                     if (novoPedido == JOptionPane.YES_OPTION){
                         
                         // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
+                        
                         pedido.getMesa().setIdMesa(numeroMesa);
                         pedidoDao.adicionarPedido(pedido);
                         new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);

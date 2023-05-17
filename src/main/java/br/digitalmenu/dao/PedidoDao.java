@@ -25,11 +25,11 @@ public class PedidoDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "INSERT INTO pedido (idpedido, id_mesa, total, data, status) VALUES (null, ?, default, default, default)";
+        String sql = "INSERT INTO pedido (idpedido, id_mesa, total, data, status) VALUES (default, ?, default, default, default)";
 
         try {
             ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, pedido.getIdPedido());
+            ps.setInt(1, pedido.getMesa().getIdMesa());
             ps.execute();
             rs = ps.getGeneratedKeys();
             while (rs.next()) {
