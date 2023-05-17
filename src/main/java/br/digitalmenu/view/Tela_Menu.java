@@ -1778,7 +1778,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     private void lbl_CarrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_CarrinhoMouseReleased
 
         try {
-            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa);
+            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa,this);
             telaResumo.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());

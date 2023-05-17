@@ -8,6 +8,7 @@ import br.digitalmenu.model.Item;
 import br.digitalmenu.model.Pedido;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,13 +18,15 @@ public class Tela_ResumoPedido extends Heuristica {
     public DecimalFormat decimalFormat = new DecimalFormat("R$ 0.00");
     public int numeroPedido;
     public int numeroMesa;
+    private JFrame tela;
 
     public Tela_ResumoPedido() {
         initComponents();
     }
 
-    public Tela_ResumoPedido(int numeroPedido, int numeroMesa) throws SQLException {
+    public Tela_ResumoPedido(int numeroPedido, int numeroMesa,JFrame tela) throws SQLException {
         initComponents();
+        this.tela = tela;
         this.numeroPedido = numeroPedido;
         this.numeroMesa = numeroMesa;
         lbl_NumeroPedido.setText(String.valueOf(numeroPedido));
@@ -269,6 +272,7 @@ public class Tela_ResumoPedido extends Heuristica {
                     pedido.getMesa().setIdMesa(numeroMesa);
                     pedidoDao.adicionarPedido(pedido);
                     new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
+                    this.tela.dispose();
                 } else {
                     this.dispose();
                     new Tela_Login().setVisible(true);
