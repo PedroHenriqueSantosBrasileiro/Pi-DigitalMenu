@@ -15,6 +15,8 @@ public class Tela_ResumoPedido extends Heuristica {
 
     public double valorTotal = 0;
     public DecimalFormat decimalFormat = new DecimalFormat("R$ 0.00");
+    public int numeroPedido;
+    public int numeroMesa;
 
     public Tela_ResumoPedido() {
         initComponents();
@@ -22,6 +24,8 @@ public class Tela_ResumoPedido extends Heuristica {
 
     public Tela_ResumoPedido(int numeroPedido, int numeroMesa) throws SQLException {
         initComponents();
+        this.numeroPedido = numeroPedido;
+        this.numeroMesa = numeroMesa;
         lbl_NumeroPedido.setText(String.valueOf(numeroPedido));
         lbl_NumeroMesa.setText(String.valueOf(numeroMesa));
         IniciaTabela(jtResumo);//Formata a tabela e centraliza pela classe heuristicas
@@ -260,15 +264,15 @@ public class Tela_ResumoPedido extends Heuristica {
                         JOptionPane.QUESTION_MESSAGE
                 );
                 if (novoPedido == JOptionPane.YES_OPTION) {
-                    //Cria novo pedido
-                    pedido.setIdPedido(Integer.parseInt(lbl_NumeroMesa.getText()));//seta o id do pedido
-                    pedidoDao.adicionarPedido(pedido);//cria pedido
-                    new Tela_Menu(pedidoDao.numeroPedido, Integer.parseInt(lbl_NumeroMesa.getText())).setVisible(true);//abre a tela menu
+
+                    // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
+                    pedido.getMesa().setIdMesa(numeroMesa);
+                    pedidoDao.adicionarPedido(pedido);
+                    new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
                 } else {
-                    //Caso não crie outro pedido, volta para tela login
+                    this.dispose();
                     new Tela_Login().setVisible(true);
                 }
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
