@@ -39,8 +39,8 @@ public class PedidoDao {
         } catch (SQLException ex) {
             throw ex;
         } finally {
-            ps.close();
             rs.close();
+            ps.close();
             connection.close();
         }
     }

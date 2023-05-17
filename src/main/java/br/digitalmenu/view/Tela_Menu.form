@@ -1532,13 +1532,13 @@
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="pnl_separador1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel31" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="lbl_FotoCarrinho" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="jLabel32" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="lbl_Carrinho" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="pnl_separador4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="jLabel11" min="-2" pref="147" max="-2" attributes="0"/>
+                      <Component id="lbl_EncerrarPedido" min="-2" pref="147" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1550,13 +1550,13 @@
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Component id="pnl_separador1" alignment="0" max="32767" attributes="0"/>
                               <Component id="pnl_separador2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel31" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lbl_FotoCarrinho" alignment="0" max="32767" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="lbl_NumeroPedido" alignment="3" min="-2" pref="114" max="-2" attributes="0"/>
                                   <Component id="lbl_NumeroDaMesa2" alignment="3" min="-2" pref="114" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jLabel32" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel11" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lbl_Carrinho" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lbl_EncerrarPedido" alignment="0" max="32767" attributes="0"/>
                               <Component id="pnl_separador4" alignment="0" max="32767" attributes="0"/>
                               <Component id="lbl_Logo" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -1569,7 +1569,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel11">
+            <Component class="javax.swing.JLabel" name="lbl_EncerrarPedido">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="66" red="ff" type="rgb"/>
@@ -1583,8 +1583,11 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;html&gt; &lt;body&gt; &lt;h&gt;&lt;div style=&quot;text-align:center&quot;&gt; Encerrar Pedido&lt;/h&gt; &lt;/body&gt; &lt;/html&gt;"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_EncerrarPedidoMouseReleased"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel31">
+            <Component class="javax.swing.JLabel" name="lbl_FotoCarrinho">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="66" red="ff" type="rgb"/>
@@ -1597,8 +1600,11 @@
                   <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;\\src\\main\\java\\br\\digitalmenu\\images\\CarrinhoPreto.png&quot;)" type="code"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_FotoCarrinhoMouseReleased"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel32">
+            <Component class="javax.swing.JLabel" name="lbl_Carrinho">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="66" red="ff" type="rgb"/>
@@ -1612,6 +1618,9 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Carrinho"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_CarrinhoMouseReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_Logo">
               <Properties>
@@ -1824,7 +1833,8 @@
                 <Component class="javax.swing.JTable" name="jtResumo">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="false" title="ID" type="java.lang.Object"/>
                         <Column editable="false" title="Nome" type="java.lang.Object"/>
                         <Column editable="false" title="Pre&#xe7;o" type="java.lang.Object"/>
                         <Column editable="false" title="Qtde" type="java.lang.Object"/>
@@ -1834,6 +1844,11 @@
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>

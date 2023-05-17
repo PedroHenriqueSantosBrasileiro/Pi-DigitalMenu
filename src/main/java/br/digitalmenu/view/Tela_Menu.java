@@ -1,9 +1,15 @@
 package br.digitalmenu.view;
 
+import br.digitalmenu.dao.ItemDao;
+import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.dao.ProdutoDao;
+import br.digitalmenu.model.Item;
+import br.digitalmenu.model.Pedido;
 import br.digitalmenu.model.Produto;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,6 +26,8 @@ public class Tela_Menu extends javax.swing.JFrame {
     JLabel lblFotos[] = new JLabel[5];
     JLabel lblQtde[] = new JLabel[5];
     public DecimalFormat decimalFormat = new DecimalFormat("##.00");
+    private int numeroPedido;
+    private int numeroMesa;
 
     public Tela_Menu() {
     }
@@ -27,6 +35,8 @@ public class Tela_Menu extends javax.swing.JFrame {
     public Tela_Menu(int numeroPedido, int numeroMesa) throws SQLException {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.numeroPedido = numeroPedido;
+        this.numeroMesa = numeroMesa;
         lbl_NumeroPedido.setText("Pedido: " + String.valueOf(numeroPedido));
         lbl_NumeroDaMesa.setText(String.valueOf("Mesa: " + numeroMesa));
         setTodos();
@@ -138,7 +148,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         for (int i = 0; i < labelNomes.length; i++) {
             labelNomes[i].setText(prodDao.listarProdutoPorId(Integer.parseInt(labelIDs[i].getText())).getNome());
             //<html> <html> <body> <h><div style="text-align:center"> Encerrar Pedido</h> </body> </html>
-            
+
             // String texto = "<HTML><HTML><BODY><H><DIV style=\"text-align:center\">";
             //   texto += prodDao.listarProdutoPorId(Integer.parseInt(labelIDs[i].getText())).getDescricao();
             //   texto += "</h></body></HTML>";
@@ -208,6 +218,7 @@ public class Tela_Menu extends javax.swing.JFrame {
             }
         }
         dtm.addRow(new Object[]{
+            produto.getIdProduto(),
             produto.getNome(),
             produto.getPreco(),
             qtdeLbl,
@@ -341,9 +352,9 @@ public class Tela_Menu extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         txt_descricao_5 = new javax.swing.JTextArea();
         pnl_botoes_superior = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
+        lbl_EncerrarPedido = new javax.swing.JLabel();
+        lbl_FotoCarrinho = new javax.swing.JLabel();
+        lbl_Carrinho = new javax.swing.JLabel();
         lbl_Logo = new javax.swing.JLabel();
         pnl_separador1 = new javax.swing.JPanel();
         lbl_NumeroPedido = new javax.swing.JLabel();
@@ -1148,22 +1159,37 @@ public class Tela_Menu extends javax.swing.JFrame {
 
         pnl_botoes_superior.setBackground(new java.awt.Color(176, 50, 39));
 
-        jLabel11.setBackground(new java.awt.Color(255, 102, 51));
-        jLabel11.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(246, 242, 217));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("<html> <html> <body> <h><div style=\"text-align:center\"> Encerrar Pedido</h> </body> </html>");
+        lbl_EncerrarPedido.setBackground(new java.awt.Color(255, 102, 51));
+        lbl_EncerrarPedido.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
+        lbl_EncerrarPedido.setForeground(new java.awt.Color(246, 242, 217));
+        lbl_EncerrarPedido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_EncerrarPedido.setText("<html> <html> <body> <h><div style=\"text-align:center\"> Encerrar Pedido</h> </body> </html>");
+        lbl_EncerrarPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lbl_EncerrarPedidoMouseReleased(evt);
+            }
+        });
 
-        jLabel31.setBackground(new java.awt.Color(255, 102, 51));
-        jLabel31.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
-        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\CarrinhoPreto.png"));
+        lbl_FotoCarrinho.setBackground(new java.awt.Color(255, 102, 51));
+        lbl_FotoCarrinho.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
+        lbl_FotoCarrinho.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_FotoCarrinho.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\CarrinhoPreto.png"));
+        lbl_FotoCarrinho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lbl_FotoCarrinhoMouseReleased(evt);
+            }
+        });
 
-        jLabel32.setBackground(new java.awt.Color(255, 102, 51));
-        jLabel32.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(246, 242, 217));
-        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel32.setText("Carrinho");
+        lbl_Carrinho.setBackground(new java.awt.Color(255, 102, 51));
+        lbl_Carrinho.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
+        lbl_Carrinho.setForeground(new java.awt.Color(246, 242, 217));
+        lbl_Carrinho.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_Carrinho.setText("Carrinho");
+        lbl_Carrinho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lbl_CarrinhoMouseReleased(evt);
+            }
+        });
 
         lbl_Logo.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\LogoMundo.png"));
 
@@ -1250,13 +1276,13 @@ public class Tela_Menu extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(pnl_separador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_FotoCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_Carrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(pnl_separador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_EncerrarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
         pnl_botoes_superiorLayout.setVerticalGroup(
@@ -1266,12 +1292,12 @@ public class Tela_Menu extends javax.swing.JFrame {
                     .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(pnl_separador1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(pnl_separador2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_FotoCarrinho, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_NumeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl_NumeroDaMesa2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbl_Carrinho, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_EncerrarPedido, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(pnl_separador4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbl_Logo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(lbl_NumeroDaMesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1294,11 +1320,11 @@ public class Tela_Menu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Preço", "Qtde", "Subtotal", "Obs"
+                "ID", "Nome", "Preço", "Qtde", "Subtotal", "Obs"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1709,7 +1735,109 @@ public class Tela_Menu extends javax.swing.JFrame {
 
     private void btn_confirmarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confirmarPedidoActionPerformed
         // TODO add your handling code here:
+
+        int numeroDeItensNaComanda = jtResumo.getRowCount();
+        Item itensNaComanda[] = new Item[numeroDeItensNaComanda];
+
+        for (int i = 0; i < itensNaComanda.length; i++) {
+            itensNaComanda[i] = new Item();
+            itensNaComanda[i].getPedido().setIdPedido(numeroPedido);
+            itensNaComanda[i].getProduto().setIdProduto(Integer.parseInt(jtResumo.getValueAt(i, 0).toString()));
+            itensNaComanda[i].setQtde(Integer.parseInt(jtResumo.getValueAt(i, 3).toString()));
+            itensNaComanda[i].setSubtotal(Double.parseDouble(jtResumo.getValueAt(i, 4).toString()));
+            itensNaComanda[i].setObservacao((jtResumo.getValueAt(i, 5).toString()));
+        }
+
+        int confirma = JOptionPane.showConfirmDialog(
+                this,
+                "Deseja confirmar o pedido?",
+                "CONFIRMAR PEDIDO",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (confirma == JOptionPane.YES_OPTION) {
+            ItemDao itemDao = new ItemDao();
+            for (Item item : itensNaComanda) {
+                try {
+                    itemDao.adicionaItens(item);
+                    limparQtde();
+                    limparTabela();
+                    calculaTotal();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                }
+            }
+        } else if (confirma == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(null, "Pedido não enviado!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Operação cancelada.");
+        }
     }//GEN-LAST:event_btn_confirmarPedidoActionPerformed
+
+    private void lbl_CarrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_CarrinhoMouseReleased
+
+        try {
+            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa);
+            telaResumo.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+
+
+    }//GEN-LAST:event_lbl_CarrinhoMouseReleased
+
+    private void lbl_FotoCarrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_FotoCarrinhoMouseReleased
+        // TODO add your handling code here:
+        try {
+            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa);
+            telaResumo.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_lbl_FotoCarrinhoMouseReleased
+
+    private void lbl_EncerrarPedidoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_EncerrarPedidoMouseReleased
+            
+            int confirma = JOptionPane.showConfirmDialog(
+                    this,
+                    "Deseja encerrar o pedido?",
+                    "ENCERRAR PEDIDO",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+            );
+            if (confirma == JOptionPane.YES_OPTION){
+                try{
+                    Pedido pedido = new Pedido();
+                    pedido.setIdPedido(numeroPedido);
+                    pedido.setStatus("Encerrado");
+                    PedidoDao pedidoDao = new PedidoDao();
+                    pedidoDao.atualizaPedido(pedido);
+                    JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce"); //arrumar acentuacao
+                    this.dispose();
+                    
+                    int novoPedido = JOptionPane.showConfirmDialog(
+                            this,
+                            "Deseja criar um novo pedido?",
+                            "Novo pedido",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE
+                    );
+                    if (novoPedido == JOptionPane.YES_OPTION){
+                        
+                        // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
+                        pedido.getMesa().setIdMesa(numeroMesa);
+                        pedidoDao.adicionarPedido(pedido);
+                        new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
+                    } else {
+                        this.dispose();
+                        new Tela_Login().setVisible(true);
+                    }
+                } catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                }
+            }
+    }//GEN-LAST:event_lbl_EncerrarPedidoMouseReleased
 
     /**
      * @param args the command line arguments
@@ -1777,9 +1905,6 @@ public class Tela_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btn_remove_4;
     private javax.swing.JButton btn_remove_5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane11;
@@ -1794,6 +1919,9 @@ public class Tela_Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jtResumo;
+    private javax.swing.JLabel lbl_Carrinho;
+    private javax.swing.JLabel lbl_EncerrarPedido;
+    private javax.swing.JLabel lbl_FotoCarrinho;
     private javax.swing.JLabel lbl_Id_1;
     private javax.swing.JLabel lbl_Id_10;
     private javax.swing.JLabel lbl_Id_11;
