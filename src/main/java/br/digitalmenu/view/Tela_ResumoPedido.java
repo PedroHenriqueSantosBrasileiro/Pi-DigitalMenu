@@ -230,14 +230,10 @@ public class Tela_ResumoPedido extends Heuristica {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VoltarActionPerformed
-
+        
         this.dispose();
         //Reabre a tela menu com os atributos mesa e pedido
-        try {
-            new Tela_Menu(Integer.parseInt(lbl_NumeroPedido.getText()), Integer.parseInt(lbl_NumeroMesa.getText()), foiAdm).setVisible(true);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-        }
+       
 
     }//GEN-LAST:event_btn_VoltarActionPerformed
 
