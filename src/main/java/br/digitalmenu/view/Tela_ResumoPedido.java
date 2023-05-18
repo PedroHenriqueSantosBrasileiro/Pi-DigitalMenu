@@ -268,25 +268,9 @@ public class Tela_ResumoPedido extends Heuristica {
                     pedidoDao.atualizaPedido(pedido);
                     JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
                     this.dispose();
+                    tela.dispose();
+                    new Tela_Login().setVisible(true);
 
-                    int novoPedido = JOptionPane.showConfirmDialog(
-                            this,
-                            "Deseja criar um novo pedido?",
-                            "Novo Pedido",
-                            JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE
-                    );
-                    if (novoPedido == JOptionPane.YES_OPTION) {
-
-                        // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
-                        pedido.getMesa().setIdMesa(numeroMesa);
-                        pedidoDao.adicionarPedido(pedido);
-                        new Tela_Menu(pedidoDao.numeroPedido, numeroMesa, true).setVisible(true);
-                        this.tela.dispose();
-                    } else {
-                        this.dispose();
-                        new Tela_Login().setVisible(true);
-                    }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                 }
