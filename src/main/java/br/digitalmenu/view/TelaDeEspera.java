@@ -66,11 +66,11 @@ private int numeroMesa;
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
                 .addComponent(lblNumeroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                 .addComponent(btnIniciarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(263, Short.MAX_VALUE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,7 +83,7 @@ private int numeroMesa;
         pedido.getMesa().setIdMesa(numeroMesa);
     try {
         pedidoDao.adicionarPedido(pedido);
-        Tela_Menu telaMenu = new Tela_Menu(pedidoDao.numeroPedido,numeroMesa);
+        Tela_Menu telaMenu = new Tela_Menu(pedidoDao.numeroPedido,numeroMesa,false);
         telaMenu.setVisible(true);
         this.dispose();
     } catch (SQLException ex) {
@@ -122,7 +122,7 @@ private int numeroMesa;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaDeEspera().setVisible(true);
+                
             }
         });
     }
