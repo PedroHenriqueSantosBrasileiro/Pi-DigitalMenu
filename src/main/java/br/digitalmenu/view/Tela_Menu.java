@@ -206,7 +206,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     public void calculaTotal() {
         int numDeItens = jtResumo.getRowCount();
         for (int i = 0; i < numDeItens; i++) {
-            double totalPorItem = Double.valueOf(jtResumo.getValueAt(i, 4).toString());
+            double totalPorItem = Double.parseDouble(jtResumo.getValueAt(i, 4).toString());
             total += totalPorItem;
         }
         DecimalFormat df = new DecimalFormat(".##");
@@ -226,9 +226,9 @@ public class Tela_Menu extends javax.swing.JFrame {
         dtm.addRow(new Object[]{
             produto.getIdProduto(),
             produto.getNome(),
-            produto.getPreco(),
+            String.format("%.2f", produto.getPreco()),
             qtdeLbl,
-            (qtdeLbl * produto.getPreco()),
+            String.format("%.2f",(qtdeLbl * produto.getPreco())) ,
             desc
         });
 
@@ -1754,17 +1754,19 @@ public class Tela_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_adicionaCarrinho_5ActionPerformed
 
     private void btn_confirmarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confirmarPedidoActionPerformed
-        // TODO add your handling code here:
+        
 
         int numeroDeItensNaComanda = jtResumo.getRowCount();
         Item itensNaComanda[] = new Item[numeroDeItensNaComanda];
 
         for (int i = 0; i < itensNaComanda.length; i++) {
+            String pegaPreco =  (String) jtResumo.getValueAt(i, 4);
+            double precoFormatado = Double.parseDouble(pegaPreco.replace(",", ".")); 
             itensNaComanda[i] = new Item();
             itensNaComanda[i].getPedido().setIdPedido(numeroPedido);
             itensNaComanda[i].getProduto().setIdProduto(Integer.parseInt(jtResumo.getValueAt(i, 0).toString()));
             itensNaComanda[i].setQtde(Integer.parseInt(jtResumo.getValueAt(i, 3).toString()));
-            itensNaComanda[i].setSubtotal(Double.parseDouble(jtResumo.getValueAt(i, 4).toString()));
+            itensNaComanda[i].setSubtotal(precoFormatado);
             itensNaComanda[i].setObservacao((jtResumo.getValueAt(i, 5).toString()));
         }
 
