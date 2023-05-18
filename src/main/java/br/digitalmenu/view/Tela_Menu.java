@@ -3,9 +3,12 @@ package br.digitalmenu.view;
 import br.digitalmenu.dao.ItemDao;
 import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.dao.ProdutoDao;
+import br.digitalmenu.dao.RelatorioDao;
 import br.digitalmenu.model.Item;
 import br.digitalmenu.model.Pedido;
 import br.digitalmenu.model.Produto;
+import br.digitalmenu.model.relatorio.ItemRelatorio;
+import java.awt.TextArea;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.logging.Level;
@@ -13,6 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
@@ -394,6 +398,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         lbl_Id_23 = new javax.swing.JLabel();
         lbl_Id_24 = new javax.swing.JLabel();
         lbl_Id_25 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(202, 126, 40));
@@ -1528,6 +1533,13 @@ public class Tela_Menu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_tabelaLayout = new javax.swing.GroupLayout(pnl_tabela);
         pnl_tabela.setLayout(pnl_tabelaLayout);
         pnl_tabelaLayout.setHorizontalGroup(
@@ -1540,6 +1552,10 @@ public class Tela_Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_confirmarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(104, 104, 104))
+            .addGroup(pnl_tabelaLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_tabelaLayout.setVerticalGroup(
             pnl_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1554,7 +1570,9 @@ public class Tela_Menu extends javax.swing.JFrame {
                     .addGroup(pnl_tabelaLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(pnl_Labels_Id, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1571,7 +1589,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1248, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(pnl_tabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1778,7 +1796,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     private void lbl_CarrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_CarrinhoMouseReleased
 
         try {
-            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa,this);
+            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this);
             telaResumo.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -1790,7 +1808,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     private void lbl_FotoCarrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_FotoCarrinhoMouseReleased
         // TODO add your handling code here:
         try {
-            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa);
+            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this);
             telaResumo.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -1798,47 +1816,85 @@ public class Tela_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_lbl_FotoCarrinhoMouseReleased
 
     private void lbl_EncerrarPedidoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_EncerrarPedidoMouseReleased
-            
-            int confirma = JOptionPane.showConfirmDialog(
-                    this,
-                    "Deseja encerrar o pedido?",
-                    "ENCERRAR PEDIDO",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
-            );
-            if (confirma == JOptionPane.YES_OPTION){
-                try{
-                    Pedido pedido = new Pedido();
-                    pedido.setIdPedido(numeroPedido);
-                    pedido.setStatus("Encerrado");
-                    PedidoDao pedidoDao = new PedidoDao();
-                    pedidoDao.atualizaPedido(pedido);
-                    JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce"); //arrumar acentuacao
+
+        int confirma = JOptionPane.showConfirmDialog(
+                this,
+                "Deseja encerrar o pedido?",
+                "ENCERRAR PEDIDO",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+        if (confirma == JOptionPane.YES_OPTION) {
+            try {
+                Pedido pedido = new Pedido();
+                pedido.setIdPedido(numeroPedido);
+                pedido.setStatus("Encerrado");
+                PedidoDao pedidoDao = new PedidoDao();
+                pedidoDao.atualizaPedido(pedido);
+                JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce"); //arrumar acentuacao
+                this.dispose();
+
+                int novoPedido = JOptionPane.showConfirmDialog(
+                        this,
+                        "Deseja criar um novo pedido?",
+                        "Novo pedido",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE
+                );
+                if (novoPedido == JOptionPane.YES_OPTION) {
+
+                    // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
+                    pedido.getMesa().setIdMesa(numeroMesa);
+                    pedidoDao.adicionarPedido(pedido);
+                    new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
+                } else {
                     this.dispose();
-                    
-                    int novoPedido = JOptionPane.showConfirmDialog(
-                            this,
-                            "Deseja criar um novo pedido?",
-                            "Novo pedido",
-                            JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE
-                    );
-                    if (novoPedido == JOptionPane.YES_OPTION){
-                        
-                        // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
-                        
-                        pedido.getMesa().setIdMesa(numeroMesa);
-                        pedidoDao.adicionarPedido(pedido);
-                        new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
-                    } else {
-                        this.dispose();
-                        new Tela_Login().setVisible(true);
-                    }
-                } catch(Exception e){
-                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                    new Tela_Login().setVisible(true);
                 }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
+        }
     }//GEN-LAST:event_lbl_EncerrarPedidoMouseReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JPanel comanda = new JPanel();
+        TextArea textoComanda = new TextArea();
+        textoComanda.setSize(400, 1800);
+        comanda.add(textoComanda);
+        Comanda test = new Comanda();
+        String texto = ("\t\tPré-Conta\n\n");
+        texto += "----------------------------------------------------------------------------------------------------------\n";
+        texto += "Número do pedido: " + numeroPedido + "\n";
+        texto += "Número da mesa: " + numeroMesa + "\n";
+        texto += "----------------------------------------------------------------------------------------------------------\n";
+        texto += "Nome\t\tPreco\tQtde\tSubtotal\n";
+
+        RelatorioDao relatorioDao = new RelatorioDao();
+        try {
+            for (ItemRelatorio itemRelatorio : relatorioDao.listarItensPorPedidoAgrupado(numeroPedido)) {
+                //  item = new Item();
+                texto += itemRelatorio.getProduto().getNome()
+                        + "\t\t"
+                        + itemRelatorio.getProduto().getPreco()
+                        + "\t"
+                        + itemRelatorio.getQtde()
+                        + "\t"
+                        + itemRelatorio.getSubtotal();
+                texto += "\n";
+            }
+
+            test.getComanda().setText(texto);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+
+        int opcao = JOptionPane.showConfirmDialog(null, test, "Alterar Produto", JOptionPane.OK_CANCEL_OPTION);
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1905,6 +1961,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btn_remove_3;
     private javax.swing.JButton btn_remove_4;
     private javax.swing.JButton btn_remove_5;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

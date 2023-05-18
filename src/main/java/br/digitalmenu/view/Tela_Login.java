@@ -304,7 +304,6 @@ public class Tela_Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Escolha uma mesa! ", "Mesa não definida!", JOptionPane.WARNING_MESSAGE);
         } else {
             int numeroMesa = Integer.parseInt(cboMesa.getSelectedItem().toString());
-
             try {
                 if (mDao.checkMesa(numeroMesa)) {//Verifica se a mesa realmente existe e esta ativa
                     //cria novo pedido

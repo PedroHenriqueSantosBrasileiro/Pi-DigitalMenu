@@ -24,7 +24,7 @@ public class Tela_ResumoPedido extends Heuristica {
         initComponents();
     }
 
-    public Tela_ResumoPedido(int numeroPedido, int numeroMesa,JFrame tela) throws SQLException {
+    public Tela_ResumoPedido(int numeroPedido, int numeroMesa, JFrame tela) throws SQLException {
         initComponents();
         this.tela = tela;
         this.numeroPedido = numeroPedido;
