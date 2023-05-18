@@ -21,7 +21,7 @@ public class Tela_Login extends javax.swing.JFrame {
 
         //coloca o focu no botao ok
         this.getRootPane().setDefaultButton(btnOkUsuario);
-        
+
         //Tira o minimizar/maximizar e fechar tela[testando]
         setUndecorated(true);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
@@ -236,69 +236,51 @@ public class Tela_Login extends javax.swing.JFrame {
                     this.dispose();
                     telaMenu.setVisible(true);
                     JOptionPane.showMessageDialog(null, String.format("Bem-Vindo!: [Mesa: %d]",
-                        numeroMesa), "Bem-Vindo!", JOptionPane.INFORMATION_MESSAGE);
+                            numeroMesa), "Bem-Vindo!", JOptionPane.INFORMATION_MESSAGE);
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Mesa invalida! ", "Mesa não está em uso, ative o status da mesa!", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Mesa invalida! ", "Mesa não está em uso, ative o status da mesa!", JOptionPane.WARNING_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
             }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
-        }
         }
     }//GEN-LAST:event_btnOkMesaActionPerformed
 
     private void btnOkUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkUsuarioActionPerformed
-        UsuarioDAO userDAO = new UsuarioDAO();
-        //Usuario user = new Usuario();
-
-        String usuario = null;
-        String tipoAcesso = null;//VARIAVEL TEMPORARIA DO TIPO DE ACESSO
-
-        if (txtLogin.getText().length() < 1) {
+        String nomeUsuario = txtLogin.getText();
+        String senha = txtSenha.getText();
+        if (nomeUsuario.length() < 1) {
             JOptionPane.showMessageDialog(null, "Preencha o campo Login!");
-        } else if (txtSenha.getText().length() < 1) {
+        } else if (senha.length() < 1) {
             JOptionPane.showMessageDialog(null, "Preencha o campo Senha!");
         } else {
             try {
-                if (userDAO.checkLogin(txtLogin.getText(), txtSenha.getText())) {//pega login e senha e manda para checkar
-                    String login = txtLogin.getText();
-
-                    //JOptionPane.showMessageDialog(null, "usuario: " + userDAO.buscaPorId(login), "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
-                    for (Usuario user : userDAO.buscaPorUsuario(login)) {
-                        System.out.println(user.getIdusuario());
-                        System.out.println(user.getUsuario());
-                        System.out.println(user.getSenha());
-                        System.out.println(user.getTipoacesso());
-                        System.out.println(user.getStatus());
-
-                        tipoAcesso = user.getTipoacesso();
-                        usuario = user.getUsuario();
-
-                    }
-
-                    System.out.println("acesso é:" + tipoAcesso);
-                    if (tipoAcesso.equalsIgnoreCase("administrador")) {
-                        JOptionPane.showMessageDialog(null, "[Administrador] " + login, "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
-                        this.dispose();//fecha a tela login
-                        new Tela_Admin(usuario, tipoAcesso).setVisible(true);//abre a tela admin
-
-                    } else if (tipoAcesso.equalsIgnoreCase("atendente")) {
-                        JOptionPane.showMessageDialog(null, "[Atendente] " + login, "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
-                        this.dispose();//fecha a tela login
-                        new Tela_Atendente(usuario, tipoAcesso).setVisible(true);//abre a tela atendente
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Usuario sem acesso! " + login, "Usuario não cadastrado!", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos! ", "Verifique os dados inseridos!", JOptionPane.WARNING_MESSAGE);
+                UsuarioDAO usuarioDao = new UsuarioDAO();
+                Usuario usuario = new Usuario();
+                usuario = usuarioDao.buscaPorUsuario(nomeUsuario, senha);
+                if (usuario == null) {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Usuário ou senha inválidos!",
+                            "Verifique os dados inseridos!",
+                            JOptionPane.WARNING_MESSAGE);
+                } else if (usuario.getTipoacesso().equalsIgnoreCase("administrador")) {
+                    System.out.println(usuario.getStatus());
+                    JOptionPane.showMessageDialog(null, "Bem vindo adm.");
+                    this.dispose();
+                    new Tela_Admin(usuario.getUsuario(), usuario.getTipoacesso()).setVisible(true);
+                } else if (usuario.getTipoacesso().equalsIgnoreCase("atendente")) {
+                    System.out.println(usuario.getStatus());
+                    JOptionPane.showMessageDialog(null, "Bem vindo atendente.");
+                    this.dispose();
+                    new Tela_Atendente(usuario.getUsuario(), usuario.getTipoacesso()).setVisible(true);
                 }
-
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
-
         }
+
     }//GEN-LAST:event_btnOkUsuarioActionPerformed
 
     private void FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FecharActionPerformed

@@ -1611,7 +1611,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(2006, 896));
@@ -1895,11 +1895,10 @@ public class Tela_Menu extends javax.swing.JFrame {
                 total += itemRelatorio.getSubtotal();
 
             }
-            
-            
+
             texto += "----------------------------------------------------------------------------------------------------------\n";
             texto += "Subtotal: " + df.format(total) + "\n";
-            texto += "Taxa de serviço (10%): " + df.format(total*0.1) + "\n";
+            texto += "Taxa de serviço (10%): " + df.format(total * 0.1) + "\n";
             texto += "TOTAL: " + df.format(total * 1.1) + "\n";
             texto += "----------------------------------------------------------------------------------------------------------\n";
             test.getComanda().setText(texto);
