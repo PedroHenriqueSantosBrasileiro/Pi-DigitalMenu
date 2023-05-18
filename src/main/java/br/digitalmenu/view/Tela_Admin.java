@@ -443,7 +443,7 @@ public class Tela_Admin extends javax.swing.JFrame {
         try {
             if (mesaDao.checkMesa(numeroMesa)) {//Verifica se a mesa realmente existe e esta ativa
                 //Cria pedido
-                pedido.setIdPedido(Integer.parseInt(jcb.getSelectedItem().toString()));
+                pedido.getMesa().setIdMesa(Integer.parseInt(jcb.getSelectedItem().toString()));
                 PedidoDao pedidoDao = new PedidoDao();
                 pedidoDao.adicionarPedido(pedido);
 

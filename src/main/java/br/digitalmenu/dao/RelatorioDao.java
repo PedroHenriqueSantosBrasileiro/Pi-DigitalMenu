@@ -1,6 +1,7 @@
 package br.digitalmenu.dao;
 
 import br.digitalmenu.connection.ConnectionFactory;
+import br.digitalmenu.model.Item;
 import br.digitalmenu.model.relatorio.ItemRelatorio;
 import br.digitalmenu.model.relatorio.PedidoRelatorio;
 import java.sql.Connection;
@@ -191,4 +192,49 @@ public class RelatorioDao {
         return pedido;
     }
 
+    //testando trazer todos itens do pedido group by
+    public List<ItemRelatorio> listarItensPorPedidoAgrupado(int idPedido) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        List<ItemRelatorio> listaItemRelatorio = new ArrayList<>();
+        ItemRelatorio itemRelatorio = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        /*
+        String sql = "SELECT p.idproduto, p.nome, p.preco, i.qtde, i.subtotal, TIME_FORMAT(horapedido, '%T') as horacomanda, i.status "
+                + "FROM item i "
+                + "INNER JOIN produto p "
+                + "ON p.idproduto = i.id_produto "
+                + "WHERE id_pedido = ? "
+                + "GROUP BY i.id_produto";
+         */
+        String sql = "SELECT p.nome, p.preco, SUM(i.qtde) as qtde, (p.preco*SUM(i.qtde)) as subtotal "
+                + "FROM item i "
+                + "INNER JOIN produto p "
+                + "ON p.idproduto = i.id_produto "
+                + "WHERE i.id_pedido = ? "
+                + "GROUP BY i.id_produto";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, idPedido);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                itemRelatorio = new ItemRelatorio();
+                itemRelatorio.getProduto().setNome(rs.getString("p.nome"));
+                itemRelatorio.getProduto().setPreco(rs.getDouble("p.preco"));
+                itemRelatorio.setQtde(rs.getInt("qtde"));
+                itemRelatorio.setSubtotal(rs.getDouble("subtotal"));
+                listaItemRelatorio.add(itemRelatorio);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return listaItemRelatorio;
+    }
 }
