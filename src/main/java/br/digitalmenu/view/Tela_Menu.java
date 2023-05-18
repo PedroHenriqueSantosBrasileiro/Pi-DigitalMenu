@@ -1870,28 +1870,45 @@ public class Tela_Menu extends javax.swing.JFrame {
         texto += "Número da mesa: " + numeroMesa + "\n";
         texto += "----------------------------------------------------------------------------------------------------------\n";
         texto += "Nome\t\tPreco\tQtde\tSubtotal\n";
+        texto += "----------------------------------------------------------------------------------------------------------\n";
 
         RelatorioDao relatorioDao = new RelatorioDao();
+        DecimalFormat df = new DecimalFormat("R$ 0.00");
         try {
+            total = 0.0;
             for (ItemRelatorio itemRelatorio : relatorioDao.listarItensPorPedidoAgrupado(numeroPedido)) {
                 //  item = new Item();
-                texto += itemRelatorio.getProduto().getNome()
-                        + "\t\t"
-                        + itemRelatorio.getProduto().getPreco()
-                        + "\t"
+                texto += itemRelatorio.getProduto().getNome();
+                if (itemRelatorio.getProduto().getNome().length() >= 15) {
+                    texto += "\t";
+                } else {
+                    texto += "\t\t";
+                }
+
+                texto += df.format(itemRelatorio.getProduto().getPreco())
+                        + "\t   "
                         + itemRelatorio.getQtde()
                         + "\t"
-                        + itemRelatorio.getSubtotal();
+                        + df.format(itemRelatorio.getSubtotal());
                 texto += "\n";
-            }
 
+                total += itemRelatorio.getSubtotal();
+
+            }
+            
+            
+            texto += "----------------------------------------------------------------------------------------------------------\n";
+            texto += "Subtotal: " + df.format(total) + "\n";
+            texto += "Taxa de serviço (10%): " + df.format(total*0.1) + "\n";
+            texto += "TOTAL: " + df.format(total * 1.1) + "\n";
+            texto += "----------------------------------------------------------------------------------------------------------\n";
             test.getComanda().setText(texto);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
 
-        int opcao = JOptionPane.showConfirmDialog(null, test, "Alterar Produto", JOptionPane.OK_CANCEL_OPTION);
+        int opcao = JOptionPane.showConfirmDialog(null, test, "PRE-CONTA", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
