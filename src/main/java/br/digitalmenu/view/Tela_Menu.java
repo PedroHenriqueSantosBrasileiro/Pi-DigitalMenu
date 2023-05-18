@@ -1847,6 +1847,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                     pedido.getMesa().setIdMesa(numeroMesa);
                     pedidoDao.adicionarPedido(pedido);
                     new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
+                    this.dispose();
                 } else {
                     this.dispose();
                     new Tela_Login().setVisible(true);
