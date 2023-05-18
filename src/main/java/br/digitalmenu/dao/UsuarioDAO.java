@@ -129,50 +129,35 @@ public class UsuarioDAO {
         return check;
     }
 
-    public List<Usuario> buscaPorUsuario(String usuario) throws SQLException {//obtem pizza pelo codigo do atendente
+    public Usuario buscaPorUsuario(String usuario, String senha) throws SQLException {//obtem pizza pelo codigo do atendente
 
-        //Conecta ao banco de dados por meio da classe de conexão
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
         ResultSet rs = null;
-
-        //Prepara a lista de carros para retornar
-        List<Usuario> ListaDeUsuarios = new ArrayList<>();
+        Usuario user = null;
 
         try {
-            // Comando SQL na base = tabela de usuarios
-            String sql = "select * from usuario WHERE usuario LIKE ?;";
-
-            //Executa a query (comando SQL)
+            String sql = "SELECT idusuario, usuario, senha, tipoacesso, status FROM usuario WHERE usuario = ? AND senha = ?";
             ps = connection.prepareStatement(sql);
-            ps.setString(1, "%" + usuario + "%");
+            ps.setString(1, usuario);
+            ps.setString(2, senha);
             rs = ps.executeQuery();
-
-            //Para cada item retornado no comando (SQL) faça...
             while (rs.next()) {
-                Usuario user = new Usuario(); //Criando uma instância, novo usuario na memória
-
+                user = new Usuario(); //Criando uma instância, novo usuario na memória
                 user.setIdusuario(rs.getInt("idusuario"));
                 user.setUsuario(rs.getString("usuario"));
                 user.setSenha(rs.getString("senha"));
                 user.setTipoacesso(rs.getString("tipoacesso"));
-                user.setStatus(rs.getString("status"));
-
-                // Insere o usuario na lista Local
-                ListaDeUsuarios.add(user);
+                user.setStatus(rs.getString("status"));   
             }
-
-            // Retorna a lista de usuarios
-            return ListaDeUsuarios;
         } catch (SQLException e) { //Caso dê alguma exceção
             System.out.println(e.getMessage());
-            return null;
         } finally {
-            // Após terminar, fecha a conexão, stmt, rs
             rs.close();
             ps.close();
             connection.close();
         }
+        return user;
     }
 
     public Usuario buscaPorID(int idusuario, Usuario user) throws SQLException {
