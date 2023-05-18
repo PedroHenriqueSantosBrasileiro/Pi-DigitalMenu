@@ -222,28 +222,28 @@ public class Tela_Login extends javax.swing.JFrame {
         if (cboMesa.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Escolha uma mesa! ", "Mesa não definida!", JOptionPane.WARNING_MESSAGE);
         } else {
-            int numeroMesa = Integer.parseInt(cboMesa.getSelectedItem().toString());
             try {
+                int numeroMesa = Integer.parseInt(cboMesa.getSelectedItem().toString());
+                
                 if (mDao.checkMesa(numeroMesa)) {//Verifica se a mesa realmente existe e esta ativa
-                    //cria novo pedido
-                    Pedido pedido = new Pedido();
-                    pedido.getMesa().setIdMesa(numeroMesa);
-                    PedidoDao pedidoDao = new PedidoDao();
-                    //Adiciona pedido na tela menu
-                    pedidoDao.adicionarPedido(pedido);
-                    Tela_Menu telaMenu = null;
-                    telaMenu = new Tela_Menu(pedidoDao.numeroPedido, numeroMesa);
+                    
+                    TelaDeEspera telaDeEspera = new TelaDeEspera(numeroMesa);
+                    telaDeEspera.setVisible(true);
+                    
                     this.dispose();
-                    telaMenu.setVisible(true);
+                    
                     JOptionPane.showMessageDialog(null, String.format("Bem-Vindo!: [Mesa: %d]",
                         numeroMesa), "Bem-Vindo!", JOptionPane.INFORMATION_MESSAGE);
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Mesa invalida! ", "Mesa não está em uso, ative o status da mesa!", JOptionPane.WARNING_MESSAGE);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Mesa invalida! ", "Mesa não está em uso, ative o status da mesa!", JOptionPane.WARNING_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Tela_Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
-        }
+            
+
         }
     }//GEN-LAST:event_btnOkMesaActionPerformed
 

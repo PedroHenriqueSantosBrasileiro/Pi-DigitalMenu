@@ -448,7 +448,7 @@ public class Tela_Admin extends javax.swing.JFrame {
                 pedidoDao.adicionarPedido(pedido);
 
                 //Abre tela menu com o numero do pedido e mesa
-                new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
+                new Tela_Menu(pedidoDao.numeroPedido, numeroMesa,true).setVisible(true);
                 //this.dispose();
             }
         } catch (SQLException ex) {

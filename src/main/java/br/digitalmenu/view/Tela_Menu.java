@@ -32,12 +32,14 @@ public class Tela_Menu extends javax.swing.JFrame {
     public DecimalFormat decimalFormat = new DecimalFormat("##.00");
     private int numeroPedido;
     private int numeroMesa;
+    private boolean foiAdm;
 
     public Tela_Menu() {
     }
 
-    public Tela_Menu(int numeroPedido, int numeroMesa) throws SQLException {
+    public Tela_Menu(int numeroPedido, int numeroMesa, boolean foiAdm) throws SQLException {
         initComponents();
+        this.foiAdm = foiAdm;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.numeroPedido = numeroPedido;
         this.numeroMesa = numeroMesa;
@@ -1796,7 +1798,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     private void lbl_CarrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_CarrinhoMouseReleased
 
         try {
-            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this);
+            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this,foiAdm);
             telaResumo.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -1808,7 +1810,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     private void lbl_FotoCarrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_FotoCarrinhoMouseReleased
         // TODO add your handling code here:
         try {
-            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this);
+            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this,foiAdm);
             telaResumo.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -1825,34 +1827,48 @@ public class Tela_Menu extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE
         );
         if (confirma == JOptionPane.YES_OPTION) {
-            try {
-                Pedido pedido = new Pedido();
-                pedido.setIdPedido(numeroPedido);
-                pedido.setStatus("Encerrado");
-                PedidoDao pedidoDao = new PedidoDao();
-                pedidoDao.atualizaPedido(pedido);
-                JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce"); //arrumar acentuacao
+
+            if (foiAdm == false) {
+
+                TelaDeEspera telaDeEspera = new TelaDeEspera(numeroMesa);
+
                 this.dispose();
 
-                int novoPedido = JOptionPane.showConfirmDialog(
-                        this,
-                        "Deseja criar um novo pedido?",
-                        "Novo pedido",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE
-                );
-                if (novoPedido == JOptionPane.YES_OPTION) {
+                telaDeEspera.setVisible(true);
+            } else {
 
-                    // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
-                    pedido.getMesa().setIdMesa(numeroMesa);
-                    pedidoDao.adicionarPedido(pedido);
-                    new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
-                } else {
+                try {
+                    Pedido pedido = new Pedido();
+                    pedido.setIdPedido(numeroPedido);
+                    pedido.setStatus("Encerrado");
+                    PedidoDao pedidoDao = new PedidoDao();
+                    pedidoDao.atualizaPedido(pedido);
+                    JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce"); //arrumar acentuacao
                     this.dispose();
-                    new Tela_Login().setVisible(true);
+
+                    int novoPedido = JOptionPane.showConfirmDialog(
+                            this,
+                            "Deseja criar um novo pedido?",
+                            "Novo pedido",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE
+                    );
+                    if (novoPedido == JOptionPane.YES_OPTION) {
+
+                        // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
+                        pedido.getMesa().setIdMesa(numeroMesa);
+                        pedidoDao.adicionarPedido(pedido);
+                        new Tela_Menu(pedidoDao.numeroPedido, numeroMesa, true).setVisible(true);
+                        this.dispose();
+                    } else {
+                        this.dispose();
+                        new Tela_Login().setVisible(true);
+                    }
+                } catch (Exception e) {
+
+                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+
             }
         }
     }//GEN-LAST:event_lbl_EncerrarPedidoMouseReleased
@@ -1895,11 +1911,10 @@ public class Tela_Menu extends javax.swing.JFrame {
                 total += itemRelatorio.getSubtotal();
 
             }
-            
-            
+
             texto += "----------------------------------------------------------------------------------------------------------\n";
             texto += "Subtotal: " + df.format(total) + "\n";
-            texto += "Taxa de serviço (10%): " + df.format(total*0.1) + "\n";
+            texto += "Taxa de serviço (10%): " + df.format(total * 0.1) + "\n";
             texto += "TOTAL: " + df.format(total * 1.1) + "\n";
             texto += "----------------------------------------------------------------------------------------------------------\n";
             test.getComanda().setText(texto);

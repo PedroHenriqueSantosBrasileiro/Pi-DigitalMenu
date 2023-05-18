@@ -18,14 +18,16 @@ public class Tela_ResumoPedido extends Heuristica {
     public DecimalFormat decimalFormat = new DecimalFormat("R$ 0.00");
     public int numeroPedido;
     public int numeroMesa;
+    public boolean foiAdm;
     private JFrame tela;
 
     public Tela_ResumoPedido() {
         initComponents();
     }
 
-    public Tela_ResumoPedido(int numeroPedido, int numeroMesa, JFrame tela) throws SQLException {
+    public Tela_ResumoPedido(int numeroPedido, int numeroMesa, JFrame tela, boolean foiAdm) throws SQLException {
         initComponents();
+        this.foiAdm = foiAdm;
         this.tela = tela;
         this.numeroPedido = numeroPedido;
         this.numeroMesa = numeroMesa;
@@ -232,7 +234,7 @@ public class Tela_ResumoPedido extends Heuristica {
         this.dispose();
         //Reabre a tela menu com os atributos mesa e pedido
         try {
-            new Tela_Menu(Integer.parseInt(lbl_NumeroPedido.getText()), Integer.parseInt(lbl_NumeroMesa.getText())).setVisible(true);
+            new Tela_Menu(Integer.parseInt(lbl_NumeroPedido.getText()), Integer.parseInt(lbl_NumeroMesa.getText()), foiAdm).setVisible(true);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
@@ -249,36 +251,45 @@ public class Tela_ResumoPedido extends Heuristica {
                 JOptionPane.QUESTION_MESSAGE
         );
         if (confirma == JOptionPane.YES_OPTION) {
-            try {
-                //Fecha pedido
-                Pedido pedido = new Pedido();
-                pedido.setIdPedido(Integer.parseInt(lbl_NumeroPedido.getText()));
-                pedido.setStatus("Encerrado");
-                PedidoDao pedidoDao = new PedidoDao();
-                pedidoDao.atualizaPedido(pedido);
-                JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
+            if (foiAdm == false) {
+
+                TelaDeEspera telaDeEspera = new TelaDeEspera(numeroMesa);
+                telaDeEspera.setVisible(true);
                 this.dispose();
-
-                int novoPedido = JOptionPane.showConfirmDialog(
-                        this,
-                        "Deseja criar um novo pedido?",
-                        "Novo Pedido",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE
-                );
-                if (novoPedido == JOptionPane.YES_OPTION) {
-
-                    // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
-                    pedido.getMesa().setIdMesa(numeroMesa);
-                    pedidoDao.adicionarPedido(pedido);
-                    new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
-                    this.tela.dispose();
-                } else {
+                tela.dispose();
+                JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
+            } else {
+                try {
+                    //Fecha pedido
+                    Pedido pedido = new Pedido();
+                    pedido.setIdPedido(Integer.parseInt(lbl_NumeroPedido.getText()));
+                    pedido.setStatus("Encerrado");
+                    PedidoDao pedidoDao = new PedidoDao();
+                    pedidoDao.atualizaPedido(pedido);
+                    JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
                     this.dispose();
-                    new Tela_Login().setVisible(true);
+
+                    int novoPedido = JOptionPane.showConfirmDialog(
+                            this,
+                            "Deseja criar um novo pedido?",
+                            "Novo Pedido",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE
+                    );
+                    if (novoPedido == JOptionPane.YES_OPTION) {
+
+                        // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
+                        pedido.getMesa().setIdMesa(numeroMesa);
+                        pedidoDao.adicionarPedido(pedido);
+                        new Tela_Menu(pedidoDao.numeroPedido, numeroMesa, true).setVisible(true);
+                        this.tela.dispose();
+                    } else {
+                        this.dispose();
+                        new Tela_Login().setVisible(true);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
 
         }
