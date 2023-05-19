@@ -149,18 +149,11 @@ public class Tela_Menu extends javax.swing.JFrame {
 
     public void setPorCat(JLabel[] labelNomes, JTextArea[] txtDescricoes, JLabel[] labelPrecos, JLabel[] labelIDs) throws SQLException {
         ProdutoDao prodDao = new ProdutoDao();
+        DecimalFormat df = new DecimalFormat("0.00");
         for (int i = 0; i < labelNomes.length; i++) {
             labelNomes[i].setText(prodDao.listarProdutoPorId(Integer.parseInt(labelIDs[i].getText())).getNome());
-            //<html> <html> <body> <h><div style="text-align:center"> Encerrar Pedido</h> </body> </html>
-
-            // String texto = "<HTML><HTML><BODY><H><DIV style=\"text-align:center\">";
-            //   texto += prodDao.listarProdutoPorId(Integer.parseInt(labelIDs[i].getText())).getDescricao();
-            //   texto += "</h></body></HTML>";
-            //  System.out.println(texto);
-            //  txtDescricoes[i].setSize(400,142);
             txtDescricoes[i].setText(prodDao.listarProdutoPorId(Integer.parseInt(labelIDs[i].getText())).getDescricao());
-
-            labelPrecos[i].setText("R$ " + String.valueOf(prodDao.listarProdutoPorId(Integer.parseInt(labelIDs[i].getText())).getPreco()));
+            labelPrecos[i].setText("R$ " + String.valueOf(df.format(prodDao.listarProdutoPorId(Integer.parseInt(labelIDs[i].getText())).getPreco())));
         }
     }
 
@@ -207,7 +200,7 @@ public class Tela_Menu extends javax.swing.JFrame {
             double totalPorItem = Double.valueOf(jtResumo.getValueAt(i, 4).toString());
             total += totalPorItem;
         }
-        DecimalFormat df = new DecimalFormat(".##");
+        DecimalFormat df = new DecimalFormat("0.00");
 //        lblTotal.setText(df.format(total));
 
     }
@@ -217,7 +210,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         DefaultTableModel dtm = (DefaultTableModel) jtResumo.getModel();
 
         for (int row = 0; row < jtResumo.getRowCount(); row++) {
-            if (produto.getNome().equalsIgnoreCase(jtResumo.getValueAt(row, 0).toString())) {
+            if (produto.getNome().equalsIgnoreCase(jtResumo.getValueAt(row, 1).toString())) {
                 dtm.removeRow(jtResumo.convertRowIndexToModel(row));
             }
         }

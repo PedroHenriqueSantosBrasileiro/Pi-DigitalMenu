@@ -11,12 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class JFRAMETela_Mesa extends Heuristica {
+public class Tela_Mesa extends Heuristica {
 
     int idMesaParaAlterar = 0;
     String statusxAux = "ativado";
 
-    public JFRAMETela_Mesa() throws SQLException {
+    public Tela_Mesa() throws SQLException {
         initComponents();
 
         jtMesa.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica

@@ -463,7 +463,7 @@ public class Tela_Admin extends Heuristica {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
         try {
-            new JFRAMETela_Mesa().setVisible(true);
+            new Tela_Mesa().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Admin.class
@@ -474,7 +474,7 @@ public class Tela_Admin extends Heuristica {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         try {
-            new JFRAMETela_Categoria().setVisible(true);
+            new Tela_Categoria().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Admin.class
@@ -485,7 +485,7 @@ public class Tela_Admin extends Heuristica {
 
     private void mnuitemProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuitemProdutoActionPerformed
         try {
-            new JFRAMETela_Produto().setVisible(true);
+            new Tela_Produto().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Admin.class
@@ -497,7 +497,7 @@ public class Tela_Admin extends Heuristica {
     private void mnuItemPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemPedidoActionPerformed
 
         try {
-            new JFRAMETela_Listar_Pedido().setVisible(true);
+            new Tela_Listar_Pedido().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Admin.class
@@ -535,7 +535,7 @@ public class Tela_Admin extends Heuristica {
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
 
         try {
-            new JFRAMETela_Produto().setVisible(true);
+            new Tela_Produto().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Admin.class
@@ -546,7 +546,7 @@ public class Tela_Admin extends Heuristica {
     private void btnListarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPedidosActionPerformed
 
         try {
-            new JFRAMETela_Listar_Pedido().setVisible(true);
+            new Tela_Listar_Pedido().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Admin.class
@@ -557,7 +557,7 @@ public class Tela_Admin extends Heuristica {
     private void btnMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesasActionPerformed
 
         try {
-            new JFRAMETela_Mesa().setVisible(true);
+            new Tela_Mesa().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Admin.class
@@ -568,7 +568,7 @@ public class Tela_Admin extends Heuristica {
     private void btnCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaActionPerformed
 
         try {
-            new JFRAMETela_Categoria().setVisible(true);
+            new Tela_Categoria().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Admin.class

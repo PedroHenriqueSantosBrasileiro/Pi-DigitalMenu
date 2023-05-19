@@ -287,7 +287,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
         try {
-            new JFRAMETela_Mesa().setVisible(true);
+            new Tela_Mesa().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
@@ -298,7 +298,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         try {
-            new JFRAMETela_Categoria().setVisible(true);
+            new Tela_Categoria().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
@@ -309,7 +309,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
 
     private void mnuitemProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuitemProdutoActionPerformed
         try {
-            new JFRAMETela_Produto().setVisible(true);
+            new Tela_Produto().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
@@ -321,7 +321,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
     private void mnuItemPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemPedidoActionPerformed
 
         try {
-            new JFRAMETela_Listar_Pedido().setVisible(true);
+            new Tela_Listar_Pedido().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
@@ -333,7 +333,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
     private void btnMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesasActionPerformed
 
         try {
-            new JFRAMETela_Mesa().setVisible(true);
+            new Tela_Mesa().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
@@ -353,7 +353,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
     private void btnListarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPedidosActionPerformed
 
         try {
-            new JFRAMETela_Listar_Pedido().setVisible(true);
+            new Tela_Listar_Pedido().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
@@ -365,7 +365,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
 
         try {
-            new JFRAMETela_Produto().setVisible(true);
+            new Tela_Produto().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class

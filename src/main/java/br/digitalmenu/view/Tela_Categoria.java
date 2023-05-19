@@ -11,12 +11,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class JFRAMETela_Categoria extends Heuristica {
+public class Tela_Categoria extends Heuristica {
 
     int idCategoriaInicial = 0;
     String statusInicial = "";
 
-    public JFRAMETela_Categoria() throws SQLException {
+    public Tela_Categoria() throws SQLException {
         initComponents();
         txt_Numero_IdCategoria.setEnabled(false);
         
@@ -184,7 +184,7 @@ public class JFRAMETela_Categoria extends Heuristica {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_NomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_Cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                .addComponent(btn_Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, Short.MAX_VALUE)
                 .addGap(26, 26, 26))
         );
 

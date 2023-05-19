@@ -19,12 +19,12 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-public class JFRAMETela_Listar_Pedido extends Heuristica {
+public class Tela_Listar_Pedido extends Heuristica {
 
     public int numeroPedido;
     public int numeroMesa;
 
-    public JFRAMETela_Listar_Pedido() throws SQLException {
+    public Tela_Listar_Pedido() throws SQLException {
         initComponents();
         IniciaTabela(jtPedido);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable();
@@ -656,14 +656,16 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFRAMETela_Listar_Pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_Listar_Pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFRAMETela_Listar_Pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_Listar_Pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFRAMETela_Listar_Pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_Listar_Pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFRAMETela_Listar_Pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_Listar_Pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -671,9 +673,9 @@ public class JFRAMETela_Listar_Pedido extends Heuristica {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new JFRAMETela_Listar_Pedido().setVisible(true);
+                    new Tela_Listar_Pedido().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(JFRAMETela_Listar_Pedido.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Tela_Listar_Pedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
