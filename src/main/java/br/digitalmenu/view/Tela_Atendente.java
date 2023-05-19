@@ -342,38 +342,11 @@ public class Tela_Atendente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMesasActionPerformed
 
     private void btnAbrirPedidoJFRAMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirPedidoJFRAMEActionPerformed
-        Pedido pedido = new Pedido();
-
-        MesaDao mesaDao = new MesaDao();
-        JComboBox jcb = new JComboBox();//combo box do JOption pane
         try {
-            for (Mesa mesa : mesaDao.listarTodasMesasPorStatus("ATIVADO")) {//lista todas as mesas ativas
-                jcb.addItem(String.valueOf(mesa.getIdMesa()));
-
-            }
+            new Tela_EscolherMesa().setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(Tela_Atendente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        JOptionPane.showMessageDialog(null, jcb, "Selecione a mesa:", JOptionPane.QUESTION_MESSAGE);
-
-        int numeroMesa = Integer.parseInt(jcb.getSelectedItem().toString());
-
-        try {
-            if (mesaDao.checkMesa(numeroMesa)) {//Verifica se a mesa realmente existe e esta ativa
-                //Cria pedido
-                pedido.getMesa().setIdMesa(Integer.parseInt(jcb.getSelectedItem().toString()));
-                PedidoDao pedidoDao = new PedidoDao();
-                pedidoDao.adicionarPedido(pedido);
-
-                //Abre tela menu com o numero do pedido e mesa
-                new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
-                //this.dispose();
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
-        }
-
 
     }//GEN-LAST:event_btnAbrirPedidoJFRAMEActionPerformed
 
