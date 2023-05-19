@@ -1,5 +1,7 @@
 package br.digitalmenu.heuristicas;
 
+import java.awt.Component;
+import java.awt.Font;
 import java.sql.SQLException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -45,6 +47,21 @@ public abstract class Heuristica extends javax.swing.JFrame {
         for (int columnIndex = 0; columnIndex < modelo.getColumnCount(); columnIndex++) {
             tabela.getColumnModel().getColumn(columnIndex).setCellRenderer(centroRender);
         }
+    }
+
+    public class CorDoCabecalho extends DefaultTableCellRenderer {
+
+        public CorDoCabecalho() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(table, value, selected, focused, row, column);
+
+            setBackground(new java.awt.Color(227, 83, 53));//COR DO HEADER
+            return this;
+        }
+
     }
 
 }

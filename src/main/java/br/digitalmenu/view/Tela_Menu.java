@@ -409,7 +409,6 @@ public class Tela_Menu extends javax.swing.JFrame {
 
         btn_categoria_entradas.setBackground(new java.awt.Color(204, 204, 204));
         btn_categoria_entradas.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
-        btn_categoria_entradas.setForeground(new java.awt.Color(0, 0, 0));
         btn_categoria_entradas.setText("Entradas");
         btn_categoria_entradas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_categoria_entradas.addActionListener(new java.awt.event.ActionListener() {
@@ -420,7 +419,6 @@ public class Tela_Menu extends javax.swing.JFrame {
 
         btn_categoria_carnes.setBackground(new java.awt.Color(204, 204, 204));
         btn_categoria_carnes.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
-        btn_categoria_carnes.setForeground(new java.awt.Color(0, 0, 0));
         btn_categoria_carnes.setText("Carnes");
         btn_categoria_carnes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -430,7 +428,6 @@ public class Tela_Menu extends javax.swing.JFrame {
 
         btn_categoria_frutos.setBackground(new java.awt.Color(204, 204, 204));
         btn_categoria_frutos.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
-        btn_categoria_frutos.setForeground(new java.awt.Color(0, 0, 0));
         btn_categoria_frutos.setText("Burguers");
         btn_categoria_frutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -440,7 +437,6 @@ public class Tela_Menu extends javax.swing.JFrame {
 
         btn_categoria_bebidas.setBackground(new java.awt.Color(204, 204, 204));
         btn_categoria_bebidas.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
-        btn_categoria_bebidas.setForeground(new java.awt.Color(0, 0, 0));
         btn_categoria_bebidas.setText("Bebidas");
         btn_categoria_bebidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -450,7 +446,6 @@ public class Tela_Menu extends javax.swing.JFrame {
 
         btn_categoria_sobremesas.setBackground(new java.awt.Color(204, 204, 204));
         btn_categoria_sobremesas.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
-        btn_categoria_sobremesas.setForeground(new java.awt.Color(0, 0, 0));
         btn_categoria_sobremesas.setText("Sobremesas");
         btn_categoria_sobremesas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -502,16 +497,13 @@ public class Tela_Menu extends javax.swing.JFrame {
         pnl_Item1.setPreferredSize(new java.awt.Dimension(1350, 405));
 
         lbl_nome_1.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
-        lbl_nome_1.setForeground(new java.awt.Color(0, 0, 0));
         lbl_nome_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_nome_1.setText("Bufallo Wings");
 
         lbl_preco_1.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
-        lbl_preco_1.setForeground(new java.awt.Color(0, 0, 0));
         lbl_preco_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_preco_1.setText("R$ 000,00");
 
-        btn_remove_1.setBackground(new java.awt.Color(255, 255, 255));
         btn_remove_1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         btn_remove_1.setForeground(new java.awt.Color(176, 50, 39));
         btn_remove_1.setText("-");
@@ -523,11 +515,9 @@ public class Tela_Menu extends javax.swing.JFrame {
         });
 
         lbl_qtde_1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        lbl_qtde_1.setForeground(new java.awt.Color(0, 0, 0));
         lbl_qtde_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_qtde_1.setText("0");
 
-        btn_adiciona_1.setBackground(new java.awt.Color(255, 255, 255));
         btn_adiciona_1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         btn_adiciona_1.setForeground(new java.awt.Color(176, 50, 39));
         btn_adiciona_1.setText("+");
@@ -539,7 +529,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         });
 
         lbl_obs_1.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
-        lbl_obs_1.setForeground(new java.awt.Color(0, 0, 0));
         lbl_obs_1.setText("Observações");
 
         jScrollPane9.setForeground(new java.awt.Color(246, 242, 217));
@@ -562,7 +551,6 @@ public class Tela_Menu extends javax.swing.JFrame {
             }
         });
 
-        txt_descricao_1.setBackground(new java.awt.Color(255, 255, 255));
         txt_descricao_1.setColumns(20);
         txt_descricao_1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         txt_descricao_1.setLineWrap(true);
@@ -628,12 +616,10 @@ public class Tela_Menu extends javax.swing.JFrame {
         pnl_Item2.setPreferredSize(new java.awt.Dimension(1350, 405));
 
         lbl_nome_2.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
-        lbl_nome_2.setForeground(new java.awt.Color(0, 0, 0));
         lbl_nome_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_nome_2.setText("Bufallo Wings");
 
         lbl_preco_2.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
-        lbl_preco_2.setForeground(new java.awt.Color(0, 0, 0));
         lbl_preco_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_preco_2.setText("R$ 000,00");
 
@@ -648,7 +634,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         });
 
         lbl_qtde_2.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        lbl_qtde_2.setForeground(new java.awt.Color(0, 0, 0));
         lbl_qtde_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_qtde_2.setText("0");
 
@@ -663,7 +648,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         });
 
         lbl_obs_2.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
-        lbl_obs_2.setForeground(new java.awt.Color(0, 0, 0));
         lbl_obs_2.setText("Observações");
 
         jScrollPane11.setForeground(new java.awt.Color(246, 242, 217));
@@ -671,7 +655,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         txt_obs_2.setBackground(new java.awt.Color(204, 204, 204));
         txt_obs_2.setColumns(20);
         txt_obs_2.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
-        txt_obs_2.setForeground(new java.awt.Color(0, 0, 0));
         txt_obs_2.setLineWrap(true);
         txt_obs_2.setRows(5);
         jScrollPane11.setViewportView(txt_obs_2);
@@ -686,7 +669,6 @@ public class Tela_Menu extends javax.swing.JFrame {
             }
         });
 
-        txt_descricao_2.setBackground(new java.awt.Color(255, 255, 255));
         txt_descricao_2.setColumns(20);
         txt_descricao_2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         txt_descricao_2.setLineWrap(true);
@@ -754,17 +736,14 @@ public class Tela_Menu extends javax.swing.JFrame {
         pnl_Item3.setPreferredSize(new java.awt.Dimension(1350, 405));
 
         lbl_nome_3.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
-        lbl_nome_3.setForeground(new java.awt.Color(0, 0, 0));
         lbl_nome_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_nome_3.setText("Bufallo Wings");
 
         lbl_preco_3.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
-        lbl_preco_3.setForeground(new java.awt.Color(0, 0, 0));
         lbl_preco_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_preco_3.setText("R$ 000,00");
 
         lbl_qtde_3.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        lbl_qtde_3.setForeground(new java.awt.Color(0, 0, 0));
         lbl_qtde_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_qtde_3.setText("0");
 
@@ -789,7 +768,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         });
 
         lbl_obs_3.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
-        lbl_obs_3.setForeground(new java.awt.Color(0, 0, 0));
         lbl_obs_3.setText("Observações");
 
         jScrollPane15.setForeground(new java.awt.Color(246, 242, 217));
@@ -797,7 +775,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         txt_obs_3.setBackground(new java.awt.Color(204, 204, 204));
         txt_obs_3.setColumns(20);
         txt_obs_3.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
-        txt_obs_3.setForeground(new java.awt.Color(0, 0, 0));
         txt_obs_3.setLineWrap(true);
         txt_obs_3.setRows(5);
         txt_obs_3.setBorder(null);
@@ -813,10 +790,8 @@ public class Tela_Menu extends javax.swing.JFrame {
             }
         });
 
-        txt_descricao_3.setBackground(new java.awt.Color(255, 255, 255));
         txt_descricao_3.setColumns(20);
         txt_descricao_3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
-        txt_descricao_3.setForeground(new java.awt.Color(0, 0, 0));
         txt_descricao_3.setLineWrap(true);
         txt_descricao_3.setRows(5);
         txt_descricao_3.setAutoscrolls(false);
@@ -882,12 +857,10 @@ public class Tela_Menu extends javax.swing.JFrame {
         pnl_Item4.setPreferredSize(new java.awt.Dimension(1350, 405));
 
         lbl_nome_4.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
-        lbl_nome_4.setForeground(new java.awt.Color(0, 0, 0));
         lbl_nome_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_nome_4.setText("Bufallo Wings");
 
         lbl_preco_4.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
-        lbl_preco_4.setForeground(new java.awt.Color(0, 0, 0));
         lbl_preco_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_preco_4.setText("R$ 000,00");
 
@@ -902,7 +875,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         });
 
         lbl_qtde_4.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        lbl_qtde_4.setForeground(new java.awt.Color(0, 0, 0));
         lbl_qtde_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_qtde_4.setText("0");
 
@@ -917,7 +889,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         });
 
         lbl_obs_4.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
-        lbl_obs_4.setForeground(new java.awt.Color(0, 0, 0));
         lbl_obs_4.setText("Observações");
 
         jScrollPane16.setForeground(new java.awt.Color(246, 242, 217));
@@ -941,10 +912,8 @@ public class Tela_Menu extends javax.swing.JFrame {
             }
         });
 
-        txt_descricao_4.setBackground(new java.awt.Color(255, 255, 255));
         txt_descricao_4.setColumns(20);
         txt_descricao_4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
-        txt_descricao_4.setForeground(new java.awt.Color(0, 0, 0));
         txt_descricao_4.setLineWrap(true);
         txt_descricao_4.setRows(5);
         txt_descricao_4.setBorder(null);
@@ -1010,12 +979,10 @@ public class Tela_Menu extends javax.swing.JFrame {
         pnl_Item5.setPreferredSize(new java.awt.Dimension(1350, 405));
 
         lbl_nome_5.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
-        lbl_nome_5.setForeground(new java.awt.Color(0, 0, 0));
         lbl_nome_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_nome_5.setText("Bufallo Wings");
 
         lbl_preco_5.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
-        lbl_preco_5.setForeground(new java.awt.Color(0, 0, 0));
         lbl_preco_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_preco_5.setText("R$ 000,00");
 
@@ -1030,7 +997,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         });
 
         lbl_qtde_5.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        lbl_qtde_5.setForeground(new java.awt.Color(0, 0, 0));
         lbl_qtde_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_qtde_5.setText("0");
 
@@ -1045,7 +1011,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         });
 
         lbl_obs_5.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
-        lbl_obs_5.setForeground(new java.awt.Color(0, 0, 0));
         lbl_obs_5.setText("Observações");
 
         jScrollPane17.setForeground(new java.awt.Color(246, 242, 217));
@@ -1069,10 +1034,8 @@ public class Tela_Menu extends javax.swing.JFrame {
             }
         });
 
-        txt_descricao_5.setBackground(new java.awt.Color(255, 255, 255));
         txt_descricao_5.setColumns(20);
         txt_descricao_5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
-        txt_descricao_5.setForeground(new java.awt.Color(0, 0, 0));
         txt_descricao_5.setLineWrap(true);
         txt_descricao_5.setRows(5);
         txt_descricao_5.setBorder(null);
@@ -1315,7 +1278,6 @@ public class Tela_Menu extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 102, 0));
         jLabel1.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Resumo do Pedido");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1589,7 +1551,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1248, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(pnl_tabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1607,11 +1569,11 @@ public class Tela_Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1990, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1992, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(2006, 896));
