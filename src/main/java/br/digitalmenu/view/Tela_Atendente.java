@@ -287,7 +287,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
         try {
-            new JFRAMETela_Mesa().setVisible(true);
+            new Tela_Mesa().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
@@ -298,7 +298,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         try {
-            new JFRAMETela_Categoria().setVisible(true);
+            new Tela_Categoria().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
@@ -309,7 +309,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
 
     private void mnuitemProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuitemProdutoActionPerformed
         try {
-            new JFRAMETela_Produto().setVisible(true);
+            new Tela_Produto().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
@@ -321,7 +321,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
     private void mnuItemPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemPedidoActionPerformed
 
         try {
-            new JFRAMETela_Listar_Pedido().setVisible(true);
+            new Tela_Listar_Pedido().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
@@ -333,7 +333,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
     private void btnMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesasActionPerformed
 
         try {
-            new JFRAMETela_Mesa().setVisible(true);
+            new Tela_Mesa().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
@@ -342,45 +342,18 @@ public class Tela_Atendente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMesasActionPerformed
 
     private void btnAbrirPedidoJFRAMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirPedidoJFRAMEActionPerformed
-        Pedido pedido = new Pedido();
-
-        MesaDao mesaDao = new MesaDao();
-        JComboBox jcb = new JComboBox();//combo box do JOption pane
         try {
-            for (Mesa mesa : mesaDao.listarTodasMesasPorStatus("ATIVADO")) {//lista todas as mesas ativas
-                jcb.addItem(String.valueOf(mesa.getIdMesa()));
-
-            }
+            new Tela_EscolherMesa().setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(Tela_Atendente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        JOptionPane.showMessageDialog(null, jcb, "Selecione a mesa:", JOptionPane.QUESTION_MESSAGE);
-
-        int numeroMesa = Integer.parseInt(jcb.getSelectedItem().toString());
-
-        try {
-            if (mesaDao.checkMesa(numeroMesa)) {//Verifica se a mesa realmente existe e esta ativa
-                //Cria pedido
-                pedido.getMesa().setIdMesa(Integer.parseInt(jcb.getSelectedItem().toString()));
-                PedidoDao pedidoDao = new PedidoDao();
-                pedidoDao.adicionarPedido(pedido);
-
-                //Abre tela menu com o numero do pedido e mesa
-                new Tela_Menu(pedidoDao.numeroPedido, numeroMesa,true).setVisible(true);
-                //this.dispose();
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
-        }
-
 
     }//GEN-LAST:event_btnAbrirPedidoJFRAMEActionPerformed
 
     private void btnListarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPedidosActionPerformed
 
         try {
-            new JFRAMETela_Listar_Pedido().setVisible(true);
+            new Tela_Listar_Pedido().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
@@ -392,7 +365,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
 
         try {
-            new JFRAMETela_Produto().setVisible(true);
+            new Tela_Produto().setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class

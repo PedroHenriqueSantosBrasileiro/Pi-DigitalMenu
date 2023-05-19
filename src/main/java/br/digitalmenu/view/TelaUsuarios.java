@@ -6,17 +6,24 @@ import javax.swing.table.DefaultTableModel;
 import br.digitalmenu.dao.UsuarioDAO;
 import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Usuario;
+import java.awt.Component;
+import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class TelaUsuarios extends Heuristica {
 
     public TelaUsuarios() throws SQLException {
         initComponents();
 
-        IniciaTabela(tblListaUsuarios);//Formata a tabela e centraliza pela classe heuristicas
-        ListaTabela();
         //DefaultTableModel modelo = (DefaultTableModel) tblListaUsuarios.getModel();
         //tblListaUsuarios.setRowSorter(new TableRowSorter(modelo));
-        // ListaTabela();
+        //ListaTabela();
+        //muda a cor do cabecalho e aumenta a fonte do header na classe heuristica
+        tblListaUsuarios.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
+
+        IniciaTabela(tblListaUsuarios);//Formata a tabela e centraliza pela classe heuristicas
+        ListaTabela();
     }
 
     public void ListaTabela() throws SQLException {
@@ -59,45 +66,43 @@ public class TelaUsuarios extends Heuristica {
         pnlGlobal = new javax.swing.JPanel();
         pnlTabelaConsulta = new javax.swing.JScrollPane();
         tblListaUsuarios = new javax.swing.JTable();
-        pnlSuperior = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        btnAdicionar = new javax.swing.JButton();
+        lblUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         txtSenha = new javax.swing.JTextField();
         lblSenha = new javax.swing.JLabel();
-        lblUsuario = new javax.swing.JLabel();
         lblTipoAcesso = new javax.swing.JLabel();
-        rdoAdmin = new javax.swing.JRadioButton();
-        rdoPadrao = new javax.swing.JRadioButton();
-        btnAdicionar = new javax.swing.JButton();
-        pnlInferior = new javax.swing.JPanel();
         btnDesativar = new javax.swing.JButton();
+        rdoPadrao = new javax.swing.JRadioButton();
         btnAtivar = new javax.swing.JButton();
-        btnListar = new javax.swing.JButton();
+        rdoAdmin = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Usuários");
+        setPreferredSize(new java.awt.Dimension(1360, 859));
 
+        pnlGlobal.setBackground(new java.awt.Color(255, 255, 255));
+
+        pnlTabelaConsulta.setBackground(new java.awt.Color(246, 242, 233));
+
+        tblListaUsuarios.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         tblListaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "idusuario", "usuario", "senha", "tipoacesso", "status"
+                "ID", "Usuário", "Senha", "Tipo de Acesso", "Status"
             }
         ));
+        tblListaUsuarios.setRowHeight(30);
         pnlTabelaConsulta.setViewportView(tblListaUsuarios);
 
-        lblSenha.setText("Senha");
+        jPanel5.setBackground(new java.awt.Color(246, 242, 233));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Controle de Usuários", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
-        lblUsuario.setText("Usuário");
-
-        lblTipoAcesso.setText("Tipo de acesso");
-
-        rdoGrupo1.add(rdoAdmin);
-        rdoAdmin.setText("Admin");
-
-        rdoGrupo1.add(rdoPadrao);
-        rdoPadrao.setText("Atendente");
-
+        btnAdicionar.setBackground(new java.awt.Color(255, 243, 198));
+        btnAdicionar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnAdicionar.setText("Adicionar");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,50 +110,26 @@ public class TelaUsuarios extends Heuristica {
             }
         });
 
-        javax.swing.GroupLayout pnlSuperiorLayout = new javax.swing.GroupLayout(pnlSuperior);
-        pnlSuperior.setLayout(pnlSuperiorLayout);
-        pnlSuperiorLayout.setHorizontalGroup(
-            pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSuperiorLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTipoAcesso)
-                    .addGroup(pnlSuperiorLayout.createSequentialGroup()
-                        .addComponent(rdoAdmin)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rdoPadrao)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAdicionar)))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        pnlSuperiorLayout.setVerticalGroup(
-            pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSuperiorLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUsuario)
-                    .addComponent(lblTipoAcesso)
-                    .addComponent(lblSenha))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rdoAdmin)
-                        .addComponent(btnAdicionar)
-                        .addComponent(rdoPadrao)))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
+        lblUsuario.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblUsuario.setText("Usuário");
 
+        txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+
+        txtSenha.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+
+        lblSenha.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblSenha.setText("Senha");
+
+        lblTipoAcesso.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblTipoAcesso.setText("Tipo de acesso:");
+
+        btnDesativar.setBackground(new java.awt.Color(255, 153, 153));
+        btnDesativar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnDesativar.setText("Desativar");
         btnDesativar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +137,12 @@ public class TelaUsuarios extends Heuristica {
             }
         });
 
+        rdoGrupo1.add(rdoPadrao);
+        rdoPadrao.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        rdoPadrao.setText("Atendente");
+
+        btnAtivar.setBackground(new java.awt.Color(204, 255, 204));
+        btnAtivar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnAtivar.setText("Ativar");
         btnAtivar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,35 +150,64 @@ public class TelaUsuarios extends Heuristica {
             }
         });
 
-        btnListar.setText("Listar");
-        btnListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarActionPerformed(evt);
-            }
-        });
+        rdoGrupo1.add(rdoAdmin);
+        rdoAdmin.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        rdoAdmin.setText("Administrador");
 
-        javax.swing.GroupLayout pnlInferiorLayout = new javax.swing.GroupLayout(pnlInferior);
-        pnlInferior.setLayout(pnlInferiorLayout);
-        pnlInferiorLayout.setHorizontalGroup(
-            pnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInferiorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(186, 186, 186)
-                .addComponent(btnAtivar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblTipoAcesso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdoAdmin)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdoPadrao)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                .addComponent(btnAtivar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDesativar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlInferiorLayout.setVerticalGroup(
-            pnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInferiorLayout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addGroup(pnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDesativar)
-                    .addComponent(btnAtivar)
-                    .addComponent(btnListar))
+                .addComponent(btnDesativar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSenha)
+                    .addComponent(lblUsuario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtSenha)
+                            .addComponent(txtUsuario)
+                            .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTipoAcesso)
+                            .addComponent(rdoAdmin)
+                            .addComponent(rdoPadrao))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDesativar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAtivar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))))
         );
 
         javax.swing.GroupLayout pnlGlobalLayout = new javax.swing.GroupLayout(pnlGlobal);
@@ -199,24 +215,20 @@ public class TelaUsuarios extends Heuristica {
         pnlGlobalLayout.setHorizontalGroup(
             pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGlobalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlInferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(pnlGlobalLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlTabelaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 1, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlTabelaConsulta))
+                .addGap(14, 14, 14))
         );
         pnlGlobalLayout.setVerticalGroup(
             pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGlobalLayout.createSequentialGroup()
-                .addComponent(pnlSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlInferior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlTabelaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addComponent(pnlTabelaConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -227,22 +239,82 @@ public class TelaUsuarios extends Heuristica {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlGlobal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pnlGlobal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(485, 384));
+        setSize(new java.awt.Dimension(1394, 807));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+    private void btnAtivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtivarActionPerformed
+        if (tblListaUsuarios.getSelectedRow() != -1) {
+            int confirma = JOptionPane.showConfirmDialog(
+                this,
+                "Deseja confirmar a ativação do usuário " + String.valueOf(tblListaUsuarios.getValueAt(tblListaUsuarios.getSelectedRow(), 0).toString()) + "?",
+                "Confirmar ativação?",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+            );
+            if (confirma == JOptionPane.YES_OPTION) {
+                try {
+                    UsuarioDAO userDAO = new UsuarioDAO();
+                    Usuario user = new Usuario();
 
-        try {
-            ListaTabela();
-        } catch (SQLException e) {
+                    //fazendo a chamada do metodo para buscar por id
+                    userDAO.buscaPorID((Integer.parseInt(tblListaUsuarios.getValueAt(tblListaUsuarios.getSelectedRow(), 0).toString())), user);
+                    user.setStatus("ATIVADO");//######ATIVA O USUARIO#####
+                    userDAO.atualizaUsuario(user);//chama o metodo de atualizacao
+                    JOptionPane.showMessageDialog(null, "Usuário desativado com sucesso!");
+                    Limpar();
+                    ListaTabela();
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                }
+            } else if (confirma == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Operacão cancelada.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um usuário para excluir.");
         }
-    }//GEN-LAST:event_btnListarActionPerformed
+    }//GEN-LAST:event_btnAtivarActionPerformed
+
+    private void btnDesativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesativarActionPerformed
+        if (tblListaUsuarios.getSelectedRow() != -1) {
+            int confirma = JOptionPane.showConfirmDialog(
+                this,
+                "Deseja confirmar a desativação do usuário " + String.valueOf(tblListaUsuarios.getValueAt(tblListaUsuarios.getSelectedRow(), 0).toString()) + "?",
+                "Confirmar desativação?",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+            );
+            if (confirma == JOptionPane.YES_OPTION) {
+                try {
+                    UsuarioDAO userDAO = new UsuarioDAO();
+                    Usuario user = new Usuario();
+
+                    //fazendo a chamada do metodo para buscar por id
+                    userDAO.buscaPorID((Integer.parseInt(tblListaUsuarios.getValueAt(tblListaUsuarios.getSelectedRow(), 0).toString())), user);
+                    user.setStatus("DESATIVADO");//######DESATIVA O USUARIO#####
+                    userDAO.atualizaUsuario(user);//chama o metodo de atualizacao
+                    JOptionPane.showMessageDialog(null, "Usuário desativado com sucesso!");
+                    Limpar();
+                    ListaTabela();
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                }
+            } else if (confirma == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Operacão cancelada.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um usuário para excluir.");
+        }
+    }//GEN-LAST:event_btnDesativarActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
 
@@ -257,7 +329,7 @@ public class TelaUsuarios extends Heuristica {
             boolean campo2 = verificarSeCampoEstaEmBranco(txtSenha, "Senha");
 
             if (campo1 && campo1) {
-                if (rdoGrupo1.getSelection() == null) { //se os tipos de acessos estiverem vazios      
+                if (rdoGrupo1.getSelection() == null) { //se os tipos de acessos estiverem vazios
                     JOptionPane.showMessageDialog(null, "Escolha o tipo de acesso!");
                     txtSenha.requestFocus();
                 } else {
@@ -283,7 +355,7 @@ public class TelaUsuarios extends Heuristica {
                     UsuarioDAO userDAO = new UsuarioDAO();
 
                     userDAO.insereUsuario(user);
-                    JOptionPane.showMessageDialog(null, "Usuário criado com sucesso!");
+                    JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
 
                     Limpar();
                     ListaTabela();
@@ -295,86 +367,16 @@ public class TelaUsuarios extends Heuristica {
         }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
-    private void btnDesativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesativarActionPerformed
-        if (tblListaUsuarios.getSelectedRow() != -1) {
-            int confirma = JOptionPane.showConfirmDialog(
-                    this,
-                    "Deseja confirmar a desativação do usuário " + String.valueOf(tblListaUsuarios.getValueAt(tblListaUsuarios.getSelectedRow(), 0).toString()) + "?",
-                    "Confirmar desativação?",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
-            );
-            if (confirma == JOptionPane.YES_OPTION) {
-                try {
-                    UsuarioDAO userDAO = new UsuarioDAO();
-                    Usuario user = new Usuario();
-
-                    //fazendo a chamada do metodo para buscar por id
-                    userDAO.buscaPorID((Integer.parseInt(tblListaUsuarios.getValueAt(tblListaUsuarios.getSelectedRow(), 0).toString())), user);
-                    user.setStatus("DESATIVADO");//######DESATIVA O USUARIO#####
-                    userDAO.atualizaUsuario(user);//chama o metodo de atualizacao
-                    JOptionPane.showMessageDialog(null, "Usuário desativado com sucesso!");
-                    Limpar();
-                    ListaTabela();
-
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-                }
-            } else if (confirma == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "Operacão cancelada.");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um usuário para excluir.");
-        }
-
-    }//GEN-LAST:event_btnDesativarActionPerformed
-
-    private void btnAtivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtivarActionPerformed
-        if (tblListaUsuarios.getSelectedRow() != -1) {
-            int confirma = JOptionPane.showConfirmDialog(
-                    this,
-                    "Deseja confirmar a ativação do usuário " + String.valueOf(tblListaUsuarios.getValueAt(tblListaUsuarios.getSelectedRow(), 0).toString()) + "?",
-                    "Confirmar ativação?",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
-            );
-            if (confirma == JOptionPane.YES_OPTION) {
-                try {
-                    UsuarioDAO userDAO = new UsuarioDAO();
-                    Usuario user = new Usuario();
-
-                    //fazendo a chamada do metodo para buscar por id
-                    userDAO.buscaPorID((Integer.parseInt(tblListaUsuarios.getValueAt(tblListaUsuarios.getSelectedRow(), 0).toString())), user);
-                    user.setStatus("ATIVADO");//######ATIVA O USUARIO#####
-                    userDAO.atualizaUsuario(user);//chama o metodo de atualizacao
-                    JOptionPane.showMessageDialog(null, "Usuário desativado com sucesso!");
-                    Limpar();
-                    ListaTabela();
-
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-                }
-            } else if (confirma == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "Operacão cancelada.");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um usuário para excluir.");
-        }
-
-    }//GEN-LAST:event_btnAtivarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnAtivar;
     private javax.swing.JButton btnDesativar;
-    private javax.swing.JButton btnListar;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblTipoAcesso;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel pnlGlobal;
-    private javax.swing.JPanel pnlInferior;
-    private javax.swing.JPanel pnlSuperior;
     private javax.swing.JScrollPane pnlTabelaConsulta;
     private javax.swing.JRadioButton rdoAdmin;
     private javax.swing.ButtonGroup rdoGrupo1;
