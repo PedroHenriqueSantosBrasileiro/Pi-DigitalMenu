@@ -21,7 +21,6 @@ public abstract class Heuristica extends javax.swing.JFrame {
     public boolean verificarSeCampoEstaEmBranco(JTextComponent componente, String nomeCampo) {
 
         if (componente.getText().equals("")) {
-
             componente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
             JOptionPane.showMessageDialog(null, "Campo " + nomeCampo + " em branco");
 

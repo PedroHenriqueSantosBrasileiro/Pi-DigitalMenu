@@ -3,7 +3,10 @@ package br.digitalmenu.view;
 import br.digitalmenu.dao.CategoriaDao;
 import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Categoria;
+import java.sql.DataTruncation;
+import java.sql.SQLDataException;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
@@ -618,8 +621,14 @@ public class Tela_Categoria extends Heuristica {
                         "Categoria adicionada com sucesso!\nNome: "
                         + categoria.getNomeCategoria());
                 limparTxtFields();
+            } catch (SQLIntegrityConstraintViolationException ex) {
+                JOptionPane.showMessageDialog(null, "Nome de categoria já existente!", "\t\tERRO", HEIGHT);
+                txt_NomeCategoria.setText("");
+            } catch (DataTruncation ex) {
+                JOptionPane.showMessageDialog(null, "Nome inválido, limite de 30 caracteres!", "\tErro", HEIGHT);
+                txt_NomeCategoria.setText("");
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
+                JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", HEIGHT);
             }
         }
     }//GEN-LAST:event_btn_CadastrarActionPerformed
