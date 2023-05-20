@@ -2,7 +2,7 @@ package br.digitalmenu.heuristicas;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -32,6 +32,7 @@ public abstract class Heuristica extends javax.swing.JFrame {
         }
 
     }
+    
 
     public void IniciaTabela(JTable tabela) throws SQLException {
         //centraliza o Header
@@ -65,6 +66,15 @@ public abstract class Heuristica extends javax.swing.JFrame {
             return this;
         }
 
+    }
+
+    public void letrasApenas(JTextComponent texto, KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+            texto.setEditable(true);
+        } else {
+            texto.setEditable(false);
+        }
     }
 
 }

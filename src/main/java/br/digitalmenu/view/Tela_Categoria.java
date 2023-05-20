@@ -19,7 +19,7 @@ public class Tela_Categoria extends Heuristica {
     public Tela_Categoria() throws SQLException {
         initComponents();
         txt_Numero_IdCategoria.setEnabled(false);
-        
+
         jtCategoria.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
         IniciaTabela(jtCategoria);
         listarJTableTodosAtivos();//Formata a tabela e centraliza pela classe heuristicas
@@ -149,6 +149,11 @@ public class Tela_Categoria extends Heuristica {
                 txt_NomeCategoriaActionPerformed(evt);
             }
         });
+        txt_NomeCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_NomeCategoriaKeyPressed(evt);
+            }
+        });
 
         btn_Cadastrar.setBackground(new java.awt.Color(255, 243, 198));
         btn_Cadastrar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -170,7 +175,7 @@ public class Tela_Categoria extends Heuristica {
                     .addComponent(lbl_IdCategoria)
                     .addComponent(lbl_NomeCategoria)
                     .addComponent(txt_NomeCategoria)
-                    .addComponent(btn_Cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
+                    .addComponent(btn_Cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(230, 230, 230))
         );
         pnlEsquerdoLayout.setVerticalGroup(
@@ -184,7 +189,7 @@ public class Tela_Categoria extends Heuristica {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_NomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_Cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                .addComponent(btn_Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(26, 26, 26))
         );
 
@@ -305,7 +310,7 @@ public class Tela_Categoria extends Heuristica {
                 .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlSuperiorLayout.createSequentialGroup()
-                        .addComponent(pnlEsquerdo, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
+                        .addComponent(pnlEsquerdo, javax.swing.GroupLayout.PREFERRED_SIZE, 639, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlDireito, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)))
                 .addGap(35, 35, 35))
@@ -315,7 +320,7 @@ public class Tela_Categoria extends Heuristica {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSuperiorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(pnlDireito, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                    .addComponent(pnlDireito, javax.swing.GroupLayout.PREFERRED_SIZE, 263, Short.MAX_VALUE)
                     .addComponent(pnlEsquerdo, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -454,7 +459,7 @@ public class Tela_Categoria extends Heuristica {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
         }
-        */
+         */
     }//GEN-LAST:event_btn_pesquisa_statusActionPerformed
 
     private void btn_pesquisa_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisa_nomeActionPerformed
@@ -502,13 +507,13 @@ public class Tela_Categoria extends Heuristica {
         if (jtCategoria.getSelectedRow() != -1) {
 
             int confirma = JOptionPane.showConfirmDialog(this,
-                "Dados da categoria a deletar:\n ID: "
-                + txt_Numero_IdCategoria.getText()
-                + "\nNome: "
-                + txt_NomeCategoria.getText(),
-                "Confirmar deleção?",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE
+                    "Dados da categoria a deletar:\n ID: "
+                    + txt_Numero_IdCategoria.getText()
+                    + "\nNome: "
+                    + txt_NomeCategoria.getText(),
+                    "Confirmar deleção?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
             );
 
             if (confirma == JOptionPane.YES_OPTION) {
@@ -610,8 +615,8 @@ public class Tela_Categoria extends Heuristica {
                 catDao.criarCategoria(categoria);
                 listarJTableTodosAtivos();
                 JOptionPane.showMessageDialog(this,
-                    "Categoria adicionada com sucesso!\nNome: "
-                    + categoria.getNomeCategoria());
+                        "Categoria adicionada com sucesso!\nNome: "
+                        + categoria.getNomeCategoria());
                 limparTxtFields();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
@@ -626,6 +631,12 @@ public class Tela_Categoria extends Heuristica {
     private void txt_Numero_IdCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Numero_IdCategoriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_Numero_IdCategoriaActionPerformed
+
+    private void txt_NomeCategoriaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_NomeCategoriaKeyPressed
+        // TODO add your handling code here:
+        //teste
+        letrasApenas(txt_NomeCategoria, evt);
+    }//GEN-LAST:event_txt_NomeCategoriaKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

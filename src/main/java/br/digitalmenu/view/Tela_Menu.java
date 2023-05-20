@@ -1293,6 +1293,20 @@ public class Tela_Menu extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jtResumo);
+        if (jtResumo.getColumnModel().getColumnCount() > 0) {
+            jtResumo.getColumnModel().getColumn(0).setMinWidth(5);
+            jtResumo.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jtResumo.getColumnModel().getColumn(1).setMinWidth(85);
+            jtResumo.getColumnModel().getColumn(1).setPreferredWidth(85);
+            jtResumo.getColumnModel().getColumn(2).setMinWidth(20);
+            jtResumo.getColumnModel().getColumn(2).setPreferredWidth(20);
+            jtResumo.getColumnModel().getColumn(3).setMinWidth(15);
+            jtResumo.getColumnModel().getColumn(3).setPreferredWidth(15);
+            jtResumo.getColumnModel().getColumn(4).setMinWidth(35);
+            jtResumo.getColumnModel().getColumn(4).setPreferredWidth(35);
+            jtResumo.getColumnModel().getColumn(5).setMinWidth(100);
+            jtResumo.getColumnModel().getColumn(5).setPreferredWidth(120);
+        }
 
         btn_confirmarPedido.setBackground(new java.awt.Color(102, 153, 0));
         btn_confirmarPedido.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
@@ -1508,7 +1522,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         pnl_tabelaLayout.setHorizontalGroup(
             pnl_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(pnl_tabelaLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1518,9 +1532,8 @@ public class Tela_Menu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_tabelaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_confirmarPedido)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(btn_confirmarPedido))
         );
         pnl_tabelaLayout.setVerticalGroup(
             pnl_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1528,7 +1541,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(33, 33, 33)
                 .addGroup(pnl_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_confirmarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1556,7 +1569,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1248, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(pnl_tabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1574,7 +1587,9 @@ public class Tela_Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1990, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1924, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
