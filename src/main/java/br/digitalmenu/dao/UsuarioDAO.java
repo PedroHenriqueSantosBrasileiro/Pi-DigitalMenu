@@ -148,7 +148,7 @@ public class UsuarioDAO {
                 user.setUsuario(rs.getString("usuario"));
                 user.setSenha(rs.getString("senha"));
                 user.setTipoacesso(rs.getString("tipoacesso"));
-                user.setStatus(rs.getString("status"));   
+                user.setStatus(rs.getString("status"));
             }
         } catch (SQLException e) { //Caso dê alguma exceção
             System.out.println(e.getMessage());
@@ -233,6 +233,137 @@ public class UsuarioDAO {
             connection.close();
         }
 
+    }
+
+    public List<Usuario> listarUsuariosAtivos() throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        List<Usuario> listaDeUsuarios = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT idusuario, usuario, senha, tipoacesso, status FROM  usuario where status = 'ativado'";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Usuario user = new Usuario();
+                user.setIdusuario(rs.getInt("idusuario"));
+                user.setUsuario(rs.getString("usuario"));
+                user.setSenha(rs.getString("senha"));
+                user.setTipoacesso(rs.getString("tipoacesso"));
+                user.setStatus(rs.getString("status"));
+                listaDeUsuarios.add(user);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return listaDeUsuarios;
+    }
+
+    public List<Usuario> listarUsuariosPorStatus(String status) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        List<Usuario> listaDeUsuarios = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT idusuario, usuario, senha, tipoacesso, status FROM  usuario WHERE status = ?";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, status);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Usuario user = new Usuario();
+                user.setIdusuario(rs.getInt("idusuario"));
+                user.setUsuario(rs.getString("usuario"));
+                user.setSenha(rs.getString("senha"));
+                user.setTipoacesso(rs.getString("tipoacesso"));
+                user.setStatus(rs.getString("status"));
+                listaDeUsuarios.add(user);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return listaDeUsuarios;
+    }
+
+    public Usuario listarUsuariosPorId(int id) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        PreparedStatement ps = null;
+        Usuario user = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT idusuario, usuario, senha, tipoacesso, status FROM  usuario WHERE idusuario = ?";
+
+        try {
+
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                user = new Usuario();
+                user.setIdusuario(rs.getInt("idusuario"));
+                user.setUsuario(rs.getString("usuario"));
+                user.setSenha(rs.getString("senha"));
+                user.setTipoacesso(rs.getString("tipoacesso"));
+                user.setStatus(rs.getString("status"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return user;
+    }
+    
+    public List<Usuario> listarCategoriaPorNome(String texto) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        List<Usuario> listaDeUsuarios = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT idusuario, usuario, senha, tipoacesso, status FROM  usuario WHERE usuario LIKE CONCAT('%',?,'%')";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, texto);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Usuario user = new Usuario();
+                user.setIdusuario(rs.getInt("idusuario"));
+                user.setUsuario(rs.getString("usuario"));
+                user.setSenha(rs.getString("senha"));
+                user.setTipoacesso(rs.getString("tipoacesso"));
+                user.setStatus(rs.getString("status"));
+                listaDeUsuarios.add(user);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return listaDeUsuarios;
     }
 
 }

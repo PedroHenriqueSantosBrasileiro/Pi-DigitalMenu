@@ -31,7 +31,7 @@ public class TelaRelatorio extends Heuristica {
         btnTopQtdeVendida = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTableRelatorio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,7 +112,8 @@ public class TelaRelatorio extends Heuristica {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(693, 553));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTopFaturamentoPorProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTopFaturamentoPorProdutoActionPerformed

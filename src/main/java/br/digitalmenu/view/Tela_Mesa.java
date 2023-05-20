@@ -296,9 +296,9 @@ public class Tela_Mesa extends Heuristica {
                 .addContainerGap()
                 .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlGlobalLayout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -366,61 +366,6 @@ public class Tela_Mesa extends Heuristica {
         }
 
     }//GEN-LAST:event_btn_CadastrarMesaActionPerformed
-
-    private void btn_ExcluirMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExcluirMesaActionPerformed
-        if (jtMesa.getSelectedRow() != -1) {
-            int confirma = JOptionPane.showConfirmDialog(
-                    this,
-                    "Deseja confirmar a deleção da mesa " + String.valueOf(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()) + "?",
-                    "CONFIRMAR DELEÇÃO",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
-            );
-            if (confirma == JOptionPane.YES_OPTION) {
-                try {
-                    MesaDao mesaDAO = new MesaDao();
-                    Mesa mesa = mesaDAO.listarMesaPorId(Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()));
-                    mesaDAO.deletaMesa(mesa.getIdMesa());
-                    JOptionPane.showMessageDialog(null, "Mesa deletada com sucesso!");
-                    limparTxtFields();
-                    listarJtablePorStatus("Ativado");
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-                }
-            } else if (confirma == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "Operacão cancelada.");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma mesa para excluir.");
-        }
-    }//GEN-LAST:event_btn_ExcluirMesaActionPerformed
-
-    private void btn_AlterarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AlterarMesaActionPerformed
-        if (jtMesa.getRowCount() != -1) {
-            try {
-                MesaDao mesaDao = new MesaDao();
-                Mesa mesa = mesaDao.listarMesaPorId(Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()));
-                Panel_Alterar_Mesa panel = new Panel_Alterar_Mesa(mesa);
-                int resultado = JOptionPane.showConfirmDialog(null, panel, "ATUALIZAR MESA", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-                if (resultado == JOptionPane.OK_OPTION) {
-                    mesa.setIdMesa(Integer.parseInt(panel.getTxt_numero_Novo().getText()));
-                    mesa.setStatus(panel.getComboBox_status_novo().getSelectedItem().toString());
-                    mesaDao.updateMesa(mesa, Integer.parseInt(panel.getLbl_Id_Valor().getText()));
-                    listarJtablePorStatus("Ativado");
-                    limparTxtFields();
-                } else {
-                    JOptionPane.showMessageDialog(null, "CANCELADO");
-
-                }
-
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha");
-        }
-    }//GEN-LAST:event_btn_AlterarMesaActionPerformed
 
     private void jtMesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtMesaMouseClicked
 
@@ -500,6 +445,61 @@ public class Tela_Mesa extends Heuristica {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btn_ExcluirMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExcluirMesaActionPerformed
+        if (jtMesa.getSelectedRow() != -1) {
+            int confirma = JOptionPane.showConfirmDialog(
+                this,
+                "Deseja confirmar a deleção da mesa " + String.valueOf(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()) + "?",
+                "CONFIRMAR DELEÇÃO",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+            );
+            if (confirma == JOptionPane.YES_OPTION) {
+                try {
+                    MesaDao mesaDAO = new MesaDao();
+                    Mesa mesa = mesaDAO.listarMesaPorId(Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()));
+                    mesaDAO.deletaMesa(mesa.getIdMesa());
+                    JOptionPane.showMessageDialog(null, "Mesa deletada com sucesso!");
+                    limparTxtFields();
+                    listarJtablePorStatus("Ativado");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                }
+            } else if (confirma == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Operacão cancelada.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma mesa para excluir.");
+        }
+    }//GEN-LAST:event_btn_ExcluirMesaActionPerformed
+
+    private void btn_AlterarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AlterarMesaActionPerformed
+        if (jtMesa.getRowCount() != -1) {
+            try {
+                MesaDao mesaDao = new MesaDao();
+                Mesa mesa = mesaDao.listarMesaPorId(Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()));
+                Panel_Alterar_Mesa panel = new Panel_Alterar_Mesa(mesa);
+                int resultado = JOptionPane.showConfirmDialog(null, panel, "ATUALIZAR MESA", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if (resultado == JOptionPane.OK_OPTION) {
+                    mesa.setIdMesa(Integer.parseInt(panel.getTxt_numero_Novo().getText()));
+                    mesa.setStatus(panel.getComboBox_status_novo().getSelectedItem().toString());
+                    mesaDao.updateMesa(mesa, Integer.parseInt(panel.getLbl_Id_Valor().getText()));
+                    listarJtablePorStatus("Ativado");
+                    limparTxtFields();
+                } else {
+                    JOptionPane.showMessageDialog(null, "CANCELADO");
+
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha");
+        }
+    }//GEN-LAST:event_btn_AlterarMesaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
