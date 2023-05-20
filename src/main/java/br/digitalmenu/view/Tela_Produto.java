@@ -207,7 +207,7 @@ public class Tela_Produto extends Heuristica {
         pnlSuperior.setBackground(new java.awt.Color(255, 255, 255));
 
         pnlEsquerdo.setBackground(new java.awt.Color(246, 242, 233));
-        pnlEsquerdo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar categoria", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24))); // NOI18N
+        pnlEsquerdo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar produto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24))); // NOI18N
         pnlEsquerdo.setToolTipText("");
         pnlEsquerdo.setPreferredSize(new java.awt.Dimension(670, 181));
 
@@ -253,6 +253,11 @@ public class Tela_Produto extends Heuristica {
         txtformatPreco.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         txtNome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
 
         lblId.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblId.setText("ID:");
@@ -267,7 +272,7 @@ public class Tela_Produto extends Heuristica {
             .addGroup(pnlEsquerdoLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEsquerdoLayout.createSequentialGroup()
+                    .addGroup(pnlEsquerdoLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addGroup(pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,15 +280,17 @@ public class Tela_Produto extends Heuristica {
                                 .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(txtNome)
-                            .addComponent(txtId))
-                        .addGap(36, 36, 36)
-                        .addComponent(lblPreco)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtformatPreco)
-                        .addGap(214, 214, 214))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEsquerdoLayout.createSequentialGroup()
+                        .addGroup(pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlEsquerdoLayout.createSequentialGroup()
+                                .addComponent(txtId)
+                                .addGap(164, 164, 164))
+                            .addGroup(pnlEsquerdoLayout.createSequentialGroup()
+                                .addComponent(txtNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblPreco)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(txtformatPreco))
+                    .addGroup(pnlEsquerdoLayout.createSequentialGroup()
                         .addGroup(pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -291,26 +298,27 @@ public class Tela_Produto extends Heuristica {
                         .addGroup(pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cboxCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2))
-                        .addGap(156, 156, 156))))
+                            .addComponent(jScrollPane2))))
+                .addGap(156, 156, 156))
         );
         pnlEsquerdoLayout.setVerticalGroup(
             pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEsquerdoLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPreco)
                     .addComponent(txtformatPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
+                .addGap(5, 5, 5)
                 .addGroup(pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
                 .addGroup(pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -528,6 +536,14 @@ public class Tela_Produto extends Heuristica {
             }
         });
         jScrollPane1.setViewportView(jtProduto);
+        if (jtProduto.getColumnModel().getColumnCount() > 0) {
+            jtProduto.getColumnModel().getColumn(0).setMinWidth(5);
+            jtProduto.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jtProduto.getColumnModel().getColumn(1).setMinWidth(200);
+            jtProduto.getColumnModel().getColumn(1).setPreferredWidth(200);
+            jtProduto.getColumnModel().getColumn(3).setMinWidth(20);
+            jtProduto.getColumnModel().getColumn(3).setPreferredWidth(20);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -561,7 +577,7 @@ public class Tela_Produto extends Heuristica {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(1416, 808));
+        setSize(new java.awt.Dimension(1414, 807));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -806,6 +822,10 @@ public class Tela_Produto extends Heuristica {
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
 
     /**
      * @param args the command line arguments

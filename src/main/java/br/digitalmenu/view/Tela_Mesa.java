@@ -228,7 +228,7 @@ public class Tela_Mesa extends Heuristica {
                 {null, null}
             },
             new String [] {
-                "Número Mesa (id)", "Status"
+                "Número Mesa (ID)", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
