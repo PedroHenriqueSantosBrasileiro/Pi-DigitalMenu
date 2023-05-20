@@ -389,9 +389,9 @@ public class TelaUsuarios extends Heuristica {
                 .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pnlPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlGlobalLayout.createSequentialGroup()
-                        .addComponent(pnlSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+                        .addComponent(pnlSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(36, 36, 36))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGlobalLayout.createSequentialGroup()
                 .addGap(173, 173, 173)
@@ -548,45 +548,13 @@ public class TelaUsuarios extends Heuristica {
         }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
-    private void btn_pesquisa_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisa_idActionPerformed
-        JPanel painel = new JPanel();
-        JLabel lbl_numeroId = new JLabel("Número: ");
-        JTextField txt_numeroId = new JTextField(10);
-        painel.add(lbl_numeroId);
-        painel.add(txt_numeroId);
-        int resultado = JOptionPane.showConfirmDialog(null, painel, "PESQUISA POR ID", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-        if (resultado == JOptionPane.OK_OPTION) {
-            int idPesquisar = Integer.parseInt(txt_numeroId.getText());
-            try {
-                listarJTablePorId(idPesquisar);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "op cancelada");
+    private void brn_pesquisa_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brn_pesquisa_todosActionPerformed
+        try {
+            listarJTableTodosUsuarios();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
-    }//GEN-LAST:event_btn_pesquisa_idActionPerformed
-
-    private void btn_pesquisa_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisa_nomeActionPerformed
-        JPanel painel = new JPanel();
-        JLabel nomeProduto = new JLabel("Palavra: ");
-        JTextField digitarPalavra = new JTextField(25);
-        painel.add(nomeProduto);
-        painel.add(digitarPalavra);
-        int result = JOptionPane.showConfirmDialog(null, painel, "Pesquisar categoria", JOptionPane.OK_CANCEL_OPTION);
-        String palavraPesquisar = digitarPalavra.getText();
-        if (result == JOptionPane.OK_OPTION) {
-            try {
-                listarJTablePorNome(palavraPesquisar);
-                if (tblListaUsuarios.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "Palavra não encontrada.");
-                    listarJTableTodosAtivos();
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            }
-        }
-    }//GEN-LAST:event_btn_pesquisa_nomeActionPerformed
+    }//GEN-LAST:event_brn_pesquisa_todosActionPerformed
 
     private void btn_pesquisa_statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisa_statusActionPerformed
         JPanel painel = new JPanel();
@@ -629,16 +597,48 @@ public class TelaUsuarios extends Heuristica {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
         }
-         */
+        */
     }//GEN-LAST:event_btn_pesquisa_statusActionPerformed
 
-    private void brn_pesquisa_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brn_pesquisa_todosActionPerformed
-        try {
-            listarJTableTodosUsuarios();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+    private void btn_pesquisa_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisa_nomeActionPerformed
+        JPanel painel = new JPanel();
+        JLabel nomeProduto = new JLabel("Palavra: ");
+        JTextField digitarPalavra = new JTextField(25);
+        painel.add(nomeProduto);
+        painel.add(digitarPalavra);
+        int result = JOptionPane.showConfirmDialog(null, painel, "Pesquisar categoria", JOptionPane.OK_CANCEL_OPTION);
+        String palavraPesquisar = digitarPalavra.getText();
+        if (result == JOptionPane.OK_OPTION) {
+            try {
+                listarJTablePorNome(palavraPesquisar);
+                if (tblListaUsuarios.getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "Palavra não encontrada.");
+                    listarJTableTodosAtivos();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
         }
-    }//GEN-LAST:event_brn_pesquisa_todosActionPerformed
+    }//GEN-LAST:event_btn_pesquisa_nomeActionPerformed
+
+    private void btn_pesquisa_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisa_idActionPerformed
+        JPanel painel = new JPanel();
+        JLabel lbl_numeroId = new JLabel("Número: ");
+        JTextField txt_numeroId = new JTextField(10);
+        painel.add(lbl_numeroId);
+        painel.add(txt_numeroId);
+        int resultado = JOptionPane.showConfirmDialog(null, painel, "PESQUISA POR ID", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (resultado == JOptionPane.OK_OPTION) {
+            int idPesquisar = Integer.parseInt(txt_numeroId.getText());
+            try {
+                listarJTablePorId(idPesquisar);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "op cancelada");
+        }
+    }//GEN-LAST:event_btn_pesquisa_idActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

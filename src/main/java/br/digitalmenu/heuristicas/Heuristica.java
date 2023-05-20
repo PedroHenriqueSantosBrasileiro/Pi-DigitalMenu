@@ -1,5 +1,6 @@
 package br.digitalmenu.heuristicas;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.sql.SQLException;
@@ -37,6 +38,8 @@ public abstract class Heuristica extends javax.swing.JFrame {
         TableCellRenderer rendererFromHeader = tabela.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
+        tabela.setSelectionBackground(Color.DARK_GRAY);
+        //tabela
 
         //Centraliza os campos
         DefaultTableCellRenderer centroRender = new DefaultTableCellRenderer();
