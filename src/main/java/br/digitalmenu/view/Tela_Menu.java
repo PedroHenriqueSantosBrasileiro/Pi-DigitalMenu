@@ -1,6 +1,5 @@
 package br.digitalmenu.view;
 
-import org.apache.commons.lang3.StringUtils;
 import br.digitalmenu.dao.ItemDao;
 import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.dao.ProdutoDao;
@@ -1802,12 +1801,20 @@ public class Tela_Menu extends javax.swing.JFrame {
         if (confirma == JOptionPane.YES_OPTION) {
 
             if (foiAdm == false) {
+                try {
+                    Pedido pedido = new Pedido();
+                    pedido.setIdPedido(numeroPedido);
+                    pedido.setStatus("Encerrado");
+                    PedidoDao pedidoDao = new PedidoDao();
+                    pedidoDao.atualizaPedido(pedido);
+                    TelaDeEspera telaDeEspera = new TelaDeEspera(numeroMesa);
+                    JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
+                    this.dispose();
 
-                TelaDeEspera telaDeEspera = new TelaDeEspera(numeroMesa);
-
-                this.dispose();
-
-                telaDeEspera.setVisible(true);
+                    telaDeEspera.setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Tela_Menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
 
                 try {

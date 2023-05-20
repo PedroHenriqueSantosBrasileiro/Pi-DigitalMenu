@@ -8,6 +8,8 @@ import br.digitalmenu.model.Item;
 import br.digitalmenu.model.Pedido;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -46,9 +48,9 @@ public class Tela_ResumoPedido extends Heuristica {
             modelo.addRow(new Object[]{
                 item.getProduto().getIdProduto(),
                 item.getProduto().getNome(),
-                item.getProduto().getPreco(),
+                String.format("%.2f", item.getProduto().getPreco()),
                 item.getQtde(),
-                item.getSubtotal(),
+                String.format("%.2f", item.getSubtotal()),
                 item.getHoraComanda(),
                 item.getStatus()
             }
@@ -256,10 +258,10 @@ public class Tela_ResumoPedido extends Heuristica {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VoltarActionPerformed
-        
+
         this.dispose();
         //Reabre a tela menu com os atributos mesa e pedido
-       
+
 
     }//GEN-LAST:event_btn_VoltarActionPerformed
 
@@ -275,11 +277,21 @@ public class Tela_ResumoPedido extends Heuristica {
         if (confirma == JOptionPane.YES_OPTION) {
             if (foiAdm == false) {
 
-                TelaDeEspera telaDeEspera = new TelaDeEspera(numeroMesa);
-                telaDeEspera.setVisible(true);
-                this.dispose();
-                tela.dispose();
-                JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
+                try {
+
+                    Pedido pedido = new Pedido();
+                    pedido.setIdPedido(Integer.parseInt(lbl_NumeroPedido.getText()));
+                    pedido.setStatus("Encerrado");
+                    PedidoDao pedidoDao = new PedidoDao();
+                    pedidoDao.atualizaPedido(pedido);
+                    TelaDeEspera telaDeEspera = new TelaDeEspera(numeroMesa);
+                    telaDeEspera.setVisible(true);
+                    this.dispose();
+                    tela.dispose();
+                    JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Tela_ResumoPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 try {
                     //Fecha pedido
