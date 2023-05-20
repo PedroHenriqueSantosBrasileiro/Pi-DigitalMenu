@@ -1801,6 +1801,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                     // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
                     pedido.getMesa().setIdMesa(numeroMesa);
                     pedidoDao.adicionarPedido(pedido);
+                    this.dispose();
                     new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
                 } else {
                     this.dispose();
