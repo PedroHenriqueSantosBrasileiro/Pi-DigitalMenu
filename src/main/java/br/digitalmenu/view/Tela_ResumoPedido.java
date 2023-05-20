@@ -31,6 +31,8 @@ public class Tela_ResumoPedido extends Heuristica {
         this.numeroMesa = numeroMesa;
         lbl_NumeroPedido.setText(String.valueOf(numeroPedido));
         lbl_NumeroMesa.setText(String.valueOf(numeroMesa));
+        
+        jtResumo.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
         IniciaTabela(jtResumo);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable(Integer.parseInt(lbl_NumeroPedido.getText()));
     }
@@ -44,9 +46,9 @@ public class Tela_ResumoPedido extends Heuristica {
             modelo.addRow(new Object[]{
                 item.getProduto().getIdProduto(),
                 item.getProduto().getNome(),
-                item.getProduto().getPreco(),
+                String.format("%.2f", item.getProduto().getPreco()),
                 item.getQtde(),
-                item.getSubtotal(),
+                String.format("%.2f", item.getSubtotal()),
                 item.getHoraComanda(),
                 item.getStatus()
             }
@@ -136,6 +138,7 @@ public class Tela_ResumoPedido extends Heuristica {
                 .addGap(23, 23, 23))
         );
 
+        jtResumo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jtResumo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -152,7 +155,16 @@ public class Tela_ResumoPedido extends Heuristica {
                 return canEdit [columnIndex];
             }
         });
+        jtResumo.setRowHeight(25);
         jScrollPane1.setViewportView(jtResumo);
+        if (jtResumo.getColumnModel().getColumnCount() > 0) {
+            jtResumo.getColumnModel().getColumn(0).setMinWidth(5);
+            jtResumo.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jtResumo.getColumnModel().getColumn(1).setMinWidth(200);
+            jtResumo.getColumnModel().getColumn(1).setPreferredWidth(200);
+            jtResumo.getColumnModel().getColumn(6).setMinWidth(100);
+            jtResumo.getColumnModel().getColumn(6).setPreferredWidth(100);
+        }
 
         javax.swing.GroupLayout pnlTabelaLayout = new javax.swing.GroupLayout(pnlTabela);
         pnlTabela.setLayout(pnlTabelaLayout);
