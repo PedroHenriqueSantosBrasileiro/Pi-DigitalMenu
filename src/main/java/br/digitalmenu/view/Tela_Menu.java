@@ -1,5 +1,6 @@
 package br.digitalmenu.view;
 
+import org.apache.commons.lang3.StringUtils;
 import br.digitalmenu.dao.ItemDao;
 import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.dao.ProdutoDao;
@@ -1812,7 +1813,7 @@ public class Tela_Menu extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_lbl_EncerrarPedidoMouseReleased
-
+ 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         JPanel comanda = new JPanel();
@@ -1832,8 +1833,8 @@ public class Tela_Menu extends javax.swing.JFrame {
         DecimalFormat df = new DecimalFormat("R$ 0.00");
         try {
             total = 0.0;
-            for (ItemRelatorio itemRelatorio : relatorioDao.listarItensPorPedidoAgrupado(numeroPedido)) {
-                //  item = new Item();
+       for (ItemRelatorio itemRelatorio : relatorioDao.listarItensPorPedidoAgrupado(numeroPedido)) {
+            //  item = new Item();
                 texto += itemRelatorio.getProduto().getNome();
                 if (itemRelatorio.getProduto().getNome().length() >= 15) {
                     texto += "\t";
@@ -1849,15 +1850,14 @@ public class Tela_Menu extends javax.swing.JFrame {
                 texto += "\n";
 
                 total += itemRelatorio.getSubtotal();
+    }
 
-            }
-
-            texto += "----------------------------------------------------------------------------------------------------------\n";
-            texto += "Subtotal: " + df.format(total) + "\n";
-            texto += "Taxa de serviço (10%): " + df.format(total * 0.1) + "\n";
-            texto += "TOTAL: " + df.format(total * 1.1) + "\n";
-            texto += "----------------------------------------------------------------------------------------------------------\n";
-            test.getComanda().setText(texto);
+    texto += "----------------------------------------------------------------------------------------------------------\n";
+    texto += "Subtotal: " + df.format(total) + "\n";
+    texto += "Taxa de serviço (10%): " + df.format(total * 0.1) + "\n";
+    texto += "TOTAL: " + df.format(total * 1.1) + "\n";
+    texto += "----------------------------------------------------------------------------------------------------------\n";
+    test.getComanda().setText(texto);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());

@@ -11,8 +11,8 @@
         <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>br.digitalmenu.view.Tela_Login</exec.mainClass>
     </properties>
-        <dependencies>
-         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
