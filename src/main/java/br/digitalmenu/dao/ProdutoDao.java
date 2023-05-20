@@ -220,7 +220,7 @@ public class ProdutoDao {
                 p.setNome(rs.getString("p.nome"));
                 p.setPreco(rs.getDouble("p.preco"));
                 p.setDescricao(rs.getString("p.descricao"));
-                p.getCategoria().setStatus(rs.getString("p.status"));
+                p.setStatus(rs.getString("p.status"));
                 p.getCategoria().setNomeCategoria(rs.getString("c.nome"));
                 listaDeProdutos.add(p);
             }

@@ -16,14 +16,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -31,9 +36,12 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e9" green="f2" red="f6" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Atual"/>
+            <TitledBorder title="ATUALIZAR PRODUTOS"/>
           </Border>
         </Property>
       </Properties>
@@ -46,69 +54,95 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="lbl_Preco_Atual" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="lbl_Categoria" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lbl_Nome" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="lbl_Id" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="lbl_Categoria_Atual" min="-2" pref="200" max="-2" attributes="0"/>
+                                                  <Component id="lbl_Id_Valor" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                                  <Component id="lbl_IdProduto1" min="-2" pref="190" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="lbl_Nome" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="lbl_Id" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="lbl_Id_Valor" min="-2" pref="36" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="lbl_IdProduto1" alignment="1" max="32767" attributes="0"/>
-                                                      <Component id="lbl_Nome_Atual" alignment="0" max="32767" attributes="0"/>
-                                                  </Group>
+                                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                                  <Component id="lbl_Nome_Atual" min="-2" pref="190" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="cbox_Categoria_Novo" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="txt_Preco_Novo" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="txt_Nome_Novo" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="lbl_IdProduto" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="lbl_Preco_Atual" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lbl_Categoria" min="-2" pref="127" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lbl_Categoria_Atual" min="-2" pref="200" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="lbl_IdProduto" min="-2" pref="200" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="txt_Nome_Novo" min="-2" pref="200" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lbl_Descricao" min="-2" pref="90" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jScrollPane1" min="-2" pref="200" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jScrollPane2" min="-2" pref="200" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                          <Component id="cbox_Categoria_Novo" min="-2" pref="200" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="lbl_Status" min="-2" pref="90" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="x" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="checkbox_Status_Novo" min="-2" pref="200" max="-2" attributes="0"/>
-                                  </Group>
                               </Group>
-                              <Component id="lbl_Preco" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                              <Component id="filler18" alignment="0" min="-2" pref="530" max="-2" attributes="0"/>
-                              <Component id="filler19" alignment="0" min="-2" pref="530" max="-2" attributes="0"/>
-                              <Component id="filler21" alignment="0" min="-2" pref="530" max="-2" attributes="0"/>
-                              <Component id="filler22" alignment="0" min="-2" pref="530" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lbl_Preco" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="txt_Preco_Novo" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="lbl_Descricao" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" min="-2" pref="220" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane2" min="-2" pref="220" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="lbl_Status" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="x" min="-2" pref="200" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                          <Component id="checkbox_Status_Novo" min="-2" pref="200" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="filler18" alignment="0" min="-2" pref="630" max="-2" attributes="0"/>
+                                      <Component id="filler19" alignment="0" min="-2" pref="630" max="-2" attributes="0"/>
+                                      <Component id="filler21" alignment="0" min="-2" pref="630" max="-2" attributes="0"/>
+                                      <Component id="filler22" alignment="0" min="-2" pref="630" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="filler24" min="-2" pref="530" max="-2" attributes="0"/>
+                          <Component id="filler24" min="-2" pref="630" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -125,45 +159,50 @@
                   </Group>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Component id="filler24" min="-2" pref="1" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbl_Nome" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="lbl_Nome_Atual" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="txt_Nome_Novo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lbl_Nome" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="lbl_Nome_Atual" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="txt_Nome_Novo" alignment="0" pref="36" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="filler18" min="-2" pref="1" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbl_Preco" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="lbl_Preco_Atual" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="txt_Preco_Novo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="txt_Preco_Novo" alignment="3" pref="36" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Component id="filler19" min="-2" pref="1" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbl_Categoria" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="lbl_Categoria_Atual" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="cbox_Categoria_Novo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lbl_Categoria_Atual" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="lbl_Categoria" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="cbox_Categoria_Novo" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                   <Component id="filler21" min="-2" pref="1" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lbl_Descricao" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="lbl_Descricao" min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="68" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="filler22" min="-2" pref="1" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbl_Status" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="checkbox_Status_Novo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="x" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="checkbox_Status_Novo" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="x" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="lbl_Status" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -172,7 +211,7 @@
         <Component class="javax.swing.JLabel" name="lbl_Nome">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="14" style="1"/>
+              <Font name="Segoe UI" size="24" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Nome:"/>
@@ -180,11 +219,19 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_Nome_Atual">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="24" style="0"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_Nome_Novo">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="24" style="0"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_Nome_NovoActionPerformed"/>
           </Events>
@@ -192,7 +239,7 @@
         <Component class="javax.swing.JLabel" name="lbl_Preco">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="14" style="1"/>
+              <Font name="Segoe UI" size="24" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Pre&#xe7;o:"/>
@@ -200,16 +247,24 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_Preco_Atual">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="24" style="0"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_Preco_Novo">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="24" style="0"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_Categoria">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="14" style="1"/>
+              <Font name="Segoe UI" size="24" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Categoria:"/>
@@ -217,12 +272,18 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_Categoria_Atual">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="24" style="0"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cbox_Categoria_Novo">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="24" style="0"/>
+            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
@@ -234,7 +295,7 @@
         <Component class="javax.swing.JLabel" name="lbl_Descricao">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="14" style="1"/>
+              <Font name="Segoe UI" size="24" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o:"/>
@@ -250,6 +311,9 @@
             <Component class="javax.swing.JTextArea" name="txtarea_Descricao_Atual">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="24" style="0"/>
+                </Property>
                 <Property name="rows" type="int" value="5"/>
               </Properties>
             </Component>
@@ -265,6 +329,9 @@
             <Component class="javax.swing.JTextArea" name="txtarea_Descricao_Novo">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="24" style="0"/>
+                </Property>
                 <Property name="rows" type="int" value="5"/>
               </Properties>
             </Component>
@@ -273,7 +340,7 @@
         <Component class="javax.swing.JLabel" name="lbl_Status">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="14" style="1"/>
+              <Font name="Segoe UI" size="24" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Status:"/>
@@ -281,6 +348,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkbox_Status_Novo">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="24" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Ativado"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
@@ -372,7 +442,7 @@
         <Component class="javax.swing.JLabel" name="lbl_IdProduto">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="14" style="1"/>
+              <Font name="Segoe UI" size="24" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Atualiza&#xe7;&#xf5;es"/>
@@ -381,7 +451,7 @@
         <Component class="javax.swing.JLabel" name="lbl_IdProduto1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="14" style="1"/>
+              <Font name="Segoe UI" size="24" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Dados Atuais"/>
@@ -411,7 +481,7 @@
         <Component class="javax.swing.JLabel" name="lbl_Id">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="14" style="1"/>
+              <Font name="Segoe UI" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ID : "/>
           </Properties>
@@ -419,13 +489,16 @@
         <Component class="javax.swing.JLabel" name="lbl_Id_Valor">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="14" style="1"/>
+              <Font name="Segoe UI" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ID : "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="x">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="24" style="0"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Status"/>
           </Properties>

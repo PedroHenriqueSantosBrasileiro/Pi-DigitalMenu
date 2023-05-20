@@ -222,7 +222,7 @@ public class Tela_Menu extends javax.swing.JFrame {
             produto.getNome(),
             String.format("%.2f", produto.getPreco()),
             qtdeLbl,
-            String.format("%.2f",(qtdeLbl * produto.getPreco())) ,
+            String.format("%.2f", (qtdeLbl * produto.getPreco())),
             desc
         });
 
@@ -395,6 +395,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         lbl_Id_24 = new javax.swing.JLabel();
         lbl_Id_25 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(202, 126, 40));
@@ -1498,22 +1499,31 @@ public class Tela_Menu extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Remover Item");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_tabelaLayout = new javax.swing.GroupLayout(pnl_tabela);
         pnl_tabela.setLayout(pnl_tabelaLayout);
         pnl_tabelaLayout.setHorizontalGroup(
             pnl_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_tabelaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnl_Labels_Id, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_confirmarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(104, 104, 104))
             .addGroup(pnl_tabelaLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnl_Labels_Id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_tabelaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_confirmarPedido)
+                .addContainerGap())
         );
         pnl_tabelaLayout.setVerticalGroup(
             pnl_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1521,16 +1531,18 @@ public class Tela_Menu extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(pnl_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_tabelaLayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(btn_confirmarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnl_tabelaLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(pnl_Labels_Id, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
+                .addGroup(pnl_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_confirmarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addGroup(pnl_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_tabelaLayout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_tabelaLayout.createSequentialGroup()
+                        .addComponent(pnl_Labels_Id, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1547,7 +1559,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1248, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(pnl_tabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1565,11 +1577,11 @@ public class Tela_Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1992, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1990, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(2006, 896));
@@ -1710,53 +1722,57 @@ public class Tela_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_adicionaCarrinho_5ActionPerformed
 
     private void btn_confirmarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confirmarPedidoActionPerformed
-        
 
-        int numeroDeItensNaComanda = jtResumo.getRowCount();
-        Item itensNaComanda[] = new Item[numeroDeItensNaComanda];
+        if (jtResumo.getRowCount() >= 1) {
 
-        for (int i = 0; i < itensNaComanda.length; i++) {
-            String pegaPreco =  (String) jtResumo.getValueAt(i, 4);
-            double precoFormatado = Double.parseDouble(pegaPreco.replace(",", ".")); 
-            itensNaComanda[i] = new Item();
-            itensNaComanda[i].getPedido().setIdPedido(numeroPedido);
-            itensNaComanda[i].getProduto().setIdProduto(Integer.parseInt(jtResumo.getValueAt(i, 0).toString()));
-            itensNaComanda[i].setQtde(Integer.parseInt(jtResumo.getValueAt(i, 3).toString()));
-            itensNaComanda[i].setSubtotal(precoFormatado);
-            itensNaComanda[i].setObservacao((jtResumo.getValueAt(i, 5).toString()));
-        }
+            int numeroDeItensNaComanda = jtResumo.getRowCount();
+            Item itensNaComanda[] = new Item[numeroDeItensNaComanda];
 
-        int confirma = JOptionPane.showConfirmDialog(
-                this,
-                "Deseja confirmar o pedido?",
-                "CONFIRMAR PEDIDO",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE
-        );
+            for (int i = 0; i < itensNaComanda.length; i++) {
 
-        if (confirma == JOptionPane.YES_OPTION) {
-            ItemDao itemDao = new ItemDao();
-            for (Item item : itensNaComanda) {
-                try {
-                    itemDao.adicionaItens(item);
-                    limparQtde();
-                    limparTabela();
-                    calculaTotal();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-                }
+                
+                itensNaComanda[i] = new Item();
+                itensNaComanda[i].getPedido().setIdPedido(numeroPedido);
+                itensNaComanda[i].getProduto().setIdProduto(Integer.parseInt(jtResumo.getValueAt(i, 0).toString()));
+                itensNaComanda[i].setQtde(Integer.parseInt(jtResumo.getValueAt(i, 3).toString()));
+                itensNaComanda[i].setSubtotal(Double.parseDouble(jtResumo.getValueAt(i, 4).toString().replace(",", ".")));
+                itensNaComanda[i].setObservacao((jtResumo.getValueAt(i, 5).toString()));
             }
-        } else if (confirma == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(null, "Pedido não enviado!");
+
+            int confirma = JOptionPane.showConfirmDialog(
+                    this,
+                    "Deseja confirmar o pedido?",
+                    "CONFIRMAR PEDIDO",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+            );
+
+            if (confirma == JOptionPane.YES_OPTION) {
+                ItemDao itemDao = new ItemDao();
+                for (Item item : itensNaComanda) {
+                    try {
+                        itemDao.adicionaItens(item);
+                        limparQtde();
+                        limparTabela();
+                        calculaTotal();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                    }
+                }
+            } else if (confirma == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Pedido não enviado!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Operação cancelada.");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Operação cancelada.");
+            JOptionPane.showMessageDialog(null, "Pedido vazio.");
         }
     }//GEN-LAST:event_btn_confirmarPedidoActionPerformed
 
     private void lbl_CarrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_CarrinhoMouseReleased
 
         try {
-            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this,foiAdm);
+            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this, foiAdm);
             telaResumo.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -1768,7 +1784,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     private void lbl_FotoCarrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_FotoCarrinhoMouseReleased
         // TODO add your handling code here:
         try {
-            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this,foiAdm);
+            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this, foiAdm);
             telaResumo.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -1794,7 +1810,7 @@ public class Tela_Menu extends javax.swing.JFrame {
 
                 telaDeEspera.setVisible(true);
             } else {
-
+                 << << << < HEAD
                 try {
                     Pedido pedido = new Pedido();
                     pedido.setIdPedido(numeroPedido);
@@ -1802,10 +1818,18 @@ public class Tela_Menu extends javax.swing.JFrame {
                     PedidoDao pedidoDao = new PedidoDao();
                     pedidoDao.atualizaPedido(pedido);
                     JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce"); //arrumar acentuacao
+                     == == ==
+                            = // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
+                            pedido.getMesa().setIdMesa(numeroMesa);
+                    pedidoDao.adicionarPedido(pedido);
                     this.dispose();
+                    new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
+                }else {
+                             >>> >>> > 583be16c11673f18bb49157da0ffb11387318dfa
+                            this.dispose();
                     new Tela_Login().setVisible(true);
                     
-                } catch (Exception e) {
+                }catch (Exception e) {
 
                     JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                 }
@@ -1813,7 +1837,7 @@ public class Tela_Menu extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_lbl_EncerrarPedidoMouseReleased
- 
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         JPanel comanda = new JPanel();
@@ -1833,8 +1857,8 @@ public class Tela_Menu extends javax.swing.JFrame {
         DecimalFormat df = new DecimalFormat("R$ 0.00");
         try {
             total = 0.0;
-       for (ItemRelatorio itemRelatorio : relatorioDao.listarItensPorPedidoAgrupado(numeroPedido)) {
-            //  item = new Item();
+            for (ItemRelatorio itemRelatorio : relatorioDao.listarItensPorPedidoAgrupado(numeroPedido)) {
+                //  item = new Item();
                 texto += itemRelatorio.getProduto().getNome();
                 if (itemRelatorio.getProduto().getNome().length() >= 15) {
                     texto += "\t";
@@ -1850,14 +1874,14 @@ public class Tela_Menu extends javax.swing.JFrame {
                 texto += "\n";
 
                 total += itemRelatorio.getSubtotal();
-    }
+            }
 
-    texto += "----------------------------------------------------------------------------------------------------------\n";
-    texto += "Subtotal: " + df.format(total) + "\n";
-    texto += "Taxa de serviço (10%): " + df.format(total * 0.1) + "\n";
-    texto += "TOTAL: " + df.format(total * 1.1) + "\n";
-    texto += "----------------------------------------------------------------------------------------------------------\n";
-    test.getComanda().setText(texto);
+            texto += "----------------------------------------------------------------------------------------------------------\n";
+            texto += "Subtotal: " + df.format(total) + "\n";
+            texto += "Taxa de serviço (10%): " + df.format(total * 0.1) + "\n";
+            texto += "TOTAL: " + df.format(total * 1.1) + "\n";
+            texto += "----------------------------------------------------------------------------------------------------------\n";
+            test.getComanda().setText(texto);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -1867,6 +1891,18 @@ public class Tela_Menu extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:]
+        DefaultTableModel dtm = (DefaultTableModel) jtResumo.getModel();
+        if (jtResumo.getSelectedRow() != -1) {
+            dtm.removeRow(jtResumo.getSelectedRow());
+        } else if (jtResumo.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Pedido vazio.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um item.");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1934,6 +1970,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btn_remove_4;
     private javax.swing.JButton btn_remove_5;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
