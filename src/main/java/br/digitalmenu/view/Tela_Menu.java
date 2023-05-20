@@ -1730,7 +1730,6 @@ public class Tela_Menu extends javax.swing.JFrame {
 
             for (int i = 0; i < itensNaComanda.length; i++) {
 
-                
                 itensNaComanda[i] = new Item();
                 itensNaComanda[i].getPedido().setIdPedido(numeroPedido);
                 itensNaComanda[i].getProduto().setIdProduto(Integer.parseInt(jtResumo.getValueAt(i, 0).toString()));
@@ -1810,7 +1809,7 @@ public class Tela_Menu extends javax.swing.JFrame {
 
                 telaDeEspera.setVisible(true);
             } else {
-                 << << << < HEAD
+
                 try {
                     Pedido pedido = new Pedido();
                     pedido.setIdPedido(numeroPedido);
@@ -1818,18 +1817,13 @@ public class Tela_Menu extends javax.swing.JFrame {
                     PedidoDao pedidoDao = new PedidoDao();
                     pedidoDao.atualizaPedido(pedido);
                     JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce"); //arrumar acentuacao
-                     == == ==
-                            = // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
-                            pedido.getMesa().setIdMesa(numeroMesa);
+
+                    pedido.getMesa().setIdMesa(numeroMesa);
                     pedidoDao.adicionarPedido(pedido);
                     this.dispose();
-                    new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
-                }else {
-                             >>> >>> > 583be16c11673f18bb49157da0ffb11387318dfa
-                            this.dispose();
                     new Tela_Login().setVisible(true);
-                    
-                }catch (Exception e) {
+
+                } catch (Exception e) {
 
                     JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                 }
