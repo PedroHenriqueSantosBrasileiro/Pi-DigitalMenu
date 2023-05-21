@@ -1,30 +1,48 @@
 package br.digitalmenu.view;
 
 import br.digitalmenu.dao.ItemDao;
+import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.dao.ProdutoDao;
 import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Item;
+import br.digitalmenu.model.Produto;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Box;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 public class Tela_ItensDoPedido extends Heuristica {
 
     public double valorTotal = 0;
+    public int numeroPedido;
+    public Tela_Listar_Pedido telaAnterior;
 
     public Tela_ItensDoPedido() {
         initComponents();
     }
 
-    public Tela_ItensDoPedido(int numeroPedido, int numeroMesa) throws SQLException {
+    public Tela_ItensDoPedido(int numeroPedido, int numeroMesa, Tela_Listar_Pedido telaAnterior) throws SQLException {
         initComponents();
+        this.numeroPedido = numeroPedido;
         lbl_NumeroPedido.setText(String.valueOf(numeroPedido));
         lbl_NumeroMesa.setText(String.valueOf(numeroMesa));
-
         jtItensDoPedido.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
         IniciaTabela(jtItensDoPedido);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable(numeroPedido);
         lbl_ValorTotal.setText(String.valueOf(valorTotal));
+        this.telaAnterior = telaAnterior;
+    }
+
+    //teste
+    public void metodoAntesDeFechar() throws SQLException {
+        telaAnterior.metodoAoVoltar();
+        this.dispose();
     }
 
     public void listarJTable(int numeroPedido) throws SQLException {
@@ -34,6 +52,7 @@ public class Tela_ItensDoPedido extends Heuristica {
         for (Item item : itensDao.listarItensPorPedido(numeroPedido)) {
             ProdutoDao produtoDao = new ProdutoDao();
             modelo.addRow(new Object[]{
+                item.getIdItem(),
                 item.getProduto().getIdProduto(),
                 item.getProduto().getNome(),
                 String.format("%.2f", item.getProduto().getPreco()),
@@ -46,6 +65,22 @@ public class Tela_ItensDoPedido extends Heuristica {
         }
     }
 
+    public JComboBox listarProdutoNoComboBox(JComboBox cbox) throws SQLException {
+        ProdutoDao prodDao = new ProdutoDao();
+        for (Produto produto : prodDao.listarProduto()) {
+            cbox.addItem(produto.getNome());
+        }
+        return cbox;
+    }
+
+    /*
+        public void viewCategoria() throws SQLException {
+        CategoriaDao catDao = new CategoriaDao();
+        for (Categoria categoria : catDao.listarCategoria()) {
+            cboxCategoria.addItem(categoria.getNomeCategoria());
+        }
+    }
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -61,6 +96,8 @@ public class Tela_ItensDoPedido extends Heuristica {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtItensDoPedido = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        btn_cancelarItem = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Itens do pedido");
@@ -131,11 +168,11 @@ public class Tela_ItensDoPedido extends Heuristica {
 
             },
             new String [] {
-                "Id", "Produto", "Preço", "Qtde", "Subtotal", "Horário", "Status"
+                "ID item", "Pedido", "Produto", "Preço", "Qtde", "Subtotal", "Horário", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -145,16 +182,16 @@ public class Tela_ItensDoPedido extends Heuristica {
         jtItensDoPedido.setRowHeight(25);
         jScrollPane1.setViewportView(jtItensDoPedido);
         if (jtItensDoPedido.getColumnModel().getColumnCount() > 0) {
-            jtItensDoPedido.getColumnModel().getColumn(0).setMinWidth(5);
-            jtItensDoPedido.getColumnModel().getColumn(0).setPreferredWidth(5);
-            jtItensDoPedido.getColumnModel().getColumn(1).setMinWidth(200);
-            jtItensDoPedido.getColumnModel().getColumn(1).setPreferredWidth(200);
-            jtItensDoPedido.getColumnModel().getColumn(2).setMinWidth(20);
-            jtItensDoPedido.getColumnModel().getColumn(2).setPreferredWidth(20);
-            jtItensDoPedido.getColumnModel().getColumn(3).setMinWidth(10);
-            jtItensDoPedido.getColumnModel().getColumn(3).setPreferredWidth(10);
-            jtItensDoPedido.getColumnModel().getColumn(4).setMinWidth(20);
-            jtItensDoPedido.getColumnModel().getColumn(4).setPreferredWidth(20);
+            jtItensDoPedido.getColumnModel().getColumn(1).setMinWidth(5);
+            jtItensDoPedido.getColumnModel().getColumn(1).setPreferredWidth(5);
+            jtItensDoPedido.getColumnModel().getColumn(2).setMinWidth(200);
+            jtItensDoPedido.getColumnModel().getColumn(2).setPreferredWidth(200);
+            jtItensDoPedido.getColumnModel().getColumn(3).setMinWidth(20);
+            jtItensDoPedido.getColumnModel().getColumn(3).setPreferredWidth(20);
+            jtItensDoPedido.getColumnModel().getColumn(4).setMinWidth(10);
+            jtItensDoPedido.getColumnModel().getColumn(4).setPreferredWidth(10);
+            jtItensDoPedido.getColumnModel().getColumn(5).setMinWidth(20);
+            jtItensDoPedido.getColumnModel().getColumn(5).setPreferredWidth(20);
         }
 
         jButton1.setBackground(new java.awt.Color(255, 243, 198));
@@ -163,6 +200,20 @@ public class Tela_ItensDoPedido extends Heuristica {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        btn_cancelarItem.setText("Cancelar Item");
+        btn_cancelarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarItemActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("adicionar item");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -179,6 +230,12 @@ public class Tela_ItensDoPedido extends Heuristica {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(pnlGlobalLayout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(btn_cancelarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlGlobalLayout.setVerticalGroup(
             pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +246,11 @@ public class Tela_ItensDoPedido extends Heuristica {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_cancelarItem)
+                    .addComponent(jButton2))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,7 +261,7 @@ public class Tela_ItensDoPedido extends Heuristica {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlGlobal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlGlobal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -208,8 +269,113 @@ public class Tela_ItensDoPedido extends Heuristica {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
+        try {
+            //        this.dispose();
+            metodoAntesDeFechar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Tela_ItensDoPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_cancelarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarItemActionPerformed
+        // TODO add your handling code here:
+        int confirma = JOptionPane.showConfirmDialog(null, "Deseja cancelar o item?");
+
+        if (confirma == JOptionPane.YES_OPTION) {
+
+            DefaultTableModel dtm = (DefaultTableModel) jtItensDoPedido.getModel();
+            if (jtItensDoPedido.getSelectedRow() != -1) {
+                ItemDao itemDao = new ItemDao();
+                PedidoDao pedidoDao = new PedidoDao();
+                try {
+                    int id = Integer.parseInt(jtItensDoPedido.getValueAt(jtItensDoPedido.getSelectedRow(), 0).toString());
+                    itemDao.atualizaItem(id);
+                    pedidoDao.atualizaPedidoItemAlterado(numeroPedido);
+                    listarJTable(numeroPedido);
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "ERRO", HEIGHT);
+                }
+            } else if (jtItensDoPedido.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Não há itens no pedido.", "ERRO", HEIGHT);
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione um item.", "ERRO", HEIGHT);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Operação cancelada.", "ERRO", HEIGHT);
+        }
+
+    }//GEN-LAST:event_btn_cancelarItemActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        JPanel panel = new JPanel();
+        JComboBox comboBox = new JComboBox();
+        try {
+            
+            listarProdutoNoComboBox(comboBox);
+            JLabel nome = new JLabel("Selecione o produto: ");
+            JLabel lbl_qtde = new JLabel("Quantidade: ");
+            JTextField digitarQtde = new JTextField(25);
+            panel.add(nome);
+            panel.add(Box.createHorizontalStrut(2));
+            panel.add(comboBox);
+            panel.add(Box.createHorizontalStrut(5));
+            panel.add(lbl_qtde);
+            panel.add(Box.createHorizontalStrut(5));
+            panel.add(digitarQtde);
+
+            int confirma = JOptionPane.showConfirmDialog(null, panel, "Item a add", JOptionPane.OK_CANCEL_OPTION);
+            if (confirma == JOptionPane.OK_OPTION) {
+                ItemDao itemDao = new ItemDao();
+                Item item = new Item();
+
+                item.getPedido().setIdPedido(numeroPedido);
+                item.getProduto().setNome(comboBox.getSelectedItem().toString());
+                item.setQtde(Integer.parseInt(digitarQtde.getText()));
+
+                itemDao.adicionaItenAdmin(item);
+                PedidoDao pedidoDao = new PedidoDao();
+                pedidoDao.atualizaPedidoItemAlterado(numeroPedido);
+                listarJTable(numeroPedido);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "CANCELADO");
+            }
+
+            /*
+            JTextField valorInicial = new JTextField(10);
+            JTextField valorFinal = new JTextField(10);
+            JPanel myPanel = new JPanel();
+            myPanel.add(new JLabel("De:"));
+            myPanel.add(valorInicial);
+            myPanel.add(Box.createHorizontalStrut(10)); // a spacer
+            myPanel.add(new JLabel("Até:"));
+            myPanel.add(valorFinal);
+            
+            int result = JOptionPane.showConfirmDialog(null, myPanel,
+            "Informe a faixa de preço", JOptionPane.OK_CANCEL_OPTION);
+            if (result == JOptionPane.OK_OPTION) {
+            try {
+            double valor1 = Double.parseDouble(valorInicial.getText().replace(',', '.'));
+            double valor2 = Double.parseDouble(valorFinal.getText().replace(',', '.'));
+            listarJtablePorFaixaDePreco(valor1, valor2);
+            if (jtProduto.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Faixa de preço não encontrada.");
+            listarJTableProdutosAtivados();
+            }
+            } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
+            }
+             */
+        } catch (SQLException ex) {
+            Logger.getLogger(Tela_ItensDoPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,7 +413,9 @@ public class Tela_ItensDoPedido extends Heuristica {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cancelarItem;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtItensDoPedido;
     private javax.swing.JLabel lbl_FotoMesa;

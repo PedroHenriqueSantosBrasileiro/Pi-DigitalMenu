@@ -312,6 +312,46 @@ public class PedidoDao {
         }
     }
 
+    //atualizar pedido depois de cancelar item
+    public void atualizaPedidoItemAlterado(int numeroPedido) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        PreparedStatement ps = null;
+
+        String sql = "UPDATE pedido p INNER JOIN item i ON p.idpedido = i.id_pedido "
+                + "SET p.total = IFNULL((SELECT SUM(i.subtotal) FROM item i WHERE i.id_pedido = ? AND i.status = 'confirmado'), 0.0) "
+                + "WHERE p.idpedido = ?";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, numeroPedido);
+            ps.setInt(2, numeroPedido);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            connection.close();
+        }
+    }
+        public void cancelarPedido(int numeroPedido, String status) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        PreparedStatement ps = null;
+
+        String sql = "UPDATE pedido SET status = ? where idpedido = ?";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, status);
+            ps.setInt(2, numeroPedido);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            connection.close();
+        }
+    }
+
     public boolean deletarPedido(int numeroMesaDeletar) throws SQLException {
 
         boolean deletado;

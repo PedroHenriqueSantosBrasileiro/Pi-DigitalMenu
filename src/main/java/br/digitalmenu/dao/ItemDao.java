@@ -45,7 +45,7 @@ public class ItemDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT p.idproduto, p.nome, p.preco, i.qtde, i.subtotal, TIME_FORMAT(horapedido, '%T') as horacomanda, i.status "
+        String sql = "SELECT i.iditem, p.idproduto, p.nome, p.preco, i.qtde, i.subtotal, TIME_FORMAT(horapedido, '%T') as horacomanda, i.status "
                 + "FROM item i "
                 + "INNER JOIN produto p "
                 + "ON p.idproduto = i.id_produto "
@@ -58,6 +58,7 @@ public class ItemDao {
 
             while (rs.next()) {
                 item = new Item();
+                item.setIdItem(rs.getInt("i.iditem"));
                 item.getProduto().setIdProduto(rs.getInt("p.idproduto"));
                 item.getProduto().setNome(rs.getString("p.nome"));
                 item.getProduto().setPreco(rs.getDouble("p.preco"));
@@ -108,7 +109,58 @@ public class ItemDao {
         }
         return item;
     }
-    
 
+    public void atualizaItem(int id) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        PreparedStatement ps = null;
+
+        String sql = "UPDATE item SET status = 'cancelado' WHERE iditem = ?";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            throw ex;
+        } finally{
+            ps.close();
+            //rs.close();
+            connection.close();
+        }
+    }
+    
+        public void adicionaItenAdmin(Item item) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        PreparedStatement ps = null;
+        
+       /* String sql = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal) "
+                + "VALUES ("
+                + "?, "
+                + "(SELECT idproduto FROM produto WHERE nome = ?), "
+                + "?, "
+                + "(SELECT (preco * ?) from produto where idproduto = ?))"  ;          
+              //  + ")";
+               // + "INNER JOIN produto p ON i.id_produto = p.idproduto";
+*/
+        String sql = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal) VALUES (?, (SELECT idproduto FROM produto WHERE nome = ?), ?, (SELECT (preco * ?) from produto where nome = ?))";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, item.getPedido().getIdPedido());            
+            ps.setString(2, item.getProduto().getNome());
+            ps.setInt(3, item.getQtde());
+            ps.setInt(4, item.getQtde());            
+            ps.setString(5, item.getProduto().getNome());
+            ps.execute();
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            connection.close();
+        }
+
+    }
 
 }

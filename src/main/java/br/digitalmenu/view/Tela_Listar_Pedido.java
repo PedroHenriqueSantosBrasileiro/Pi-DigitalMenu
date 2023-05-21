@@ -13,11 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 public class Tela_Listar_Pedido extends Heuristica {
 
@@ -30,6 +26,11 @@ public class Tela_Listar_Pedido extends Heuristica {
         jtPedido.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
         IniciaTabela(jtPedido);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable();
+    }
+//teste voltar
+
+    public void metodoAoVoltar() throws SQLException {
+        this.listarJTable();
     }
 
     public void setarCampos(JTable j) {
@@ -164,7 +165,16 @@ public class Tela_Listar_Pedido extends Heuristica {
         }
     }
 
+
     /*
+            public void viewCategoria() throws SQLException {
+        CategoriaDao catDao = new CategoriaDao();
+        for (Categoria categoria : catDao.listarCategoria()) {
+            cboxCategoria.addItem(categoria.getNomeCategoria());
+        }
+    }
+     */
+ /*
         public void listarJTablePorId(int numPedido) throws SQLException {
         DefaultTableModel modelo2 = (DefaultTableModel) jtPedidoUnico.getModel();
         modelo2.setNumRows(0);
@@ -211,6 +221,7 @@ public class Tela_Listar_Pedido extends Heuristica {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtPedido = new javax.swing.JTable();
 
@@ -222,6 +233,7 @@ public class Tela_Listar_Pedido extends Heuristica {
         pnlSuperior.setBackground(new java.awt.Color(246, 242, 233));
         pnlSuperior.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18))); // NOI18N
 
+        txtformated_Data.setEditable(false);
         txtformated_Data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         txtformated_Data.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtformated_Data.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -255,15 +267,19 @@ public class Tela_Listar_Pedido extends Heuristica {
         lbl_Status.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lbl_Status.setText("Status:");
 
+        txtformated_Total.setEditable(false);
         txtformated_Total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtformated_Total.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
+        txt_IdPedido.setEditable(false);
         txt_IdPedido.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txt_IdPedido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        txt_Status.setEditable(false);
         txt_Status.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txt_Status.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        txt_Mesa.setEditable(false);
         txt_Mesa.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txt_Mesa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -366,6 +382,13 @@ public class Tela_Listar_Pedido extends Heuristica {
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlSuperiorLayout = new javax.swing.GroupLayout(pnlSuperior);
         pnlSuperior.setLayout(pnlSuperiorLayout);
         pnlSuperiorLayout.setHorizontalGroup(
@@ -395,7 +418,9 @@ public class Tela_Listar_Pedido extends Heuristica {
                 .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtformated_Data, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
-                .addGap(328, 328, 328))
+                .addGap(99, 99, 99)
+                .addComponent(jButton1)
+                .addGap(156, 156, 156))
             .addGroup(pnlSuperiorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -407,7 +432,9 @@ public class Tela_Listar_Pedido extends Heuristica {
                 .addContainerGap()
                 .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_Data)
-                    .addComponent(txtformated_Data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtformated_Data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1))
                     .addComponent(txt_Mesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_Mesa)
                     .addComponent(txt_IdPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -432,7 +459,7 @@ public class Tela_Listar_Pedido extends Heuristica {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Mesa", "Total", "Data", "Horario", "Status"
+                "ID Pedido", "Mesa", "Total", "Data", "Horario", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -509,7 +536,8 @@ public class Tela_Listar_Pedido extends Heuristica {
             numeroPedido = Integer.parseInt(txt_IdPedido.getText());
             numeroMesa = Integer.parseInt(txt_Mesa.getText());
             try {
-                Tela_ItensDoPedido telaItensDoPedido = new Tela_ItensDoPedido(numeroPedido, numeroMesa);
+                Tela_ItensDoPedido telaItensDoPedido = new Tela_ItensDoPedido(numeroPedido, numeroMesa, this);
+
                 telaItensDoPedido.setVisible(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -534,11 +562,14 @@ public class Tela_Listar_Pedido extends Heuristica {
             JTextField digitarNumero = new JTextField(10);
             painel.add(idPedido);
             painel.add(digitarNumero);
+
             int resultado = JOptionPane.showConfirmDialog(null, painel, "PESQUISAR POR ID", JOptionPane.OK_CANCEL_OPTION, -1);
             if (resultado == JOptionPane.OK_OPTION) {
                 //tratar erro de entrada
                 listarJTablePorId(Integer.parseInt(digitarNumero.getText()));
             }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Campo Id: Apenas números!", "ERRO", HEIGHT);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
@@ -573,6 +604,8 @@ public class Tela_Listar_Pedido extends Heuristica {
                     listarJTable();
                 }
             }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Campo Mesa: Apenas números!", "ERRO", HEIGHT);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
@@ -619,9 +652,11 @@ public class Tela_Listar_Pedido extends Heuristica {
                 double valor2 = Double.parseDouble(valorFinal.getText().replace(',', '.'));
                 listarJtablePorFaixaDePreco(valor1, valor2);
                 if (jtPedido.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "Faixa de preço não encontrada.");
+                    JOptionPane.showMessageDialog(null, "Não existem pedidos nesta faixa de valores!");
                     listarJTable();
                 }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Valores: Apenas números!", "ERRO", HEIGHT);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
@@ -632,10 +667,10 @@ public class Tela_Listar_Pedido extends Heuristica {
         JTextField valorInicial = new JTextField(10);
         JTextField valorFinal = new JTextField(10);
         JPanel myPanel = new JPanel();
-        myPanel.add(new JLabel("De: (dd//mm/aaa)"));
+        myPanel.add(new JLabel("De: (dd/mm/aaaa)"));
         myPanel.add(valorInicial);
         myPanel.add(Box.createHorizontalStrut(10)); // a spacer
-        myPanel.add(new JLabel("Até: (dd//mm/aaa)"));
+        myPanel.add(new JLabel("Até: (dd/mm/aaaa)"));
         myPanel.add(valorFinal);
 
         int result = JOptionPane.showConfirmDialog(null, myPanel,
@@ -659,7 +694,7 @@ public class Tela_Listar_Pedido extends Heuristica {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         JTextField valorInicial = new JTextField(10);
         JPanel myPanel = new JPanel();
-        myPanel.add(new JLabel("Data: (dd//mm/aaa)"));
+        myPanel.add(new JLabel("Data: (dd/mm/aaaa)"));
         myPanel.add(valorInicial);
 
         int result = JOptionPane.showConfirmDialog(null, myPanel,
@@ -677,6 +712,38 @@ public class Tela_Listar_Pedido extends Heuristica {
             }
         }
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (jtPedido.getSelectedRow() != -1) {
+
+            JPanel panel = new JPanel();
+            panel.add(new JLabel("Selecione o status: "));
+            JComboBox comboBox = new JComboBox();
+            comboBox.addItem("ABERTO");
+            comboBox.addItem("CANCELADO");
+            comboBox.addItem("ENCERRADO");
+            panel.add(comboBox);
+
+            int confirma = JOptionPane.showConfirmDialog(null, panel, "Selecione o status.", JOptionPane.OK_CANCEL_OPTION);
+            if (confirma == JOptionPane.YES_OPTION) {
+                DefaultTableModel dtm = (DefaultTableModel) jtPedido.getModel();
+                PedidoDao pedidoDao = new PedidoDao();
+                try {
+                    String status = String.valueOf(comboBox.getSelectedItem());
+                    int id = Integer.parseInt(jtPedido.getValueAt(jtPedido.getSelectedRow(), 0).toString());
+                    pedidoDao.cancelarPedido(id, status);
+                    listarJTable();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "ERRO", HEIGHT);
+                }
+            }
+        } else if (jtPedido.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Não há itens no pedido.", "ERRO", HEIGHT);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um item.", "ERRO", HEIGHT);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -721,6 +788,7 @@ public class Tela_Listar_Pedido extends Heuristica {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

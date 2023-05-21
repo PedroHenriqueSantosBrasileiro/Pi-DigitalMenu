@@ -75,5 +75,14 @@ public abstract class Heuristica extends javax.swing.JFrame {
             texto.setEditable(false);
         }
     }
+        public void numerosApenas(JTextComponent texto, KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+            texto.setEditable(true);
+        } else {
+            texto.setEditable(false);
+        }
+    }
+
 
 }

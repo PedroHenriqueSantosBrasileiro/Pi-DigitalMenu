@@ -3,7 +3,9 @@ package br.digitalmenu.view;
 import br.digitalmenu.dao.MesaDao;
 import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Mesa;
+import static java.awt.image.ImageObserver.HEIGHT;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -132,7 +134,7 @@ public class Tela_Mesa extends Heuristica {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_AlterarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_ExcluirMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(246, 242, 233));
@@ -144,6 +146,11 @@ public class Tela_Mesa extends Heuristica {
         txt_NumeroMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_NumeroMesaActionPerformed(evt);
+            }
+        });
+        txt_NumeroMesa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_NumeroMesaKeyPressed(evt);
             }
         });
 
@@ -296,9 +303,9 @@ public class Tela_Mesa extends Heuristica {
                 .addContainerGap()
                 .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlGlobalLayout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 676, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -341,8 +348,6 @@ public class Tela_Mesa extends Heuristica {
         if (verificarSeCampoEstaEmBranco(txt_NumeroMesa, "Numer da mesa")) {
             Mesa mesa = new Mesa();
             mesa.setIdMesa(Integer.parseInt(txt_NumeroMesa.getText()));
-            //            String status = checkbox_Status.isSelected() ? "ATIVADO" : "DESATIVADO";
-            //            mesa.setStatus(status);
             MesaDao mesaDAO = new MesaDao();
             try {
                 boolean criouMesa = mesaDAO.criarMesa(mesa) ? true : false;
@@ -352,14 +357,14 @@ public class Tela_Mesa extends Heuristica {
                             "Mesa criada com sucesso!\n"
                             + "Id/Número: "
                             + mesa.getIdMesa()
-                    //                            + "\nStatus: "
-                    //                            + mesa.getStatus()
-
                     );
                     this.txt_NumeroMesa.setText("");
                 }
                 limparTxtFields();
                 listarJtablePorStatus("Ativado");
+            } catch (SQLIntegrityConstraintViolationException ex) {
+                JOptionPane.showMessageDialog(null, "Número de mesa já existente!", "ERRO", HEIGHT);
+                txt_NumeroMesa.setText("");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
@@ -449,11 +454,11 @@ public class Tela_Mesa extends Heuristica {
     private void btn_ExcluirMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExcluirMesaActionPerformed
         if (jtMesa.getSelectedRow() != -1) {
             int confirma = JOptionPane.showConfirmDialog(
-                this,
-                "Deseja confirmar a deleção da mesa " + String.valueOf(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()) + "?",
-                "CONFIRMAR DELEÇÃO",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE
+                    this,
+                    "Deseja confirmar a deleção da mesa " + String.valueOf(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()) + "?",
+                    "CONFIRMAR DELEÇÃO",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
             );
             if (confirma == JOptionPane.YES_OPTION) {
                 try {
@@ -500,6 +505,11 @@ public class Tela_Mesa extends Heuristica {
             JOptionPane.showMessageDialog(null, "Selecione uma linha");
         }
     }//GEN-LAST:event_btn_AlterarMesaActionPerformed
+
+    private void txt_NumeroMesaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_NumeroMesaKeyPressed
+        // TODO add your handling code here:
+        numerosApenas(txt_NumeroMesa, evt);
+    }//GEN-LAST:event_txt_NumeroMesaKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
