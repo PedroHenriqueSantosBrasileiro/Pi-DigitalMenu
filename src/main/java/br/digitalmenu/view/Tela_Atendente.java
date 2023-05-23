@@ -88,7 +88,9 @@ public class Tela_Atendente extends javax.swing.JFrame {
                     .addGroup(pnlTopoLayout.createSequentialGroup()
                         .addComponent(lbl_foto_atendente, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+
                         .addComponent(lbl_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -183,6 +185,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(lbl_menu_atendente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+
                 .addGroup(pnl_botoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_mesas, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                     .addComponent(btn_listar_pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -190,6 +193,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
                 .addGroup(pnl_botoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_abrir_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                     .addComponent(btn_produtos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+
                 .addGap(93, 93, 93)
                 .addComponent(btn_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))

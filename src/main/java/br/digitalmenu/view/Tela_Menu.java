@@ -30,12 +30,14 @@ public class Tela_Menu extends javax.swing.JFrame {
     public DecimalFormat decimalFormat = new DecimalFormat("##.00");
     private int numeroPedido;
     private int numeroMesa;
+    private boolean foiAdm;
 
     public Tela_Menu() {
     }
 
-    public Tela_Menu(int numeroPedido, int numeroMesa) throws SQLException {
+    public Tela_Menu(int numeroPedido, int numeroMesa, boolean foiAdm) throws SQLException {
         initComponents();
+        this.foiAdm = foiAdm;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.numeroPedido = numeroPedido;
         this.numeroMesa = numeroMesa;
@@ -189,7 +191,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     public void calculaTotal() {
         int numDeItens = jtResumo.getRowCount();
         for (int i = 0; i < numDeItens; i++) {
-            double totalPorItem = Double.valueOf(jtResumo.getValueAt(i, 4).toString());
+            double totalPorItem = Double.parseDouble(jtResumo.getValueAt(i, 4).toString());
             total += totalPorItem;
         }
         DecimalFormat df = new DecimalFormat("0.00");
@@ -206,9 +208,9 @@ public class Tela_Menu extends javax.swing.JFrame {
         dtm.addRow(new Object[]{
             produto.getIdProduto(),
             produto.getNome(),
-            produto.getPreco(),
+            String.format("%.2f", produto.getPreco()),
             qtdeLbl,
-            (qtdeLbl * produto.getPreco()),
+            String.format("%.2f", (qtdeLbl * produto.getPreco())),
             desc
         });
     }
@@ -1701,18 +1703,21 @@ public class Tela_Menu extends javax.swing.JFrame {
         adicionaNoPreCarrinho(lbl_qtde_5, lbl_Id_5, txt_obs_5);
     }//GEN-LAST:event_btn_adicionaCarrinho_5ActionPerformed
 
+
     private void btn_enviar_pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviar_pedidoActionPerformed
+
         if (jtResumo.getRowCount() >= 1) {
 
             int numeroDeItensNaComanda = jtResumo.getRowCount();
             Item itensNaComanda[] = new Item[numeroDeItensNaComanda];
 
             for (int i = 0; i < itensNaComanda.length; i++) {
+
                 itensNaComanda[i] = new Item();
                 itensNaComanda[i].getPedido().setIdPedido(numeroPedido);
                 itensNaComanda[i].getProduto().setIdProduto(Integer.parseInt(jtResumo.getValueAt(i, 0).toString()));
                 itensNaComanda[i].setQtde(Integer.parseInt(jtResumo.getValueAt(i, 3).toString()));
-                itensNaComanda[i].setSubtotal(Double.parseDouble(jtResumo.getValueAt(i, 4).toString()));
+                itensNaComanda[i].setSubtotal(Double.parseDouble(jtResumo.getValueAt(i, 4).toString().replace(",", ".")));
                 itensNaComanda[i].setObservacao((jtResumo.getValueAt(i, 5).toString()));
             }
 
@@ -1748,7 +1753,7 @@ public class Tela_Menu extends javax.swing.JFrame {
 
     private void lbl_carrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_carrinhoMouseReleased
         try {
-            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this);
+            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this, foiAdm);
             telaResumo.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -1757,7 +1762,7 @@ public class Tela_Menu extends javax.swing.JFrame {
 
     private void lbl_icone_carrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_icone_carrinhoMouseReleased
         try {
-            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this);
+            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this, foiAdm);
             telaResumo.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -1774,6 +1779,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE
         );
         if (confirma == JOptionPane.YES_OPTION) {
+
             try {
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(numeroPedido);
@@ -1792,16 +1798,17 @@ public class Tela_Menu extends javax.swing.JFrame {
                 );
                 if (novoPedido == JOptionPane.YES_OPTION) {
                     // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
+
                     pedido.getMesa().setIdMesa(numeroMesa);
                     pedidoDao.adicionarPedido(pedido);
                     this.dispose();
-                    new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
-                } else {
-                    this.dispose();
                     new Tela_Login().setVisible(true);
+
+                } catch (Exception e) {
+
+                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+
             }
         }
     }//GEN-LAST:event_lbl_EncerrarPedidoMouseReleased

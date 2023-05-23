@@ -125,7 +125,7 @@ public class Tela_EscolherMesa extends javax.swing.JFrame {
                     PedidoDao pedidoDao = new PedidoDao();
                     pedidoDao.adicionarPedido(pedido);
                     Tela_Menu telaMenu = null;
-                    telaMenu = new Tela_Menu(pedidoDao.numeroPedido, numeroMesa);
+                    telaMenu = new Tela_Menu(pedidoDao.numeroPedido, numeroMesa,true);
                     this.dispose();
                     telaMenu.setVisible(true);
                     JOptionPane.showMessageDialog(null, String.format("Bem-Vindo!: [Mesa: %d]",

@@ -27,10 +27,12 @@ public class TelaRelatorio extends Heuristica {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableRelatorio = new javax.swing.JTable();
         pnlPesquisar = new javax.swing.JPanel();
+
         btn_total_pedidos = new javax.swing.JButton();
         btn_top_qtde_vendida = new javax.swing.JButton();
         btn_top_faturamento_por_produto = new javax.swing.JButton();
         btn_total_pedidos_por_mes = new javax.swing.JButton();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -50,6 +52,7 @@ public class TelaRelatorio extends Heuristica {
 
         pnlPesquisar.setBackground(new java.awt.Color(246, 242, 233));
         pnlPesquisar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Relatório", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24))); // NOI18N
+
 
         btn_total_pedidos.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btn_total_pedidos.setText("Total Pedidos");
@@ -75,11 +78,14 @@ public class TelaRelatorio extends Heuristica {
             }
         });
 
+
         btn_total_pedidos_por_mes.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btn_total_pedidos_por_mes.setText("Total Pedidos por Mês");
+      
         btn_total_pedidos_por_mes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_total_pedidos_por_mesActionPerformed(evt);
+
             }
         });
 
@@ -89,13 +95,17 @@ public class TelaRelatorio extends Heuristica {
             pnlPesquisarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPesquisarLayout.createSequentialGroup()
                 .addGap(110, 110, 110)
+
                 .addComponent(btn_total_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_top_qtde_vendida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_top_faturamento_por_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+
                 .addComponent(btn_total_pedidos_por_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                 .addGap(16, 16, 16))
         );
         pnlPesquisarLayout.setVerticalGroup(
@@ -103,10 +113,12 @@ public class TelaRelatorio extends Heuristica {
             .addGroup(pnlPesquisarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlPesquisarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+
                     .addComponent(btn_total_pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(btn_top_qtde_vendida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_top_faturamento_por_produto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_total_pedidos_por_mes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -163,10 +175,9 @@ public class TelaRelatorio extends Heuristica {
                 modelo.addRow(new Object[]{
                     itemRelatorio.getProduto().getIdProduto(),
                     itemRelatorio.getProduto().getNome(),
-                    itemRelatorio.getProduto().getPreco(),
+                    String.format("%.2f", itemRelatorio.getProduto().getPreco()),
                     itemRelatorio.getQtdeTotalVendida(),
-                    itemRelatorio.getValorTotalVendido()
-                });
+                    String.format("%.2f", itemRelatorio.getValorTotalVendido()),});
             }
 
             jTableRelatorio.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
@@ -176,7 +187,9 @@ public class TelaRelatorio extends Heuristica {
         }
     }//GEN-LAST:event_btn_top_faturamento_por_produtoActionPerformed
 
+
     private void btn_total_pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_total_pedidosActionPerformed
+
         apagarTodasColunas(jTableRelatorio);
         DefaultTableModel modelo = (DefaultTableModel) jTableRelatorio.getModel();
         modelo.setNumRows(0);
@@ -189,8 +202,8 @@ public class TelaRelatorio extends Heuristica {
             PedidoRelatorio pedidoRelatorio = relatorioDao.totalPedidos();
             modelo.addRow(new Object[]{
                 pedidoRelatorio.getQtdeDePedidos(),
-                pedidoRelatorio.getValorTotal(),
-                pedidoRelatorio.getMediaTotal() // formatar 2 casas decimais
+                String.format("%.2f", pedidoRelatorio.getValorTotal()),
+                String.format("%.2f", pedidoRelatorio.getMediaTotal()),
             });
 
             jTableRelatorio.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
@@ -198,7 +211,9 @@ public class TelaRelatorio extends Heuristica {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
+
     }//GEN-LAST:event_btn_total_pedidosActionPerformed
+
 
     private void btn_top_qtde_vendidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_top_qtde_vendidaActionPerformed
         apagarTodasColunas(jTableRelatorio);
@@ -218,10 +233,9 @@ public class TelaRelatorio extends Heuristica {
                 modelo.addRow(new Object[]{
                     itemRelatorio.getProduto().getIdProduto(),
                     itemRelatorio.getProduto().getNome(),
-                    itemRelatorio.getProduto().getPreco(),
+                    String.format("%.2f", itemRelatorio.getProduto().getPreco()),
                     itemRelatorio.getQtdeTotalVendida(),
-                    itemRelatorio.getValorTotalVendido()
-                });
+                    String.format("%.2f", itemRelatorio.getValorTotalVendido()),});
             }
 
             jTableRelatorio.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
@@ -231,7 +245,9 @@ public class TelaRelatorio extends Heuristica {
         }
     }//GEN-LAST:event_btn_top_qtde_vendidaActionPerformed
 
+
     private void btn_total_pedidos_por_mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_total_pedidos_por_mesActionPerformed
+
         JPanel painel = new JPanel();
         JComboBox comboBox = new JComboBox();
         comboBox.addItem("1");
@@ -263,8 +279,8 @@ public class TelaRelatorio extends Heuristica {
                 PedidoRelatorio pedidoRelatorio = relatorioDao.totalPedidosPorMes(mes);
                 modelo.addRow(new Object[]{
                     pedidoRelatorio.getQtdeDePedidos(),
-                    pedidoRelatorio.getValorTotal(),
-                    pedidoRelatorio.getMediaTotal() // formatar 2 casas decimais
+                    String.format("%.2f", pedidoRelatorio.getValorTotal()),
+                    String.format("%.2f", pedidoRelatorio.getMediaTotal()), //pedidoRelatorio.getMediaTotal() // formatar 2 casas decimais
                 });
 
                 jTableRelatorio.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
@@ -274,7 +290,9 @@ public class TelaRelatorio extends Heuristica {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
         }
+
     }//GEN-LAST:event_btn_total_pedidos_por_mesActionPerformed
+
 
     public static void apagarTodasColunas(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -324,6 +342,7 @@ public class TelaRelatorio extends Heuristica {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JButton btn_top_faturamento_por_produto;
     private javax.swing.JButton btn_top_qtde_vendida;
     private javax.swing.JButton btn_total_pedidos;

@@ -8,6 +8,8 @@ import br.digitalmenu.model.Item;
 import br.digitalmenu.model.Pedido;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,19 +20,24 @@ public class Tela_ResumoPedido extends Heuristica {
     public DecimalFormat decimalFormat = new DecimalFormat("R$ 0.00");
     public int numeroPedido;
     public int numeroMesa;
+    public boolean foiAdm;
     private JFrame tela;
 
     public Tela_ResumoPedido() {
         initComponents();
     }
 
-    public Tela_ResumoPedido(int numeroPedido, int numeroMesa, JFrame tela) throws SQLException {
+    public Tela_ResumoPedido(int numeroPedido, int numeroMesa, JFrame tela, boolean foiAdm) throws SQLException {
         initComponents();
+        this.foiAdm = foiAdm;
         this.tela = tela;
         this.numeroPedido = numeroPedido;
         this.numeroMesa = numeroMesa;
+
         lbl_numero_pedido.setText(String.valueOf(numeroPedido));
         lbl_numero_mesa.setText(String.valueOf(numeroMesa));
+        jtResumo.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
+
         IniciaTabela(jtResumo);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable(Integer.parseInt(lbl_numero_pedido.getText()));
     }
@@ -44,9 +51,9 @@ public class Tela_ResumoPedido extends Heuristica {
             modelo.addRow(new Object[]{
                 item.getProduto().getIdProduto(),
                 item.getProduto().getNome(),
-                item.getProduto().getPreco(),
+                String.format("%.2f", item.getProduto().getPreco()),
                 item.getQtde(),
-                item.getSubtotal(),
+                String.format("%.2f", item.getSubtotal()),
                 item.getHoraComanda(),
                 item.getStatus()
             }
@@ -136,6 +143,7 @@ public class Tela_ResumoPedido extends Heuristica {
                 .addGap(23, 23, 23))
         );
 
+        jtResumo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jtResumo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -152,7 +160,16 @@ public class Tela_ResumoPedido extends Heuristica {
                 return canEdit [columnIndex];
             }
         });
+        jtResumo.setRowHeight(25);
         jScrollPane1.setViewportView(jtResumo);
+        if (jtResumo.getColumnModel().getColumnCount() > 0) {
+            jtResumo.getColumnModel().getColumn(0).setMinWidth(5);
+            jtResumo.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jtResumo.getColumnModel().getColumn(1).setMinWidth(200);
+            jtResumo.getColumnModel().getColumn(1).setPreferredWidth(200);
+            jtResumo.getColumnModel().getColumn(6).setMinWidth(100);
+            jtResumo.getColumnModel().getColumn(6).setPreferredWidth(100);
+        }
 
         javax.swing.GroupLayout pnl_tabelaLayout = new javax.swing.GroupLayout(pnl_tabela);
         pnl_tabela.setLayout(pnl_tabelaLayout);
@@ -273,6 +290,7 @@ public class Tela_ResumoPedido extends Heuristica {
                 JOptionPane.QUESTION_MESSAGE
         );
         if (confirma == JOptionPane.YES_OPTION) {
+
             try {
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(Integer.parseInt(lbl_numero_pedido.getText()));
@@ -294,11 +312,14 @@ public class Tela_ResumoPedido extends Heuristica {
                     new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
                     this.tela.dispose();
                 } else {
+
                     this.dispose();
+                    tela.dispose();
                     new Tela_Login().setVisible(true);
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
 
         }

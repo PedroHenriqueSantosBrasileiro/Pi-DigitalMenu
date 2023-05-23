@@ -214,6 +214,7 @@ public class Tela_Login extends javax.swing.JFrame {
         if (cbo_mesa.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Escolha uma mesa! ", "Mesa não definida!", JOptionPane.WARNING_MESSAGE);
         } else {
+
             int numeroMesa = Integer.parseInt(cbo_mesa.getSelectedItem().toString());
             try {
                 if (mDao.checkMesa(numeroMesa)) {
@@ -223,16 +224,19 @@ public class Tela_Login extends javax.swing.JFrame {
                     pedidoDao.adicionarPedido(pedido);
                     Tela_Menu telaMenu = null;
                     telaMenu = new Tela_Menu(pedidoDao.numeroPedido, numeroMesa);
+
                     this.dispose();
-                    telaMenu.setVisible(true);
+                    
                     JOptionPane.showMessageDialog(null, String.format("Bem-Vindo!: [Mesa: %d]",
                             numeroMesa), "Bem-Vindo!", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(null, "Mesa invalida! ", "Mesa não está em uso, ative o status da mesa!", JOptionPane.WARNING_MESSAGE);
                 }
             } catch (SQLException ex) {
+
                 JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
             }
+
         }
     }//GEN-LAST:event_btn_logar_mesaActionPerformed
 

@@ -1,12 +1,17 @@
 package br.digitalmenu.view;
 
+import br.digitalmenu.dao.MesaDao;
+import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.dao.RelatorioDao;
 import br.digitalmenu.heuristicas.Heuristica;
+import br.digitalmenu.model.Mesa;
+import br.digitalmenu.model.Pedido;
 import br.digitalmenu.model.relatorio.ItemRelatorio;
 import java.awt.Component;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -86,6 +91,7 @@ public class Tela_Admin extends Heuristica {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
+
         pnl_botoes = new javax.swing.JPanel();
         lbl_Gerenciar = new javax.swing.JLabel();
         btn_categorias = new javax.swing.JButton();
@@ -100,6 +106,7 @@ public class Tela_Admin extends Heuristica {
         lbl_icone = new javax.swing.JLabel();
         pnl_relatorio = new javax.swing.JPanel();
         lbl_ProdutosMaisVendidos = new javax.swing.JLabel();
+
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRelatorio = new javax.swing.JTable();
         btn_gerar_relatorio = new javax.swing.JButton();
@@ -269,6 +276,7 @@ public class Tela_Admin extends Heuristica {
             pnl_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_headerLayout.createSequentialGroup()
                 .addContainerGap()
+
                 .addGroup(pnl_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_headerLayout.createSequentialGroup()
                         .addComponent(lbl_icone, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,6 +284,7 @@ public class Tela_Admin extends Heuristica {
                         .addComponent(lbl_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnl_headerLayout.createSequentialGroup()
                         .addComponent(lbl_TipoAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -283,8 +292,10 @@ public class Tela_Admin extends Heuristica {
         pnl_relatorio.setBackground(new java.awt.Color(246, 242, 233));
         pnl_relatorio.setAutoscrolls(true);
 
+
         lbl_ProdutosMaisVendidos.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lbl_ProdutosMaisVendidos.setText("Produtos mais vendidos do mês:");
+
 
         jScrollPane1.setBackground(new java.awt.Color(102, 255, 102));
         jScrollPane1.setForeground(new java.awt.Color(51, 0, 255));
@@ -337,7 +348,9 @@ public class Tela_Admin extends Heuristica {
                         .addGap(356, 356, 356)
                         .addComponent(btn_gerar_relatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(94, 94, 94)
+
                         .addComponent(btn_abrir_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+
                     .addComponent(jScrollPane1)
                     .addComponent(lbl_ProdutosMaisVendidos, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE))
                 .addGap(44, 44, 44))
@@ -348,11 +361,13 @@ public class Tela_Admin extends Heuristica {
                 .addContainerGap()
                 .addComponent(lbl_ProdutosMaisVendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
                 .addGap(11, 11, 11)
+
                 .addGroup(pnl_relatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_gerar_relatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_abrir_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+
                 .addContainerGap())
         );
 
@@ -490,6 +505,7 @@ public class Tela_Admin extends Heuristica {
     private void btn_gerar_relatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerar_relatorioActionPerformed
         TelaRelatorio telaRelatorio = new TelaRelatorio();
         telaRelatorio.setVisible(true);
+
     }//GEN-LAST:event_btn_gerar_relatorioActionPerformed
 
     private void btn_abrir_pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_abrir_pedidoActionPerformed
@@ -499,6 +515,7 @@ public class Tela_Admin extends Heuristica {
             Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_abrir_pedidoActionPerformed
+
 
     private void btn_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_usuariosActionPerformed
         try {
@@ -534,7 +551,9 @@ public class Tela_Admin extends Heuristica {
             Logger.getLogger(Tela_Admin.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_btn_mesasActionPerformed
+
 
     private void btn_categoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_categoriasActionPerformed
         try {
@@ -555,7 +574,17 @@ public class Tela_Admin extends Heuristica {
         }
     }//GEN-LAST:event_btn_sairActionPerformed
 
+    private void btnAbrirPedidoJFRAMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirPedidoJFRAMActionPerformed
+        try {
+            Tela_EscolherMesa telaEscolherMesa = new Tela_EscolherMesa();
+            telaEscolherMesa.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tela_Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAbrirPedidoJFRAMActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JButton btn_abrir_pedido;
     private javax.swing.JButton btn_categorias;
     private javax.swing.JButton btn_gerar_relatorio;
@@ -564,6 +593,7 @@ public class Tela_Admin extends Heuristica {
     private javax.swing.JButton btn_produtos;
     private javax.swing.JButton btn_sair;
     private javax.swing.JButton btn_usuarios;
+
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

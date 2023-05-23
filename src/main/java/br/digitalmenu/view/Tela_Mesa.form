@@ -53,9 +53,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+
                           <Component id="pnl_cadastro" pref="676" max="32767" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="pnl_opcoes" pref="672" max="32767" attributes="0"/>
+
                       </Group>
                       <Component id="pnl_filtro_tabela" alignment="0" max="32767" attributes="0"/>
                   </Group>
