@@ -35,7 +35,6 @@ public class UsuarioDAO {
                 user.setSenha(rs.getString("senha")); // Define senha do usuario               
                 user.setTipoacesso(rs.getString("tipoacesso"));
                 user.setStatus(rs.getString("status"));
-                // Insere o usuario na lista Local
                 listaDeUsuarios.add(user);
 
             }
@@ -102,10 +101,8 @@ public class UsuarioDAO {
         boolean check = false;
 
         try {
-            // Comando SQL na base = tabela de usuario
             String sql = "select * from usuario WHERE usuario = ? AND senha = ? AND STATUS = 'ATIVADO';";
 
-            //Executa a query (comando SQL)
             ps = connection.prepareStatement(sql);
             ps.setString(1, usuario);
             ps.setString(2, senha);
@@ -332,7 +329,7 @@ public class UsuarioDAO {
         }
         return user;
     }
-    
+
     public List<Usuario> listarCategoriaPorNome(String texto) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();

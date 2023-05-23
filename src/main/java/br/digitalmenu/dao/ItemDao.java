@@ -123,19 +123,19 @@ public class ItemDao {
             ps.executeUpdate();
         } catch (SQLException ex) {
             throw ex;
-        } finally{
+        } finally {
             ps.close();
             //rs.close();
             connection.close();
         }
     }
-    
-        public void adicionaItenAdmin(Item item) throws SQLException {
+
+    public void adicionaItenAdmin(Item item) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
-        
-       /* String sql = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal) "
+
+        /* String sql = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal) "
                 + "VALUES ("
                 + "?, "
                 + "(SELECT idproduto FROM produto WHERE nome = ?), "
@@ -143,15 +143,15 @@ public class ItemDao {
                 + "(SELECT (preco * ?) from produto where idproduto = ?))"  ;          
               //  + ")";
                // + "INNER JOIN produto p ON i.id_produto = p.idproduto";
-*/
+         */
         String sql = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal) VALUES (?, (SELECT idproduto FROM produto WHERE nome = ?), ?, (SELECT (preco * ?) from produto where nome = ?))";
 
         try {
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, item.getPedido().getIdPedido());            
+            ps.setInt(1, item.getPedido().getIdPedido());
             ps.setString(2, item.getProduto().getNome());
             ps.setInt(3, item.getQtde());
-            ps.setInt(4, item.getQtde());            
+            ps.setInt(4, item.getQtde());
             ps.setString(5, item.getProduto().getNome());
             ps.execute();
         } catch (SQLException ex) {

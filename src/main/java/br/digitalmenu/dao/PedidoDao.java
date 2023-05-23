@@ -333,7 +333,8 @@ public class PedidoDao {
             connection.close();
         }
     }
-        public void cancelarPedido(int numeroPedido, String status) throws SQLException {
+
+    public void cancelarPedido(int numeroPedido, String status) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
