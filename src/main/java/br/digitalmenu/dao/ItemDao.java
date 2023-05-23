@@ -145,10 +145,13 @@ public class ItemDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal) VALUES (?, (SELECT idproduto FROM produto WHERE nome = ?), ?, (SELECT (preco * ?) from produto where nome = ?))";
-
-                + "(SELECT (preco * ?) "
-                + "FROM produto "
+        String sql 
+                = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal) VALUES "
+                + "("
+                + "?, "
+                + "(SELECT idproduto FROM produto WHERE nome = ?), "
+                + "?, "
+                + "(SELECT (preco * ?) from produto where nome = ?)) "
                 + "WHERE nome = ?)"
                 + ")";
 

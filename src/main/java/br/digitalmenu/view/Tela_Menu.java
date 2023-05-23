@@ -50,6 +50,20 @@ public class Tela_Menu extends javax.swing.JFrame {
         pnl_LABELS_INDICES.setVisible(false);
     }
 
+    public Tela_Menu(int numeroPedido, int numeroMesa) throws SQLException {
+        initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.numeroPedido = numeroPedido;
+        this.numeroMesa = numeroMesa;
+        lbl_numero_pedido.setText("Pedido: " + String.valueOf(numeroPedido));
+        lbl_numero_mesa.setText(String.valueOf("Mesa: " + numeroMesa));
+        setTodos();
+        setCat(lblId, 1);
+        setFotos(1);
+        setPorCat(lblNomes, txtDescricoes, lblPrecos, lblId);
+        pnl_LABELS_INDICES.setVisible(false);
+    }
+
     public void setLblId() {
         lblId[0] = lbl_Id_1;
         lblId[1] = lbl_Id_2;
@@ -1779,7 +1793,6 @@ public class Tela_Menu extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE
         );
         if (confirma == JOptionPane.YES_OPTION) {
-
             try {
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(numeroPedido);
@@ -1803,13 +1816,12 @@ public class Tela_Menu extends javax.swing.JFrame {
                     pedidoDao.adicionarPedido(pedido);
                     this.dispose();
                     new Tela_Login().setVisible(true);
-
-                } catch (Exception e) {
-
-                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                 }
+            } catch (Exception e) {
 
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
+
         }
     }//GEN-LAST:event_lbl_EncerrarPedidoMouseReleased
 
@@ -1819,7 +1831,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         textoComanda.setSize(400, 1800);
         comanda.add(textoComanda);
         Comanda test = new Comanda();
-        
+
         String texto = ("\t\tPré-Conta\n\n");
         texto += "----------------------------------------------------------------------------------------------------------\n";
         texto += "Número do pedido: " + numeroPedido + "\n";

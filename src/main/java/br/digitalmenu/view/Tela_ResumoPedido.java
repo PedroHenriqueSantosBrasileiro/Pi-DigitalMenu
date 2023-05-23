@@ -8,8 +8,6 @@ import br.digitalmenu.model.Item;
 import br.digitalmenu.model.Pedido;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -274,6 +272,7 @@ public class Tela_ResumoPedido extends Heuristica {
         this.dispose();
         try {
             new Tela_Menu(Integer.parseInt(lbl_numero_pedido.getText()), Integer.parseInt(lbl_numero_mesa.getText())).setVisible(true);
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
@@ -316,10 +315,9 @@ public class Tela_ResumoPedido extends Heuristica {
                     this.dispose();
                     tela.dispose();
                     new Tela_Login().setVisible(true);
-
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                 }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
 
         }
