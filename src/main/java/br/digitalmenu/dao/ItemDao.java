@@ -138,21 +138,20 @@ public class ItemDao {
         }
     }
 
+
     public void adicionaItemAdmin(Item item) throws SQLException {
+
 
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql
-                = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal) "
-                + "VALUES ("
-                + "?, "
-                + "(SELECT idproduto FROM produto WHERE nome = ?), "
-                + "?, "
+        String sql = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal) VALUES (?, (SELECT idproduto FROM produto WHERE nome = ?), ?, (SELECT (preco * ?) from produto where nome = ?))";
+
                 + "(SELECT (preco * ?) "
                 + "FROM produto "
                 + "WHERE nome = ?)"
                 + ")";
+
 
         try {
             ps = connection.prepareStatement(sql);
