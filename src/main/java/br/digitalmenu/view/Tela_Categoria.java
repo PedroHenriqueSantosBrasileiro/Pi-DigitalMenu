@@ -3,7 +3,9 @@ package br.digitalmenu.view;
 import br.digitalmenu.dao.CategoriaDao;
 import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Categoria;
+import java.sql.DataTruncation;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
@@ -18,8 +20,8 @@ public class Tela_Categoria extends Heuristica {
 
     public Tela_Categoria() throws SQLException {
         initComponents();
-        txt_Numero_IdCategoria.setEnabled(false);
-        
+        txt_numero_id_categoria.setEnabled(false);
+
         jtCategoria.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
         IniciaTabela(jtCategoria);
         listarJTableTodosAtivos();//Formata a tabela e centraliza pela classe heuristicas
@@ -91,148 +93,153 @@ public class Tela_Categoria extends Heuristica {
     }
 
     public void limparTxtFields() {
-        txt_Numero_IdCategoria.setText("");
-        txt_NomeCategoria.setText("");
+        txt_numero_id_categoria.setText("");
+        txt_nome_categoria.setText("");
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlSuperior = new javax.swing.JPanel();
-        pnlEsquerdo = new javax.swing.JPanel();
-        lbl_IdCategoria = new javax.swing.JLabel();
-        txt_Numero_IdCategoria = new javax.swing.JTextField();
-        lbl_NomeCategoria = new javax.swing.JLabel();
-        txt_NomeCategoria = new javax.swing.JTextField();
-        btn_Cadastrar = new javax.swing.JButton();
-        pnlDireito = new javax.swing.JPanel();
-        btn_Atualizar = new javax.swing.JButton();
-        btn_Deletar = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
+        pnl_superior = new javax.swing.JPanel();
+        pnl_cadastra_categoria = new javax.swing.JPanel();
+        lbl_id_categoria = new javax.swing.JLabel();
+        txt_numero_id_categoria = new javax.swing.JTextField();
+        lbl_nome_categoria = new javax.swing.JLabel();
+        txt_nome_categoria = new javax.swing.JTextField();
+        btn_cadastrar_categoria = new javax.swing.JButton();
+        pnl_opcoes = new javax.swing.JPanel();
+        btn_atualizar_categoria = new javax.swing.JButton();
+        btn_deletar_categoria = new javax.swing.JButton();
+        pnl_filtros = new javax.swing.JPanel();
         btn_pesquisa_id = new javax.swing.JButton();
         btn_pesquisa_nome = new javax.swing.JButton();
         btn_pesquisa_status = new javax.swing.JButton();
         brn_pesquisa_todos = new javax.swing.JButton();
-        pnlInferior = new javax.swing.JPanel();
+        pnl_inferior = new javax.swing.JPanel();
         tableCategoria = new javax.swing.JScrollPane();
         jtCategoria = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Categoria");
 
-        pnlSuperior.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_superior.setBackground(new java.awt.Color(255, 255, 255));
 
-        pnlEsquerdo.setBackground(new java.awt.Color(246, 242, 233));
-        pnlEsquerdo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar categoria", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24))); // NOI18N
-        pnlEsquerdo.setToolTipText("");
-        pnlEsquerdo.setPreferredSize(new java.awt.Dimension(670, 181));
+        pnl_cadastra_categoria.setBackground(new java.awt.Color(246, 242, 233));
+        pnl_cadastra_categoria.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar categoria", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24))); // NOI18N
+        pnl_cadastra_categoria.setToolTipText("");
+        pnl_cadastra_categoria.setPreferredSize(new java.awt.Dimension(670, 181));
 
-        lbl_IdCategoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lbl_IdCategoria.setText("ID da Categoria:");
+        lbl_id_categoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lbl_id_categoria.setText("ID da Categoria:");
 
-        txt_Numero_IdCategoria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txt_Numero_IdCategoria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_Numero_IdCategoria.addActionListener(new java.awt.event.ActionListener() {
+        txt_numero_id_categoria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_numero_id_categoria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_numero_id_categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_Numero_IdCategoriaActionPerformed(evt);
+                txt_numero_id_categoriaActionPerformed(evt);
             }
         });
 
-        lbl_NomeCategoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lbl_NomeCategoria.setText("Nome categoria:");
+        lbl_nome_categoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lbl_nome_categoria.setText("Nome categoria:");
 
-        txt_NomeCategoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txt_NomeCategoria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_NomeCategoria.addActionListener(new java.awt.event.ActionListener() {
+        txt_nome_categoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txt_nome_categoria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_nome_categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_NomeCategoriaActionPerformed(evt);
+                txt_nome_categoriaActionPerformed(evt);
+            }
+        });
+        txt_nome_categoria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_nome_categoriaKeyPressed(evt);
             }
         });
 
-        btn_Cadastrar.setBackground(new java.awt.Color(255, 243, 198));
-        btn_Cadastrar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        btn_Cadastrar.setText("Cadastrar");
-        btn_Cadastrar.addActionListener(new java.awt.event.ActionListener() {
+        btn_cadastrar_categoria.setBackground(new java.awt.Color(255, 243, 198));
+        btn_cadastrar_categoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btn_cadastrar_categoria.setText("Cadastrar");
+        btn_cadastrar_categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_CadastrarActionPerformed(evt);
+                btn_cadastrar_categoriaActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout pnlEsquerdoLayout = new javax.swing.GroupLayout(pnlEsquerdo);
-        pnlEsquerdo.setLayout(pnlEsquerdoLayout);
-        pnlEsquerdoLayout.setHorizontalGroup(
-            pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlEsquerdoLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_cadastra_categoriaLayout = new javax.swing.GroupLayout(pnl_cadastra_categoria);
+        pnl_cadastra_categoria.setLayout(pnl_cadastra_categoriaLayout);
+        pnl_cadastra_categoriaLayout.setHorizontalGroup(
+            pnl_cadastra_categoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_cadastra_categoriaLayout.createSequentialGroup()
                 .addGap(216, 216, 216)
-                .addGroup(pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txt_Numero_IdCategoria)
-                    .addComponent(lbl_IdCategoria)
-                    .addComponent(lbl_NomeCategoria)
-                    .addComponent(txt_NomeCategoria)
-                    .addComponent(btn_Cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
+                .addGroup(pnl_cadastra_categoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(txt_numero_id_categoria)
+                    .addComponent(lbl_id_categoria)
+                    .addComponent(lbl_nome_categoria)
+                    .addComponent(txt_nome_categoria)
+                    .addComponent(btn_cadastrar_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(230, 230, 230))
         );
-        pnlEsquerdoLayout.setVerticalGroup(
-            pnlEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlEsquerdoLayout.createSequentialGroup()
-                .addComponent(lbl_IdCategoria)
+        pnl_cadastra_categoriaLayout.setVerticalGroup(
+            pnl_cadastra_categoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_cadastra_categoriaLayout.createSequentialGroup()
+                .addComponent(lbl_id_categoria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_Numero_IdCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_numero_id_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_NomeCategoria)
+                .addComponent(lbl_nome_categoria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_NomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_nome_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_Cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                .addComponent(btn_cadastrar_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(26, 26, 26))
         );
 
-        pnlDireito.setBackground(new java.awt.Color(246, 242, 233));
-        pnlDireito.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Opções", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24))); // NOI18N
-        pnlDireito.setPreferredSize(new java.awt.Dimension(670, 181));
+        pnl_opcoes.setBackground(new java.awt.Color(246, 242, 233));
+        pnl_opcoes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Opções", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24))); // NOI18N
+        pnl_opcoes.setPreferredSize(new java.awt.Dimension(670, 181));
 
-        btn_Atualizar.setBackground(new java.awt.Color(204, 255, 204));
-        btn_Atualizar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        btn_Atualizar.setText("Atualizar");
-        btn_Atualizar.addActionListener(new java.awt.event.ActionListener() {
+        btn_atualizar_categoria.setBackground(new java.awt.Color(204, 255, 204));
+        btn_atualizar_categoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btn_atualizar_categoria.setText("Atualizar");
+        btn_atualizar_categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AtualizarActionPerformed(evt);
+                btn_atualizar_categoriaActionPerformed(evt);
             }
         });
 
-        btn_Deletar.setBackground(new java.awt.Color(255, 153, 153));
-        btn_Deletar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        btn_Deletar.setText("Deletar");
-        btn_Deletar.addActionListener(new java.awt.event.ActionListener() {
+        btn_deletar_categoria.setBackground(new java.awt.Color(255, 153, 153));
+        btn_deletar_categoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btn_deletar_categoria.setText("Deletar");
+        btn_deletar_categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_DeletarActionPerformed(evt);
+                btn_deletar_categoriaActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout pnlDireitoLayout = new javax.swing.GroupLayout(pnlDireito);
-        pnlDireito.setLayout(pnlDireitoLayout);
-        pnlDireitoLayout.setHorizontalGroup(
-            pnlDireitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDireitoLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_opcoesLayout = new javax.swing.GroupLayout(pnl_opcoes);
+        pnl_opcoes.setLayout(pnl_opcoesLayout);
+        pnl_opcoesLayout.setHorizontalGroup(
+            pnl_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_opcoesLayout.createSequentialGroup()
                 .addGap(211, 211, 211)
-                .addGroup(pnlDireitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_Deletar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_Atualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
+                .addGroup(pnl_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_deletar_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_atualizar_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
                 .addGap(210, 210, 210))
         );
-        pnlDireitoLayout.setVerticalGroup(
-            pnlDireitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDireitoLayout.createSequentialGroup()
+        pnl_opcoesLayout.setVerticalGroup(
+            pnl_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_opcoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btn_Atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_atualizar_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_Deletar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_deletar_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(246, 242, 233));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18))); // NOI18N
+        pnl_filtros.setBackground(new java.awt.Color(246, 242, 233));
+        pnl_filtros.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18))); // NOI18N
 
         btn_pesquisa_id.setBackground(new java.awt.Color(255, 243, 198));
         btn_pesquisa_id.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -270,11 +277,11 @@ public class Tela_Categoria extends Heuristica {
             }
         });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_filtrosLayout = new javax.swing.GroupLayout(pnl_filtros);
+        pnl_filtros.setLayout(pnl_filtrosLayout);
+        pnl_filtrosLayout.setHorizontalGroup(
+            pnl_filtrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_filtrosLayout.createSequentialGroup()
                 .addGap(405, 405, 405)
                 .addComponent(btn_pesquisa_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -285,10 +292,10 @@ public class Tela_Categoria extends Heuristica {
                 .addComponent(brn_pesquisa_todos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(427, 427, 427))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+        pnl_filtrosLayout.setVerticalGroup(
+            pnl_filtrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_filtrosLayout.createSequentialGroup()
+                .addGroup(pnl_filtrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(brn_pesquisa_todos, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_pesquisa_status, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_pesquisa_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,33 +303,33 @@ public class Tela_Categoria extends Heuristica {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout pnlSuperiorLayout = new javax.swing.GroupLayout(pnlSuperior);
-        pnlSuperior.setLayout(pnlSuperiorLayout);
-        pnlSuperiorLayout.setHorizontalGroup(
-            pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSuperiorLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_superiorLayout = new javax.swing.GroupLayout(pnl_superior);
+        pnl_superior.setLayout(pnl_superiorLayout);
+        pnl_superiorLayout.setHorizontalGroup(
+            pnl_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_superiorLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlSuperiorLayout.createSequentialGroup()
-                        .addComponent(pnlEsquerdo, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
+                .addGroup(pnl_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnl_filtros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnl_superiorLayout.createSequentialGroup()
+                        .addComponent(pnl_cadastra_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 639, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlDireito, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)))
+                        .addComponent(pnl_opcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)))
                 .addGap(35, 35, 35))
         );
-        pnlSuperiorLayout.setVerticalGroup(
-            pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSuperiorLayout.createSequentialGroup()
+        pnl_superiorLayout.setVerticalGroup(
+            pnl_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_superiorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(pnlDireito, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                    .addComponent(pnlEsquerdo, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
+                .addGroup(pnl_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pnl_opcoes, javax.swing.GroupLayout.PREFERRED_SIZE, 263, Short.MAX_VALUE)
+                    .addComponent(pnl_cadastra_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnl_filtros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        pnlInferior.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_inferior.setBackground(new java.awt.Color(255, 255, 255));
 
         jtCategoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jtCategoria.setModel(new javax.swing.table.DefaultTableModel(
@@ -354,17 +361,17 @@ public class Tela_Categoria extends Heuristica {
         });
         tableCategoria.setViewportView(jtCategoria);
 
-        javax.swing.GroupLayout pnlInferiorLayout = new javax.swing.GroupLayout(pnlInferior);
-        pnlInferior.setLayout(pnlInferiorLayout);
-        pnlInferiorLayout.setHorizontalGroup(
-            pnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInferiorLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_inferiorLayout = new javax.swing.GroupLayout(pnl_inferior);
+        pnl_inferior.setLayout(pnl_inferiorLayout);
+        pnl_inferiorLayout.setHorizontalGroup(
+            pnl_inferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_inferiorLayout.createSequentialGroup()
                 .addGap(176, 176, 176)
                 .addComponent(tableCategoria)
                 .addGap(204, 204, 204))
         );
-        pnlInferiorLayout.setVerticalGroup(
-            pnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnl_inferiorLayout.setVerticalGroup(
+            pnl_inferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tableCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
         );
 
@@ -372,15 +379,15 @@ public class Tela_Categoria extends Heuristica {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlInferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnl_superior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnl_inferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnl_superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnlInferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnl_inferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(1394, 807));
@@ -389,19 +396,19 @@ public class Tela_Categoria extends Heuristica {
 
     private void jtCategoriaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtCategoriaMouseReleased
         if (jtCategoria.getSelectedRow() != -1) {
-            txt_Numero_IdCategoria.setText(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 0).toString());
-            txt_NomeCategoria.setText(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 1).toString());
-            idCategoriaInicial = Integer.parseInt(txt_Numero_IdCategoria.getText());
-            statusInicial = txt_NomeCategoria.getText();
+            txt_numero_id_categoria.setText(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 0).toString());
+            txt_nome_categoria.setText(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 1).toString());
+            idCategoriaInicial = Integer.parseInt(txt_numero_id_categoria.getText());
+            statusInicial = txt_nome_categoria.getText();
         }
     }//GEN-LAST:event_jtCategoriaMouseReleased
 
     private void jtCategoriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCategoriaKeyReleased
         if (jtCategoria.getSelectedRow() != -1) {
-            txt_Numero_IdCategoria.setText(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 0).toString());
-            txt_NomeCategoria.setText(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 1).toString());
-            idCategoriaInicial = Integer.parseInt(txt_Numero_IdCategoria.getText());
-            statusInicial = txt_NomeCategoria.getText();
+            txt_numero_id_categoria.setText(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 0).toString());
+            txt_nome_categoria.setText(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 1).toString());
+            idCategoriaInicial = Integer.parseInt(txt_numero_id_categoria.getText());
+            statusInicial = txt_nome_categoria.getText();
         }
     }//GEN-LAST:event_jtCategoriaKeyReleased
 
@@ -433,28 +440,6 @@ public class Tela_Categoria extends Heuristica {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
         }
-
-        /*
-        JPanel painel = new JPanel();
-        JComboBox comboBox = new JComboBox();
-        comboBox.addItem("Ativado");
-        comboBox.addItem("Desativado");
-        painel.add(new JLabel("Status: "));
-        painel.add(comboBox);
-        int result = JOptionPane.showConfirmDialog(null, painel, "ALTERAR MESA", JOptionPane.OK_CANCEL_OPTION, -1);
-        if (result == JOptionPane.OK_OPTION) {
-            try {
-                String status = String.valueOf(comboBox.getSelectedItem());
-                listarJtablePorStatus(status);
-                if (jtMesa.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "Não há produtos no status " + status);
-                    listarJtablePorStatus("ativado");
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            }
-        }
-        */
     }//GEN-LAST:event_btn_pesquisa_statusActionPerformed
 
     private void btn_pesquisa_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisa_nomeActionPerformed
@@ -497,24 +482,24 @@ public class Tela_Categoria extends Heuristica {
         }
     }//GEN-LAST:event_btn_pesquisa_idActionPerformed
 
-    private void btn_DeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeletarActionPerformed
+    private void btn_deletar_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deletar_categoriaActionPerformed
 
         if (jtCategoria.getSelectedRow() != -1) {
 
             int confirma = JOptionPane.showConfirmDialog(this,
-                "Dados da categoria a deletar:\n ID: "
-                + txt_Numero_IdCategoria.getText()
-                + "\nNome: "
-                + txt_NomeCategoria.getText(),
-                "Confirmar deleção?",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE
+                    "Dados da categoria a deletar:\n ID: "
+                    + txt_numero_id_categoria.getText()
+                    + "\nNome: "
+                    + txt_nome_categoria.getText(),
+                    "Confirmar deleção?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
             );
 
             if (confirma == JOptionPane.YES_OPTION) {
                 Categoria cat = new Categoria();
-                cat.setIdCategoria(Integer.parseInt(txt_Numero_IdCategoria.getText()));
-                cat.setNomeCategoria(txt_NomeCategoria.getText());
+                cat.setIdCategoria(Integer.parseInt(txt_numero_id_categoria.getText()));
+                cat.setNomeCategoria(txt_nome_categoria.getText());
                 CategoriaDao catDao = new CategoriaDao();
                 try {
                     catDao.deleteCategoria(cat);
@@ -530,9 +515,9 @@ public class Tela_Categoria extends Heuristica {
         } else {
             JOptionPane.showMessageDialog(null, "Selecione uma linha!");
         }
-    }//GEN-LAST:event_btn_DeletarActionPerformed
+    }//GEN-LAST:event_btn_deletar_categoriaActionPerformed
 
-    private void btn_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtualizarActionPerformed
+    private void btn_atualizar_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualizar_categoriaActionPerformed
 
         if (jtCategoria.getRowCount() != -1) {
             try {
@@ -557,95 +542,66 @@ public class Tela_Categoria extends Heuristica {
             JOptionPane.showMessageDialog(null, "Selecione uma linha.");
         }
 
-        /*if (jtCategoria.getSelectedRow() != -1) {
-            int confirma = JOptionPane.showConfirmDialog(
-                this,
-                "Dados atuais:\nId: "
-                + idCategoriaInicial
-                + "\nNome: "
-                + statusInicial
-                + "\nDADOS ATUALIZADOS:"
-                + "\nID: "
-                + txt_Numero_IdCategoria.getText()
-                + "\nNome: "
-                + txt_NomeCategoria.getText(),
-                "CONFIRMAR ALTERÃ‡ÃƒO(Ã•ES)",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE
-            );
-            //
-            if (confirma == JOptionPane.YES_OPTION) {
-                //
-                Categoria categoria = new Categoria();
-                categoria.setIdCategoria(Integer.parseInt(txt_Numero_IdCategoria.getText()));
-                categoria.setNomeCategoria(txt_NomeCategoria.getText());
-                CategoriaDao catDao = new CategoriaDao();
-                try {
-                    catDao.updateCategoria(categoria, idCategoriaInicial);
-                    txt_Numero_IdCategoria.setText("");
-                    txt_NomeCategoria.setText("");
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
-                }
-                try {
-                    listarJTableTodosAtivos();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
-                }
-            } else if (confirma == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "OperaÃ§Ã£o cancelada");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha!");
-        } */
-    }//GEN-LAST:event_btn_AtualizarActionPerformed
+    }//GEN-LAST:event_btn_atualizar_categoriaActionPerformed
 
-    private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarActionPerformed
+    private void btn_cadastrar_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrar_categoriaActionPerformed
 
-        if (verificarSeCampoEstaEmBranco(txt_NomeCategoria, "Categoria")) {
+        if (verificarSeCampoEstaEmBranco(txt_nome_categoria, "Categoria")) {
             Categoria categoria = new Categoria();
-            categoria.setNomeCategoria(txt_NomeCategoria.getText());
+            categoria.setNomeCategoria(txt_nome_categoria.getText());
             CategoriaDao catDao = new CategoriaDao();
             try {
                 catDao.criarCategoria(categoria);
                 listarJTableTodosAtivos();
                 JOptionPane.showMessageDialog(this,
-                    "Categoria adicionada com sucesso!\nNome: "
-                    + categoria.getNomeCategoria());
+                        "Categoria adicionada com sucesso!\nNome: "
+                        + categoria.getNomeCategoria());
                 limparTxtFields();
+            } catch (SQLIntegrityConstraintViolationException ex) {
+                JOptionPane.showMessageDialog(null, "Nome de categoria já existente!", "\t\tERRO", HEIGHT);
+                txt_nome_categoria.setText("");
+            } catch (DataTruncation ex) {
+                JOptionPane.showMessageDialog(null, "Nome inválido, limite de 30 caracteres!", "\tErro", HEIGHT);
+                txt_nome_categoria.setText("");
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
+                JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", HEIGHT);
             }
         }
-    }//GEN-LAST:event_btn_CadastrarActionPerformed
+    }//GEN-LAST:event_btn_cadastrar_categoriaActionPerformed
 
-    private void txt_NomeCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NomeCategoriaActionPerformed
+    private void txt_nome_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nome_categoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_NomeCategoriaActionPerformed
+    }//GEN-LAST:event_txt_nome_categoriaActionPerformed
 
-    private void txt_Numero_IdCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Numero_IdCategoriaActionPerformed
+    private void txt_numero_id_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_numero_id_categoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_Numero_IdCategoriaActionPerformed
+    }//GEN-LAST:event_txt_numero_id_categoriaActionPerformed
+
+    private void txt_nome_categoriaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nome_categoriaKeyPressed
+        // TODO add your handling code here:
+        //teste
+        letrasApenas(txt_nome_categoria, evt);
+    }//GEN-LAST:event_txt_nome_categoriaKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brn_pesquisa_todos;
-    private javax.swing.JButton btn_Atualizar;
-    private javax.swing.JButton btn_Cadastrar;
-    private javax.swing.JButton btn_Deletar;
+    private javax.swing.JButton btn_atualizar_categoria;
+    private javax.swing.JButton btn_cadastrar_categoria;
+    private javax.swing.JButton btn_deletar_categoria;
     private javax.swing.JButton btn_pesquisa_id;
     private javax.swing.JButton btn_pesquisa_nome;
     private javax.swing.JButton btn_pesquisa_status;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JTable jtCategoria;
-    private javax.swing.JLabel lbl_IdCategoria;
-    private javax.swing.JLabel lbl_NomeCategoria;
-    private javax.swing.JPanel pnlDireito;
-    private javax.swing.JPanel pnlEsquerdo;
-    private javax.swing.JPanel pnlInferior;
-    private javax.swing.JPanel pnlSuperior;
+    private javax.swing.JLabel lbl_id_categoria;
+    private javax.swing.JLabel lbl_nome_categoria;
+    private javax.swing.JPanel pnl_cadastra_categoria;
+    private javax.swing.JPanel pnl_filtros;
+    private javax.swing.JPanel pnl_inferior;
+    private javax.swing.JPanel pnl_opcoes;
+    private javax.swing.JPanel pnl_superior;
     private javax.swing.JScrollPane tableCategoria;
-    private javax.swing.JTextField txt_NomeCategoria;
-    private javax.swing.JTextField txt_Numero_IdCategoria;
+    private javax.swing.JTextField txt_nome_categoria;
+    private javax.swing.JTextField txt_numero_id_categoria;
     // End of variables declaration//GEN-END:variables
 }

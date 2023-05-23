@@ -2,6 +2,7 @@ package br.digitalmenu.model;
 
 public class Item {
 
+    private int idItem;
     private Pedido pedido = new Pedido();
     private Produto produto = new Produto();
     private int qtde;
@@ -9,6 +10,22 @@ public class Item {
     private String observacao;
     private String status;
     private String horaPedido;
+
+    public int getIdItem() {
+        return idItem;
+    }
+
+    public void setIdItem(int idItem) {
+        this.idItem = idItem;
+    }
+
+    public String getHoraPedido() {
+        return horaPedido;
+    }
+
+    public void setHoraPedido(String horaPedido) {
+        this.horaPedido = horaPedido;
+    }
 
     public Pedido getPedido() {
         return pedido;

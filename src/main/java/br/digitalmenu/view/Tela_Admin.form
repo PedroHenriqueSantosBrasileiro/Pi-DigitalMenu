@@ -4,7 +4,7 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="mnuMesa">
+        <Menu class="javax.swing.JMenu" name="mnu_mesa">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mesa"/>
           </Properties>
@@ -19,7 +19,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="mnuCategoria">
+        <Menu class="javax.swing.JMenu" name="mnu_categoria">
           <Properties>
             <Property name="text" type="java.lang.String" value="Categoria"/>
           </Properties>
@@ -34,7 +34,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="mnuProduto">
+        <Menu class="javax.swing.JMenu" name="mnu_produto">
           <Properties>
             <Property name="text" type="java.lang.String" value="Produto"/>
           </Properties>
@@ -49,7 +49,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="mnuPedido">
+        <Menu class="javax.swing.JMenu" name="mnu_pedido">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pedido"/>
           </Properties>
@@ -115,22 +115,22 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="1" attributes="0">
-              <Component id="pnlTopo" max="32767" attributes="0"/>
+              <Component id="pnl_header" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
-                  <Component id="pblBotoes" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnl_botoes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel1" max="32767" attributes="0"/>
+                  <Component id="pnl_relatorio" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Component id="pnlTopo" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnl_header" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="pblBotoes" max="32767" attributes="0"/>
-                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <Component id="pnl_botoes" max="32767" attributes="0"/>
+                      <Component id="pnl_relatorio" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
@@ -138,7 +138,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="pblBotoes">
+        <Container class="javax.swing.JPanel" name="pnl_botoes">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e9" green="f2" red="f6" type="rgb"/>
@@ -153,24 +153,24 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnCategoria" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="btnMesas" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnListarPedidos" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnProdutos" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnUsuarios" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btn_categorias" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btn_mesas" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btn_listar_pedidos" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btn_produtos" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btn_usuarios" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="btnMesas1" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="btn_sair" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="70" max="32767" attributes="0"/>
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_Gerenciar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -179,43 +179,34 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_Gerenciar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnCategoria" max="32767" attributes="0"/>
+                      <Component id="btn_categorias" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="btnMesas" max="32767" attributes="0"/>
+                      <Component id="btn_mesas" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="btnListarPedidos" max="32767" attributes="0"/>
+                      <Component id="btn_listar_pedidos" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="btnProdutos" max="32767" attributes="0"/>
+                      <Component id="btn_produtos" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnUsuarios" max="32767" attributes="0"/>
+                      <Component id="btn_usuarios" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnMesas1" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="btn_sair" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnMesas1">
+            <Component class="javax.swing.JLabel" name="lbl_Gerenciar">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="2c" green="0" red="ea" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial Rounded MT Bold" size="18" style="1"/>
+                  <Font name="Segoe UI" size="36" style="1"/>
                 </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Sair"/>
+                <Property name="text" type="java.lang.String" value="Gerenciar"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMesas1ActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCategoria">
+            <Component class="javax.swing.JButton" name="btn_categorias">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="27" green="32" red="b0" type="rgb"/>
@@ -236,10 +227,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCategoriaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_categoriasActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnMesas">
+            <Component class="javax.swing.JButton" name="btn_mesas">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="27" green="32" red="b0" type="rgb"/>
@@ -256,10 +247,10 @@
                 <Property name="text" type="java.lang.String" value="Mesas"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMesasActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_mesasActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnListarPedidos">
+            <Component class="javax.swing.JButton" name="btn_listar_pedidos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="27" green="32" red="b0" type="rgb"/>
@@ -276,10 +267,10 @@
                 <Property name="text" type="java.lang.String" value="Pedidos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListarPedidosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_listar_pedidosActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnProdutos">
+            <Component class="javax.swing.JButton" name="btn_produtos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="27" green="32" red="b0" type="rgb"/>
@@ -296,10 +287,10 @@
                 <Property name="text" type="java.lang.String" value="Produtos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProdutosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_produtosActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnUsuarios">
+            <Component class="javax.swing.JButton" name="btn_usuarios">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="27" green="32" red="b0" type="rgb"/>
@@ -316,20 +307,29 @@
                 <Property name="text" type="java.lang.String" value="Usu&#xe1;rios"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_usuariosActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
+            <Component class="javax.swing.JButton" name="btn_sair">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="36" style="1"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="2c" green="0" red="ea" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Gerenciar"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Rounded MT Bold" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Sair"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_sairActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="pnlTopo">
+        <Container class="javax.swing.JPanel" name="pnl_header">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e9" green="f2" red="f6" type="rgb"/>
@@ -341,15 +341,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="lblTipoAcesso" pref="888" max="32767" attributes="0"/>
+                      <Component id="lbl_TipoAcesso" pref="888" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="244" max="-2" attributes="0"/>
-                              <Component id="lblUsuario" min="-2" pref="236" max="-2" attributes="0"/>
+                              <Component id="lbl_Usuario" min="-2" pref="236" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" pref="64" max="-2" attributes="0"/>
+                              <Component id="lbl_icone" min="-2" pref="64" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -362,12 +362,14 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jLabel2" min="-2" pref="64" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="lblUsuario" min="-2" max="-2" attributes="0"/>
+
+                              <Component id="lbl_icone" min="-2" pref="64" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="lbl_Usuario" min="-2" pref="36" max="-2" attributes="0"/>
+
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="lblTipoAcesso" min="-2" pref="81" max="-2" attributes="0"/>
+                              <Component id="lbl_TipoAcesso" min="-2" pref="81" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -377,7 +379,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblTipoAcesso">
+            <Component class="javax.swing.JLabel" name="lbl_TipoAcesso">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="70" style="1"/>
@@ -389,7 +391,7 @@
                 <Property name="text" type="java.lang.String" value="tipoAcesso"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUsuario">
+            <Component class="javax.swing.JLabel" name="lbl_Usuario">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="ff" red="0" type="rgb"/>
@@ -401,7 +403,7 @@
                 <Property name="text" type="java.lang.String" value="usuario"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="lbl_icone">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;\\src\\main\\java\\br\\digitalmenu\\images\\administrador.png&quot;)" type="code"/>
@@ -411,7 +413,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="pnl_relatorio">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e9" green="f2" red="f6" type="rgb"/>
@@ -427,12 +429,14 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="356" max="-2" attributes="0"/>
-                              <Component id="btnRelatorio" pref="0" max="32767" attributes="0"/>
+                              <Component id="btn_gerar_relatorio" pref="0" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-                              <Component id="btnAbrirPedidoJFRAM" min="-2" pref="270" max="-2" attributes="0"/>
+
+                              <Component id="btn_abrir_pedido" min="-2" pref="270" max="-2" attributes="0"/>
+
                           </Group>
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
-                          <Component id="jLabel3" pref="990" max="32767" attributes="0"/>
+                          <Component id="lbl_ProdutosMaisVendidos" pref="990" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
@@ -442,13 +446,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" pref="77" max="-2" attributes="0"/>
+                      <Component id="lbl_ProdutosMaisVendidos" min="-2" pref="77" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="409" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnRelatorio" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="btnAbrirPedidoJFRAM" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+
+                          <Component id="btn_gerar_relatorio" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="btn_abrir_pedido" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -456,42 +462,15 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnAbrirPedidoJFRAM">
+
+            <Component class="javax.swing.JLabel" name="lbl_ProdutosMaisVendidos">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="27" green="32" red="b0" type="rgb"/>
-                </Property>
+
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial Rounded MT Bold" size="36" style="1"/>
+                  <Font name="Segoe UI" size="48" style="1"/>
                 </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;html&gt; &lt;body&gt; &lt;h&gt;&lt;div style=&quot;text-align:center&quot;&gt; Abrir pedido ?remover?&lt;/h&gt;&lt;/center&gt; &lt;/body&gt; &lt;/html&gt;"/>
+                <Property name="text" type="java.lang.String" value="Produtos mais vendidos do m&#xea;s:"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAbrirPedidoJFRAMActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnRelatorio">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="99" red="ff" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial Rounded MT Bold" size="36" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;\\src\\main\\java\\br\\digitalmenu\\images\\relatorio.png&quot;)" type="code"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;html&gt; &lt;body&gt; &lt;h&gt;&lt;div style=&quot;text-align:center&quot;&gt; Gerar Relat&#xf3;rio &lt;/h&gt;&lt;/center&gt; &lt;/body&gt; &lt;/html&gt;"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRelatorioActionPerformed"/>
-              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
               <Properties>
@@ -529,13 +508,42 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JButton" name="btn_gerar_relatorio">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="48" style="1"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="99" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Produtos mais vendidos do m&#xea;s:"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Rounded MT Bold" size="36" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;\\src\\main\\java\\br\\digitalmenu\\images\\relatorio.png&quot;)" type="code"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;html&gt; &lt;body&gt; &lt;h&gt;&lt;div style=&quot;text-align:center&quot;&gt; Gerar Relat&#xf3;rio &lt;/h&gt;&lt;/center&gt; &lt;/body&gt; &lt;/html&gt;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_gerar_relatorioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btn_abrir_pedido">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="27" green="32" red="b0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Rounded MT Bold" size="36" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;html&gt; &lt;body&gt; &lt;h&gt;&lt;div style=&quot;text-align:center&quot;&gt; Abrir pedido ?remover?&lt;/h&gt;&lt;/center&gt; &lt;/body&gt; &lt;/html&gt;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_abrir_pedidoActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

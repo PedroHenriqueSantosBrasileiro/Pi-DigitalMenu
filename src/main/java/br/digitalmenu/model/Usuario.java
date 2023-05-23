@@ -8,7 +8,7 @@ public class Usuario {
     private String tipoacesso;
     private String status;
 
-    public Usuario() {//construtor padrao
+    public Usuario() {
 
     }
 
@@ -19,7 +19,6 @@ public class Usuario {
         this.status = status;
     }
 
-    //getters and setters
     public int getIdusuario() {
         return idusuario;
     }

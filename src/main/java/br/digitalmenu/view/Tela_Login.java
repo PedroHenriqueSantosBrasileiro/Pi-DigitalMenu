@@ -16,13 +16,8 @@ public class Tela_Login extends javax.swing.JFrame {
 
     public Tela_Login() throws SQLException {
         initComponents();
-        //para popular o combobox
         listarMesa();
-
-        //coloca o focu no botao ok
-        this.getRootPane().setDefaultButton(btnOkUsuario);
-
-        //Tira o minimizar/maximizar e fechar tela[testando]
+        this.getRootPane().setDefaultButton(btn_logar_usuario);
         setUndecorated(true);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
     }
@@ -30,7 +25,7 @@ public class Tela_Login extends javax.swing.JFrame {
     public void listarMesa() throws SQLException {
         MesaDao mesaDao = new MesaDao();
         for (Mesa mesa : mesaDao.listarTodasMesasPorStatus("ATIVADO")) {//lista todas as mesas ativas
-            cboMesa.addItem(String.valueOf(mesa.getIdMesa()));
+            cbo_mesa.addItem(String.valueOf(mesa.getIdMesa()));
         }
     }
 
@@ -39,21 +34,21 @@ public class Tela_Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        pnl = new javax.swing.JPanel();
-        disable = new javax.swing.JLabel();
-        show = new javax.swing.JLabel();
-        cboMesa = new javax.swing.JComboBox();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        btnOkMesa = new javax.swing.JButton();
-        txtLogin = new javax.swing.JTextField();
-        txtSenha = new javax.swing.JPasswordField();
-        btnOkUsuario = new javax.swing.JButton();
-        lblSenha = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        lblLogin = new javax.swing.JLabel();
-        Fechar = new javax.swing.JButton();
-        wallp = new javax.swing.JLabel();
+        pbl_tela_login = new javax.swing.JPanel();
+        lbl_LogarComoUsuario = new javax.swing.JLabel();
+        lbl_Login = new javax.swing.JLabel();
+        txt_login = new javax.swing.JTextField();
+        lbl_Senha = new javax.swing.JLabel();
+        txt_senha = new javax.swing.JPasswordField();
+        lbl_icone_disable = new javax.swing.JLabel();
+        lbl_icone_show = new javax.swing.JLabel();
+        btn_logar_usuario = new javax.swing.JButton();
+        lbl_LogarComoMesa = new javax.swing.JLabel();
+        lbl_NumeroMesa = new javax.swing.JLabel();
+        cbo_mesa = new javax.swing.JComboBox();
+        btn_logar_mesa = new javax.swing.JButton();
+        btn_fechar = new javax.swing.JButton();
+        lbl_wallpaper = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,171 +65,170 @@ public class Tela_Login extends javax.swing.JFrame {
         setBackground(new java.awt.Color(51, 255, 102));
         setForeground(new java.awt.Color(204, 255, 51));
 
-        pnl.setLayout(null);
+        pbl_tela_login.setLayout(null);
 
-        disable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        disable.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\eyeclose.png"));
-        disable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        disable.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbl_LogarComoUsuario.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 18)); // NOI18N
+        lbl_LogarComoUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_LogarComoUsuario.setText("Logar como usuário");
+        pbl_tela_login.add(lbl_LogarComoUsuario);
+        lbl_LogarComoUsuario.setBounds(90, 200, 190, 21);
+
+        lbl_Login.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
+        lbl_Login.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_Login.setText("Login");
+        pbl_tela_login.add(lbl_Login);
+        lbl_Login.setBounds(40, 230, 40, 30);
+        pbl_tela_login.add(txt_login);
+        txt_login.setBounds(80, 230, 194, 30);
+
+        lbl_Senha.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
+        lbl_Senha.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_Senha.setText("Senha");
+        lbl_Senha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pbl_tela_login.add(lbl_Senha);
+        lbl_Senha.setBounds(40, 270, 40, 30);
+        pbl_tela_login.add(txt_senha);
+        txt_senha.setBounds(80, 270, 194, 30);
+
+        lbl_icone_disable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_icone_disable.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\eyeclose.png"));
+        lbl_icone_disable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbl_icone_disable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                disableMouseClicked(evt);
+                lbl_icone_disableMouseClicked(evt);
             }
         });
-        pnl.add(disable);
-        disable.setBounds(280, 270, 27, 30);
+        pbl_tela_login.add(lbl_icone_disable);
+        lbl_icone_disable.setBounds(280, 270, 27, 30);
 
-        show.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        show.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\eyeopen.png"));
-        show.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        show.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbl_icone_show.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_icone_show.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\eyeopen.png"));
+        lbl_icone_show.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbl_icone_show.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                showMouseClicked(evt);
+                lbl_icone_showMouseClicked(evt);
             }
         });
-        pnl.add(show);
-        show.setBounds(280, 270, 27, 30);
+        pbl_tela_login.add(lbl_icone_show);
+        lbl_icone_show.setBounds(280, 270, 27, 30);
 
-        cboMesa.setBackground(new java.awt.Color(255, 232, 142));
-        cboMesa.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 12)); // NOI18N
-        cboMesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar" }));
-        cboMesa.addActionListener(new java.awt.event.ActionListener() {
+        btn_logar_usuario.setBackground(new java.awt.Color(255, 227, 117));
+        btn_logar_usuario.setText("Ok");
+        btn_logar_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboMesaActionPerformed(evt);
+                btn_logar_usuarioActionPerformed(evt);
             }
         });
-        pnl.add(cboMesa);
-        cboMesa.setBounds(110, 380, 120, 30);
+        pbl_tela_login.add(btn_logar_usuario);
+        btn_logar_usuario.setBounds(150, 310, 45, 30);
 
-        jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("N°Mesa");
-        pnl.add(jLabel3);
-        jLabel3.setBounds(60, 390, 45, 15);
+        lbl_LogarComoMesa.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 18)); // NOI18N
+        lbl_LogarComoMesa.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_LogarComoMesa.setText("Logar como mesa");
+        pbl_tela_login.add(lbl_LogarComoMesa);
+        lbl_LogarComoMesa.setBounds(90, 350, 170, 21);
 
-        jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Logar como mesa");
-        pnl.add(jLabel4);
-        jLabel4.setBounds(90, 350, 170, 21);
+        lbl_NumeroMesa.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
+        lbl_NumeroMesa.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_NumeroMesa.setText("N°Mesa");
+        pbl_tela_login.add(lbl_NumeroMesa);
+        lbl_NumeroMesa.setBounds(60, 390, 47, 15);
 
-        btnOkMesa.setBackground(new java.awt.Color(255, 243, 198));
-        btnOkMesa.setText("Ok");
-        btnOkMesa.addActionListener(new java.awt.event.ActionListener() {
+        cbo_mesa.setBackground(new java.awt.Color(255, 232, 142));
+        cbo_mesa.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 12)); // NOI18N
+        cbo_mesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar" }));
+        cbo_mesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOkMesaActionPerformed(evt);
+                cbo_mesaActionPerformed(evt);
             }
         });
-        pnl.add(btnOkMesa);
-        btnOkMesa.setBounds(150, 420, 45, 30);
-        pnl.add(txtLogin);
-        txtLogin.setBounds(80, 230, 194, 30);
-        pnl.add(txtSenha);
-        txtSenha.setBounds(80, 270, 194, 30);
+        pbl_tela_login.add(cbo_mesa);
+        cbo_mesa.setBounds(110, 380, 120, 30);
 
-        btnOkUsuario.setBackground(new java.awt.Color(255, 227, 117));
-        btnOkUsuario.setText("Ok");
-        btnOkUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btn_logar_mesa.setBackground(new java.awt.Color(255, 243, 198));
+        btn_logar_mesa.setText("Ok");
+        btn_logar_mesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOkUsuarioActionPerformed(evt);
+                btn_logar_mesaActionPerformed(evt);
             }
         });
-        pnl.add(btnOkUsuario);
-        btnOkUsuario.setBounds(150, 310, 45, 30);
+        pbl_tela_login.add(btn_logar_mesa);
+        btn_logar_mesa.setBounds(150, 420, 45, 30);
 
-        lblSenha.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
-        lblSenha.setForeground(new java.awt.Color(255, 255, 255));
-        lblSenha.setText("Senha");
-        lblSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        pnl.add(lblSenha);
-        lblSenha.setBounds(40, 270, 40, 30);
-
-        jLabel9.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Logar como usuário");
-        pnl.add(jLabel9);
-        jLabel9.setBounds(90, 200, 190, 21);
-
-        lblLogin.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
-        lblLogin.setForeground(new java.awt.Color(255, 255, 255));
-        lblLogin.setText("Login");
-        pnl.add(lblLogin);
-        lblLogin.setBounds(40, 230, 40, 30);
-
-        Fechar.setBackground(new java.awt.Color(255, 0, 51));
-        Fechar.setText("X");
-        Fechar.addActionListener(new java.awt.event.ActionListener() {
+        btn_fechar.setBackground(new java.awt.Color(255, 0, 51));
+        btn_fechar.setText("X");
+        btn_fechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FecharActionPerformed(evt);
+                btn_fecharActionPerformed(evt);
             }
         });
-        pnl.add(Fechar);
-        Fechar.setBounds(750, 0, 35, 28);
+        pbl_tela_login.add(btn_fechar);
+        btn_fechar.setBounds(750, 0, 35, 28);
 
-        wallp.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\fundo.png"));
-        pnl.add(wallp);
-        wallp.setBounds(0, 0, 790, 560);
+        lbl_wallpaper.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\fundo.png"));
+        pbl_tela_login.add(lbl_wallpaper);
+        lbl_wallpaper.setBounds(0, 0, 790, 560);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnl, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pbl_tela_login, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pbl_tela_login, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         setSize(new java.awt.Dimension(787, 547));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void disableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disableMouseClicked
-        txtSenha.setEchoChar((char) 0);
-        disable.setVisible(false);
-        disable.setEnabled(false);
-        show.setEnabled(true);
-        show.setEnabled(true);
-        show.setEnabled(true);
+    private void lbl_icone_disableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_icone_disableMouseClicked
+        txt_senha.setEchoChar((char) 0);
+        lbl_icone_disable.setVisible(false);
+        lbl_icone_disable.setEnabled(false);
+        lbl_icone_show.setEnabled(true);
+        lbl_icone_show.setEnabled(true);
+        lbl_icone_show.setEnabled(true);
+        lbl_icone_disable.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\eyeopen.png"));
+    }//GEN-LAST:event_lbl_icone_disableMouseClicked
 
-        disable.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\eyeopen.png"));
-    }//GEN-LAST:event_disableMouseClicked
+    private void lbl_icone_showMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_icone_showMouseClicked
+        txt_senha.setEchoChar((char) 8226);
+        lbl_icone_disable.setVisible(true);
+        lbl_icone_disable.setEnabled(true);
+        lbl_icone_show.setEnabled(false);
+        lbl_icone_show.setEnabled(false);
+        lbl_icone_disable.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\eyeclose.png"));
+    }//GEN-LAST:event_lbl_icone_showMouseClicked
 
-    private void showMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showMouseClicked
-        txtSenha.setEchoChar((char) 8226);
-        disable.setVisible(true);
-        disable.setEnabled(true);
-        show.setEnabled(false);
-        show.setEnabled(false);
+    private void cbo_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_mesaActionPerformed
 
-        disable.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\eyeclose.png"));
-    }//GEN-LAST:event_showMouseClicked
+    }//GEN-LAST:event_cbo_mesaActionPerformed
 
-    private void cboMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMesaActionPerformed
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMesaActionPerformed
-
-    private void btnOkMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkMesaActionPerformed
+    private void btn_logar_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logar_mesaActionPerformed
         MesaDao mDao = new MesaDao();
-        if (cboMesa.getSelectedIndex() == 0) {
+        if (cbo_mesa.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Escolha uma mesa! ", "Mesa não definida!", JOptionPane.WARNING_MESSAGE);
         } else {
+
+            int numeroMesa = Integer.parseInt(cbo_mesa.getSelectedItem().toString());
             try {
-                int numeroMesa = Integer.parseInt(cboMesa.getSelectedItem().toString());
-                
-                if (mDao.checkMesa(numeroMesa)) {//Verifica se a mesa realmente existe e esta ativa
-                    
-                    TelaDeEspera telaDeEspera = new TelaDeEspera(numeroMesa);
-                    telaDeEspera.setVisible(true);
-                    
+                if (mDao.checkMesa(numeroMesa)) {
+                    Pedido pedido = new Pedido();
+                    pedido.getMesa().setIdMesa(numeroMesa);
+                    PedidoDao pedidoDao = new PedidoDao();
+                    pedidoDao.adicionarPedido(pedido);
+                    Tela_Menu telaMenu = null;
+                    telaMenu = new Tela_Menu(pedidoDao.numeroPedido, numeroMesa);
+
                     this.dispose();
                     
                     JOptionPane.showMessageDialog(null, String.format("Bem-Vindo!: [Mesa: %d]",
                             numeroMesa), "Bem-Vindo!", JOptionPane.INFORMATION_MESSAGE);
-
                 } else {
                     JOptionPane.showMessageDialog(null, "Mesa invalida! ", "Mesa não está em uso, ative o status da mesa!", JOptionPane.WARNING_MESSAGE);
                 }
@@ -244,11 +238,11 @@ public class Tela_Login extends javax.swing.JFrame {
             }
 
         }
-    }//GEN-LAST:event_btnOkMesaActionPerformed
+    }//GEN-LAST:event_btn_logar_mesaActionPerformed
 
-    private void btnOkUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkUsuarioActionPerformed
-        String nomeUsuario = txtLogin.getText();
-        String senha = txtSenha.getText();
+    private void btn_logar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logar_usuarioActionPerformed
+        String nomeUsuario = txt_login.getText();
+        String senha = txt_senha.getText();
         if (nomeUsuario.length() < 1) {
             JOptionPane.showMessageDialog(null, "Preencha o campo Login!");
         } else if (senha.length() < 1) {
@@ -280,12 +274,12 @@ public class Tela_Login extends javax.swing.JFrame {
             }
         }
 
-    }//GEN-LAST:event_btnOkUsuarioActionPerformed
+    }//GEN-LAST:event_btn_logar_usuarioActionPerformed
 
-    private void FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FecharActionPerformed
+    private void btn_fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_fecharActionPerformed
 
         System.exit(0);
-    }//GEN-LAST:event_FecharActionPerformed
+    }//GEN-LAST:event_btn_fecharActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -345,7 +339,6 @@ public class Tela_Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    //new TelaLogin().setVisible(true);
                     new Tela_Login().setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(Tela_Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -354,21 +347,21 @@ public class Tela_Login extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Fechar;
-    private javax.swing.JButton btnOkMesa;
-    private javax.swing.JButton btnOkUsuario;
-    public javax.swing.JComboBox cboMesa;
-    private javax.swing.JLabel disable;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton btn_fechar;
+    private javax.swing.JButton btn_logar_mesa;
+    private javax.swing.JButton btn_logar_usuario;
+    public javax.swing.JComboBox cbo_mesa;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblLogin;
-    private javax.swing.JLabel lblSenha;
-    private javax.swing.JPanel pnl;
-    private javax.swing.JLabel show;
-    private javax.swing.JTextField txtLogin;
-    private javax.swing.JPasswordField txtSenha;
-    private javax.swing.JLabel wallp;
+    private javax.swing.JLabel lbl_LogarComoMesa;
+    private javax.swing.JLabel lbl_LogarComoUsuario;
+    private javax.swing.JLabel lbl_Login;
+    private javax.swing.JLabel lbl_NumeroMesa;
+    private javax.swing.JLabel lbl_Senha;
+    private javax.swing.JLabel lbl_icone_disable;
+    private javax.swing.JLabel lbl_icone_show;
+    private javax.swing.JLabel lbl_wallpaper;
+    private javax.swing.JPanel pbl_tela_login;
+    private javax.swing.JTextField txt_login;
+    private javax.swing.JPasswordField txt_senha;
     // End of variables declaration//GEN-END:variables
 }

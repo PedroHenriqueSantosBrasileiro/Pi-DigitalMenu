@@ -1,7 +1,6 @@
 package br.digitalmenu.dao;
 
 import br.digitalmenu.connection.ConnectionFactory;
-import br.digitalmenu.model.Item;
 import br.digitalmenu.model.relatorio.ItemRelatorio;
 import br.digitalmenu.model.relatorio.PedidoRelatorio;
 import java.sql.Connection;
@@ -24,7 +23,7 @@ public class RelatorioDao {
         ResultSet rs = null;
 
         String sql
-                = "SELECT p.idproduto, p.nome, p.preco, sum(i.qtde) as qtdeTotal, sum(i.subtotal) as valorTotal "
+                = "SELECT p.idproduto, p.nome, p.preco, SUM(i.qtde) AS qtdeTotal, SUM(i.subtotal) AS valorTotal "
                 + "FROM item i "
                 + "INNER JOIN produto p "
                 + "ON i.id_produto = p.idproduto "
@@ -34,7 +33,6 @@ public class RelatorioDao {
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 item = new ItemRelatorio();
                 item.getProduto().setIdProduto(rs.getInt("p.idproduto"));
@@ -63,7 +61,7 @@ public class RelatorioDao {
         ResultSet rs = null;
 
         String sql
-                = "SELECT p.idproduto, p.nome, p.preco, sum(i.qtde) as qtdeTotal, sum(i.subtotal) as valorTotal "
+                = "SELECT p.idproduto, p.nome, p.preco, SUM(i.qtde) AS qtdeTotal, SUM(i.subtotal) AS valorTotal "
                 + "FROM item i "
                 + "INNER JOIN produto p "
                 + "ON i.id_produto = p.idproduto "
@@ -73,7 +71,6 @@ public class RelatorioDao {
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 item = new ItemRelatorio();
                 item.getProduto().setIdProduto(rs.getInt("p.idproduto"));
@@ -101,7 +98,7 @@ public class RelatorioDao {
         ResultSet rs = null;
 
         String sql
-                = "SELECT IFNULL(p.idproduto,)), p.nome, p.preco, sum(i.qtde) as qtdeTotal, sum(i.subtotal) as valorTotal "
+                = "SELECT IFNULL(p.idproduto,)), p.nome, p.preco, SUM(i.qtde) AS qtdeTotal, SUM(i.subtotal) AS valorTotal "
                 + "FROM item i "
                 + "INNER JOIN produto p "
                 + "ON i.id_produto = p.idproduto "
@@ -111,7 +108,6 @@ public class RelatorioDao {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idProduto);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 item = new ItemRelatorio();
                 item.getProduto().setIdProduto(rs.getInt("p.idproduto"));
@@ -137,13 +133,13 @@ public class RelatorioDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT COUNT(*) AS Total_Pedidos, SUM(total) AS Total_Vendido, AVG(total) as Media_Pedido FROM pedido";
+        String sql
+                = "SELECT COUNT(*) AS Total_Pedidos, SUM(total) AS Total_Vendido, AVG(total) AS Media_Pedido "
+                + "FROM pedido";
 
         try {
-
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 pedido = new PedidoRelatorio();
                 pedido.setQtdeDePedidos(rs.getInt("Total_Pedidos"));
@@ -158,7 +154,6 @@ public class RelatorioDao {
             connection.close();
         }
         return pedido;
-
     }
 
     public PedidoRelatorio totalPedidosPorMes(int mes) throws SQLException {
@@ -168,14 +163,15 @@ public class RelatorioDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT COUNT(*) AS Total_Pedidos, SUM(total) AS Total_Vendido, AVG(total) as Media_Pedido FROM pedido WHERE MONTH(data) = ?";
+        String sql
+                = "SELECT COUNT(*) AS Total_Pedidos, SUM(total) AS Total_Vendido, AVG(total) AS Media_Pedido "
+                + "FROM pedido "
+                + "WHERE MONTH(data) = ?";
 
         try {
-
             ps = connection.prepareStatement(sql);
             ps.setInt(1, mes);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 pedido = new PedidoRelatorio();
                 pedido.setQtdeDePedidos(rs.getInt("Total_Pedidos"));
@@ -200,15 +196,9 @@ public class RelatorioDao {
         ItemRelatorio itemRelatorio = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        /*
-        String sql = "SELECT p.idproduto, p.nome, p.preco, i.qtde, i.subtotal, TIME_FORMAT(horapedido, '%T') as horacomanda, i.status "
-                + "FROM item i "
-                + "INNER JOIN produto p "
-                + "ON p.idproduto = i.id_produto "
-                + "WHERE id_pedido = ? "
-                + "GROUP BY i.id_produto";
-         */
-        String sql = "SELECT p.nome, p.preco, SUM(i.qtde) as qtde, (p.preco*SUM(i.qtde)) as subtotal "
+
+        String sql
+                = "SELECT p.nome, p.preco, SUM(i.qtde) AS qtde, (p.preco*SUM(i.qtde)) AS subtotal "
                 + "FROM item i "
                 + "INNER JOIN produto p "
                 + "ON p.idproduto = i.id_produto "
@@ -219,7 +209,6 @@ public class RelatorioDao {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idPedido);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 itemRelatorio = new ItemRelatorio();
                 itemRelatorio.getProduto().setNome(rs.getString("p.nome"));
