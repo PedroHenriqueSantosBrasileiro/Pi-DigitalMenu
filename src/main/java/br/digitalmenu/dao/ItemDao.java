@@ -141,7 +141,6 @@ public class ItemDao {
 
     public void adicionaItemAdmin(Item item) throws SQLException {
 
-
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
@@ -151,16 +150,14 @@ public class ItemDao {
                 + "?, "
                 + "(SELECT idproduto FROM produto WHERE nome = ?), "
                 + "?, "
-                + "(SELECT (preco * ?) from produto where nome = ?)) "
-                + "WHERE nome = ?)"
-                + ")";
-
+                + "(SELECT (preco * ?) FROM produto WHERE nome = ?)"
+                + ") ";
 
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, item.getPedido().getIdPedido());
             ps.setString(2, item.getProduto().getNome());
-            ps.setInt(3, item.getQtde());
+                        ps.setInt(3, item.getQtde());
             ps.setInt(4, item.getQtde());
             ps.setString(5, item.getProduto().getNome());
             ps.execute();

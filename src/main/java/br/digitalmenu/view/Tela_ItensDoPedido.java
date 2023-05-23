@@ -317,11 +317,9 @@ public class Tela_ItensDoPedido extends Heuristica {
             if (confirma == JOptionPane.OK_OPTION) {
                 ItemDao itemDao = new ItemDao();
                 Item item = new Item();
-
                 item.getPedido().setIdPedido(numeroPedido);
                 item.getProduto().setNome(comboBox.getSelectedItem().toString());
                 item.setQtde(Integer.parseInt(digitarQtde.getText()));
-
                 itemDao.adicionaItemAdmin(item);
                 PedidoDao pedidoDao = new PedidoDao();
                 pedidoDao.atualizaPedidoItemAlterado(numeroPedido);
