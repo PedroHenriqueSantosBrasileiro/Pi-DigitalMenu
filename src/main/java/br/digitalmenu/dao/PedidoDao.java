@@ -25,7 +25,9 @@ public class PedidoDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "INSERT INTO pedido (idpedido, id_mesa, total, data, status) VALUES (default, ?, default, default, default)";
+        String sql
+                = "INSERT INTO pedido (idpedido, id_mesa, total, data, status) "
+                + "VALUES (DEFAULT, ?, DEFAULT, DEFAULT, DEFAULT)";
 
         try {
             ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -52,7 +54,10 @@ public class PedidoDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data,'%d/%m/%Y') as data, DATE_FORMAT(data,'%H:%i:%s') as horario, status FROM PEDIDO";
+        String sql
+                = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data,'%d/%m/%Y') AS data, "
+                + "DATE_FORMAT(data,'%H:%i:%s') AS horario, status "
+                + "FROM pedido";
 
         try {
             ps = connection.prepareStatement(sql);
@@ -84,13 +89,16 @@ public class PedidoDao {
         ResultSet rs = null;
         Pedido pedido = null;
 
-        String sql = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data,'%d/%m/%Y') as data, DATE_FORMAT(data,'%H:%i:%s') as horario, status FROM PEDIDO WHERE idpedido = ?";
+        String sql
+                = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data,'%d/%m/%Y') AS data, "
+                + "DATE_FORMAT(data,'%H:%i:%s') AS horario, status "
+                + "FROM pedido "
+                + "WHERE idpedido = ?";
 
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, p);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 pedido = new Pedido();
                 pedido.setIdPedido(rs.getInt("idpedido"));
@@ -118,7 +126,11 @@ public class PedidoDao {
         List<Pedido> pedidos = new ArrayList<>();
         Pedido pedido = null;
 
-        String sql = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data,'%d/%m/%Y') as data, DATE_FORMAT(data,'%H:%i:%s') as horario, status FROM PEDIDO WHERE id_mesa = ?";
+        String sql
+                = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data,'%d/%m/%Y') AS data, "
+                + "DATE_FORMAT(data,'%H:%i:%s') AS horario, status "
+                + "FROM pedido "
+                + "WHERE id_mesa = ?";
 
         try {
             ps = connection.prepareStatement(sql);
@@ -153,7 +165,11 @@ public class PedidoDao {
         List<Pedido> pedidos = new ArrayList<>();
         Pedido pedido = null;
 
-        String sql = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data,'%d/%m/%Y') as data, DATE_FORMAT(data,'%H:%i:%s') as horario, status FROM PEDIDO WHERE status = ?";
+        String sql
+                = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data,'%d/%m/%Y') AS data, "
+                + "DATE_FORMAT(data,'%H:%i:%s') AS horario, status "
+                + "FROM pedido "
+                + "WHERE status = ?";
 
         try {
             ps = connection.prepareStatement(sql);
@@ -187,15 +203,17 @@ public class PedidoDao {
         ResultSet rs = null;
         List<Pedido> listaDePedidos = new ArrayList<>();
 
-        String sql = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data, '%d/%m/%Y') as data, DATE_FORMAT(data,'%H:%i:%s') as horario, status "
+        String sql
+                = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data, '%d/%m/%Y') AS data, "
+                + "DATE_FORMAT(data,'%H:%i:%s') AS horario, status "
                 + "FROM pedido "
-                + "WHERE total BETWEEN ? and ? order by total";
+                + "WHERE total BETWEEN ? AND ? "
+                + "ORDER BY total";
         try {
             ps = connection.prepareStatement(sql);
             ps.setDouble(1, valorInicial);
             ps.setDouble(2, valorFinal);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Pedido p = new Pedido();
                 p.setIdPedido(rs.getInt("idpedido"));
@@ -223,7 +241,9 @@ public class PedidoDao {
         ResultSet rs = null;
         List<Pedido> listaDePedidos = new ArrayList<>();
 
-        String sql = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data, '%d/%m/%Y') as data, DATE_FORMAT(data,'%H:%i:%s') as horario, status "
+        String sql
+                = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data, '%d/%m/%Y') AS data, "
+                + "DATE_FORMAT(data,'%H:%i:%s') AS horario, status "
                 + "FROM pedido "
                 + "WHERE DATE_FORMAT(data, '%d/%m/%Y') = ?";
 
@@ -231,7 +251,6 @@ public class PedidoDao {
             ps = connection.prepareStatement(sql);
             ps.setString(1, data);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Pedido p = new Pedido();
                 p.setIdPedido(rs.getInt("idpedido"));
@@ -259,16 +278,17 @@ public class PedidoDao {
         ResultSet rs = null;
         List<Pedido> listaDePedidos = new ArrayList<>();
 
-        String sql = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data, '%d/%m/%Y') as data, DATE_FORMAT(data,'%H:%i:%s') as horario, status "
+        String sql
+                = "SELECT idpedido, id_mesa, total, DATE_FORMAT(data, '%d/%m/%Y') AS data, "
+                + "DATE_FORMAT(data,'%H:%i:%s') AS horario, status "
                 + "FROM pedido "
-                + "WHERE DATE_FORMAT(data, '%d/%m/%Y') >= ? and DATE_FORMAT(data, '%d/%m/%Y') <= ?";
+                + "WHERE DATE_FORMAT(data, '%d/%m/%Y') >= ? AND DATE_FORMAT(data, '%d/%m/%Y') <= ?";
 
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, dataInicial);
             ps.setString(2, dataFinal);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Pedido p = new Pedido();
                 p.setIdPedido(rs.getInt("idpedido"));
@@ -294,9 +314,11 @@ public class PedidoDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "UPDATE pedido p INNER JOIN item i "
+        String sql
+                = "UPDATE pedido p INNER JOIN item i "
                 + "ON p.idpedido = i.id_pedido "
-                + "SET p.total = (SELECT SUM(subtotal) FROM item WHERE id_pedido = ?), p.status = ? "
+                + "SET p.total = (SELECT SUM(subtotal) "
+                + "FROM item WHERE id_pedido = ?), p.status = ? "
                 + "WHERE p.idpedido = ? AND i.status = 'confirmado'";
         try {
             ps = connection.prepareStatement(sql);
@@ -312,14 +334,16 @@ public class PedidoDao {
         }
     }
 
-    //atualizar pedido depois de cancelar item
     public void atualizaPedidoItemAlterado(int numeroPedido) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "UPDATE pedido p INNER JOIN item i ON p.idpedido = i.id_pedido "
-                + "SET p.total = IFNULL((SELECT SUM(i.subtotal) FROM item i WHERE i.id_pedido = ? AND i.status = 'confirmado'), 0.0) "
+        String sql
+                = "UPDATE pedido p INNER JOIN item i ON p.idpedido = i.id_pedido "
+                + "SET p.total = IFNULL((SELECT SUM(i.subtotal) "
+                + "FROM item i "
+                + "WHERE i.id_pedido = ? AND i.status = 'confirmado'), 0.0) "
                 + "WHERE p.idpedido = ?";
         try {
             ps = connection.prepareStatement(sql);
@@ -339,7 +363,10 @@ public class PedidoDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "UPDATE pedido SET status = ? where idpedido = ?";
+        String sql
+                = "UPDATE pedido "
+                + "SET status = ? "
+                + "WHERE idpedido = ?";
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, status);
@@ -359,7 +386,9 @@ public class PedidoDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "DELETE FROM pedido WHERE idpedido = ?";
+        String sql
+                = "DELETE FROM pedido "
+                + "WHERE idpedido = ?";
 
         try {
             ps = connection.prepareStatement(sql);
@@ -375,33 +404,33 @@ public class PedidoDao {
     }
 
     public List<Pedido> vendasPorDia() {
-        ArrayList<Pedido> pedidos = new ArrayList<>();
-        String sql = "select sum(total) as Total, date_format(data,'%d/%m/%Y')  as Data from pedido group by date_format(data,'%d/%m/%Y')";
+
         connection = new ConnectionFactory().recuperarConexao();
+        ArrayList<Pedido> pedidos = new ArrayList<>();
         PreparedStatement psmt = null;
         ResultSet rst = null;
-        try {
 
+        String sql
+                = "SELECT sum(total) AS Total, DATE_FORMAT(data,'%d/%m/%Y') AS Data "
+                + "FROM pedido "
+                + "GROUP BY DATE_FORMAT(data,'%d/%m/%Y')";
+
+        try {
             psmt = connection.prepareStatement(sql);
             psmt.execute();
-
             rst = psmt.getResultSet();
-
             while (rst.next()) {
                 Pedido pedido = new Pedido();
                 pedido.setTotal(rst.getDouble(1));
                 pedido.setData(rst.getString(2));
                 pedidos.add(pedido);
             }
-
             rst.close();
             psmt.close();
             connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(PedidoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return pedidos;
     }
-
 }

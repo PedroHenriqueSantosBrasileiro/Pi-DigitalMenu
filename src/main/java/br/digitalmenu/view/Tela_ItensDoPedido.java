@@ -30,16 +30,15 @@ public class Tela_ItensDoPedido extends Heuristica {
     public Tela_ItensDoPedido(int numeroPedido, int numeroMesa, Tela_Listar_Pedido telaAnterior) throws SQLException {
         initComponents();
         this.numeroPedido = numeroPedido;
-        lbl_NumeroPedido.setText(String.valueOf(numeroPedido));
-        lbl_NumeroMesa.setText(String.valueOf(numeroMesa));
+        lbl_numero_pedido.setText(String.valueOf(numeroPedido));
+        lbl_numero_mesa.setText(String.valueOf(numeroMesa));
         jtItensDoPedido.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
         IniciaTabela(jtItensDoPedido);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable(numeroPedido);
-        lbl_ValorTotal.setText(String.valueOf(valorTotal));
+        lbl_valor_total.setText(String.valueOf(valorTotal));
         this.telaAnterior = telaAnterior;
     }
 
-    //teste
     public void metodoAntesDeFechar() throws SQLException {
         telaAnterior.metodoAoVoltar();
         this.dispose();
@@ -73,92 +72,84 @@ public class Tela_ItensDoPedido extends Heuristica {
         return cbox;
     }
 
-    /*
-        public void viewCategoria() throws SQLException {
-        CategoriaDao catDao = new CategoriaDao();
-        for (Categoria categoria : catDao.listarCategoria()) {
-            cboxCategoria.addItem(categoria.getNomeCategoria());
-        }
-    }
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         pnlGlobal = new javax.swing.JPanel();
-        pnlSuperior = new javax.swing.JPanel();
-        lbl_FotoMesa = new javax.swing.JLabel();
-        lbl_FotoPedido = new javax.swing.JLabel();
-        lbl_NumeroPedido = new javax.swing.JLabel();
-        lbl_NumeroMesa = new javax.swing.JLabel();
-        lbl_Total = new javax.swing.JLabel();
-        lbl_ValorTotal = new javax.swing.JLabel();
+        pnl_superior = new javax.swing.JPanel();
+        lbl_foto_pedido = new javax.swing.JLabel();
+        lbl_numero_pedido = new javax.swing.JLabel();
+        lbl_foto_mesa = new javax.swing.JLabel();
+        lbl_numero_mesa = new javax.swing.JLabel();
+        lbl_total = new javax.swing.JLabel();
+        lbl_valor_total = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtItensDoPedido = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        btn_cancelarItem = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_voltar = new javax.swing.JButton();
+        btn_cancelar_item = new javax.swing.JButton();
+        btn_adicionar_item = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Itens do pedido");
 
         pnlGlobal.setBackground(new java.awt.Color(255, 255, 255));
 
-        pnlSuperior.setBackground(new java.awt.Color(246, 242, 233));
-        pnlSuperior.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Itens do pedido", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
+        pnl_superior.setBackground(new java.awt.Color(246, 242, 233));
+        pnl_superior.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Itens do pedido", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
-        lbl_FotoMesa.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\mesa.png"));
-        lbl_FotoMesa.setText("jLabel1");
+        lbl_foto_pedido.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\pedido.png"));
+        lbl_foto_pedido.setText("jLabel1");
 
-        lbl_FotoPedido.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\pedido.png"));
-        lbl_FotoPedido.setText("jLabel1");
+        lbl_numero_pedido.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
+        lbl_numero_pedido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_numero_pedido.setText("jLabel1");
 
-        lbl_NumeroPedido.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
-        lbl_NumeroPedido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_NumeroPedido.setText("jLabel1");
+        lbl_foto_mesa.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\mesa.png"));
+        lbl_foto_mesa.setText("jLabel1");
 
-        lbl_NumeroMesa.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
-        lbl_NumeroMesa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_NumeroMesa.setText("jLabel1");
+        lbl_numero_mesa.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
+        lbl_numero_mesa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_numero_mesa.setText("jLabel1");
 
-        lbl_Total.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
-        lbl_Total.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_Total.setText("Total:");
+        lbl_total.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
+        lbl_total.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_total.setText("Total:");
 
-        lbl_ValorTotal.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
-        lbl_ValorTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_ValorTotal.setText("jLabel1");
+        lbl_valor_total.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
+        lbl_valor_total.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_valor_total.setText("jLabel1");
 
-        javax.swing.GroupLayout pnlSuperiorLayout = new javax.swing.GroupLayout(pnlSuperior);
-        pnlSuperior.setLayout(pnlSuperiorLayout);
-        pnlSuperiorLayout.setHorizontalGroup(
-            pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSuperiorLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_superiorLayout = new javax.swing.GroupLayout(pnl_superior);
+        pnl_superior.setLayout(pnl_superiorLayout);
+        pnl_superiorLayout.setHorizontalGroup(
+            pnl_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_superiorLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(lbl_FotoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_foto_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbl_NumeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_numero_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lbl_FotoMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_foto_mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_NumeroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_numero_mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbl_Total)
+                .addComponent(lbl_total)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_ValorTotal)
+                .addComponent(lbl_valor_total)
                 .addContainerGap())
         );
-        pnlSuperiorLayout.setVerticalGroup(
-            pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSuperiorLayout.createSequentialGroup()
+        pnl_superiorLayout.setVerticalGroup(
+            pnl_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_superiorLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbl_NumeroMesa, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-                    .addComponent(lbl_FotoMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_NumeroPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_FotoPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_Total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_ValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnl_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbl_numero_mesa, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                    .addComponent(lbl_foto_mesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_numero_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_foto_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_valor_total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -194,26 +185,26 @@ public class Tela_ItensDoPedido extends Heuristica {
             jtItensDoPedido.getColumnModel().getColumn(5).setPreferredWidth(20);
         }
 
-        jButton1.setBackground(new java.awt.Color(255, 243, 198));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jButton1.setText("Voltar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_voltar.setBackground(new java.awt.Color(255, 243, 198));
+        btn_voltar.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btn_voltar.setText("Voltar");
+        btn_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_voltarActionPerformed(evt);
             }
         });
 
-        btn_cancelarItem.setText("Cancelar Item");
-        btn_cancelarItem.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancelar_item.setText("Cancelar Item");
+        btn_cancelar_item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cancelarItemActionPerformed(evt);
+                btn_cancelar_itemActionPerformed(evt);
             }
         });
 
-        jButton2.setText("adicionar item");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_adicionar_item.setText("adicionar item");
+        btn_adicionar_item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_adicionar_itemActionPerformed(evt);
             }
         });
 
@@ -224,32 +215,32 @@ public class Tela_ItensDoPedido extends Heuristica {
             .addGroup(pnlGlobalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnl_superior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
                     .addGroup(pnlGlobalLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(pnlGlobalLayout.createSequentialGroup()
                 .addGap(83, 83, 83)
-                .addComponent(btn_cancelarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_cancelar_item, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
-                .addComponent(jButton2)
+                .addComponent(btn_adicionar_item)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlGlobalLayout.setVerticalGroup(
             pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGlobalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnl_superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_cancelarItem)
-                    .addComponent(jButton2))
+                    .addComponent(btn_cancelar_item)
+                    .addComponent(btn_adicionar_item))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
@@ -268,18 +259,16 @@ public class Tela_ItensDoPedido extends Heuristica {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_voltarActionPerformed
         try {
-            //        this.dispose();
             metodoAntesDeFechar();
         } catch (SQLException ex) {
             Logger.getLogger(Tela_ItensDoPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_voltarActionPerformed
 
-    private void btn_cancelarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarItemActionPerformed
-        // TODO add your handling code here:
+    private void btn_cancelar_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar_itemActionPerformed
         int confirma = JOptionPane.showConfirmDialog(null, "Deseja cancelar o item?");
 
         if (confirma == JOptionPane.YES_OPTION) {
@@ -306,15 +295,12 @@ public class Tela_ItensDoPedido extends Heuristica {
             JOptionPane.showMessageDialog(null, "Operação cancelada.", "ERRO", HEIGHT);
         }
 
-    }//GEN-LAST:event_btn_cancelarItemActionPerformed
+    }//GEN-LAST:event_btn_cancelar_itemActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        
+    private void btn_adicionar_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionar_itemActionPerformed
         JPanel panel = new JPanel();
         JComboBox comboBox = new JComboBox();
         try {
-            
             listarProdutoNoComboBox(comboBox);
             JLabel nome = new JLabel("Selecione o produto: ");
             JLabel lbl_qtde = new JLabel("Quantidade: ");
@@ -336,7 +322,7 @@ public class Tela_ItensDoPedido extends Heuristica {
                 item.getProduto().setNome(comboBox.getSelectedItem().toString());
                 item.setQtde(Integer.parseInt(digitarQtde.getText()));
 
-                itemDao.adicionaItenAdmin(item);
+                itemDao.adicionaItemAdmin(item);
                 PedidoDao pedidoDao = new PedidoDao();
                 pedidoDao.atualizaPedidoItemAlterado(numeroPedido);
                 listarJTable(numeroPedido);
@@ -344,42 +330,12 @@ public class Tela_ItensDoPedido extends Heuristica {
             } else {
                 JOptionPane.showMessageDialog(null, "CANCELADO");
             }
-
-            /*
-            JTextField valorInicial = new JTextField(10);
-            JTextField valorFinal = new JTextField(10);
-            JPanel myPanel = new JPanel();
-            myPanel.add(new JLabel("De:"));
-            myPanel.add(valorInicial);
-            myPanel.add(Box.createHorizontalStrut(10)); // a spacer
-            myPanel.add(new JLabel("Até:"));
-            myPanel.add(valorFinal);
-            
-            int result = JOptionPane.showConfirmDialog(null, myPanel,
-            "Informe a faixa de preço", JOptionPane.OK_CANCEL_OPTION);
-            if (result == JOptionPane.OK_OPTION) {
-            try {
-            double valor1 = Double.parseDouble(valorInicial.getText().replace(',', '.'));
-            double valor2 = Double.parseDouble(valorFinal.getText().replace(',', '.'));
-            listarJtablePorFaixaDePreco(valor1, valor2);
-            if (jtProduto.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Faixa de preço não encontrada.");
-            listarJTableProdutosAtivados();
-            }
-            } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            }
-            }
-             */
         } catch (SQLException ex) {
             Logger.getLogger(Tela_ItensDoPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_adicionar_itemActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -413,18 +369,18 @@ public class Tela_ItensDoPedido extends Heuristica {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_cancelarItem;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btn_adicionar_item;
+    private javax.swing.JButton btn_cancelar_item;
+    private javax.swing.JButton btn_voltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtItensDoPedido;
-    private javax.swing.JLabel lbl_FotoMesa;
-    private javax.swing.JLabel lbl_FotoPedido;
-    private javax.swing.JLabel lbl_NumeroMesa;
-    private javax.swing.JLabel lbl_NumeroPedido;
-    private javax.swing.JLabel lbl_Total;
-    private javax.swing.JLabel lbl_ValorTotal;
+    private javax.swing.JLabel lbl_foto_mesa;
+    private javax.swing.JLabel lbl_foto_pedido;
+    private javax.swing.JLabel lbl_numero_mesa;
+    private javax.swing.JLabel lbl_numero_pedido;
+    private javax.swing.JLabel lbl_total;
+    private javax.swing.JLabel lbl_valor_total;
     private javax.swing.JPanel pnlGlobal;
-    private javax.swing.JPanel pnlSuperior;
+    private javax.swing.JPanel pnl_superior;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,7 +18,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Component id="pnl_alterar_categoria" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -27,14 +27,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Component id="pnl_alterar_categoria" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="14" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="pnl_alterar_categoria">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e9" green="f2" red="f6" type="rgb"/>
@@ -57,9 +57,9 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lbl_Id" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbl_id" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="lbl_Id_Valor" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbl_id_valor" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="lbl_nome" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
@@ -96,9 +96,9 @@
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lbl_status_Atual1" min="-2" pref="200" max="-2" attributes="0"/>
+                                          <Component id="lbl_status_atual" min="-2" pref="200" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="comboBox_status_novo1" min="-2" pref="160" max="-2" attributes="0"/>
+                                          <Component id="comboBox_status_novo" min="-2" pref="160" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -125,11 +125,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lbl_Id" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="lbl_id" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="lbl_dados_novos" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="lbl_dados_atuais" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="lbl_Id_Valor" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="lbl_id_valor" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
@@ -162,8 +162,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lbl_status_Atual1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="comboBox_status_novo1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="lbl_status_atual" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="comboBox_status_novo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -173,7 +173,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lbl_Id">
+        <Component class="javax.swing.JLabel" name="lbl_id">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="1"/>
@@ -181,7 +181,7 @@
             <Property name="text" type="java.lang.String" value="ID : "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_Id_Valor">
+        <Component class="javax.swing.JLabel" name="lbl_id_valor">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="1"/>
@@ -275,7 +275,7 @@
             <Property name="text" type="java.lang.String" value="Status"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_status_Atual1">
+        <Component class="javax.swing.JLabel" name="lbl_status_atual">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>
@@ -284,7 +284,7 @@
             <Property name="text" type="java.lang.String" value="Status"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="comboBox_status_novo1">
+        <Component class="javax.swing.JComboBox" name="comboBox_status_novo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>

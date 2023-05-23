@@ -17,7 +17,9 @@ public class ItemDao {
 
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
-        String sql = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal, observacao) "
+
+        String sql
+                = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal, observacao) "
                 + "VALUES (?, ?, ?, ?, ?)";
 
         try {
@@ -45,7 +47,8 @@ public class ItemDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT i.iditem, p.idproduto, p.nome, p.preco, i.qtde, i.subtotal, TIME_FORMAT(horapedido, '%T') as horacomanda, i.status "
+        String sql
+                = "SELECT i.iditem, p.idproduto, p.nome, p.preco, i.qtde, i.subtotal, TIME_FORMAT(horapedido, '%T') AS horacomanda, i.status "
                 + "FROM item i "
                 + "INNER JOIN produto p "
                 + "ON p.idproduto = i.id_produto "
@@ -55,7 +58,6 @@ public class ItemDao {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idPedido);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 item = new Item();
                 item.setIdItem(rs.getInt("i.iditem"));
@@ -85,12 +87,15 @@ public class ItemDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id_pedido, id_produto, qtde, subtotal, horapedido, status FROM item WHERE id_pedido = ?";
+        String sql
+                = "SELECT id_pedido, id_produto, qtde, subtotal, horapedido, status "
+                + "FROM item "
+                + "WHERE id_pedido = ?";
+
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idPedido);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 item = new Item();
                 item.getPedido().setIdPedido(rs.getInt("id_pedido"));
@@ -115,7 +120,10 @@ public class ItemDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "UPDATE item SET status = 'cancelado' WHERE iditem = ?";
+        String sql
+                = "UPDATE item "
+                + "SET status = 'cancelado' "
+                + "WHERE iditem = ?";
 
         try {
             ps = connection.prepareStatement(sql);
@@ -130,21 +138,20 @@ public class ItemDao {
         }
     }
 
-    public void adicionaItenAdmin(Item item) throws SQLException {
+
+    public void adicionaItemAdmin(Item item) throws SQLException {
+
 
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        /* String sql = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal) "
-                + "VALUES ("
-                + "?, "
-                + "(SELECT idproduto FROM produto WHERE nome = ?), "
-                + "?, "
-                + "(SELECT (preco * ?) from produto where idproduto = ?))"  ;          
-              //  + ")";
-               // + "INNER JOIN produto p ON i.id_produto = p.idproduto";
-         */
         String sql = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal) VALUES (?, (SELECT idproduto FROM produto WHERE nome = ?), ?, (SELECT (preco * ?) from produto where nome = ?))";
+
+                + "(SELECT (preco * ?) "
+                + "FROM produto "
+                + "WHERE nome = ?)"
+                + ")";
+
 
         try {
             ps = connection.prepareStatement(sql);
@@ -160,7 +167,6 @@ public class ItemDao {
             ps.close();
             connection.close();
         }
-
     }
 
 }
