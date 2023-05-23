@@ -23,17 +23,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pnlGlobal" max="32767" attributes="0"/>
+          <Component id="pnl_resumo_pedido" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pnlGlobal" max="32767" attributes="0"/>
+          <Component id="pnl_resumo_pedido" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="pnlGlobal">
+    <Container class="javax.swing.JPanel" name="pnl_resumo_pedido">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -48,9 +48,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="pnlSuperior" max="32767" attributes="0"/>
-                          <Component id="pnlTabela" alignment="1" max="32767" attributes="0"/>
-                          <Component id="pnlInferior" alignment="1" max="32767" attributes="0"/>
+                          <Component id="pnl_superior" max="32767" attributes="0"/>
+                          <Component id="pnl_tabela" alignment="1" max="32767" attributes="0"/>
+                          <Component id="pnl_inferior" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -63,11 +63,11 @@
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlSuperior" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnl_superior" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-                      <Component id="pnlTabela" max="32767" attributes="0"/>
+                      <Component id="pnl_tabela" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlInferior" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnl_inferior" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -75,7 +75,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="pnlSuperior">
+        <Container class="javax.swing.JPanel" name="pnl_superior">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="27" green="32" red="b0" type="rgb"/>
@@ -89,15 +89,15 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="lbl_Pedido" pref="33" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Component id="lbl_NumeroPedido" pref="67" max="32767" attributes="0"/>
+                      <Component id="lbl_numero_pedido" pref="67" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="lbl_Mesa" pref="37" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Component id="lbl_NumeroMesa" pref="67" max="32767" attributes="0"/>
+                      <Component id="lbl_numero_mesa" pref="67" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
                       <Component id="lbl_Total" pref="167" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="lbl_ValorTotal" pref="149" max="32767" attributes="0"/>
+                      <Component id="lbl_valor_total" pref="149" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -107,12 +107,12 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbl_NumeroMesa" alignment="1" pref="65" max="32767" attributes="0"/>
+                          <Component id="lbl_numero_mesa" alignment="1" pref="65" max="32767" attributes="0"/>
                           <Component id="lbl_Mesa" alignment="1" pref="65" max="32767" attributes="0"/>
-                          <Component id="lbl_NumeroPedido" alignment="1" pref="65" max="32767" attributes="0"/>
+                          <Component id="lbl_numero_pedido" alignment="1" pref="65" max="32767" attributes="0"/>
                           <Component id="lbl_Pedido" alignment="1" min="-2" pref="64" max="-2" attributes="0"/>
                           <Component id="lbl_Total" alignment="1" pref="65" max="32767" attributes="0"/>
-                          <Component id="lbl_ValorTotal" alignment="1" pref="65" max="32767" attributes="0"/>
+                          <Component id="lbl_valor_total" alignment="1" pref="65" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
@@ -128,11 +128,29 @@
                 </Property>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="lbl_numero_pedido">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="sansserif" size="36" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="n&#xba;"/>
+              </Properties>
+            </Component>
             <Component class="javax.swing.JLabel" name="lbl_Mesa">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;\\src\\main\\java\\br\\digitalmenu\\images\\mesa.png&quot;)" type="code"/>
                 </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_numero_mesa">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="sansserif" size="36" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="n&#xba;"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_Total">
@@ -144,25 +162,7 @@
                 <Property name="text" type="java.lang.String" value="TOTAL:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_NumeroPedido">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="sansserif" size="36" style="1"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="n&#xba;"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbl_NumeroMesa">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="sansserif" size="36" style="1"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="n&#xba;"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbl_ValorTotal">
+            <Component class="javax.swing.JLabel" name="lbl_valor_total">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="sansserif" size="36" style="0"/>
@@ -173,7 +173,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="pnlTabela">
+        <Container class="javax.swing.JPanel" name="pnl_tabela">
 
           <Layout>
             <DimensionLayout dim="0">
@@ -264,7 +264,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="pnlInferior">
+        <Container class="javax.swing.JPanel" name="pnl_inferior">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="27" green="32" red="b0" type="rgb"/>
@@ -276,9 +276,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="262" max="-2" attributes="0"/>
-                      <Component id="btn_Encerrar" max="32767" attributes="0"/>
+                      <Component id="btn_encerrar_pedido" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_Voltar" pref="146" max="32767" attributes="0"/>
+                      <Component id="btn_voltar" pref="146" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -288,8 +288,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btn_Voltar" alignment="0" pref="75" max="32767" attributes="0"/>
-                          <Component id="btn_Encerrar" alignment="0" pref="75" max="32767" attributes="0"/>
+                          <Component id="btn_voltar" alignment="0" pref="75" max="32767" attributes="0"/>
+                          <Component id="btn_encerrar_pedido" alignment="0" pref="75" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -297,7 +297,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btn_Voltar">
+            <Component class="javax.swing.JButton" name="btn_voltar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="0"/>
@@ -305,10 +305,10 @@
                 <Property name="text" type="java.lang.String" value="Voltar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_VoltarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_voltarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_Encerrar">
+            <Component class="javax.swing.JButton" name="btn_encerrar_pedido">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="0"/>
@@ -316,7 +316,7 @@
                 <Property name="text" type="java.lang.String" value="Encerrar Pedido"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_EncerrarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_encerrar_pedidoActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

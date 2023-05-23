@@ -29,9 +29,7 @@ public abstract class Heuristica extends javax.swing.JFrame {
             componente.setBorder(bordaPadrao);
             return true;
         }
-
     }
-    
 
     public void IniciaTabela(JTable tabela) throws SQLException {
         //centraliza o Header
@@ -75,7 +73,8 @@ public abstract class Heuristica extends javax.swing.JFrame {
             texto.setEditable(false);
         }
     }
-        public void numerosApenas(JTextComponent texto, KeyEvent evt) {
+
+    public void numerosApenas(JTextComponent texto, KeyEvent evt) {
         char c = evt.getKeyChar();
         if (Character.isDigit(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
             texto.setEditable(true);
@@ -83,6 +82,5 @@ public abstract class Heuristica extends javax.swing.JFrame {
             texto.setEditable(false);
         }
     }
-
 
 }

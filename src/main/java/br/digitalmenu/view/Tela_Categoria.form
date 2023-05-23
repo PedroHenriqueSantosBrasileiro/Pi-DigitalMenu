@@ -26,22 +26,22 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pnlSuperior" max="32767" attributes="0"/>
-          <Component id="pnlInferior" max="32767" attributes="0"/>
+          <Component id="pnl_superior" max="32767" attributes="0"/>
+          <Component id="pnl_inferior" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="pnlSuperior" min="-2" max="-2" attributes="0"/>
+              <Component id="pnl_superior" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-              <Component id="pnlInferior" max="32767" attributes="0"/>
+              <Component id="pnl_inferior" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="pnlSuperior">
+    <Container class="javax.swing.JPanel" name="pnl_superior">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -54,11 +54,11 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jPanel5" max="32767" attributes="0"/>
+                      <Component id="pnl_filtros" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="pnlEsquerdo" pref="639" max="32767" attributes="0"/>
+                          <Component id="pnl_cadastra_categoria" pref="639" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="pnlDireito" pref="662" max="32767" attributes="0"/>
+                          <Component id="pnl_opcoes" pref="662" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
@@ -70,18 +70,18 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="pnlDireito" pref="263" max="32767" attributes="0"/>
-                      <Component id="pnlEsquerdo" pref="263" max="32767" attributes="0"/>
+                      <Component id="pnl_opcoes" pref="263" max="32767" attributes="0"/>
+                      <Component id="pnl_cadastra_categoria" pref="263" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnl_filtros" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="pnlEsquerdo">
+        <Container class="javax.swing.JPanel" name="pnl_cadastra_categoria">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e9" green="f2" red="f6" type="rgb"/>
@@ -105,11 +105,11 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="txt_Numero_IdCategoria" alignment="2" max="32767" attributes="0"/>
-                          <Component id="lbl_IdCategoria" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbl_NomeCategoria" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="txt_NomeCategoria" alignment="2" max="32767" attributes="0"/>
-                          <Component id="btn_Cadastrar" alignment="2" max="32767" attributes="0"/>
+                          <Component id="txt_numero_id_categoria" alignment="2" max="32767" attributes="0"/>
+                          <Component id="lbl_id_categoria" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_nome_categoria" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_nome_categoria" alignment="2" max="32767" attributes="0"/>
+                          <Component id="btn_cadastrar_categoria" alignment="2" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
                   </Group>
@@ -118,22 +118,22 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="lbl_IdCategoria" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_id_categoria" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txt_Numero_IdCategoria" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_numero_id_categoria" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lbl_NomeCategoria" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_nome_categoria" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txt_NomeCategoria" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_nome_categoria" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btn_Cadastrar" pref="0" max="32767" attributes="0"/>
+                      <Component id="btn_cadastrar_categoria" pref="0" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lbl_IdCategoria">
+            <Component class="javax.swing.JLabel" name="lbl_id_categoria">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="24" style="0"/>
@@ -141,7 +141,7 @@
                 <Property name="text" type="java.lang.String" value="ID da Categoria:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_Numero_IdCategoria">
+            <Component class="javax.swing.JTextField" name="txt_numero_id_categoria">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="0"/>
@@ -149,10 +149,10 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_Numero_IdCategoriaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_numero_id_categoriaActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_NomeCategoria">
+            <Component class="javax.swing.JLabel" name="lbl_nome_categoria">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="24" style="0"/>
@@ -160,7 +160,7 @@
                 <Property name="text" type="java.lang.String" value="Nome categoria:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_NomeCategoria">
+            <Component class="javax.swing.JTextField" name="txt_nome_categoria">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="24" style="0"/>
@@ -168,11 +168,11 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_NomeCategoriaActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_NomeCategoriaKeyPressed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_nome_categoriaActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_nome_categoriaKeyPressed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_Cadastrar">
+            <Component class="javax.swing.JButton" name="btn_cadastrar_categoria">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="c6" green="f3" red="ff" type="rgb"/>
@@ -183,12 +183,12 @@
                 <Property name="text" type="java.lang.String" value="Cadastrar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_CadastrarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cadastrar_categoriaActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="pnlDireito">
+        <Container class="javax.swing.JPanel" name="pnl_opcoes">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e9" green="f2" red="f6" type="rgb"/>
@@ -211,8 +211,8 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btn_Deletar" max="32767" attributes="0"/>
-                          <Component id="btn_Atualizar" pref="232" max="32767" attributes="0"/>
+                          <Component id="btn_deletar_categoria" max="32767" attributes="0"/>
+                          <Component id="btn_atualizar_categoria" pref="232" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
                   </Group>
@@ -222,16 +222,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btn_Atualizar" min="-2" pref="95" max="-2" attributes="0"/>
+                      <Component id="btn_atualizar_categoria" min="-2" pref="95" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btn_Deletar" min="-2" pref="95" max="-2" attributes="0"/>
+                      <Component id="btn_deletar_categoria" min="-2" pref="95" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btn_Atualizar">
+            <Component class="javax.swing.JButton" name="btn_atualizar_categoria">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="ff" red="cc" type="rgb"/>
@@ -242,10 +242,10 @@
                 <Property name="text" type="java.lang.String" value="Atualizar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_AtualizarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_atualizar_categoriaActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_Deletar">
+            <Component class="javax.swing.JButton" name="btn_deletar_categoria">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="ff" type="rgb"/>
@@ -256,12 +256,12 @@
                 <Property name="text" type="java.lang.String" value="Deletar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_DeletarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_deletar_categoriaActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel5">
+        <Container class="javax.swing.JPanel" name="pnl_filtros">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e9" green="f2" red="f6" type="rgb"/>
@@ -366,7 +366,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlInferior">
+    <Container class="javax.swing.JPanel" name="pnl_inferior">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>

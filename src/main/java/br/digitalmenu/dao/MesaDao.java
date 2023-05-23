@@ -20,8 +20,9 @@ public class MesaDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "INSERT INTO mesa (idmesa, status)"
-                + "VALUES (?, default)";
+        String sql
+                = "INSERT INTO mesa (idmesa, status) "
+                + "VALUES (?, DEFAULT)";
 
         try {
             ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -42,13 +43,15 @@ public class MesaDao {
         connection = new ConnectionFactory().recuperarConexao();
         ResultSet rs = null;
         List<Mesa> mesas = new ArrayList<>();
-        String sql = "SELECT * FROM MESA";
         PreparedStatement ps = null;
+
+        String sql 
+                = "SELECT idmesa, status "
+                + "FROM MESA";
 
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Mesa mesa = new Mesa();
                 mesa.setIdMesa(rs.getInt("IDMESA"));
@@ -70,14 +73,17 @@ public class MesaDao {
         connection = new ConnectionFactory().recuperarConexao();
         ResultSet rs = null;
         List<Mesa> mesas = new ArrayList<>();
-        String sql = "SELECT * FROM mesa WHERE status = ?";
         PreparedStatement ps = null;
+
+        String sql 
+                = "SELECT idmesa, status "
+                + "FROM mesa "
+                + "WHERE status = ?";
 
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, status);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Mesa mesa = new Mesa();
                 mesa.setIdMesa(rs.getInt("IDMESA"));
@@ -92,7 +98,6 @@ public class MesaDao {
             connection.close();
         }
         return mesas;
-
     }
 
     public Mesa listarMesaPorId(int numeroMesa) throws SQLException {
@@ -102,13 +107,15 @@ public class MesaDao {
         Mesa mesa = null;
         PreparedStatement ps = null;
 
-        String sql = "SELECT * FROM MESA WHERE idmesa = ?";
+        String sql 
+                = "SELECT idmesa, status "
+                + "FROM MESA "
+                + "WHERE idmesa = ?";
 
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, numeroMesa);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 mesa = new Mesa();
                 mesa.setIdMesa(rs.getInt("IDMESA"));
@@ -129,7 +136,9 @@ public class MesaDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "UPDATE mesa SET IDMESA = ?, STATUS = ?"
+        String sql
+                = "UPDATE mesa "
+                + "SET IDMESA = ?, STATUS = ? "
                 + "WHERE IDMESA = ?";
 
         try {
@@ -149,9 +158,13 @@ public class MesaDao {
     public void deletaMesa(int idMesa) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
-        String sql = "UPDATE mesa SET status = 'desativado' WHERE IDMESA = ?";
-
         PreparedStatement ps = null;
+
+        String sql 
+                = "UPDATE mesa "
+                + "SET status = 'desativado' "
+                + "WHERE IDMESA = ?";
+
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idMesa);
@@ -165,33 +178,29 @@ public class MesaDao {
         }
     }
 
-    public boolean checkMesa(int idMesa) throws SQLException {//obtem mesa pelo id da mesa
+    public boolean checkMesa(int idMesa) throws SQLException {
 
-        //Conecta ao banco de dados por meio da classe de conexão
         connection = new ConnectionFactory().recuperarConexao();
         ResultSet resultado = null;
         PreparedStatement ps = null;
         boolean check = false;
 
-        try {
-            // Comando SQL na base = tabela de usuario
-            String sql = "select * from mesa WHERE idMesa = ? AND STATUS = 'ATIVADO';";
+        String sql 
+                = "SELECT idmesa, status "
+                + "FROM mesa "
+                + "WHERE idmesa = ? AND status = 'ativado'";
 
+        try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idMesa);
-
             resultado = ps.executeQuery();
-
-            //Para cada item retornado no comando (SQL) faça...      
             if (resultado.next()) {
                 check = true;
             }
-
-        } catch (SQLException e) { //Caso dê alguma exceção
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
         } finally {
-            // Após terminar, fecha a conexão, stmt, rs
             resultado.close();
             ps.close();
             connection.close();

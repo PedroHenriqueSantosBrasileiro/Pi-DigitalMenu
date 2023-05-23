@@ -4,7 +4,7 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="mnuMesa">
+        <Menu class="javax.swing.JMenu" name="mnu_mesa">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mesa"/>
           </Properties>
@@ -19,7 +19,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="mnuCategoria">
+        <Menu class="javax.swing.JMenu" name="mnu_categoria">
           <Properties>
             <Property name="text" type="java.lang.String" value="Categoria"/>
           </Properties>
@@ -34,7 +34,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="mnuProduto">
+        <Menu class="javax.swing.JMenu" name="mnu_produto">
           <Properties>
             <Property name="text" type="java.lang.String" value="Produto"/>
           </Properties>
@@ -49,7 +49,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="mnuPedido">
+        <Menu class="javax.swing.JMenu" name="mnu_pedido">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pedido"/>
           </Properties>
@@ -116,7 +116,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="1" attributes="0">
               <Component id="pnlTopo" max="32767" attributes="0"/>
-              <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
+              <Component id="pnl_botoes" alignment="1" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -124,7 +124,7 @@
               <Group type="102" attributes="0">
                   <Component id="pnlTopo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanel1" max="32767" attributes="0"/>
+                  <Component id="pnl_botoes" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -142,11 +142,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblTipoAcesso" min="-2" pref="888" max="-2" attributes="0"/>
+                      <Component id="lbl_tipo_acesso" min="-2" pref="888" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblUsuario" alignment="1" min="-2" pref="253" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="1" min="-2" pref="64" max="-2" attributes="0"/>
+                          <Component id="lbl_usuario" alignment="1" min="-2" pref="253" max="-2" attributes="0"/>
+                          <Component id="lbl_foto_atendente" alignment="1" min="-2" pref="64" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -157,11 +157,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblTipoAcesso" min="-2" pref="81" max="-2" attributes="0"/>
+                          <Component id="lbl_tipo_acesso" min="-2" pref="81" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jLabel2" min="-2" pref="64" max="-2" attributes="0"/>
+                              <Component id="lbl_foto_atendente" min="-2" pref="64" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblUsuario" min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="lbl_usuario" min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -170,7 +170,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblTipoAcesso">
+            <Component class="javax.swing.JLabel" name="lbl_tipo_acesso">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="70" style="1"/>
@@ -182,7 +182,7 @@
                 <Property name="text" type="java.lang.String" value="tipoAcesso"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUsuario">
+            <Component class="javax.swing.JLabel" name="lbl_usuario">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="ff" red="0" type="rgb"/>
@@ -194,7 +194,7 @@
                 <Property name="text" type="java.lang.String" value="usuario"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="lbl_foto_atendente">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;\\src\\main\\java\\br\\digitalmenu\\images\\garcom.png&quot;)" type="code"/>
@@ -204,7 +204,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="pnl_botoes">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e9" green="f2" red="f6" type="rgb"/>
@@ -218,26 +218,26 @@
                       <EmptySpace min="-2" pref="317" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnAbrirPedidoJFRAME" pref="370" max="32767" attributes="0"/>
+                              <Component id="btn_abrir_pedido" pref="370" max="32767" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="btnProdutos" pref="370" max="32767" attributes="0"/>
+                              <Component id="btn_produtos" pref="370" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="btnListarPedidos" pref="370" max="32767" attributes="0"/>
+                              <Component id="btn_listar_pedidos" pref="370" max="32767" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="btnMesas" pref="370" max="32767" attributes="0"/>
+                              <Component id="btn_mesas" pref="370" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="337" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="598" max="-2" attributes="0"/>
-                      <Component id="btnMesas1" max="32767" attributes="0"/>
+                      <Component id="btn_sair" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="612" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="470" max="-2" attributes="0"/>
-                      <Component id="jLabel3" max="32767" attributes="0"/>
+                      <Component id="lbl_menu_atendente" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="488" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -246,26 +246,26 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_menu_atendente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnMesas" pref="161" max="32767" attributes="0"/>
-                          <Component id="btnListarPedidos" max="32767" attributes="0"/>
+                          <Component id="btn_mesas" pref="161" max="32767" attributes="0"/>
+                          <Component id="btn_listar_pedidos" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnAbrirPedidoJFRAME" pref="161" max="32767" attributes="0"/>
-                          <Component id="btnProdutos" max="32767" attributes="0"/>
+                          <Component id="btn_abrir_pedido" pref="161" max="32767" attributes="0"/>
+                          <Component id="btn_produtos" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-                      <Component id="btnMesas1" min="-2" pref="64" max="-2" attributes="0"/>
+                      <Component id="btn_sair" min="-2" pref="64" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnAbrirPedidoJFRAME">
+            <Component class="javax.swing.JButton" name="btn_abrir_pedido">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="27" green="32" red="b0" type="rgb"/>
@@ -282,10 +282,10 @@
                 <Property name="text" type="java.lang.String" value="Abrir pedido"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAbrirPedidoJFRAMEActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_abrir_pedidoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnListarPedidos">
+            <Component class="javax.swing.JButton" name="btn_listar_pedidos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="27" green="32" red="b0" type="rgb"/>
@@ -302,10 +302,10 @@
                 <Property name="text" type="java.lang.String" value="Pedidos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListarPedidosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_listar_pedidosActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnMesas">
+            <Component class="javax.swing.JButton" name="btn_mesas">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="27" green="32" red="b0" type="rgb"/>
@@ -322,10 +322,10 @@
                 <Property name="text" type="java.lang.String" value="Mesas"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMesasActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_mesasActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnProdutos">
+            <Component class="javax.swing.JButton" name="btn_produtos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="27" green="32" red="b0" type="rgb"/>
@@ -342,10 +342,10 @@
                 <Property name="text" type="java.lang.String" value="Produtos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProdutosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_produtosActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnMesas1">
+            <Component class="javax.swing.JButton" name="btn_sair">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="2c" green="0" red="ea" type="rgb"/>
@@ -359,10 +359,10 @@
                 <Property name="text" type="java.lang.String" value="Sair"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMesas1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_sairActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="lbl_menu_atendente">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Rounded MT Bold" size="48" style="1"/>

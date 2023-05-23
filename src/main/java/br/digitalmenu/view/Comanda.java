@@ -3,16 +3,11 @@ package br.digitalmenu.view;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-/**
- *
- * @author willi
- */
 public class Comanda extends javax.swing.JPanel {
 
-    
     public JTextArea getComanda() {
         return comanda;
-        
+
     }
 
     public void setComanda(JTextArea comanda) {
@@ -23,13 +18,13 @@ public class Comanda extends javax.swing.JPanel {
         return jScrollPane1;
     }
 
-    public void setjScrollPane1(JScrollPane jScrollPane1) {    
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
         this.jScrollPane1 = jScrollPane1;
     }
 
     public Comanda() {
         initComponents();
-        
+
     }
 
     /**
