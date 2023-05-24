@@ -69,13 +69,13 @@ public class ItemDao {
                 item.setHoraComanda(rs.getString("horacomanda"));
                 item.setStatus(rs.getString("i.status"));
                 listaItem.add(item);
-            }
+            } 
         } catch (SQLException ex) {
             throw ex;
         } finally {
             ps.close();
             rs.close();
-            connection.close();
+            connection.close();   
         }
         return listaItem;
     }
@@ -133,7 +133,7 @@ public class ItemDao {
             throw ex;
         } finally {
             ps.close();
-            //rs.close();
+//            rs.close();
             connection.close();
         }
     }

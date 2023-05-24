@@ -218,12 +218,8 @@ public class Tela_Login extends javax.swing.JFrame {
             int numeroMesa = Integer.parseInt(cbo_mesa.getSelectedItem().toString());
             try {
                 if (mDao.checkMesa(numeroMesa)) {
-                    Pedido pedido = new Pedido();
-                    pedido.getMesa().setIdMesa(numeroMesa);
-                    PedidoDao pedidoDao = new PedidoDao();
-                    pedidoDao.adicionarPedido(pedido);
-                    Tela_Menu telaMenu = null;
-                    telaMenu = new Tela_Menu(pedidoDao.numeroPedido, numeroMesa);
+                    TelaDeEspera telaDeEspera = new TelaDeEspera(numeroMesa);
+                    telaDeEspera.setVisible(true);
 
                     this.dispose();
                     

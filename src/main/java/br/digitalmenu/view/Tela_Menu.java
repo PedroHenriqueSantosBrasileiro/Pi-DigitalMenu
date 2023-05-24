@@ -11,6 +11,8 @@ import br.digitalmenu.model.relatorio.ItemRelatorio;
 import java.awt.TextArea;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -50,19 +52,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         pnl_LABELS_INDICES.setVisible(false);
     }
 
-    public Tela_Menu(int numeroPedido, int numeroMesa) throws SQLException {
-        initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.numeroPedido = numeroPedido;
-        this.numeroMesa = numeroMesa;
-        lbl_numero_pedido.setText("Pedido: " + String.valueOf(numeroPedido));
-        lbl_numero_mesa.setText(String.valueOf("Mesa: " + numeroMesa));
-        setTodos();
-        setCat(lblId, 1);
-        setFotos(1);
-        setPorCat(lblNomes, txtDescricoes, lblPrecos, lblId);
-        pnl_LABELS_INDICES.setVisible(false);
-    }
 
     public void setLblId() {
         lblId[0] = lbl_Id_1;
@@ -1595,7 +1584,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_tela_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnl_tela_menu, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(2006, 896));
@@ -1764,25 +1753,8 @@ public class Tela_Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Pedido vazio.");
         }
     }//GEN-LAST:event_btn_enviar_pedidoActionPerformed
-
-    private void lbl_carrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_carrinhoMouseReleased
-        try {
-            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this, foiAdm);
-            telaResumo.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-        }
-    }//GEN-LAST:event_lbl_carrinhoMouseReleased
-
-    private void lbl_icone_carrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_icone_carrinhoMouseReleased
-        try {
-            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this, foiAdm);
-            telaResumo.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-        }
-    }//GEN-LAST:event_lbl_icone_carrinhoMouseReleased
-
+        
+    
     private void lbl_EncerrarPedidoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_EncerrarPedidoMouseReleased
 
         int confirma = JOptionPane.showConfirmDialog(
@@ -1884,6 +1856,24 @@ public class Tela_Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um item.");
         }
     }//GEN-LAST:event_btn_remover_itemActionPerformed
+
+    private void lbl_carrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_carrinhoMouseReleased
+        try {
+            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this, foiAdm);
+            telaResumo.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_lbl_carrinhoMouseReleased
+
+    private void lbl_icone_carrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_icone_carrinhoMouseReleased
+        try {
+            Tela_ResumoPedido telaResumo = new Tela_ResumoPedido(numeroPedido, numeroMesa, this, foiAdm);
+            telaResumo.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_lbl_icone_carrinhoMouseReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

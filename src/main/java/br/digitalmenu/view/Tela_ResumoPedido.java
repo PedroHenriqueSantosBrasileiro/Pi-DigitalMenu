@@ -21,9 +21,6 @@ public class Tela_ResumoPedido extends Heuristica {
     public boolean foiAdm;
     private JFrame tela;
 
-    public Tela_ResumoPedido() {
-        initComponents();
-    }
 
     public Tela_ResumoPedido(int numeroPedido, int numeroMesa, JFrame tela, boolean foiAdm) throws SQLException {
         initComponents();
@@ -38,6 +35,7 @@ public class Tela_ResumoPedido extends Heuristica {
 
         IniciaTabela(jtResumo);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable(Integer.parseInt(lbl_numero_pedido.getText()));
+        
     }
 
     public void listarJTable(int numeroPedido) throws SQLException {
@@ -270,13 +268,7 @@ public class Tela_ResumoPedido extends Heuristica {
 
     private void btn_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_voltarActionPerformed
         this.dispose();
-        try {
-            new Tela_Menu(Integer.parseInt(lbl_numero_pedido.getText()), Integer.parseInt(lbl_numero_mesa.getText())).setVisible(true);
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-        }
-
+        
     }//GEN-LAST:event_btn_voltarActionPerformed
 
     private void btn_encerrar_pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_encerrar_pedidoActionPerformed
@@ -308,7 +300,7 @@ public class Tela_ResumoPedido extends Heuristica {
                 if (novoPedido == JOptionPane.YES_OPTION) {
                     pedido.getMesa().setIdMesa(numeroMesa);
                     pedidoDao.adicionarPedido(pedido);
-                    new Tela_Menu(pedidoDao.numeroPedido, numeroMesa).setVisible(true);
+                    new Tela_Menu(pedidoDao.numeroPedido, numeroMesa,true).setVisible(true);
                     this.tela.dispose();
                 } else {
 
@@ -350,7 +342,7 @@ public class Tela_ResumoPedido extends Heuristica {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_ResumoPedido().setVisible(true);
+                
             }
         });
     }
