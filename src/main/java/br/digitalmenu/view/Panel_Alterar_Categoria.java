@@ -1,22 +1,22 @@
 package br.digitalmenu.view;
 
-import br.digitalmenu.dao.CategoriaDao;
 import br.digitalmenu.model.Categoria;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 public class Panel_Alterar_Categoria extends javax.swing.JPanel {
-
+    
     public Categoria categoria;
-
+    
     public Panel_Alterar_Categoria(Categoria categoria) throws SQLException {
         initComponents();
         this.categoria = categoria;
         setDados();
-//        listarCategoriasComboBox();
     }
-
+    
     public void setDados() {
         lbl_id_valor.setText(String.valueOf(categoria.getIdCategoria()));
         lbl_id_atual.setText(String.valueOf(categoria.getIdCategoria()));
@@ -26,25 +26,30 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
         lbl_status_atual.setText(categoria.getStatus());
         comboBox_status_novo.setSelectedItem(categoria.getStatus());
     }
-
-//    public void listarCategoriasComboBox() throws SQLException{
-//        CategoriaDao catDao = new CategoriaDao();
-//        for (Categoria categoria : catDao.listarCategoria()){
-//            comboBox_status_novo1.addItem(categoria.getStatus());
-//        }
-//    }
+    
     public JComboBox<String> getComboBox_status_novo1() {
         return comboBox_status_novo;
     }
-
+    
     public JTextField getTxt_id_novo() {
         return txt_id_novo;
     }
-
+    
     public JTextField getTxt_nome_novo() {
         return txt_nome_novo;
     }
 
+    // CODE SMELL TEM NA CLASSE HEURISTICA
+    public void letrasApenas(JTextComponent texto, KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+            texto.setEditable(true);
+        } else {
+            texto.setEditable(false);
+        }
+    }
+
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -114,6 +119,11 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
         txt_nome_novo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nome_novoActionPerformed(evt);
+            }
+        });
+        txt_nome_novo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_nome_novoKeyPressed(evt);
             }
         });
 
@@ -253,6 +263,12 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
     private void txt_nome_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nome_novoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nome_novoActionPerformed
+
+    private void txt_nome_novoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nome_novoKeyPressed
+        // TODO add your handling code here:
+        letrasApenas(txt_nome_novo, evt);
+
+    }//GEN-LAST:event_txt_nome_novoKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
