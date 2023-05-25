@@ -1,6 +1,5 @@
 package br.digitalmenu.view;
 
-import br.digitalmenu.dao.CategoriaDao;
 import br.digitalmenu.model.Categoria;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
@@ -14,7 +13,6 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
         initComponents();
         this.categoria = categoria;
         setDados();
-//        listarCategoriasComboBox();
     }
 
     public void setDados() {
@@ -27,12 +25,6 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
         comboBox_status_novo.setSelectedItem(categoria.getStatus());
     }
 
-//    public void listarCategoriasComboBox() throws SQLException{
-//        CategoriaDao catDao = new CategoriaDao();
-//        for (Categoria categoria : catDao.listarCategoria()){
-//            comboBox_status_novo1.addItem(categoria.getStatus());
-//        }
-//    }
     public JComboBox<String> getComboBox_status_novo1() {
         return comboBox_status_novo;
     }
@@ -114,6 +106,11 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
         txt_nome_novo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nome_novoActionPerformed(evt);
+            }
+        });
+        txt_nome_novo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_nome_novoKeyPressed(evt);
             }
         });
 
@@ -253,6 +250,12 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
     private void txt_nome_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nome_novoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nome_novoActionPerformed
+
+    private void txt_nome_novoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nome_novoKeyPressed
+        // TODO add your handling code here:
+        //apenasLetras();
+
+    }//GEN-LAST:event_txt_nome_novoKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
