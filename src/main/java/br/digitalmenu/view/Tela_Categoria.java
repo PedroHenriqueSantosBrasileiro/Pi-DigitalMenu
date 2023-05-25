@@ -478,7 +478,7 @@ public class Tela_Categoria extends Heuristica {
             try {
                 listarJTablePorNome(palavraPesquisar);
                 if (jtCategoria.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "Palavra não encontrada.");
+                    JOptionPane.showMessageDialog(null, "Dados não encontrados.");
                     listarJTableTodosAtivos();
                 }
             } catch (Exception e) {
@@ -495,9 +495,18 @@ public class Tela_Categoria extends Heuristica {
         painel.add(txt_numeroId);
         int resultado = JOptionPane.showConfirmDialog(null, painel, "PESQUISA POR ID", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (resultado == JOptionPane.OK_OPTION) {
-            int idPesquisar = Integer.parseInt(txt_numeroId.getText());
             try {
+                int idPesquisar = Integer.parseInt(txt_numeroId.getText());
                 listarJTablePorId(idPesquisar);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Insira apenas números inteiros!", "Erro", HEIGHT);
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "Erro: identificador não cadastrado!");
+                try {
+                    listarJTableTodosAtivos();
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
+                }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
