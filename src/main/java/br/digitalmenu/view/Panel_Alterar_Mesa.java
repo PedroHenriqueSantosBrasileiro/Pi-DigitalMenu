@@ -1,10 +1,12 @@
 package br.digitalmenu.view;
 
 import br.digitalmenu.model.Mesa;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 public class Panel_Alterar_Mesa extends javax.swing.JPanel {
 
@@ -36,6 +38,16 @@ public class Panel_Alterar_Mesa extends javax.swing.JPanel {
 
     public JLabel getLbl_Id_Valor() {
         return lbl_id_valor;
+    }
+
+    //CODE SMELL, classe heuristica
+    public void numerosApenas(JTextComponent texto, KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c) || Character.isISOControl(c)) {
+            texto.setEditable(true);
+        } else {
+            texto.setEditable(false);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -73,6 +85,11 @@ public class Panel_Alterar_Mesa extends javax.swing.JPanel {
         txt_numero_novo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_numero_novoActionPerformed(evt);
+            }
+        });
+        txt_numero_novo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_numero_novoKeyPressed(evt);
             }
         });
 
@@ -211,6 +228,11 @@ public class Panel_Alterar_Mesa extends javax.swing.JPanel {
     private void comboBox_status_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_status_novoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBox_status_novoActionPerformed
+
+    private void txt_numero_novoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_numero_novoKeyPressed
+        // TODO add your handling code here:
+        numerosApenas(txt_numero_novo, evt);
+    }//GEN-LAST:event_txt_numero_novoKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

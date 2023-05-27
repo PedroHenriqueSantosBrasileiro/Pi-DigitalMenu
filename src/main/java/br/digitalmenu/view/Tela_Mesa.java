@@ -65,6 +65,30 @@ public class Tela_Mesa extends Heuristica {
         txt_numero_mesa.setText("");
     }
 
+    public void atualizarMesa() {
+        try {
+            MesaDao mesaDao = new MesaDao();
+            Mesa mesa = mesaDao.listarMesaPorId(Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()));
+            Panel_Alterar_Mesa panel = new Panel_Alterar_Mesa(mesa);
+            JOptionPane.showConfirmDialog(null, panel, "ATUALIZAR MESA", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+            mesa.setIdMesa(Integer.parseInt(panel.getTxt_numero_Novo().getText()));
+            mesa.setStatus(panel.getComboBox_status_novo().getSelectedItem().toString());
+            mesaDao.updateMesa(mesa, Integer.parseInt(panel.getLbl_Id_Valor().getText()));
+            JOptionPane.showMessageDialog(this,
+                    "Mesa atualizada com sucesso!");
+            listarJtablePorStatus("Ativado");
+            limparTxtFields();
+        } catch (SQLIntegrityConstraintViolationException ex) {
+            JOptionPane.showMessageDialog(null, "Mesa já cadastrada!", "ERRO", HEIGHT);
+            atualizarMesa();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Número inválido, use número inteiro de até 10 dígitos!", "ERRO", HEIGHT);
+            atualizarMesa();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -340,7 +364,7 @@ public class Tela_Mesa extends Heuristica {
 
     private void btn_cadastrar_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrar_mesaActionPerformed
 
-        if (verificarSeCampoEstaEmBranco(txt_numero_mesa, "Numer da mesa")) {
+        if (verificarSeCampoEstaEmBranco(txt_numero_mesa, "Número da mesa") && txt_numero_mesa.getText().length() <= 10) {
             Mesa mesa = new Mesa();
             mesa.setIdMesa(Integer.parseInt(txt_numero_mesa.getText()));
             MesaDao mesaDAO = new MesaDao();
@@ -349,8 +373,8 @@ public class Tela_Mesa extends Heuristica {
                 if (criouMesa == true) {
                     JOptionPane.showMessageDialog(
                             null,
-                            "Mesa criada com sucesso!\n"
-                            + "Id/Número: "
+                            "Mesa cadastrada com sucesso!\n"
+                            + "Nº mesa: "
                             + mesa.getIdMesa()
                     );
                     this.txt_numero_mesa.setText("");
@@ -358,11 +382,16 @@ public class Tela_Mesa extends Heuristica {
                 limparTxtFields();
                 listarJtablePorStatus("Ativado");
             } catch (SQLIntegrityConstraintViolationException ex) {
-                JOptionPane.showMessageDialog(null, "Número de mesa já existente!", "ERRO", HEIGHT);
+                JOptionPane.showMessageDialog(null, "Mesa já cadastrada!", "ERRO", HEIGHT);
+                txt_numero_mesa.setText("");
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Número inválido, use número inteiro de até 10 dígitos!", "ERRO", HEIGHT);
                 txt_numero_mesa.setText("");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Número inválido, use número inteiro de até 10 dígitos!");
         }
 
     }//GEN-LAST:event_btn_cadastrar_mesaActionPerformed
@@ -478,16 +507,24 @@ public class Tela_Mesa extends Heuristica {
                 Mesa mesa = mesaDao.listarMesaPorId(Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()));
                 Panel_Alterar_Mesa panel = new Panel_Alterar_Mesa(mesa);
                 int resultado = JOptionPane.showConfirmDialog(null, panel, "ATUALIZAR MESA", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-                if (resultado == JOptionPane.OK_OPTION) {
+                if (resultado == JOptionPane.OK_OPTION && panel.getTxt_numero_Novo().getText().length() <= 10) {
+                    mesa.setIdMesa(Integer.valueOf(panel.getTxt_numero_Novo().getText()));
                     mesa.setIdMesa(Integer.parseInt(panel.getTxt_numero_Novo().getText()));
                     mesa.setStatus(panel.getComboBox_status_novo().getSelectedItem().toString());
                     mesaDao.updateMesa(mesa, Integer.parseInt(panel.getLbl_Id_Valor().getText()));
+                    JOptionPane.showMessageDialog(this,
+                            "Mesa atualizada com sucesso!");
                     listarJtablePorStatus("Ativado");
                     limparTxtFields();
                 } else {
-                    JOptionPane.showMessageDialog(null, "CANCELADO");
-
+                    JOptionPane.showMessageDialog(null, "Número inválido, use número inteiro de até 10 dígitos!");
                 }
+            } catch (SQLIntegrityConstraintViolationException ex) {
+                JOptionPane.showMessageDialog(null, "Mesa já cadastrada!", "ERRO", HEIGHT);
+                atualizarMesa();
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Número inválido, use número inteiro de até 10 dígitos!", "ERRO", HEIGHT);
+                atualizarMesa();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }

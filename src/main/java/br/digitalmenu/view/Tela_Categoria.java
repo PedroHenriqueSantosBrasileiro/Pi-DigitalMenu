@@ -597,7 +597,7 @@ public class Tela_Categoria extends Heuristica {
                 catDao.criarCategoria(categoria);
                 listarJTableTodosAtivos();
                 JOptionPane.showMessageDialog(this,
-                        "Categoria adicionada com sucesso!\nCategoria: "
+                        "Categoria cadastrada com sucesso!\nCategoria: "
                         + categoria.getNomeCategoria());
                 limparTxtFields();
             } catch (SQLIntegrityConstraintViolationException ex) {
