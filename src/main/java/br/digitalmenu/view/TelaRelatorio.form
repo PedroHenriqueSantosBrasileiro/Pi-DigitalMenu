@@ -113,17 +113,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-
                       <Component id="btn_total_pedidos" min="-2" pref="249" max="-2" attributes="0"/>
-
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btn_top_qtde_vendida" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btn_top_faturamento_por_produto" min="-2" pref="385" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-
                       <Component id="btn_total_pedidos_por_mes" min="-2" pref="286" max="-2" attributes="0"/>
-
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -133,12 +129,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-
                           <Component id="btn_total_pedidos" pref="100" max="32767" attributes="0"/>
                           <Component id="btn_top_qtde_vendida" alignment="0" max="32767" attributes="0"/>
                           <Component id="btn_top_faturamento_por_produto" alignment="0" max="32767" attributes="0"/>
                           <Component id="btn_total_pedidos_por_mes" alignment="0" max="32767" attributes="0"/>
-
                       </Group>
                       <EmptySpace pref="26" max="32767" attributes="0"/>
                   </Group>
@@ -146,9 +140,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-
             <Component class="javax.swing.JButton" name="btn_total_pedidos">
-
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="24" style="0"/>
@@ -156,9 +148,7 @@
                 <Property name="text" type="java.lang.String" value="Total Pedidos"/>
               </Properties>
               <Events>
-
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_total_pedidosActionPerformed"/>       
-
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_total_pedidosActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_top_qtde_vendida">
@@ -183,9 +173,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_top_faturamento_por_produtoActionPerformed"/>
               </Events>
             </Component>
-
             <Component class="javax.swing.JButton" name="btn_total_pedidos_por_mes">
-
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="24" style="0"/>
@@ -193,9 +181,7 @@
                 <Property name="text" type="java.lang.String" value="Total Pedidos por M&#xea;s"/>
               </Properties>
               <Events>
-
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_total_pedidos_por_mesActionPerformed"/>               
-
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_total_pedidos_por_mesActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

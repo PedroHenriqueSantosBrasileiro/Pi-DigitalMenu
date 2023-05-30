@@ -230,7 +230,6 @@ public class Panel_Alterar_Mesa extends javax.swing.JPanel {
     }//GEN-LAST:event_comboBox_status_novoActionPerformed
 
     private void txt_numero_novoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_numero_novoKeyPressed
-        // TODO add your handling code here:
         numerosApenas(txt_numero_novo, evt);
     }//GEN-LAST:event_txt_numero_novoKeyPressed
 

@@ -11,8 +11,6 @@ import br.digitalmenu.model.relatorio.ItemRelatorio;
 import java.awt.TextArea;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -51,7 +49,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         setPorCat(lblNomes, txtDescricoes, lblPrecos, lblId);
         pnl_LABELS_INDICES.setVisible(false);
     }
-
 
     public void setLblId() {
         lblId[0] = lbl_Id_1;
@@ -1753,8 +1750,8 @@ public class Tela_Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Pedido vazio.");
         }
     }//GEN-LAST:event_btn_enviar_pedidoActionPerformed
-        
-    
+
+
     private void lbl_EncerrarPedidoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_EncerrarPedidoMouseReleased
 
         int confirma = JOptionPane.showConfirmDialog(
@@ -1783,7 +1780,6 @@ public class Tela_Menu extends javax.swing.JFrame {
                 );
                 if (novoPedido == JOptionPane.YES_OPTION) {
                     // enviar para a nova tela de ver menu e abir pedido, msm assim essa ta com erro.
-
                     pedido.getMesa().setIdMesa(numeroMesa);
                     pedidoDao.adicionarPedido(pedido);
                     this.dispose();
