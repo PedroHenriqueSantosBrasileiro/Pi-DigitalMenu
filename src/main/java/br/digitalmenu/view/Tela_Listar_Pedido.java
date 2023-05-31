@@ -190,6 +190,7 @@ public class Tela_Listar_Pedido extends Heuristica {
         btn_filtro_dia = new javax.swing.JButton();
         btn_filtro_periodo = new javax.swing.JButton();
         btn_filtro_todos = new javax.swing.JButton();
+        btn_AbrirPedido = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtPedido = new javax.swing.JTable();
 
@@ -332,17 +333,17 @@ public class Tela_Listar_Pedido extends Heuristica {
                 .addGap(364, 364, 364)
                 .addComponent(btn_filtro_id, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_filtro_mesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_filtro_mesa, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_filtro_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_filtro_status, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_filtro_total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_filtro_total, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_filtro_dia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_filtro_dia, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_filtro_periodo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_filtro_periodo, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_filtro_todos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_filtro_todos, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                 .addGap(372, 372, 372))
         );
         pnl_filtrosLayout.setVerticalGroup(
@@ -356,6 +357,15 @@ public class Tela_Listar_Pedido extends Heuristica {
                 .addComponent(btn_filtro_periodo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(btn_filtro_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        btn_AbrirPedido.setBackground(new java.awt.Color(255, 243, 198));
+        btn_AbrirPedido.setFont(new java.awt.Font("Segoe UI", 0, 26)); // NOI18N
+        btn_AbrirPedido.setText("Abrir Pedido");
+        btn_AbrirPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AbrirPedidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_superiorLayout = new javax.swing.GroupLayout(pnl_superior);
         pnl_superior.setLayout(pnl_superiorLayout);
@@ -386,9 +396,15 @@ public class Tela_Listar_Pedido extends Heuristica {
                 .addGroup(pnl_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_ver_itens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtformated_data, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
-                .addGap(99, 99, 99)
-                .addComponent(btn_mudar_status)
-                .addGap(156, 156, 156))
+                .addGroup(pnl_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_superiorLayout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(btn_mudar_status)
+                        .addGap(156, 156, 156))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_superiorLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_AbrirPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(127, 127, 127))))
             .addGroup(pnl_superiorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnl_filtros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -413,7 +429,9 @@ public class Tela_Listar_Pedido extends Heuristica {
                     .addComponent(txt_status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_total)
                     .addComponent(txtformated_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_ver_itens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnl_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_ver_itens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_AbrirPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(3, 3, 3)
                 .addComponent(pnl_filtros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -712,6 +730,17 @@ public class Tela_Listar_Pedido extends Heuristica {
         }
     }//GEN-LAST:event_btn_mudar_statusActionPerformed
 
+    private void btn_AbrirPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AbrirPedidoActionPerformed
+        try {
+            Tela_Menu telaMenu = new Tela_Menu(Integer.parseInt(txt_id_pedido.getText()),Integer.parseInt(txt_mesa.getText()),true);
+            this.dispose();
+            telaMenu.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tela_Listar_Pedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btn_AbrirPedidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -755,6 +784,7 @@ public class Tela_Listar_Pedido extends Heuristica {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_AbrirPedido;
     private javax.swing.JButton btn_filtro_dia;
     private javax.swing.JButton btn_filtro_id;
     private javax.swing.JButton btn_filtro_mesa;
