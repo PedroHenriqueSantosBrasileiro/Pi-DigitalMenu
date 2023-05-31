@@ -38,6 +38,9 @@ public class Tela_Menu extends javax.swing.JFrame {
     public Tela_Menu(int numeroPedido, int numeroMesa, boolean foiAdm) throws SQLException {
         initComponents();
         this.foiAdm = foiAdm;
+        if (foiAdm == false) {
+            btn_Sair.setVisible(false);
+        }
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.numeroPedido = numeroPedido;
         this.numeroMesa = numeroMesa;
@@ -465,6 +468,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         lbl_Id_24 = new javax.swing.JLabel();
         lbl_Id_25 = new javax.swing.JLabel();
         btn_pre_conta = new javax.swing.JButton();
+        btn_Sair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(202, 126, 40));
@@ -1589,42 +1593,58 @@ public class Tela_Menu extends javax.swing.JFrame {
             }
         });
 
+        btn_Sair.setBackground(new java.awt.Color(255, 0, 0));
+        btn_Sair.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
+        btn_Sair.setText("Sair");
+        btn_Sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_resumoLayout = new javax.swing.GroupLayout(pnl_resumo);
         pnl_resumo.setLayout(pnl_resumoLayout);
         pnl_resumoLayout.setHorizontalGroup(
             pnl_resumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lbl_ResumoDoPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(pnl_resumoLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(btn_pre_conta, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnl_LABELS_INDICES, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_resumoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_remover_item, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(btn_enviar_pedido))
+            .addGroup(pnl_resumoLayout.createSequentialGroup()
+                .addContainerGap(372, Short.MAX_VALUE)
+                .addComponent(pnl_LABELS_INDICES, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
+            .addGroup(pnl_resumoLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(btn_pre_conta, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_Sair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnl_resumoLayout.setVerticalGroup(
             pnl_resumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_resumoLayout.createSequentialGroup()
-                .addComponent(lbl_ResumoDoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(pnl_resumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_enviar_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-                    .addComponent(btn_remover_item, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnl_resumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_resumoLayout.createSequentialGroup()
+                        .addComponent(lbl_ResumoDoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addGroup(pnl_resumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_enviar_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                            .addComponent(btn_remover_item, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_resumoLayout.createSequentialGroup()
-                        .addComponent(btn_pre_conta, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_resumoLayout.createSequentialGroup()
-                        .addComponent(pnl_LABELS_INDICES, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(pnl_resumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_pre_conta, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)))
+                .addComponent(pnl_LABELS_INDICES, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout pnl_tela_menuLayout = new javax.swing.GroupLayout(pnl_tela_menu);
@@ -1945,6 +1965,10 @@ public class Tela_Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lbl_icone_carrinhoMouseReleased
 
+    private void btn_SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_SairActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1986,6 +2010,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Sair;
     private javax.swing.JButton btn_adicionaCarrinho_1;
     private javax.swing.JButton btn_adicionaCarrinho_2;
     private javax.swing.JButton btn_adicionaCarrinho_3;

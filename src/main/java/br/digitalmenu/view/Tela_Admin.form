@@ -362,11 +362,9 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-
                               <Component id="lbl_icone" min="-2" pref="64" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="lbl_Usuario" min="-2" pref="36" max="-2" attributes="0"/>
-
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="lbl_TipoAcesso" min="-2" pref="81" max="-2" attributes="0"/>
@@ -431,9 +429,7 @@
                               <EmptySpace min="-2" pref="356" max="-2" attributes="0"/>
                               <Component id="btn_gerar_relatorio" pref="0" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-
                               <Component id="btn_abrir_pedido" min="-2" pref="270" max="-2" attributes="0"/>
-
                           </Group>
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Component id="lbl_ProdutosMaisVendidos" pref="990" max="32767" attributes="0"/>
@@ -451,10 +447,8 @@
                       <Component id="jScrollPane1" pref="409" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-
                           <Component id="btn_gerar_relatorio" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                           <Component id="btn_abrir_pedido" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -462,10 +456,8 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-
             <Component class="javax.swing.JLabel" name="lbl_ProdutosMaisVendidos">
               <Properties>
-
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="48" style="1"/>
                 </Property>

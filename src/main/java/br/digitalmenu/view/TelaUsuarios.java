@@ -23,7 +23,6 @@ public class TelaUsuarios extends Heuristica {
     public void ListaTabela() throws SQLException {
         DefaultTableModel model = (DefaultTableModel) tblListaUsuarios.getModel();
         model.setNumRows(0);
-
         UsuarioDAO usuarios = new UsuarioDAO();
         for (Usuario UsuarioLocal : usuarios.listaTodosOsUsuarios()) {
             model.addRow(new Object[]{
@@ -146,7 +145,6 @@ public class TelaUsuarios extends Heuristica {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Usuários");
-        setPreferredSize(new java.awt.Dimension(1360, 859));
 
         pnl_global_telaUsuarios.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -170,7 +168,7 @@ public class TelaUsuarios extends Heuristica {
 
         btn_adicionar.setBackground(new java.awt.Color(255, 243, 198));
         btn_adicionar.setFont(new java.awt.Font("Segoe UI", 0, 26)); // NOI18N
-        btn_adicionar.setText("Adicionar");
+        btn_adicionar.setText("Cadastrar");
         btn_adicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_adicionarActionPerformed(evt);
@@ -455,7 +453,7 @@ public class TelaUsuarios extends Heuristica {
                     userDAO.buscaPorID((Integer.parseInt(tblListaUsuarios.getValueAt(tblListaUsuarios.getSelectedRow(), 0).toString())), user);
                     user.setStatus("DESATIVADO");//######DESATIVA O USUARIO#####
                     userDAO.atualizaUsuario(user);//chama o metodo de atualizacao
-                    JOptionPane.showMessageDialog(null, "Usuário desativado com sucesso!");
+                    JOptionPane.showMessageDialog(null, "Usuário excluído com sucesso!");
                     Limpar();
                     ListaTabela();
 
@@ -490,7 +488,6 @@ public class TelaUsuarios extends Heuristica {
                     if (rdoBTN_admin.isSelected()) {
                         tipoAcesso = "administrador";
                     }
-
                     if (rdoBTN_atendente.isSelected()) {
                         tipoAcesso = "atendente";
                     }
@@ -509,8 +506,8 @@ public class TelaUsuarios extends Heuristica {
                     ListaTabela();
                 }
             }
-
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Dados inválidos!");
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btn_adicionarActionPerformed

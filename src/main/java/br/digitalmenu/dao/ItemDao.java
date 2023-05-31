@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ItemDao {
 
@@ -69,13 +71,13 @@ public class ItemDao {
                 item.setHoraComanda(rs.getString("horacomanda"));
                 item.setStatus(rs.getString("i.status"));
                 listaItem.add(item);
-            } 
+            }
         } catch (SQLException ex) {
             throw ex;
         } finally {
             ps.close();
             rs.close();
-            connection.close();   
+            connection.close();
         }
         return listaItem;
     }
@@ -138,13 +140,12 @@ public class ItemDao {
         }
     }
 
-
     public void adicionaItemAdmin(Item item) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql 
+        String sql
                 = "INSERT INTO item (id_pedido, id_produto, qtde, subtotal) VALUES "
                 + "("
                 + "?, "
@@ -157,7 +158,7 @@ public class ItemDao {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, item.getPedido().getIdPedido());
             ps.setString(2, item.getProduto().getNome());
-                        ps.setInt(3, item.getQtde());
+            ps.setInt(3, item.getQtde());
             ps.setInt(4, item.getQtde());
             ps.setString(5, item.getProduto().getNome());
             ps.execute();
@@ -169,8 +170,7 @@ public class ItemDao {
         }
     }
 
-    //arrumando bug tela item de pedido, pra somar no subtotal so os itens confirmados
-        public List<Item> listarItensConfirmadosPorPedido(int idPedido) throws SQLException {
+    public List<Item> listarItensConfirmadosPorPedido(int idPedido) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
         List<Item> listaItem = new ArrayList<>();
@@ -201,15 +201,15 @@ public class ItemDao {
                 item.setHoraComanda(rs.getString("horacomanda"));
                 item.setStatus(rs.getString("i.status"));
                 listaItem.add(item);
-            } 
+            }
         } catch (SQLException ex) {
             throw ex;
         } finally {
             ps.close();
             rs.close();
-            connection.close();   
+            connection.close();
         }
         return listaItem;
     }
-    
+
 }

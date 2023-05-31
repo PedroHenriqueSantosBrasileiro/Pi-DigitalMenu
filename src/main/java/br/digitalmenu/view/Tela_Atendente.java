@@ -8,14 +8,11 @@ public class Tela_Atendente extends javax.swing.JFrame {
 
     public Tela_Atendente(String usuario, String tipoAcesso) {
         initComponents();
-
         jDesktopPane1.enable(false);//Deixa a cor do fundo a mostra, deixa o jDesktop desativado
-
         //Casting para a primeira letra do tipoAcesso ficar em Maiusculo
         tipoAcesso = String.valueOf(tipoAcesso);
         String s1 = tipoAcesso.substring(0, 1).toUpperCase();
         String tipoAcessoMaisculo = s1 + tipoAcesso.substring(1);
-
         //Seta a label usuario e tipo de acesso
         lbl_usuario.setText(String.valueOf(usuario));
         lbl_tipo_acesso.setText(String.valueOf(tipoAcessoMaisculo));
@@ -288,7 +285,6 @@ public class Tela_Atendente extends javax.swing.JFrame {
 
         try {
             new Tela_Mesa().setVisible(true);
-
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -299,7 +295,6 @@ public class Tela_Atendente extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         try {
             new Tela_Categoria().setVisible(true);
-
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -310,7 +305,6 @@ public class Tela_Atendente extends javax.swing.JFrame {
     private void mnuitemProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuitemProdutoActionPerformed
         try {
             new Tela_Produto().setVisible(true);
-
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -322,7 +316,6 @@ public class Tela_Atendente extends javax.swing.JFrame {
 
         try {
             new Tela_Listar_Pedido().setVisible(true);
-
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -334,7 +327,6 @@ public class Tela_Atendente extends javax.swing.JFrame {
 
         try {
             new Tela_Mesa().setVisible(true);
-
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -366,7 +358,6 @@ public class Tela_Atendente extends javax.swing.JFrame {
 
         try {
             new Tela_Produto().setVisible(true);
-
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -379,12 +370,10 @@ public class Tela_Atendente extends javax.swing.JFrame {
         this.dispose();
         try {
             new Tela_Login().setVisible(true);
-
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Atendente.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_btn_sairActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

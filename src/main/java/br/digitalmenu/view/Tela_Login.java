@@ -220,7 +220,7 @@ public class Tela_Login extends javax.swing.JFrame {
                     telaDeEspera.setVisible(true);
 
                     this.dispose();
-                    
+
                     JOptionPane.showMessageDialog(null, String.format("Bem-Vindo!: [Mesa: %d]",
                             numeroMesa), "Bem-Vindo!", JOptionPane.INFORMATION_MESSAGE);
                 } else {

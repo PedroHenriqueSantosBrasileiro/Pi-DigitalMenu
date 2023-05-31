@@ -53,11 +53,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-
-                          <Component id="pnl_cadastro" pref="676" max="32767" attributes="0"/>
+                          <Component id="pnl_cadastro" pref="678" max="32767" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="pnl_opcoes" pref="672" max="32767" attributes="0"/>
-
                       </Group>
                       <Component id="pnl_filtro_tabela" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -202,7 +200,7 @@
                           <Component id="btn_alterar_mesa" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
                           <Component id="btn_excluir_mesa" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <EmptySpace pref="46" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

@@ -1,17 +1,12 @@
 package br.digitalmenu.view;
 
-import br.digitalmenu.dao.MesaDao;
-import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.dao.RelatorioDao;
 import br.digitalmenu.heuristicas.Heuristica;
-import br.digitalmenu.model.Mesa;
-import br.digitalmenu.model.Pedido;
 import br.digitalmenu.model.relatorio.ItemRelatorio;
 import java.awt.Component;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -38,7 +33,6 @@ public class Tela_Admin extends Heuristica {
         public CorDoCabecalho() {
             setOpaque(true);
         }
-
         public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
             super.getTableCellRendererComponent(table, value, selected, focused, row, column);
             setBackground(new java.awt.Color(227, 83, 53));//COR DO HEADER
@@ -68,7 +62,6 @@ public class Tela_Admin extends Heuristica {
         modelo.addColumn("Preço");
         modelo.addColumn("Qtde Total");
         modelo.addColumn("Total vendas");
-
         RelatorioDao relatorioDao = new RelatorioDao();
         try {
             for (ItemRelatorio itemRelatorio : relatorioDao.listarItensMaisVendidos()) {
@@ -471,7 +464,6 @@ public class Tela_Admin extends Heuristica {
             Logger.getLogger(Tela_Admin.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed

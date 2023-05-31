@@ -5,6 +5,7 @@ import br.digitalmenu.model.Pedido;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 public class TelaDeEspera extends javax.swing.JFrame {
 
@@ -14,6 +15,7 @@ public class TelaDeEspera extends javax.swing.JFrame {
         initComponents();
         this.numeroMesa = numeroMesa;
         this.lblNumeroMesa.setText(String.valueOf(this.numeroMesa));
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     @SuppressWarnings("unchecked")
@@ -78,9 +80,6 @@ public class TelaDeEspera extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIniciarPedidoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

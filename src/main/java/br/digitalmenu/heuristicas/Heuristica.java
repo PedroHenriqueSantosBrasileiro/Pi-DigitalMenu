@@ -38,7 +38,6 @@ public abstract class Heuristica extends javax.swing.JFrame {
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
         tabela.setSelectionBackground(Color.DARK_GRAY);
         //tabela
-
         //Centraliza os campos
         DefaultTableCellRenderer centroRender = new DefaultTableCellRenderer();
         centroRender.setHorizontalAlignment(JLabel.CENTER); //Alinha ao centro
