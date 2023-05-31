@@ -8,15 +8,15 @@ import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
 public class Panel_Alterar_Categoria extends javax.swing.JPanel {
-    
+
     public Categoria categoria;
-    
+
     public Panel_Alterar_Categoria(Categoria categoria) throws SQLException {
         initComponents();
         this.categoria = categoria;
         setDados();
     }
-    
+
     public void setDados() {
         lbl_id_valor.setText(String.valueOf(categoria.getIdCategoria()));
         lbl_id_atual.setText(String.valueOf(categoria.getIdCategoria()));
@@ -26,15 +26,15 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
         lbl_status_atual.setText(categoria.getStatus());
         comboBox_status_novo.setSelectedItem(categoria.getStatus());
     }
-    
+
     public JComboBox<String> getComboBox_status_novo1() {
         return comboBox_status_novo;
     }
-    
+
     public JTextField getTxt_id_novo() {
         return txt_id_novo;
     }
-    
+
     public JTextField getTxt_nome_novo() {
         return txt_nome_novo;
     }
@@ -49,7 +49,6 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -265,7 +264,6 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_nome_novoActionPerformed
 
     private void txt_nome_novoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nome_novoKeyPressed
-        // TODO add your handling code here:
         letrasApenas(txt_nome_novo, evt);
 
     }//GEN-LAST:event_txt_nome_novoKeyPressed

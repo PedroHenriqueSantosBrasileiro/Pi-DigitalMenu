@@ -20,22 +20,21 @@ public class Tela_ResumoPedido extends Heuristica {
     public int numeroMesa;
     public boolean foiAdm;
     private JFrame tela;
+    public Tela_Menu telaAnterior;
 
-
-    public Tela_ResumoPedido(int numeroPedido, int numeroMesa, JFrame tela, boolean foiAdm) throws SQLException {
+    public Tela_ResumoPedido(int numeroPedido, int numeroMesa, JFrame tela, boolean foiAdm, Tela_Menu telaMenu) throws SQLException {
         initComponents();
         this.foiAdm = foiAdm;
         this.tela = tela;
         this.numeroPedido = numeroPedido;
         this.numeroMesa = numeroMesa;
-
+        this.telaAnterior = telaMenu;
         lbl_numero_pedido.setText(String.valueOf(numeroPedido));
         lbl_numero_mesa.setText(String.valueOf(numeroMesa));
         jtResumo.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
-
         IniciaTabela(jtResumo);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable(Integer.parseInt(lbl_numero_pedido.getText()));
-        
+
     }
 
     public void listarJTable(int numeroPedido) throws SQLException {
@@ -58,6 +57,16 @@ public class Tela_ResumoPedido extends Heuristica {
         }
 
         lbl_valor_total.setText(String.valueOf(decimalFormat.format(valorTotal)));
+    }
+
+    public boolean pedidoVazio(int numeroPedido) throws SQLException {
+        ItemDao itemDao = new ItemDao();
+        double subtotal = 0.0;
+        for (Item item : itemDao.listarItensConfirmadosPorPedido(numeroPedido)) {
+            subtotal += item.getSubtotal();
+        }
+        boolean estaVazio = (subtotal == 0);
+        return estaVazio;
     }
 
     @SuppressWarnings("unchecked")
@@ -268,53 +277,38 @@ public class Tela_ResumoPedido extends Heuristica {
 
     private void btn_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_voltarActionPerformed
         this.dispose();
-        
+
     }//GEN-LAST:event_btn_voltarActionPerformed
 
     private void btn_encerrar_pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_encerrar_pedidoActionPerformed
-
         int confirma = JOptionPane.showConfirmDialog(
                 this,
                 "Deseja encerrar o pedido?",
-                "Encerrar Pedido",
+                "ENCERRAR PEDIDO",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE
         );
         if (confirma == JOptionPane.YES_OPTION) {
-
             try {
-                Pedido pedido = new Pedido();
-                pedido.setIdPedido(Integer.parseInt(lbl_numero_pedido.getText()));
-                pedido.setStatus("Encerrado");
                 PedidoDao pedidoDao = new PedidoDao();
-                pedidoDao.atualizaPedido(pedido);
+                if (pedidoVazio(numeroPedido) == true) {
+                    pedidoDao.atualizaPedidoVazio(numeroPedido);
+                    telaAnterior.fecharAoEncerrarViaTelaResumo();
+                } else {
+                    Pedido pedido = new Pedido();
+                    pedido.setIdPedido(Integer.parseInt(lbl_numero_pedido.getText()));
+                    pedido.setStatus("Encerrado");
+                    pedidoDao.atualizaPedido(pedido);
+                    telaAnterior.fecharAoEncerrarViaTelaResumo();
+                }
                 JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
                 this.dispose();
-                int novoPedido = JOptionPane.showConfirmDialog(
-                        this,
-                        "Deseja criar um novo pedido?",
-                        "Novo Pedido",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE
-                );
-                if (novoPedido == JOptionPane.YES_OPTION) {
-                    pedido.getMesa().setIdMesa(numeroMesa);
-                    pedidoDao.adicionarPedido(pedido);
-                    new Tela_Menu(pedidoDao.numeroPedido, numeroMesa,true).setVisible(true);
-                    this.tela.dispose();
-                } else {
-
-                    this.dispose();
-                    tela.dispose();
-                    new Tela_Login().setVisible(true);
-                }
+                new TelaDeEspera(numeroMesa).setVisible(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
-
         }
     }//GEN-LAST:event_btn_encerrar_pedidoActionPerformed
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -342,7 +336,7 @@ public class Tela_ResumoPedido extends Heuristica {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
             }
         });
     }

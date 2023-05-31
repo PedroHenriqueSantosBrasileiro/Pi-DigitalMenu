@@ -101,13 +101,14 @@ public class Tela_Categoria extends Heuristica {
             Categoria categoria = categoriaDao.listarCategoriaPorId(Integer.parseInt(String.valueOf(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 0))));//trocar pelo TXT getTExt?
             Panel_Alterar_Categoria panel = new Panel_Alterar_Categoria(categoria);
             JOptionPane.showConfirmDialog(null, panel, "Atualizar categoria", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
             categoria.setIdCategoria(Integer.parseInt(panel.getTxt_id_novo().getText()));
             categoria.setNomeCategoria(panel.getTxt_nome_novo().getText());
             categoria.setStatus(panel.getComboBox_status_novo1().getSelectedItem().toString());
             categoriaDao.updateCategoria(categoria, Integer.valueOf(String.valueOf(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 0))));
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Categoria atualizda com sucesso!");
+            //        JOptionPane.showMessageDialog(
+            //              this,
+            //            "Categoria atualizda com sucesso!");
             listarJTableTodosAtivos();
             limparTxtFields();
         } catch (SQLIntegrityConstraintViolationException ex) {
@@ -118,6 +119,39 @@ public class Tela_Categoria extends Heuristica {
             atualizarCategoria(); //recursao
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+    }
+
+    public void atualizaCategoria() {
+        if (jtCategoria.getRowCount() != -1) {
+            try {
+                CategoriaDao categoriaDao = new CategoriaDao();
+                Categoria categoria = categoriaDao.listarCategoriaPorId(Integer.parseInt(String.valueOf(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 0))));//trocar pelo TXT getTExt?
+                Panel_Alterar_Categoria panel = new Panel_Alterar_Categoria(categoria);
+                int resultado = JOptionPane.showConfirmDialog(null, panel, "ALTERAR CATEGORIA", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if (resultado == JOptionPane.OK_OPTION) {
+                    categoria.setIdCategoria(Integer.parseInt(panel.getTxt_id_novo().getText()));
+                    categoria.setNomeCategoria(panel.getTxt_nome_novo().getText());
+                    categoria.setStatus(panel.getComboBox_status_novo1().getSelectedItem().toString());
+                    categoriaDao.updateCategoria(categoria, Integer.valueOf(String.valueOf(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 0))));
+                    JOptionPane.showMessageDialog(this,
+                            "Categoria atualizada com sucesso!");
+                    listarJTableTodosAtivos();
+                    limparTxtFields();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                }
+            } catch (SQLIntegrityConstraintViolationException ex) {
+                JOptionPane.showMessageDialog(null, "Categoria já existente!", "\t\tERRO", HEIGHT);
+                atualizaCategoria();
+            } catch (DataTruncation ex) {
+                JOptionPane.showMessageDialog(null, "Dado inválido, limite de 30 caracteres!", "\tErro", HEIGHT);
+                atualizaCategoria();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha.");
         }
     }
 
@@ -537,7 +571,7 @@ public class Tela_Categoria extends Heuristica {
                     CategoriaDao catDao = new CategoriaDao();
                     try {
                         catDao.deleteCategoria(cat);
-                        JOptionPane.showMessageDialog(null, "Categoria deletada com sucesso!");
+                        JOptionPane.showMessageDialog(null, "Categoria excluída com sucesso!");
                         listarJTableTodosAtivos();
                         limparTxtFields();
                     } catch (Exception e) {
@@ -553,39 +587,9 @@ public class Tela_Categoria extends Heuristica {
     }//GEN-LAST:event_btn_deletar_categoriaActionPerformed
 
     private void btn_atualizar_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualizar_categoriaActionPerformed
-
-        if (jtCategoria.getRowCount() != -1) {
-            try {
-                CategoriaDao categoriaDao = new CategoriaDao();
-                Categoria categoria = categoriaDao.listarCategoriaPorId(Integer.parseInt(String.valueOf(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 0))));//trocar pelo TXT getTExt?
-                Panel_Alterar_Categoria panel = new Panel_Alterar_Categoria(categoria);
-                int resultado = JOptionPane.showConfirmDialog(null, panel, "ALTERAR CATEGORIA", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-                if (resultado == JOptionPane.OK_OPTION) {
-                    categoria.setIdCategoria(Integer.parseInt(panel.getTxt_id_novo().getText()));
-                    categoria.setNomeCategoria(panel.getTxt_nome_novo().getText());
-                    categoria.setStatus(panel.getComboBox_status_novo1().getSelectedItem().toString());
-                    categoriaDao.updateCategoria(categoria, Integer.valueOf(String.valueOf(jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 0))));
-                    JOptionPane.showMessageDialog(this,
-                            "Categoria atualizada com sucesso!");
-                    listarJTableTodosAtivos();
-                    limparTxtFields();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Operação Cancelada!");
-                }
-            } catch (SQLIntegrityConstraintViolationException ex) {
-                JOptionPane.showMessageDialog(null, "Categoria já existente!", "\t\tERRO", HEIGHT);
-                atualizarCategoria();
-            } catch (DataTruncation ex) {
-                JOptionPane.showMessageDialog(null, "Dado inválido, limite de 30 caracteres!", "\tErro", HEIGHT);
-                atualizarCategoria();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha.");
-        }
-
+        atualizaCategoria();
     }//GEN-LAST:event_btn_atualizar_categoriaActionPerformed
+
 
     private void btn_cadastrar_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrar_categoriaActionPerformed
 
@@ -597,7 +601,7 @@ public class Tela_Categoria extends Heuristica {
                 catDao.criarCategoria(categoria);
                 listarJTableTodosAtivos();
                 JOptionPane.showMessageDialog(this,
-                        "Categoria adicionada com sucesso!\nCategoria: "
+                        "Categoria cadastrada com sucesso!\nCategoria: "
                         + categoria.getNomeCategoria());
                 limparTxtFields();
             } catch (SQLIntegrityConstraintViolationException ex) {

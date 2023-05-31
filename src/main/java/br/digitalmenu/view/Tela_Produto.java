@@ -622,7 +622,7 @@ public class Tela_Produto extends Heuristica {
                 String status = String.valueOf(comboBox.getSelectedItem());
                 listarJtablePorStatus(status);
                 if (jtProduto.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "Não há produtos no status " + status);
+                    JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado no status selecionado!");
                     listarJTableTodosProdutos();
                 }
             } catch (Exception e) {
@@ -642,7 +642,7 @@ public class Tela_Produto extends Heuristica {
                 String categoria = String.valueOf(cbox_categoria.getSelectedItem());
                 listarJtablePorCategoria(categoria);
                 if (jtProduto.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "Não há produtos da categoria: " + categoria);
+                    JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado nesta categoria!");
                     listarJTableProdutosAtivados();
                 }
             } catch (Exception e) {
@@ -656,7 +656,7 @@ public class Tela_Produto extends Heuristica {
         try {
             listarJtablePorDescricao(palavra);
             if (jtProduto.getRowCount() == 0) {
-                JOptionPane.showMessageDialog(null, "Palavra não encontrada.");
+                JOptionPane.showMessageDialog(null, "Dados não encontrados.");
                 listarJTableProdutosAtivados();
             }
         } catch (Exception e) {
@@ -681,7 +681,7 @@ public class Tela_Produto extends Heuristica {
                 double valor2 = Double.parseDouble(valorFinal.getText().replace(',', '.'));
                 listarJtablePorFaixaDePreco(valor1, valor2);
                 if (jtProduto.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "Faixa de preço não encontrada.");
+                    JOptionPane.showMessageDialog(null, "Nenhum produto encontrado na faixa de preço informada!");
                     listarJTableProdutosAtivados();
                 }
             } catch (Exception e) {
@@ -692,8 +692,8 @@ public class Tela_Produto extends Heuristica {
 
     private void btn_filtro_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtro_nomeActionPerformed
         JPanel painel = new JPanel();
-        JLabel nomeProduto = new JLabel("Palavra: ");
-        JTextField digitarPalavra = new JTextField(25);
+        JLabel nomeProduto = new JLabel("Nome: ");
+        JTextField digitarPalavra = new JTextField(15);
         painel.add(nomeProduto);
         painel.add(digitarPalavra);
         int result = JOptionPane.showConfirmDialog(null, painel, "Pesquisar produto", JOptionPane.OK_CANCEL_OPTION);
@@ -702,7 +702,7 @@ public class Tela_Produto extends Heuristica {
             try {
                 listarJtablePorNome(palavraPesquisar);
                 if (jtProduto.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "Palavra não encontrada.");
+                    JOptionPane.showMessageDialog(null, "Produto não encontrado.");
                     listarJTableProdutosAtivados();
                 }
             } catch (Exception e) {
@@ -728,6 +728,7 @@ public class Tela_Produto extends Heuristica {
                 p.setStatus(pteste.getCheckbox_Status_Novo().isSelected() ? "Ativado" : "Desativado");
                 ProdutoDao pDao = new ProdutoDao();
                 pDao.alterarProduto(p);
+                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
                 listarJTableProdutosAtivados();
                 limparTxtFields();
             } else if (opcao == JOptionPane.CANCEL_OPTION) {
@@ -756,14 +757,14 @@ public class Tela_Produto extends Heuristica {
                 ProdutoDao pDao = new ProdutoDao();
                 try {
                     pDao.deletaProduto(p);
-                    JOptionPane.showMessageDialog(null, "Produto deletado com sucesso!");
+                    JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
                     listarJTableProdutosAtivados();
                     limparTxtFields();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                 }
             } else if (confirma == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "operação cancelada!");
+                JOptionPane.showMessageDialog(null, "Operação cancelada!");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Selecione uma linha!");
@@ -784,15 +785,17 @@ public class Tela_Produto extends Heuristica {
             ProdutoDao pDao = new ProdutoDao();
             try {
                 pDao.createProduto(p);
-                JOptionPane.showMessageDialog(null, "PRODUTO (" + p.getNome() + ") CRIADO COM SUCESSO!");
+                JOptionPane.showMessageDialog(null, "Produto: " + p.getNome() + " cadastrado com sucesso!");
                 listarJTableProdutosAtivados();
                 txtformat_preco.setBorder(border);
                 txt_nome.setBorder(border);
+            } catch (NumberFormatException e) {
+                JOptionPane.showConfirmDialog(null, "Dados inválidos!");
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                JOptionPane.showConfirmDialog(null, "Dados inválidos!");
             }
+            //nao ta capturando erro
         }
-
     }//GEN-LAST:event_btn_cadastrar_produtoActionPerformed
 
     private void cbox_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_categoriaActionPerformed

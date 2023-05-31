@@ -161,9 +161,7 @@
                           <Group type="102" attributes="0">
                               <Component id="lbl_foto_atendente" min="-2" pref="64" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-
                               <Component id="lbl_usuario" min="-2" pref="42" max="-2" attributes="0"/>
-
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -251,7 +249,6 @@
                       <Component id="lbl_menu_atendente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-
                           <Component id="btn_mesas" pref="161" max="32767" attributes="0"/>
                           <Component id="btn_listar_pedidos" max="32767" attributes="0"/>
                       </Group>
@@ -259,7 +256,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btn_abrir_pedido" pref="161" max="32767" attributes="0"/>
                           <Component id="btn_produtos" max="32767" attributes="0"/>
-
                       </Group>
                       <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                       <Component id="btn_sair" min="-2" pref="64" max="-2" attributes="0"/>

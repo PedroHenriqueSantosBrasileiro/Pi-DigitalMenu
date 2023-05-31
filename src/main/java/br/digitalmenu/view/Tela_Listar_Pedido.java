@@ -557,7 +557,7 @@ public class Tela_Listar_Pedido extends Heuristica {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Campo Id: Apenas números!", "ERRO", HEIGHT);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Pedido não encontrado!");
         }
 
     }//GEN-LAST:event_btn_filtro_idActionPerformed
@@ -586,14 +586,14 @@ public class Tela_Listar_Pedido extends Heuristica {
                     //      MSG DE BORDAS (CENTRALIZADAS JTBLES)
                     //
                     //
-                    JOptionPane.showMessageDialog(null, String.format("Não existem pedidos na mesa %s", digitarNumero.getText()));
+                    JOptionPane.showMessageDialog(null, String.format("Pedido(s) não encontrado(s) na mesa %s", digitarNumero.getText()));
                     listarJTable();
                 }
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Campo Mesa: Apenas números!", "ERRO", HEIGHT);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Pedido(s) não encontrado(s)");
         }
     }//GEN-LAST:event_btn_filtro_mesaActionPerformed
 
@@ -611,7 +611,7 @@ public class Tela_Listar_Pedido extends Heuristica {
                 String status = String.valueOf(comboBox.getSelectedItem());
                 listarJTablePorStatus(status);
                 if (jtPedido.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "Não há produtos no status " + status);
+                    JOptionPane.showMessageDialog(null, "Nenhum pedido encontrado no status selecionado");
                     listarJTable();
                 }
             } catch (Exception e) {
@@ -638,7 +638,7 @@ public class Tela_Listar_Pedido extends Heuristica {
                 double valor2 = Double.parseDouble(valorFinal.getText().replace(',', '.'));
                 listarJtablePorFaixaDePreco(valor1, valor2);
                 if (jtPedido.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "Não existem pedidos nesta faixa de valores!");
+                    JOptionPane.showMessageDialog(null, "Nenhum pedido encontrado!");
                     listarJTable();
                 }
             } catch (NumberFormatException e) {
@@ -667,7 +667,7 @@ public class Tela_Listar_Pedido extends Heuristica {
                 String valor2 = valorFinal.getText();
                 listarJtablePorFaixaDeData(valor1, valor2);
                 if (jtPedido.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "Faixa de data não encontrada.");
+                    JOptionPane.showMessageDialog(null, "Nenhum pedido encontrado!");
                     listarJTable();
                 }
             } catch (Exception e) {
@@ -690,7 +690,7 @@ public class Tela_Listar_Pedido extends Heuristica {
                 String data = valorInicial.getText();
                 listarJtablePorDia(data);
                 if (jtPedido.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "Nao existem pedido na data informada.");
+                    JOptionPane.showMessageDialog(null, "Nenhum pedido encontrado!");
                     listarJTable();
                 }
             } catch (Exception e) {
@@ -730,20 +730,18 @@ public class Tela_Listar_Pedido extends Heuristica {
         }
     }//GEN-LAST:event_btn_mudar_statusActionPerformed
 
+
     private void btn_AbrirPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AbrirPedidoActionPerformed
         try {
-            Tela_Menu telaMenu = new Tela_Menu(Integer.parseInt(txt_id_pedido.getText()),Integer.parseInt(txt_mesa.getText()),true);
+            Tela_Menu telaMenu = new Tela_Menu(Integer.parseInt(txt_id_pedido.getText()), Integer.parseInt(txt_mesa.getText()), true);
             this.dispose();
             telaMenu.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(Tela_Listar_Pedido.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btn_AbrirPedidoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
