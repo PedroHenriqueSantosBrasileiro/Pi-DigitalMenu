@@ -9,6 +9,7 @@ import br.digitalmenu.model.Pedido;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -21,6 +22,7 @@ private int numeroMesa;
         initComponents();
         this.numeroMesa = numeroMesa;
         this.lblNumeroMesa.setText(String.valueOf(this.numeroMesa));
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
