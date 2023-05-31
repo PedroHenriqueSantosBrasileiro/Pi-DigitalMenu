@@ -35,7 +35,7 @@ public class Tela_ItensDoPedido extends Heuristica {
         jtItensDoPedido.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
         IniciaTabela(jtItensDoPedido);//Formata a tabela e centraliza pela classe heuristicas
         listarJTable(numeroPedido);
-        lbl_valor_total.setText(String.valueOf(valorTotal));
+        lbl_valor_total.setText(String.valueOf(atualizaSubtotalConfirmado()));
         this.telaAnterior = telaAnterior;
     }
 
@@ -72,6 +72,15 @@ public class Tela_ItensDoPedido extends Heuristica {
         return cbox;
     }
 
+    public double atualizaSubtotalConfirmado() throws SQLException {
+        ItemDao itemDao = new ItemDao();
+        double total = 0.0;
+        for (Item item : itemDao.listarItensConfirmadosPorPedido(numeroPedido)) {
+            total += item.getSubtotal();
+        }
+        return total;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -89,6 +98,8 @@ public class Tela_ItensDoPedido extends Heuristica {
         btn_voltar = new javax.swing.JButton();
         btn_cancelar_item = new javax.swing.JButton();
         btn_adicionar_item = new javax.swing.JButton();
+        btn_voltar1 = new javax.swing.JButton();
+        btn_voltar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Itens do pedido");
@@ -208,6 +219,24 @@ public class Tela_ItensDoPedido extends Heuristica {
             }
         });
 
+        btn_voltar1.setBackground(new java.awt.Color(255, 243, 198));
+        btn_voltar1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btn_voltar1.setText("Cancelar Item");
+        btn_voltar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_voltar1ActionPerformed(evt);
+            }
+        });
+
+        btn_voltar2.setBackground(new java.awt.Color(255, 243, 198));
+        btn_voltar2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btn_voltar2.setText("Adicionar Item");
+        btn_voltar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_voltar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlGlobalLayout = new javax.swing.GroupLayout(pnlGlobal);
         pnlGlobal.setLayout(pnlGlobalLayout);
         pnlGlobalLayout.setHorizontalGroup(
@@ -216,31 +245,42 @@ public class Tela_ItensDoPedido extends Heuristica {
                 .addContainerGap()
                 .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnl_superior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(pnlGlobalLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlGlobalLayout.createSequentialGroup()
+                                .addGap(460, 460, 460)
+                                .addComponent(btn_adicionar_item)
+                                .addGap(64, 64, 64)
+                                .addComponent(btn_cancelar_item, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlGlobalLayout.createSequentialGroup()
+                                .addComponent(btn_voltar1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(btn_voltar2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(btn_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(pnlGlobalLayout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(btn_cancelar_item, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(btn_adicionar_item)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlGlobalLayout.setVerticalGroup(
             pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGlobalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnl_superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlGlobalLayout.createSequentialGroup()
+                        .addComponent(pnl_superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGlobalLayout.createSequentialGroup()
+                        .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_adicionar_item)
+                            .addComponent(btn_cancelar_item))
+                        .addGap(22, 22, 22)))
                 .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_cancelar_item)
-                    .addComponent(btn_adicionar_item))
+                    .addComponent(btn_voltar1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_voltar2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
@@ -269,6 +309,15 @@ public class Tela_ItensDoPedido extends Heuristica {
     }//GEN-LAST:event_btn_voltarActionPerformed
 
     private void btn_cancelar_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar_itemActionPerformed
+
+    }//GEN-LAST:event_btn_cancelar_itemActionPerformed
+
+    private void btn_adicionar_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionar_itemActionPerformed
+
+    }//GEN-LAST:event_btn_adicionar_itemActionPerformed
+
+    private void btn_voltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_voltar1ActionPerformed
+        // TODO add your handling code here:
         int confirma = JOptionPane.showConfirmDialog(null, "Deseja cancelar o item?");
 
         if (confirma == JOptionPane.YES_OPTION) {
@@ -282,6 +331,7 @@ public class Tela_ItensDoPedido extends Heuristica {
                     itemDao.atualizaItem(id);
                     pedidoDao.atualizaPedidoItemAlterado(numeroPedido);
                     listarJTable(numeroPedido);
+                    lbl_valor_total.setText(String.valueOf(atualizaSubtotalConfirmado()));
 
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "ERRO", HEIGHT);
@@ -295,16 +345,17 @@ public class Tela_ItensDoPedido extends Heuristica {
             JOptionPane.showMessageDialog(null, "Operação cancelada.", "ERRO", HEIGHT);
         }
 
-    }//GEN-LAST:event_btn_cancelar_itemActionPerformed
+    }//GEN-LAST:event_btn_voltar1ActionPerformed
 
-    private void btn_adicionar_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionar_itemActionPerformed
+    private void btn_voltar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_voltar2ActionPerformed
+        // TODO add your handling code here:
         JPanel panel = new JPanel();
         JComboBox comboBox = new JComboBox();
         try {
             listarProdutoNoComboBox(comboBox);
             JLabel nome = new JLabel("Selecione o produto: ");
             JLabel lbl_qtde = new JLabel("Quantidade: ");
-            JTextField digitarQtde = new JTextField(25);
+            JTextField digitarQtde = new JTextField(4);
             panel.add(nome);
             panel.add(Box.createHorizontalStrut(2));
             panel.add(comboBox);
@@ -313,7 +364,7 @@ public class Tela_ItensDoPedido extends Heuristica {
             panel.add(Box.createHorizontalStrut(5));
             panel.add(digitarQtde);
 
-            int confirma = JOptionPane.showConfirmDialog(null, panel, "Item a add", JOptionPane.OK_CANCEL_OPTION);
+            int confirma = JOptionPane.showConfirmDialog(null, panel, "Item a adicionar.", JOptionPane.OK_CANCEL_OPTION);
             if (confirma == JOptionPane.OK_OPTION) {
                 ItemDao itemDao = new ItemDao();
                 Item item = new Item();
@@ -324,15 +375,16 @@ public class Tela_ItensDoPedido extends Heuristica {
                 PedidoDao pedidoDao = new PedidoDao();
                 pedidoDao.atualizaPedidoItemAlterado(numeroPedido);
                 listarJTable(numeroPedido);
+                lbl_valor_total.setText(String.valueOf(atualizaSubtotalConfirmado()));
 
             } else {
-                JOptionPane.showMessageDialog(null, "CANCELADO");
+                JOptionPane.showMessageDialog(null, "Operação cancelada!");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Tela_ItensDoPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_btn_adicionar_itemActionPerformed
+    }//GEN-LAST:event_btn_voltar2ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -370,6 +422,8 @@ public class Tela_ItensDoPedido extends Heuristica {
     private javax.swing.JButton btn_adicionar_item;
     private javax.swing.JButton btn_cancelar_item;
     private javax.swing.JButton btn_voltar;
+    private javax.swing.JButton btn_voltar1;
+    private javax.swing.JButton btn_voltar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtItensDoPedido;
     private javax.swing.JLabel lbl_foto_mesa;

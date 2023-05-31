@@ -169,4 +169,47 @@ public class ItemDao {
         }
     }
 
+    //arrumando bug tela item de pedido, pra somar no subtotal so os itens confirmados
+        public List<Item> listarItensConfirmadosPorPedido(int idPedido) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        List<Item> listaItem = new ArrayList<>();
+        Item item = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql
+                = "SELECT i.iditem, p.idproduto, p.nome, p.preco, i.qtde, i.subtotal, TIME_FORMAT(horapedido, '%T') AS horacomanda, i.status "
+                + "FROM item i "
+                + "INNER JOIN produto p "
+                + "ON p.idproduto = i.id_produto "
+                + "WHERE id_pedido = ? "
+                + "AND i.status = 'confirmado'";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, idPedido);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                item = new Item();
+                item.setIdItem(rs.getInt("i.iditem"));
+                item.getProduto().setIdProduto(rs.getInt("p.idproduto"));
+                item.getProduto().setNome(rs.getString("p.nome"));
+                item.getProduto().setPreco(rs.getDouble("p.preco"));
+                item.setQtde(rs.getInt("i.qtde"));
+                item.setSubtotal(rs.getDouble("i.subtotal"));
+                item.setHoraComanda(rs.getString("horacomanda"));
+                item.setStatus(rs.getString("i.status"));
+                listaItem.add(item);
+            } 
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();   
+        }
+        return listaItem;
+    }
+    
 }

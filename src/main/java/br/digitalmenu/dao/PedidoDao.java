@@ -433,4 +433,26 @@ public class PedidoDao {
         }
         return pedidos;
     }
+    
+    public void atualizaPedidoVazio(int pedido) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        PreparedStatement ps = null;
+
+        String sql
+                = "UPDATE pedido "
+                + "SET status = 'encerrado' "
+                + "WHERE idpedido = ?";
+      
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, pedido);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            connection.close();
+        }
+    }
 }

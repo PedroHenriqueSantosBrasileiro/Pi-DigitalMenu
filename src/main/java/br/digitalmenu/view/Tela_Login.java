@@ -5,10 +5,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import br.digitalmenu.dao.MesaDao;
-import br.digitalmenu.dao.PedidoDao;
 import br.digitalmenu.dao.UsuarioDAO;
 import br.digitalmenu.model.Mesa;
-import br.digitalmenu.model.Pedido;
 import br.digitalmenu.model.Usuario;
 import javax.swing.JRootPane;
 
