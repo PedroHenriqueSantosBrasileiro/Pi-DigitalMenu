@@ -40,7 +40,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     public Tela_Menu(int numeroPedido, int numeroMesa, boolean foiAdm) throws SQLException {
         initComponents();
         this.foiAdm = foiAdm;
-        if(foiAdm == false){
+        if (foiAdm == false) {
             btn_Sair.setVisible(false);
         }
         setExtendedState(JFrame.MAXIMIZED_BOTH);
