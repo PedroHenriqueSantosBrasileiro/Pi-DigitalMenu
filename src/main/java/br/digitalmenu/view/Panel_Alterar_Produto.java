@@ -19,7 +19,6 @@ public class Panel_Alterar_Produto extends javax.swing.JPanel {
         this.produto = produto;
         viewCategoria();
         setDados();
-
     }
 
     public void viewCategoria() throws SQLException {

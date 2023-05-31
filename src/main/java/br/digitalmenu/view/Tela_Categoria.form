@@ -56,9 +56,9 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="pnl_filtros" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="pnl_cadastra_categoria" pref="639" max="32767" attributes="0"/>
+                          <Component id="pnl_cadastra_categoria" pref="640" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="pnl_opcoes" pref="662" max="32767" attributes="0"/>
+                          <Component id="pnl_opcoes" pref="663" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
@@ -126,7 +126,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txt_nome_categoria" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btn_cadastrar_categoria" pref="0" max="32767" attributes="0"/>
+                      <Component id="btn_cadastrar_categoria" pref="41" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>

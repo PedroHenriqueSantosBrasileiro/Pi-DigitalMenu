@@ -179,7 +179,6 @@ public class TelaRelatorio extends Heuristica {
                     itemRelatorio.getQtdeTotalVendida(),
                     String.format("%.2f", itemRelatorio.getValorTotalVendido()),});
             }
-
             jTableRelatorio.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
             IniciaTabela(jTableRelatorio);
         } catch (Exception e) {
@@ -203,8 +202,7 @@ public class TelaRelatorio extends Heuristica {
             modelo.addRow(new Object[]{
                 pedidoRelatorio.getQtdeDePedidos(),
                 String.format("%.2f", pedidoRelatorio.getValorTotal()),
-                String.format("%.2f", pedidoRelatorio.getMediaTotal()),
-            });
+                String.format("%.2f", pedidoRelatorio.getMediaTotal()),});
 
             jTableRelatorio.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
             IniciaTabela(jTableRelatorio);
@@ -237,7 +235,6 @@ public class TelaRelatorio extends Heuristica {
                     itemRelatorio.getQtdeTotalVendida(),
                     String.format("%.2f", itemRelatorio.getValorTotalVendido()),});
             }
-
             jTableRelatorio.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
             IniciaTabela(jTableRelatorio);
         } catch (Exception e) {
@@ -282,22 +279,17 @@ public class TelaRelatorio extends Heuristica {
                     String.format("%.2f", pedidoRelatorio.getValorTotal()),
                     String.format("%.2f", pedidoRelatorio.getMediaTotal()), //pedidoRelatorio.getMediaTotal() // formatar 2 casas decimais
                 });
-
                 jTableRelatorio.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
                 IniciaTabela(jTableRelatorio);
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
         }
-
     }//GEN-LAST:event_btn_total_pedidos_por_mesActionPerformed
-
 
     public static void apagarTodasColunas(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         TableColumnModel columnModel = table.getColumnModel();
-
         int columnCount = columnModel.getColumnCount();
         for (int i = columnCount - 1; i >= 0; i--) {
             TableColumn column = columnModel.getColumn(i);

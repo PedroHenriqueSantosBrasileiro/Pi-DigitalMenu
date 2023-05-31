@@ -65,6 +65,39 @@ public class Tela_Mesa extends Heuristica {
         txt_numero_mesa.setText("");
     }
 
+    public void atualizaMesa() {
+        if (jtMesa.getRowCount() != -1) {
+            try {
+                MesaDao mesaDao = new MesaDao();
+                Mesa mesa = mesaDao.listarMesaPorId(Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()));
+                Panel_Alterar_Mesa panel = new Panel_Alterar_Mesa(mesa);
+                int resultado = JOptionPane.showConfirmDialog(null, panel, "ATUALIZAR MESA", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if (resultado == JOptionPane.OK_OPTION && panel.getTxt_numero_Novo().getText().length() <= 10) {
+                    mesa.setIdMesa(Integer.valueOf(panel.getTxt_numero_Novo().getText()));
+                    mesa.setIdMesa(Integer.parseInt(panel.getTxt_numero_Novo().getText()));
+                    mesa.setStatus(panel.getComboBox_status_novo().getSelectedItem().toString());
+                    mesaDao.updateMesa(mesa, Integer.parseInt(panel.getLbl_Id_Valor().getText()));
+                    JOptionPane.showMessageDialog(this,
+                            "Mesa atualizada com sucesso!");
+                    listarJtablePorStatus("Ativado");
+                    limparTxtFields();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Operacão cancelada!");
+                }
+            } catch (SQLIntegrityConstraintViolationException ex) {
+                JOptionPane.showMessageDialog(null, "Mesa já cadastrada!", "ERRO", HEIGHT);
+                atualizaMesa();
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Número inválido, use número inteiro de até 10 dígitos!", "ERRO", HEIGHT);
+                atualizaMesa();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha");
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -182,7 +215,7 @@ public class Tela_Mesa extends Heuristica {
                 .addGroup(pnl_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_alterar_mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_excluir_mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pnl_filtro_tabela.setBackground(new java.awt.Color(246, 242, 233));
@@ -298,7 +331,7 @@ public class Tela_Mesa extends Heuristica {
                 .addContainerGap()
                 .addGroup(pnl_tela_mesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_tela_mesaLayout.createSequentialGroup()
-                        .addComponent(pnl_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 676, Short.MAX_VALUE)
+                        .addComponent(pnl_cadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(pnl_opcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE))
                     .addComponent(pnl_filtro_tabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -340,7 +373,7 @@ public class Tela_Mesa extends Heuristica {
 
     private void btn_cadastrar_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrar_mesaActionPerformed
 
-        if (verificarSeCampoEstaEmBranco(txt_numero_mesa, "Numer da mesa")) {
+        if (verificarSeCampoEstaEmBranco(txt_numero_mesa, "Número da mesa") && txt_numero_mesa.getText().length() <= 10) {
             Mesa mesa = new Mesa();
             mesa.setIdMesa(Integer.parseInt(txt_numero_mesa.getText()));
             MesaDao mesaDAO = new MesaDao();
@@ -349,8 +382,8 @@ public class Tela_Mesa extends Heuristica {
                 if (criouMesa == true) {
                     JOptionPane.showMessageDialog(
                             null,
-                            "Mesa criada com sucesso!\n"
-                            + "Id/Número: "
+                            "Mesa cadastrada com sucesso!\n"
+                            + "Nº mesa: "
                             + mesa.getIdMesa()
                     );
                     this.txt_numero_mesa.setText("");
@@ -358,11 +391,16 @@ public class Tela_Mesa extends Heuristica {
                 limparTxtFields();
                 listarJtablePorStatus("Ativado");
             } catch (SQLIntegrityConstraintViolationException ex) {
-                JOptionPane.showMessageDialog(null, "Número de mesa já existente!", "ERRO", HEIGHT);
+                JOptionPane.showMessageDialog(null, "Mesa já cadastrada!", "ERRO", HEIGHT);
+                txt_numero_mesa.setText("");
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Número inválido, use número inteiro de até 10 dígitos!", "ERRO", HEIGHT);
                 txt_numero_mesa.setText("");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Número inválido, use número inteiro de até 10 dígitos!");
         }
 
     }//GEN-LAST:event_btn_cadastrar_mesaActionPerformed
@@ -396,19 +434,25 @@ public class Tela_Mesa extends Heuristica {
     }//GEN-LAST:event_tableMesaKeyReleased
 
     private void btn_filtro_numeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtro_numeroActionPerformed
-        try {
-            JPanel painel = new JPanel();
-            JLabel numeroMesa = new JLabel("Número: ");
-            JTextField digitarNumero = new JTextField(10);
-            painel.add(numeroMesa);
-            painel.add(digitarNumero);
-            int resultado = JOptionPane.showConfirmDialog(null, painel, "PESQUISAR POR NÚMERO", JOptionPane.OK_CANCEL_OPTION, -1);
-            if (resultado == JOptionPane.OK_OPTION) {
-                //tratar erro de entrada
-                listarJtablePorNumero(Integer.parseInt(digitarNumero.getText()));
+
+        if (jtMesa.getRowCount() != -1) {
+            try {
+
+                JPanel painel = new JPanel();
+                JLabel numeroMesa = new JLabel("Número: ");
+                JTextField digitarNumero = new JTextField(10);
+                painel.add(numeroMesa);
+                painel.add(digitarNumero);
+                int resultado = JOptionPane.showConfirmDialog(null, painel, "PESQUISAR POR NÚMERO", JOptionPane.OK_CANCEL_OPTION, -1);
+                if (resultado == JOptionPane.OK_OPTION) {
+                    listarJtablePorNumero(Integer.parseInt(digitarNumero.getText()));
+                }
+            } catch (Exception e) {
+                //JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Mesa não cadastrada!");
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhuma mesa cadastrada!");
         }
 
     }//GEN-LAST:event_btn_filtro_numeroActionPerformed
@@ -444,56 +488,40 @@ public class Tela_Mesa extends Heuristica {
     }//GEN-LAST:event_btn_filtro_todosActionPerformed
 
     private void btn_excluir_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_mesaActionPerformed
-        if (jtMesa.getSelectedRow() != -1) {
-            int confirma = JOptionPane.showConfirmDialog(
-                    this,
-                    "Deseja confirmar a deleção da mesa " + String.valueOf(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()) + "?",
-                    "CONFIRMAR DELEÇÃO",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
-            );
-            if (confirma == JOptionPane.YES_OPTION) {
-                try {
-                    MesaDao mesaDAO = new MesaDao();
-                    Mesa mesa = mesaDAO.listarMesaPorId(Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()));
-                    mesaDAO.deletaMesa(mesa.getIdMesa());
-                    JOptionPane.showMessageDialog(null, "Mesa deletada com sucesso!");
-                    limparTxtFields();
-                    listarJtablePorStatus("Ativado");
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-                }
-            } else if (confirma == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "Operacão cancelada.");
-            }
+        if (String.valueOf(jtMesa.getValueAt(jtMesa.getSelectedRow(), 1).toString()).equalsIgnoreCase("Desativado")) {
+            JOptionPane.showMessageDialog(null, "Mesa já se encontra desativada!");
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma mesa para excluir.");
+
+            if (jtMesa.getSelectedRow() != -1) {
+                int confirma = JOptionPane.showConfirmDialog(
+                        this,
+                        "Deseja deletar a mesa " + String.valueOf(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()) + "?",
+                        "CONFIRMAR DELEÇÃO",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE
+                );
+                if (confirma == JOptionPane.YES_OPTION) {
+                    try {
+                        MesaDao mesaDAO = new MesaDao();
+                        Mesa mesa = mesaDAO.listarMesaPorId(Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()));
+                        mesaDAO.deletaMesa(mesa.getIdMesa());
+                        JOptionPane.showMessageDialog(null, "Mesa excluída com sucesso!");
+                        limparTxtFields();
+                        listarJtablePorStatus("Ativado");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                    }
+                } else if (confirma == JOptionPane.NO_OPTION) {
+                    JOptionPane.showMessageDialog(null, "Operacão cancelada!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione uma mesa para excluir.");
+            }
         }
     }//GEN-LAST:event_btn_excluir_mesaActionPerformed
 
     private void btn_alterar_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterar_mesaActionPerformed
-        if (jtMesa.getRowCount() != -1) {
-            try {
-                MesaDao mesaDao = new MesaDao();
-                Mesa mesa = mesaDao.listarMesaPorId(Integer.parseInt(jtMesa.getValueAt(jtMesa.getSelectedRow(), 0).toString()));
-                Panel_Alterar_Mesa panel = new Panel_Alterar_Mesa(mesa);
-                int resultado = JOptionPane.showConfirmDialog(null, panel, "ATUALIZAR MESA", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-                if (resultado == JOptionPane.OK_OPTION) {
-                    mesa.setIdMesa(Integer.parseInt(panel.getTxt_numero_Novo().getText()));
-                    mesa.setStatus(panel.getComboBox_status_novo().getSelectedItem().toString());
-                    mesaDao.updateMesa(mesa, Integer.parseInt(panel.getLbl_Id_Valor().getText()));
-                    listarJtablePorStatus("Ativado");
-                    limparTxtFields();
-                } else {
-                    JOptionPane.showMessageDialog(null, "CANCELADO");
-
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha");
-        }
+        atualizaMesa();
     }//GEN-LAST:event_btn_alterar_mesaActionPerformed
 
     private void txt_numero_mesaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_numero_mesaKeyPressed
