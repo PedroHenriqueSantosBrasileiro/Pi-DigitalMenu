@@ -249,7 +249,7 @@ public class Tela_Categoria extends Heuristica {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_nome_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_cadastrar_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(btn_cadastrar_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                 .addGap(26, 26, 26))
         );
 
@@ -280,11 +280,11 @@ public class Tela_Categoria extends Heuristica {
         pnl_opcoesLayout.setHorizontalGroup(
             pnl_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_opcoesLayout.createSequentialGroup()
-                .addGap(211, 211, 211)
+                .addGap(213, 213, 213)
                 .addGroup(pnl_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_deletar_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_atualizar_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
-                .addGap(210, 210, 210))
+                .addGap(208, 208, 208))
         );
         pnl_opcoesLayout.setVerticalGroup(
             pnl_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,9 +370,9 @@ public class Tela_Categoria extends Heuristica {
                 .addGroup(pnl_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pnl_filtros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnl_superiorLayout.createSequentialGroup()
-                        .addComponent(pnl_cadastra_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 639, Short.MAX_VALUE)
+                        .addComponent(pnl_cadastra_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnl_opcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)))
+                        .addComponent(pnl_opcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)))
                 .addGap(35, 35, 35))
         );
         pnl_superiorLayout.setVerticalGroup(
@@ -380,7 +380,7 @@ public class Tela_Categoria extends Heuristica {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_superiorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnl_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(pnl_opcoes, javax.swing.GroupLayout.PREFERRED_SIZE, 263, Short.MAX_VALUE)
+                    .addComponent(pnl_opcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
                     .addComponent(pnl_cadastra_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnl_filtros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -549,47 +549,6 @@ public class Tela_Categoria extends Heuristica {
         }
     }//GEN-LAST:event_btn_pesquisa_idActionPerformed
 
-    private void btn_deletar_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deletar_categoriaActionPerformed
-        if (jtCategoria.getSelectedRow() != -1) {
-            if (jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 2).toString().equalsIgnoreCase("Desativado")) {
-                JOptionPane.showMessageDialog(null, "Categoria já está desativada!", "Deletar categoria", HEIGHT);
-            } else {
-                int confirma = JOptionPane.showConfirmDialog(this,
-                        "Dados da categoria a deletar:\nID: "
-                        + txt_numero_id_categoria.getText()
-                        + "\nNome: "
-                        + txt_nome_categoria.getText(),
-                        "Confirmar deleção?",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE
-                );
-                if (confirma == JOptionPane.YES_OPTION) {
-                    Categoria cat = new Categoria();
-
-                    cat.setIdCategoria(Integer.parseInt(txt_numero_id_categoria.getText()));
-                    cat.setNomeCategoria(txt_nome_categoria.getText());
-                    CategoriaDao catDao = new CategoriaDao();
-                    try {
-                        catDao.deleteCategoria(cat);
-                        JOptionPane.showMessageDialog(null, "Categoria excluída com sucesso!");
-                        listarJTableTodosAtivos();
-                        limparTxtFields();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-                    }
-                } else if (confirma == JOptionPane.NO_OPTION) {
-                    JOptionPane.showMessageDialog(null, "Operacão cancelada!");
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha!");
-        }
-    }//GEN-LAST:event_btn_deletar_categoriaActionPerformed
-
-    private void btn_atualizar_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualizar_categoriaActionPerformed
-        atualizaCategoria();
-    }//GEN-LAST:event_btn_atualizar_categoriaActionPerformed
-
 
     private void btn_cadastrar_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrar_categoriaActionPerformed
 
@@ -628,6 +587,47 @@ public class Tela_Categoria extends Heuristica {
         // TODO add your handling code here:
         letrasApenas(txt_nome_categoria, evt);
     }//GEN-LAST:event_txt_nome_categoriaKeyPressed
+
+    private void btn_deletar_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deletar_categoriaActionPerformed
+        if (jtCategoria.getSelectedRow() != -1) {
+            if (jtCategoria.getValueAt(jtCategoria.getSelectedRow(), 2).toString().equalsIgnoreCase("Desativado")) {
+                JOptionPane.showMessageDialog(null, "Categoria já está desativada!", "Deletar categoria", HEIGHT);
+            } else {
+                int confirma = JOptionPane.showConfirmDialog(this,
+                    "Dados da categoria a deletar:\nID: "
+                    + txt_numero_id_categoria.getText()
+                    + "\nNome: "
+                    + txt_nome_categoria.getText(),
+                    "Confirmar deleção?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+                );
+                if (confirma == JOptionPane.YES_OPTION) {
+                    Categoria cat = new Categoria();
+
+                    cat.setIdCategoria(Integer.parseInt(txt_numero_id_categoria.getText()));
+                    cat.setNomeCategoria(txt_nome_categoria.getText());
+                    CategoriaDao catDao = new CategoriaDao();
+                    try {
+                        catDao.deleteCategoria(cat);
+                        JOptionPane.showMessageDialog(null, "Categoria excluída com sucesso!");
+                        listarJTableTodosAtivos();
+                        limparTxtFields();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                    }
+                } else if (confirma == JOptionPane.NO_OPTION) {
+                    JOptionPane.showMessageDialog(null, "Operacão cancelada!");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha!");
+        }
+    }//GEN-LAST:event_btn_deletar_categoriaActionPerformed
+
+    private void btn_atualizar_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualizar_categoriaActionPerformed
+        atualizaCategoria();
+    }//GEN-LAST:event_btn_atualizar_categoriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

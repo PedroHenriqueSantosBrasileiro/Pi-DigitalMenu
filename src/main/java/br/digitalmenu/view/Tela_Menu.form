@@ -28,12 +28,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pnl_tela_menu" pref="1466" max="32767" attributes="0"/>
+          <Component id="pnl_tela_menu" pref="1468" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pnl_tela_menu" alignment="0" pref="888" max="32767" attributes="0"/>
+          <Component id="pnl_tela_menu" alignment="0" pref="889" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -215,62 +215,73 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="lbl_fotoOrder" min="-2" pref="64" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="lbl_Logo" min="-2" pref="500" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
-                              <Component id="pnl_LABELS_INDICES" min="-2" pref="45" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lbl_numero_mesa" min="-2" pref="88" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lbl_numero_pedido" min="-2" pref="162" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lbl_carrinho" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Component id="lbl_icone_carrinho" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="lbl_numero_mesa" min="-2" pref="88" max="-2" attributes="0"/>
+                          <Component id="lbl_numero_pedido" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lbl_EncerrarPedido" min="-2" pref="147" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <Component id="lbl_Logo" pref="792" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lbl_carrinho" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="pnl_LABELS_INDICES" min="-2" pref="45" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbl_icone_carrinho" min="-2" pref="150" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="lbl_EncerrarPedido" min="-2" pref="147" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbl_EncerrarPedido" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
+                  <Component id="lbl_Logo" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="lbl_icone_carrinho" min="-2" pref="79" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="lbl_carrinho" min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Component id="pnl_LABELS_INDICES" min="-2" pref="39" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="lbl_carrinho" min="-2" pref="29" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lbl_fotoOrder" min="-2" pref="64" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lbl_numero_pedido" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lbl_numero_mesa" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lbl_Logo" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Component id="pnl_LABELS_INDICES" min="-2" pref="39" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="jLabel2" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lbl_numero_mesa" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_numero_pedido" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="lbl_EncerrarPedido" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -318,7 +329,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;\\src\\main\\java\\br\\digitalmenu\\images\\CarrinhoPreto.png&quot;)" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;\\src\\main\\java\\br\\digitalmenu\\images\\carrinhoamarelo.png&quot;)" type="code"/>
                 </Property>
               </Properties>
               <Events>
@@ -345,8 +356,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_Logo">
               <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;\\src\\main\\java\\br\\digitalmenu\\images\\digitalmenugarfo.png&quot;)" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;\\src\\main\\java\\br\\digitalmenu\\images\\digitalmenu3.png&quot;)" type="code"/>
                 </Property>
               </Properties>
             </Component>
@@ -762,6 +774,20 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="lbl_fotoOrder">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;\\src\\main\\java\\br\\digitalmenu\\images\\order.png&quot;)" type="code"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;\\src\\main\\java\\br\\digitalmenu\\images\\cashamarelo.png&quot;)" type="code"/>
+                </Property>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="pnl_resumo">
@@ -809,7 +835,7 @@
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_Sair" pref="64" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="jLabel1" pref="32" max="32767" attributes="0"/>
+                      <Component id="jLabel1" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="btn_pre_conta" pref="64" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -875,7 +901,7 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="0" prefWidth="0" resizable="true">
+                        <Column maxWidth="0" minWidth="0" prefWidth="0" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -947,6 +973,9 @@
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="24" style="1"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;\\src\\main\\java\\br\\digitalmenu\\images\\voltar.png&quot;)" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sair"/>
               </Properties>
@@ -1088,13 +1117,13 @@
                                   <Component id="lbl_foto_1" min="-2" pref="369" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jScrollPane8" alignment="0" pref="284" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane9" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="lbl_nome_1" alignment="0" pref="284" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lbl_obs_1" min="-2" pref="119" max="-2" attributes="0"/>
+                                          <Component id="lbl_obs_1" min="-2" pref="165" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jScrollPane8" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jScrollPane9" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="lbl_nome_1" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1338,7 +1367,7 @@
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lbl_obs_2" min="-2" pref="119" max="-2" attributes="0"/>
+                                          <Component id="lbl_obs_2" min="-2" pref="165" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jScrollPane11" alignment="0" pref="0" max="32767" attributes="0"/>
@@ -1583,7 +1612,7 @@
                                   <Component id="lbl_foto_3" min="-2" pref="369" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lbl_obs_3" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
+                                      <Component id="lbl_obs_3" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
                                       <Component id="jScrollPane13" alignment="0" pref="0" max="32767" attributes="0"/>
                                       <Component id="jScrollPane12" alignment="0" max="32767" attributes="0"/>
                                       <Component id="lbl_nome_3" alignment="0" pref="284" max="32767" attributes="0"/>
@@ -1826,7 +1855,7 @@
                                   <Component id="lbl_foto_4" min="-2" pref="369" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lbl_obs_4" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
+                                      <Component id="lbl_obs_4" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
                                       <Component id="jScrollPane15" alignment="0" pref="0" max="32767" attributes="0"/>
                                       <Component id="jScrollPane14" alignment="0" max="32767" attributes="0"/>
                                       <Component id="lbl_nome_4" alignment="0" pref="284" max="32767" attributes="0"/>
@@ -2069,7 +2098,7 @@
                                   <Component id="lbl_foto_5" min="-2" pref="369" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lbl_obs_5" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
+                                      <Component id="lbl_obs_5" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
                                       <Component id="jScrollPane17" alignment="0" pref="0" max="32767" attributes="0"/>
                                       <Component id="jScrollPane16" alignment="0" max="32767" attributes="0"/>
                                       <Component id="lbl_nome_5" alignment="0" pref="284" max="32767" attributes="0"/>

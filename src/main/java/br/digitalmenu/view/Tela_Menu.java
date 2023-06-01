@@ -422,6 +422,8 @@ public class Tela_Menu extends javax.swing.JFrame {
         lbl_Id_23 = new javax.swing.JLabel();
         lbl_Id_24 = new javax.swing.JLabel();
         lbl_Id_25 = new javax.swing.JLabel();
+        lbl_fotoOrder = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         pnl_resumo = new javax.swing.JPanel();
         lbl_ResumoDoPedido = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -608,7 +610,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         lbl_icone_carrinho.setBackground(new java.awt.Color(255, 102, 51));
         lbl_icone_carrinho.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
         lbl_icone_carrinho.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_icone_carrinho.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\CarrinhoPreto.png"));
+        lbl_icone_carrinho.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\carrinhoamarelo.png"));
         lbl_icone_carrinho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 lbl_icone_carrinhoMouseReleased(evt);
@@ -626,7 +628,8 @@ public class Tela_Menu extends javax.swing.JFrame {
             }
         });
 
-        lbl_Logo.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\digitalmenugarfo.png"));
+        lbl_Logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_Logo.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\digitalmenu3.png"));
 
         lbl_EncerrarPedido.setBackground(new java.awt.Color(255, 102, 51));
         lbl_EncerrarPedido.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
@@ -825,53 +828,66 @@ public class Tela_Menu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        lbl_fotoOrder.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\order.png"));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\cashamarelo.png"));
+
         javax.swing.GroupLayout pnl_botoes_superiorLayout = new javax.swing.GroupLayout(pnl_botoes_superior);
         pnl_botoes_superior.setLayout(pnl_botoes_superiorLayout);
         pnl_botoes_superiorLayout.setHorizontalGroup(
             pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(lbl_fotoOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_numero_mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_numero_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lbl_Logo, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_carrinho, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_botoes_superiorLayout.createSequentialGroup()
+                        .addComponent(pnl_LABELS_INDICES, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_icone_carrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
-                        .addComponent(lbl_Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(180, 180, 180)
-                        .addComponent(pnl_LABELS_INDICES, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lbl_numero_mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(lbl_EncerrarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_botoes_superiorLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_numero_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbl_carrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_icone_carrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lbl_EncerrarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65))))
         );
         pnl_botoes_superiorLayout.setVerticalGroup(
             pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbl_Logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
-                .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
-                        .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_EncerrarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
+                .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
+                            .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(lbl_icone_carrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(lbl_carrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_botoes_superiorLayout.createSequentialGroup()
+                                .addComponent(pnl_LABELS_INDICES, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, 0)
+                            .addComponent(lbl_carrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
+                            .addGap(19, 19, 19)
+                            .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbl_fotoOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
+                                    .addComponent(lbl_numero_pedido)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lbl_numero_mesa)))))
+                    .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbl_Logo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(pnl_LABELS_INDICES, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbl_numero_mesa)
-                            .addComponent(lbl_numero_pedido))))
-                .addContainerGap())
+                        .addComponent(lbl_EncerrarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnl_resumo.setBackground(new java.awt.Color(246, 242, 233));
@@ -911,6 +927,7 @@ public class Tela_Menu extends javax.swing.JFrame {
             jtResumo.getColumnModel().getColumn(4).setPreferredWidth(35);
             jtResumo.getColumnModel().getColumn(5).setMinWidth(0);
             jtResumo.getColumnModel().getColumn(5).setPreferredWidth(0);
+            jtResumo.getColumnModel().getColumn(5).setMaxWidth(0);
         }
 
         btn_remover_item.setBackground(new java.awt.Color(255, 153, 153));
@@ -945,6 +962,7 @@ public class Tela_Menu extends javax.swing.JFrame {
 
         btn_Sair.setBackground(new java.awt.Color(255, 153, 153));
         btn_Sair.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btn_Sair.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\voltar.png"));
         btn_Sair.setText("Sair");
         btn_Sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -998,7 +1016,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_Sair, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                 .addGap(37, 37, 37)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_pre_conta, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1097,12 +1115,12 @@ public class Tela_Menu extends javax.swing.JFrame {
                 .addComponent(lbl_foto_1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_Item1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl_Item1Layout.createSequentialGroup()
-                        .addComponent(lbl_obs_1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_nome_1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbl_nome_1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl_Item1Layout.createSequentialGroup()
+                        .addComponent(lbl_obs_1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_Item1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_Item1Layout.createSequentialGroup()
@@ -1228,7 +1246,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_Item2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl_Item2Layout.createSequentialGroup()
-                        .addComponent(lbl_obs_2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbl_obs_2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.LEADING)
@@ -1357,7 +1375,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                 .addComponent(lbl_foto_3, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_Item3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbl_obs_3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_obs_3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_nome_3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
@@ -1485,7 +1503,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                 .addComponent(lbl_foto_4, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_Item4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbl_obs_4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_obs_4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_nome_4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
@@ -1613,7 +1631,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                 .addComponent(lbl_foto_5, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_Item5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbl_obs_5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_obs_5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane16, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_nome_5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
@@ -1732,11 +1750,11 @@ public class Tela_Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_tela_menu, javax.swing.GroupLayout.DEFAULT_SIZE, 1466, Short.MAX_VALUE)
+            .addComponent(pnl_tela_menu, javax.swing.GroupLayout.DEFAULT_SIZE, 1468, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_tela_menu, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
+            .addComponent(pnl_tela_menu, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(1482, 896));
@@ -1858,39 +1876,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_enviar_pedidoActionPerformed
 
-
-    private void lbl_EncerrarPedidoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_EncerrarPedidoMouseReleased
-
-
-        int confirma = JOptionPane.showConfirmDialog(
-                this,
-                "Deseja encerrar o pedido?",
-                "ENCERRAR PEDIDO",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE
-        );
-
-        if (confirma == JOptionPane.YES_OPTION) {
-            try {
-                PedidoDao pedidoDao = new PedidoDao();
-                if (pedidoVazio(numeroPedido) == true) {
-                    pedidoDao.atualizaPedidoVazio(numeroPedido);
-                } else {
-                    Pedido pedido = new Pedido();
-                    String[] palavras = lbl_numero_pedido.getText().split("\\s");
-                    System.out.println(palavras[1]);
-                    pedido.setIdPedido(Integer.parseInt(palavras[1]));
-                    pedido.setStatus("Encerrado");
-                    pedidoDao.atualizaPedido(pedido);
-                }
-                JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
-                this.dispose();
-                new TelaDeEspera(numeroMesa).setVisible(true);
-            } catch (Exception e) {
-            }
-        }
-
-    }//GEN-LAST:event_lbl_EncerrarPedidoMouseReleased
 
     private void btn_pre_contaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pre_contaActionPerformed
         JPanel comanda = new JPanel();
@@ -2028,6 +2013,37 @@ public class Tela_Menu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_EncerrarPedidoActionPerformed
 
+    private void lbl_EncerrarPedidoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_EncerrarPedidoMouseReleased
+
+        int confirma = JOptionPane.showConfirmDialog(
+            this,
+            "Deseja encerrar o pedido?",
+            "ENCERRAR PEDIDO",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (confirma == JOptionPane.YES_OPTION) {
+            try {
+                PedidoDao pedidoDao = new PedidoDao();
+                if (pedidoVazio(numeroPedido) == true) {
+                    pedidoDao.atualizaPedidoVazio(numeroPedido);
+                } else {
+                    Pedido pedido = new Pedido();
+                    String[] palavras = lbl_numero_pedido.getText().split("\\s");
+                    System.out.println(palavras[1]);
+                    pedido.setIdPedido(Integer.parseInt(palavras[1]));
+                    pedido.setStatus("Encerrado");
+                    pedidoDao.atualizaPedido(pedido);
+                }
+                JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
+                this.dispose();
+                new TelaDeEspera(numeroMesa).setVisible(true);
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_lbl_EncerrarPedidoMouseReleased
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2119,6 +2135,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btn_remove_5;
     private javax.swing.JButton btn_remover_item;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -2161,6 +2178,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_Logo;
     private javax.swing.JLabel lbl_ResumoDoPedido;
     private javax.swing.JLabel lbl_carrinho;
+    private javax.swing.JLabel lbl_fotoOrder;
     private javax.swing.JLabel lbl_foto_1;
     private javax.swing.JLabel lbl_foto_2;
     private javax.swing.JLabel lbl_foto_3;

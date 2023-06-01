@@ -9,12 +9,19 @@ public class Tela_Atendente extends javax.swing.JFrame {
     public Tela_Atendente(String usuario, String tipoAcesso) {
         initComponents();
         jDesktopPane1.enable(false);//Deixa a cor do fundo a mostra, deixa o jDesktop desativado
-        //Casting para a primeira letra do tipoAcesso ficar em Maiusculo
+        
+          //casting para a primeira letra do tipoDeAcesso ficar maiscula
         tipoAcesso = String.valueOf(tipoAcesso);
         String s1 = tipoAcesso.substring(0, 1).toUpperCase();
         String tipoAcessoMaisculo = s1 + tipoAcesso.substring(1);
+        
+        //casting para a primeira letra do usuario ficar maiscula
+        usuario = String.valueOf(usuario);
+        String s2 = tipoAcesso.substring(0, 1).toUpperCase();
+        String usuarioMaiusculo = s1 + usuario.substring(1);
+
         //Seta a label usuario e tipo de acesso
-        lbl_usuario.setText(String.valueOf(usuario));
+        lbl_usuario.setText(String.valueOf(usuarioMaiusculo));
         lbl_tipo_acesso.setText(String.valueOf(tipoAcessoMaisculo));
     }
 
@@ -27,6 +34,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
         lbl_tipo_acesso = new javax.swing.JLabel();
         lbl_usuario = new javax.swing.JLabel();
         lbl_foto_atendente = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
         pnl_botoes = new javax.swing.JPanel();
         btn_abrir_pedido = new javax.swing.JButton();
         btn_listar_pedidos = new javax.swing.JButton();
@@ -46,49 +54,60 @@ public class Tela_Atendente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jDesktopPane1.setBackground(new java.awt.Color(224, 222, 217));
+        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         pnlTopo.setBackground(new java.awt.Color(246, 242, 233));
 
-        lbl_tipo_acesso.setFont(new java.awt.Font("Segoe UI", 1, 70)); // NOI18N
+        lbl_tipo_acesso.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lbl_tipo_acesso.setForeground(new java.awt.Color(176, 50, 39));
         lbl_tipo_acesso.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbl_tipo_acesso.setText("tipoAcesso");
 
         lbl_usuario.setBackground(new java.awt.Color(0, 255, 204));
-        lbl_usuario.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lbl_usuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbl_usuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbl_usuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbl_usuario.setText("usuario");
 
         lbl_foto_atendente.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\garcom.png"));
         lbl_foto_atendente.setText("Icone");
+
+        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogo.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\digitalmenu2.png"));
 
         javax.swing.GroupLayout pnlTopoLayout = new javax.swing.GroupLayout(pnlTopo);
         pnlTopo.setLayout(pnlTopoLayout);
         pnlTopoLayout.setHorizontalGroup(
             pnlTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTopoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_tipo_acesso, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(17, 17, 17)
+                .addComponent(lbl_foto_atendente, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_usuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_foto_atendente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(lbl_tipo_acesso, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(pnlTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTopoLayout.createSequentialGroup()
+                    .addGap(349, 349, 349)
+                    .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(349, 349, 349)))
         );
         pnlTopoLayout.setVerticalGroup(
             pnlTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTopoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_tipo_acesso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTopoLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addGroup(pnlTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lbl_foto_atendente, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlTopoLayout.createSequentialGroup()
-                        .addComponent(lbl_foto_atendente, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-
-                        .addComponent(lbl_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbl_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_tipo_acesso)))
+                .addGap(35, 35, 35))
+            .addGroup(pnlTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTopoLayout.createSequentialGroup()
+                    .addGap(10, 10, 10)
+                    .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(10, 10, 10)))
         );
 
         pnl_botoes.setBackground(new java.awt.Color(246, 242, 233));
@@ -147,7 +166,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
             }
         });
 
-        lbl_menu_atendente.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
+        lbl_menu_atendente.setFont(new java.awt.Font("Cooper Black", 1, 48)); // NOI18N
         lbl_menu_atendente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_menu_atendente.setText("Menu Atendente");
 
@@ -182,15 +201,13 @@ public class Tela_Atendente extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(lbl_menu_atendente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-
                 .addGroup(pnl_botoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_mesas, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    .addComponent(btn_mesas, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                     .addComponent(btn_listar_pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_botoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_abrir_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    .addComponent(btn_abrir_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                     .addComponent(btn_produtos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-
                 .addGap(93, 93, 93)
                 .addComponent(btn_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -386,6 +403,7 @@ public class Tela_Atendente extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lbl_foto_atendente;
     private javax.swing.JLabel lbl_menu_atendente;
     private javax.swing.JLabel lbl_tipo_acesso;
