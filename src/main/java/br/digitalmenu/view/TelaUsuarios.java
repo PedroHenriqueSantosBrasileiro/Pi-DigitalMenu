@@ -369,7 +369,9 @@ public class TelaUsuarios extends Heuristica {
                 .addGroup(pnl_global_telaUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pnl_filtros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnl_global_telaUsuariosLayout.createSequentialGroup()
+
                         .addComponent(pnl_superior, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnl_opcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)))
                 .addGap(36, 36, 36))

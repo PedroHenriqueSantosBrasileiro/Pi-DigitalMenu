@@ -19,12 +19,22 @@ public class Tela_Admin extends Heuristica {
     public Tela_Admin(String usuario, String tipoAcesso) {
         initComponents();
         jDesktopPane1.enable(false);//Deixa a cor do fundo a mostra, deixa o jDesktop desativado
+
+        //casting para a primeira letra do tipoDeAcesso ficar maiscula
         tipoAcesso = String.valueOf(tipoAcesso);
         String s1 = tipoAcesso.substring(0, 1).toUpperCase();
         String tipoAcessoMaisculo = s1 + tipoAcesso.substring(1);
-        lbl_Usuario.setText(String.valueOf(usuario));
+
+        //casting para a primeira letra do usuario ficar maiscula
+        usuario = String.valueOf(usuario);
+        String s2 = tipoAcesso.substring(0, 1).toUpperCase();
+        String usuarioMaiusculo = s1 + usuario.substring(1);
+
+        //Seta a label usuario e tipo de acesso
+        lbl_Usuario.setText(String.valueOf(usuarioMaiusculo));
         lbl_TipoAcesso.setText(String.valueOf(tipoAcessoMaisculo));
         tblRelatorio.getTableHeader().setDefaultRenderer(new CorDoCabecalho());
+
         mostraMaisVendidos();
     }
 
@@ -33,6 +43,7 @@ public class Tela_Admin extends Heuristica {
         public CorDoCabecalho() {
             setOpaque(true);
         }
+
         public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
             super.getTableCellRendererComponent(table, value, selected, focused, row, column);
             setBackground(new java.awt.Color(227, 83, 53));//COR DO HEADER
@@ -70,7 +81,7 @@ public class Tela_Admin extends Heuristica {
                     itemRelatorio.getProduto().getNome(),
                     String.format("%.2f", itemRelatorio.getProduto().getPreco()),
                     itemRelatorio.getQtdeTotalVendida(),
-                    itemRelatorio.getValorTotalVendido()
+                    String.format("%.2f", itemRelatorio.getValorTotalVendido())
                 });
             }
             IniciaTabela(tblRelatorio);
@@ -84,7 +95,6 @@ public class Tela_Admin extends Heuristica {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-
         pnl_botoes = new javax.swing.JPanel();
         lbl_Gerenciar = new javax.swing.JLabel();
         btn_categorias = new javax.swing.JButton();
@@ -97,22 +107,24 @@ public class Tela_Admin extends Heuristica {
         lbl_TipoAcesso = new javax.swing.JLabel();
         lbl_Usuario = new javax.swing.JLabel();
         lbl_icone = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
         pnl_relatorio = new javax.swing.JPanel();
         lbl_ProdutosMaisVendidos = new javax.swing.JLabel();
-
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRelatorio = new javax.swing.JTable();
         btn_gerar_relatorio = new javax.swing.JButton();
         btn_abrir_pedido = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
+        mnu_ped = new javax.swing.JMenu();
+        mnuItemPedido = new javax.swing.JMenuItem();
         mnu_mesa = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         mnu_categoria = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         mnu_produto = new javax.swing.JMenu();
         mnuitemProduto = new javax.swing.JMenuItem();
-        mnu_pedido = new javax.swing.JMenu();
-        mnuItemPedido = new javax.swing.JMenuItem();
+        mnu_relatorio = new javax.swing.JMenu();
+        mnuRelatorio = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -236,59 +248,61 @@ public class Tela_Admin extends Heuristica {
 
         pnl_header.setBackground(new java.awt.Color(246, 242, 233));
 
-        lbl_TipoAcesso.setFont(new java.awt.Font("Segoe UI", 1, 70)); // NOI18N
+        lbl_TipoAcesso.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lbl_TipoAcesso.setForeground(new java.awt.Color(176, 50, 39));
         lbl_TipoAcesso.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbl_TipoAcesso.setText("tipoAcesso");
 
         lbl_Usuario.setBackground(new java.awt.Color(0, 255, 204));
-        lbl_Usuario.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lbl_Usuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbl_Usuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbl_Usuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbl_Usuario.setText("usuario");
 
         lbl_icone.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\administrador.png"));
         lbl_icone.setText("Icone");
+
+        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogo.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\digitalmenu2.png"));
 
         javax.swing.GroupLayout pnl_headerLayout = new javax.swing.GroupLayout(pnl_header);
         pnl_header.setLayout(pnl_headerLayout);
         pnl_headerLayout.setHorizontalGroup(
             pnl_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_headerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_TipoAcesso, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_icone, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_headerLayout.createSequentialGroup()
-                        .addGap(244, 244, 244)
-                        .addComponent(lbl_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_headerLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_icone, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addComponent(lbl_TipoAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(170, 170, 170)
+                .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(184, 184, 184))
         );
         pnl_headerLayout.setVerticalGroup(
             pnl_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_headerLayout.createSequentialGroup()
-                .addContainerGap()
-
                 .addGroup(pnl_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_headerLayout.createSequentialGroup()
-                        .addComponent(lbl_icone, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lbl_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnl_headerLayout.createSequentialGroup()
-                        .addComponent(lbl_TipoAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(22, 22, 22)
+                        .addGroup(pnl_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbl_TipoAcesso)
+                            .addGroup(pnl_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbl_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbl_icone, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 26, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         pnl_relatorio.setBackground(new java.awt.Color(246, 242, 233));
         pnl_relatorio.setAutoscrolls(true);
 
-
-        lbl_ProdutosMaisVendidos.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lbl_ProdutosMaisVendidos.setFont(new java.awt.Font("Cooper Black", 1, 48)); // NOI18N
+        lbl_ProdutosMaisVendidos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_ProdutosMaisVendidos.setText("Produtos mais vendidos do mês:");
-
 
         jScrollPane1.setBackground(new java.awt.Color(102, 255, 102));
         jScrollPane1.setForeground(new java.awt.Color(51, 0, 255));
@@ -313,7 +327,7 @@ public class Tela_Admin extends Heuristica {
         btn_gerar_relatorio.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         btn_gerar_relatorio.setForeground(new java.awt.Color(255, 255, 255));
         btn_gerar_relatorio.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\relatorio.png"));
-        btn_gerar_relatorio.setText("<html> <html> <body> <h><div style=\"text-align:center\"> Gerar Relatório </h></center> </body> </html>");
+        btn_gerar_relatorio.setText("<html> <html> <body> <h><div style=\"text-align:center\"> Gerar Relatório</h></center> </body> </html>");
         btn_gerar_relatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_gerar_relatorioActionPerformed(evt);
@@ -323,7 +337,10 @@ public class Tela_Admin extends Heuristica {
         btn_abrir_pedido.setBackground(new java.awt.Color(176, 50, 39));
         btn_abrir_pedido.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         btn_abrir_pedido.setForeground(new java.awt.Color(255, 255, 255));
-        btn_abrir_pedido.setText("<html> <html> <body> <h><div style=\"text-align:center\"> Abrir pedido ?remover?</h></center> </body> </html>");
+        btn_abrir_pedido.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\pedir.png"));
+        btn_abrir_pedido.setText("<html> <html> <body> <h><div style=\"text-align:center\"> Criar pedido</h></center> </body> </html>");
+        btn_abrir_pedido.setMinimumSize(new java.awt.Dimension(201, 49));
+        btn_abrir_pedido.setPreferredSize(new java.awt.Dimension(319, 49));
         btn_abrir_pedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_abrir_pedidoActionPerformed(evt);
@@ -338,14 +355,13 @@ public class Tela_Admin extends Heuristica {
                 .addGap(41, 41, 41)
                 .addGroup(pnl_relatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnl_relatorioLayout.createSequentialGroup()
-                        .addGap(356, 356, 356)
-                        .addComponent(btn_gerar_relatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(94, 94, 94)
-
-                        .addComponent(btn_abrir_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-
+                        .addGap(108, 108, 108)
+                        .addComponent(btn_gerar_relatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                        .addGap(92, 92, 92)
+                        .addComponent(btn_abrir_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                        .addGap(90, 90, 90))
                     .addComponent(jScrollPane1)
-                    .addComponent(lbl_ProdutosMaisVendidos, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE))
+                    .addComponent(lbl_ProdutosMaisVendidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(44, 44, 44))
         );
         pnl_relatorioLayout.setVerticalGroup(
@@ -354,13 +370,11 @@ public class Tela_Admin extends Heuristica {
                 .addContainerGap()
                 .addComponent(lbl_ProdutosMaisVendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
-                .addGap(11, 11, 11)
-
-                .addGroup(pnl_relatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_gerar_relatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_abrir_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl_relatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_gerar_relatorio)
+                    .addComponent(btn_abrir_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -389,8 +403,22 @@ public class Tela_Admin extends Heuristica {
                 .addContainerGap())
         );
 
+        mnu_ped.setText("Pedido");
+
+        mnuItemPedido.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, 0));
+        mnuItemPedido.setText("Pedido");
+        mnuItemPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuItemPedidoActionPerformed(evt);
+            }
+        });
+        mnu_ped.add(mnuItemPedido);
+
+        jMenuBar1.add(mnu_ped);
+
         mnu_mesa.setText("Mesa");
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, 0));
         jMenuItem1.setText("MesaDAO");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -403,6 +431,7 @@ public class Tela_Admin extends Heuristica {
 
         mnu_categoria.setText("Categoria");
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, 0));
         jMenuItem2.setText("Categoria DAO");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -415,6 +444,7 @@ public class Tela_Admin extends Heuristica {
 
         mnu_produto.setText("Produto");
 
+        mnuitemProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, 0));
         mnuitemProduto.setText("Produto DAO");
         mnuitemProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -425,17 +455,18 @@ public class Tela_Admin extends Heuristica {
 
         jMenuBar1.add(mnu_produto);
 
-        mnu_pedido.setText("Pedido");
+        mnu_relatorio.setText("Relatórios");
 
-        mnuItemPedido.setText("Pedido");
-        mnuItemPedido.addActionListener(new java.awt.event.ActionListener() {
+        mnuRelatorio.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, 0));
+        mnuRelatorio.setText("Relatório");
+        mnuRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuItemPedidoActionPerformed(evt);
+                mnuRelatorioActionPerformed(evt);
             }
         });
-        mnu_pedido.add(mnuItemPedido);
+        mnu_relatorio.add(mnuRelatorio);
 
-        jMenuBar1.add(mnu_pedido);
+        jMenuBar1.add(mnu_relatorio);
 
         setJMenuBar(jMenuBar1);
 
@@ -484,15 +515,11 @@ public class Tela_Admin extends Heuristica {
         }
     }//GEN-LAST:event_mnuitemProdutoActionPerformed
 
-    private void mnuItemPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemPedidoActionPerformed
+    private void mnuRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRelatorioActionPerformed
 
-        try {
-            new Tela_Listar_Pedido().setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(Tela_Admin.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_mnuItemPedidoActionPerformed
+        new TelaRelatorio().setVisible(true);
+
+    }//GEN-LAST:event_mnuRelatorioActionPerformed
 
     private void btn_gerar_relatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerar_relatorioActionPerformed
         TelaRelatorio telaRelatorio = new TelaRelatorio();
@@ -575,8 +602,11 @@ public class Tela_Admin extends Heuristica {
         }
     }//GEN-LAST:event_btnAbrirPedidoJFRAMActionPerformed
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private void mnuItemPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemPedidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuItemPedidoActionPerformed
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_abrir_pedido;
     private javax.swing.JButton btn_categorias;
     private javax.swing.JButton btn_gerar_relatorio;
@@ -585,22 +615,24 @@ public class Tela_Admin extends Heuristica {
     private javax.swing.JButton btn_produtos;
     private javax.swing.JButton btn_sair;
     private javax.swing.JButton btn_usuarios;
-
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lbl_Gerenciar;
     private javax.swing.JLabel lbl_ProdutosMaisVendidos;
     private javax.swing.JLabel lbl_TipoAcesso;
     private javax.swing.JLabel lbl_Usuario;
     private javax.swing.JLabel lbl_icone;
     private javax.swing.JMenuItem mnuItemPedido;
+    private javax.swing.JMenuItem mnuRelatorio;
     private javax.swing.JMenu mnu_categoria;
     private javax.swing.JMenu mnu_mesa;
-    private javax.swing.JMenu mnu_pedido;
+    private javax.swing.JMenu mnu_ped;
     private javax.swing.JMenu mnu_produto;
+    private javax.swing.JMenu mnu_relatorio;
     private javax.swing.JMenuItem mnuitemProduto;
     private javax.swing.JPanel pnl_botoes;
     private javax.swing.JPanel pnl_header;

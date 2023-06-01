@@ -183,12 +183,12 @@ public class Tela_Produto extends Heuristica {
         btn_alterar_produto = new javax.swing.JButton();
         btn_deletar_produto = new javax.swing.JButton();
         pnl_filtros = new javax.swing.JPanel();
-        btn_filtro_nome = new javax.swing.JButton();
-        btn_filtro_faixa_preco = new javax.swing.JButton();
-        btn_filtro_descricao = new javax.swing.JButton();
-        btn_filtro_categoria = new javax.swing.JButton();
-        btn_filtro_status = new javax.swing.JButton();
         btn_filtro_ativos = new javax.swing.JButton();
+        btn_filtro_descricao = new javax.swing.JButton();
+        btn_filtro_status = new javax.swing.JButton();
+        btn_filtro_categoria = new javax.swing.JButton();
+        btn_filtro_faixa_preco = new javax.swing.JButton();
+        btn_filtro_nome = new javax.swing.JButton();
         pnl_tabela = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtProduto = new javax.swing.JTable();
@@ -317,8 +317,8 @@ public class Tela_Produto extends Heuristica {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
-                .addComponent(btn_cadastrar_produto)
-                .addContainerGap())
+                .addComponent(btn_cadastrar_produto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
 
         pnl_opcoes.setBackground(new java.awt.Color(246, 242, 233));
@@ -357,10 +357,11 @@ public class Tela_Produto extends Heuristica {
         pnl_opcoesLayout.setVerticalGroup(
             pnl_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_opcoesLayout.createSequentialGroup()
-                .addComponent(btn_alterar_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_deletar_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(btn_alterar_produto, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_deletar_produto, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout pnl_cadastrar_opcoesLayout = new javax.swing.GroupLayout(pnl_cadastrar_opcoes);
@@ -369,9 +370,9 @@ public class Tela_Produto extends Heuristica {
             pnl_cadastrar_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cadastrar_opcoesLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(pnl_cadastrar_produto, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                .addComponent(pnl_cadastrar_produto, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnl_opcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
+                .addComponent(pnl_opcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
                 .addGap(35, 35, 35))
         );
         pnl_cadastrar_opcoesLayout.setVerticalGroup(
@@ -379,7 +380,7 @@ public class Tela_Produto extends Heuristica {
             .addGroup(pnl_cadastrar_opcoesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_cadastrar_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl_cadastrar_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 280, Short.MAX_VALUE)
+                    .addComponent(pnl_cadastrar_produto, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                     .addComponent(pnl_opcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -387,26 +388,17 @@ public class Tela_Produto extends Heuristica {
         pnl_filtros.setBackground(new java.awt.Color(246, 242, 233));
         pnl_filtros.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18))); // NOI18N
 
-        btn_filtro_nome.setBackground(new java.awt.Color(255, 243, 198));
-        btn_filtro_nome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btn_filtro_nome.setText("Nome");
-        btn_filtro_nome.addActionListener(new java.awt.event.ActionListener() {
+        btn_filtro_ativos.setBackground(new java.awt.Color(255, 243, 198));
+        btn_filtro_ativos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_filtro_ativos.setText("Listar ativos");
+        btn_filtro_ativos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_filtro_nomeActionPerformed(evt);
-            }
-        });
-
-        btn_filtro_faixa_preco.setBackground(new java.awt.Color(255, 243, 198));
-        btn_filtro_faixa_preco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btn_filtro_faixa_preco.setText("Faixa de preço");
-        btn_filtro_faixa_preco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_filtro_faixa_precoActionPerformed(evt);
+                btn_filtro_ativosActionPerformed(evt);
             }
         });
 
         btn_filtro_descricao.setBackground(new java.awt.Color(255, 243, 198));
-        btn_filtro_descricao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btn_filtro_descricao.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_filtro_descricao.setText("Descrição");
         btn_filtro_descricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -414,17 +406,8 @@ public class Tela_Produto extends Heuristica {
             }
         });
 
-        btn_filtro_categoria.setBackground(new java.awt.Color(255, 243, 198));
-        btn_filtro_categoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btn_filtro_categoria.setText("Categoria");
-        btn_filtro_categoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_filtro_categoriaActionPerformed(evt);
-            }
-        });
-
         btn_filtro_status.setBackground(new java.awt.Color(255, 243, 198));
-        btn_filtro_status.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btn_filtro_status.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_filtro_status.setText("Status");
         btn_filtro_status.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -432,12 +415,30 @@ public class Tela_Produto extends Heuristica {
             }
         });
 
-        btn_filtro_ativos.setBackground(new java.awt.Color(255, 243, 198));
-        btn_filtro_ativos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btn_filtro_ativos.setText("Listar ativos");
-        btn_filtro_ativos.addActionListener(new java.awt.event.ActionListener() {
+        btn_filtro_categoria.setBackground(new java.awt.Color(255, 243, 198));
+        btn_filtro_categoria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_filtro_categoria.setText("Categoria");
+        btn_filtro_categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_filtro_ativosActionPerformed(evt);
+                btn_filtro_categoriaActionPerformed(evt);
+            }
+        });
+
+        btn_filtro_faixa_preco.setBackground(new java.awt.Color(255, 243, 198));
+        btn_filtro_faixa_preco.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_filtro_faixa_preco.setText("Faixa de preço");
+        btn_filtro_faixa_preco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_filtro_faixa_precoActionPerformed(evt);
+            }
+        });
+
+        btn_filtro_nome.setBackground(new java.awt.Color(255, 243, 198));
+        btn_filtro_nome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_filtro_nome.setText("Nome");
+        btn_filtro_nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_filtro_nomeActionPerformed(evt);
             }
         });
 
@@ -446,7 +447,7 @@ public class Tela_Produto extends Heuristica {
         pnl_filtrosLayout.setHorizontalGroup(
             pnl_filtrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_filtrosLayout.createSequentialGroup()
-                .addGap(366, 366, 366)
+                .addGap(155, 155, 155)
                 .addComponent(btn_filtro_nome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_filtro_faixa_preco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -458,7 +459,7 @@ public class Tela_Produto extends Heuristica {
                 .addComponent(btn_filtro_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_filtro_ativos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(351, 351, 351))
+                .addGap(137, 137, 137))
         );
         pnl_filtrosLayout.setVerticalGroup(
             pnl_filtrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -545,12 +546,12 @@ public class Tela_Produto extends Heuristica {
             pnl_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_tabelaLayout.createSequentialGroup()
                 .addGap(220, 220, 220)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1002, Short.MAX_VALUE)
                 .addGap(173, 173, 173))
         );
         pnl_tabelaLayout.setVerticalGroup(
             pnl_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
