@@ -26,7 +26,7 @@ public class TelaDeEspera extends javax.swing.JFrame {
         btnIniciarPedido = new javax.swing.JButton();
         lblNumeroMesa = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnIniciarPedido.setBackground(new java.awt.Color(176, 50, 39));
         btnIniciarPedido.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
@@ -76,7 +76,8 @@ public class TelaDeEspera extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pack();
+        setSize(new java.awt.Dimension(747, 600));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarPedidoActionPerformed
