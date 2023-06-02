@@ -37,7 +37,7 @@ public class PedidoDao {
             while (rs.next()) {
                 numeroPedido = rs.getInt(1);
             }
-            JOptionPane.showMessageDialog(null, "Pedido criado!, Nº: " + numeroPedido);
+            JOptionPane.showMessageDialog(null, "Pedido criado!, Nº: " + numeroPedido,"Pedido criado com sucesso!", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             throw ex;
         } finally {

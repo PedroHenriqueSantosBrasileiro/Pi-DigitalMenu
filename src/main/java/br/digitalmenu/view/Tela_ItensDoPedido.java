@@ -114,7 +114,7 @@ public class Tela_ItensDoPedido extends Heuristica {
         lbl_numero_pedido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_numero_pedido.setText("jLabel1");
 
-        lbl_foto_mesa.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\mesa.png"));
+        lbl_foto_mesa.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\table.png"));
         lbl_foto_mesa.setText("jLabel1");
 
         lbl_numero_mesa.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
@@ -196,6 +196,7 @@ public class Tela_ItensDoPedido extends Heuristica {
 
         btn_voltar.setBackground(new java.awt.Color(255, 243, 198));
         btn_voltar.setFont(new java.awt.Font("Segoe UI", 0, 26)); // NOI18N
+        btn_voltar.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\voltar.png"));
         btn_voltar.setText("Voltar");
         btn_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,6 +206,7 @@ public class Tela_ItensDoPedido extends Heuristica {
 
         btn_voltar1.setBackground(new java.awt.Color(255, 153, 153));
         btn_voltar1.setFont(new java.awt.Font("Segoe UI", 0, 26)); // NOI18N
+        btn_voltar1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\negativo.png"));
         btn_voltar1.setText("Cancelar Item");
         btn_voltar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,6 +216,7 @@ public class Tela_ItensDoPedido extends Heuristica {
 
         btn_voltar2.setBackground(new java.awt.Color(204, 255, 204));
         btn_voltar2.setFont(new java.awt.Font("Segoe UI", 0, 26)); // NOI18N
+        btn_voltar2.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\positivo.png"));
         btn_voltar2.setText("Adicionar Item");
         btn_voltar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,13 +233,12 @@ public class Tela_ItensDoPedido extends Heuristica {
                 .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnl_superior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
-                    .addGroup(pnlGlobalLayout.createSequentialGroup()
-                        .addComponent(btn_voltar1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGlobalLayout.createSequentialGroup()
+                        .addComponent(btn_voltar1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                         .addGap(36, 36, 36)
-                        .addComponent(btn_voltar2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_voltar2, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                         .addGap(27, 27, 27)
-                        .addComponent(btn_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btn_voltar, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlGlobalLayout.setVerticalGroup(
@@ -245,13 +247,13 @@ public class Tela_ItensDoPedido extends Heuristica {
                 .addContainerGap()
                 .addComponent(pnl_superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(pnlGlobalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_voltar1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_voltar2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(btn_voltar1, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                    .addComponent(btn_voltar2, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                    .addComponent(btn_voltar, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -262,7 +264,7 @@ public class Tela_ItensDoPedido extends Heuristica {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlGlobal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlGlobal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

@@ -11,9 +11,6 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mnuItemPedido">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="P"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Pedido"/>
               </Properties>
               <Events>
@@ -32,7 +29,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="M"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="MesaDAO"/>
+                <Property name="text" type="java.lang.String" value="Mesa"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
@@ -50,7 +47,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="C"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Categoria DAO"/>
+                <Property name="text" type="java.lang.String" value="Categoria"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
@@ -65,10 +62,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mnuitemProduto">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="P"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Produto DAO"/>
+                <Property name="text" type="java.lang.String" value="Produto"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuitemProdutoActionPerformed"/>
@@ -484,14 +478,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="lbl_ProdutosMaisVendidos" min="-2" pref="77" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="440" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btn_gerar_relatorio" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="389" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btn_gerar_relatorio" min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="btn_abrir_pedido" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

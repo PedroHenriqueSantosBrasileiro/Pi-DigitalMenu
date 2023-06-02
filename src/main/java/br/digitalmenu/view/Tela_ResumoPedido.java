@@ -89,10 +89,11 @@ public class Tela_ResumoPedido extends Heuristica {
         btn_encerrar_pedido = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Carrinho");
 
         pnl_resumo_pedido.setBackground(new java.awt.Color(255, 255, 255));
 
-        pnl_superior.setBackground(new java.awt.Color(176, 50, 39));
+        pnl_superior.setBackground(new java.awt.Color(246, 242, 233));
 
         lbl_Pedido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_Pedido.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\pedido.png"));
@@ -101,7 +102,7 @@ public class Tela_ResumoPedido extends Heuristica {
         lbl_numero_pedido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_numero_pedido.setText("nº");
 
-        lbl_Mesa.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\mesa.png"));
+        lbl_Mesa.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\table.png"));
 
         lbl_numero_mesa.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         lbl_numero_mesa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -120,18 +121,18 @@ public class Tela_ResumoPedido extends Heuristica {
         pnl_superiorLayout.setHorizontalGroup(
             pnl_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_superiorLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(lbl_Pedido, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                .addGap(15, 15, 15)
-                .addComponent(lbl_numero_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                .addGap(50, 50, 50)
-                .addComponent(lbl_Mesa, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                .addGap(15, 15, 15)
-                .addComponent(lbl_numero_mesa, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                .addGap(155, 155, 155)
-                .addComponent(lbl_Total, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
+                .addComponent(lbl_Pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_valor_total, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(lbl_numero_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_Mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_numero_mesa, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                .addGap(155, 155, 155)
+                .addComponent(lbl_Total, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_valor_total, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addGap(42, 42, 42))
         );
         pnl_superiorLayout.setVerticalGroup(
@@ -180,10 +181,7 @@ public class Tela_ResumoPedido extends Heuristica {
         pnl_tabela.setLayout(pnl_tabelaLayout);
         pnl_tabelaLayout.setHorizontalGroup(
             pnl_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_tabelaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
         );
         pnl_tabelaLayout.setVerticalGroup(
             pnl_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,9 +191,11 @@ public class Tela_ResumoPedido extends Heuristica {
                 .addContainerGap())
         );
 
-        pnl_inferior.setBackground(new java.awt.Color(176, 50, 39));
+        pnl_inferior.setBackground(new java.awt.Color(246, 242, 233));
 
-        btn_voltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_voltar.setBackground(new java.awt.Color(255, 243, 198));
+        btn_voltar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btn_voltar.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\voltar.png"));
         btn_voltar.setText("Voltar");
         btn_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,7 +203,10 @@ public class Tela_ResumoPedido extends Heuristica {
             }
         });
 
-        btn_encerrar_pedido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_encerrar_pedido.setBackground(new java.awt.Color(176, 50, 39));
+        btn_encerrar_pedido.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btn_encerrar_pedido.setForeground(new java.awt.Color(246, 242, 217));
+        btn_encerrar_pedido.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\cashamarelo.png"));
         btn_encerrar_pedido.setText("Encerrar Pedido");
         btn_encerrar_pedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,17 +219,17 @@ public class Tela_ResumoPedido extends Heuristica {
         pnl_inferiorLayout.setHorizontalGroup(
             pnl_inferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_inferiorLayout.createSequentialGroup()
-                .addGap(262, 262, 262)
-                .addComponent(btn_encerrar_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(226, 226, 226)
+                .addComponent(btn_encerrar_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_voltar, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                .addGap(250, 250, 250))
+                .addComponent(btn_voltar, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGap(189, 189, 189))
         );
         pnl_inferiorLayout.setVerticalGroup(
             pnl_inferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_inferiorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_inferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_inferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_voltar, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                     .addComponent(btn_encerrar_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
                 .addContainerGap())
