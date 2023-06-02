@@ -533,7 +533,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         btn_categoria_frutos.setBackground(new java.awt.Color(176, 50, 39));
         btn_categoria_frutos.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
         btn_categoria_frutos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_categoria_frutos.setText("Burguers");
+        btn_categoria_frutos.setText("Hamburguer");
         btn_categoria_frutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_categoria_frutosActionPerformed(evt);
@@ -567,7 +567,7 @@ public class Tela_Menu extends javax.swing.JFrame {
             .addGroup(pnl_categoriaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_categoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_categoria_sobremesas, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(btn_categoria_sobremesas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_categoria_bebidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_categoria_frutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_categoria_carnes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -576,15 +576,15 @@ public class Tela_Menu extends javax.swing.JFrame {
         );
         pnl_categoriaLayout.setVerticalGroup(
             pnl_categoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_categoriaLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_categoriaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btn_categoria_bebidas, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_categoria_frutos, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_categoria_entradas, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_categoria_carnes, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_categoria_entradas, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_categoria_frutos, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_categoria_bebidas, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_categoria_sobremesas, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1900,13 +1900,44 @@ public class Tela_Menu extends javax.swing.JFrame {
             for (ItemRelatorio itemRelatorio : relatorioDao.listarItensPorPedidoAgrupado(numeroPedido)) {
                 //  item = new Item();
                 texto += itemRelatorio.getProduto().getNome();
-                if (itemRelatorio.getProduto().getNome().length() >= 15) {
-                    texto += "\t";
-                } else {
+                System.out.println("\n\n\n\n\n\n");
+                if (itemRelatorio.getProduto().getNome().length() <= 10) {
                     texto += "\t\t";
+                    System.out.println("1");
+                } else if ("Classic Burger".equals(itemRelatorio.getProduto().getNome())) {
+                    texto += "\t\t";
+
+                } else if ("Suco de laranja".equals(itemRelatorio.getProduto().getNome())) {
+                    texto += "\t\t";
+                } else if ("Suco de maracujá".equals(itemRelatorio.getProduto().getNome())) {
+                    texto += "\t";
+                } else if ("Shrimp Parmesan".equals(itemRelatorio.getProduto().getNome())) {
+                    texto += "\t";
+                } else if ("Chicken Tender".equals(itemRelatorio.getProduto().getNome())) {
+                    texto += "\t\t";
+                    System.out.println("TENDDER");
+                } else if ("Mozzarella Sticks".equals(itemRelatorio.getProduto().getNome())) {
+                    texto += "\t";
+                    System.out.println("mozza");
+                } else if ("Mousse de maracujá".equals(itemRelatorio.getProduto().getNome())) {
+                    texto += "\t";
+                } else if ("Bolo com caramelo".equals(itemRelatorio.getProduto().getNome())) {
+                    texto += "\t";
+                } else if ("Bolo de Chocolate".equals(itemRelatorio.getProduto().getNome())) {
+                    texto += "\t";
+                } else if ("Chocolate Meltdown".equals(itemRelatorio.getProduto().getNome())) {
+                    texto += "\t";
+                } else if (itemRelatorio.getProduto().getNome().length() <= 13) {
+                    texto += "\t\t";
+                    System.out.println("2");
+                } else if (itemRelatorio.getProduto().getNome().length() <= 14) {
+                    texto += "\t";
+                    System.out.println("3");
+                } else {
+
                 }
                 texto += df.format(itemRelatorio.getProduto().getPreco())
-                        + "\t   "
+                        + "\t"
                         + itemRelatorio.getQtde()
                         + "\t"
                         + df.format(itemRelatorio.getSubtotal());
