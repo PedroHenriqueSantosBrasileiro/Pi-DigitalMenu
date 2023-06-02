@@ -27,8 +27,8 @@ public class Tela_Admin extends Heuristica {
 
         //casting para a primeira letra do usuario ficar maiscula
         usuario = String.valueOf(usuario);
-        String s2 = tipoAcesso.substring(0, 1).toUpperCase();
-        String usuarioMaiusculo = s1 + usuario.substring(1);
+        String s2 = usuario.substring(0, 1).toUpperCase();
+        String usuarioMaiusculo = s2 + usuario.substring(1);
 
         //Seta a label usuario e tipo de acesso
         lbl_Usuario.setText(String.valueOf(usuarioMaiusculo));
@@ -370,10 +370,10 @@ public class Tela_Admin extends Heuristica {
                 .addContainerGap()
                 .addComponent(lbl_ProdutosMaisVendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnl_relatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_gerar_relatorio)
+                .addGroup(pnl_relatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_gerar_relatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_abrir_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -405,7 +405,6 @@ public class Tela_Admin extends Heuristica {
 
         mnu_ped.setText("Pedido");
 
-        mnuItemPedido.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, 0));
         mnuItemPedido.setText("Pedido");
         mnuItemPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -419,7 +418,7 @@ public class Tela_Admin extends Heuristica {
         mnu_mesa.setText("Mesa");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, 0));
-        jMenuItem1.setText("MesaDAO");
+        jMenuItem1.setText("Mesa");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -432,7 +431,7 @@ public class Tela_Admin extends Heuristica {
         mnu_categoria.setText("Categoria");
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, 0));
-        jMenuItem2.setText("Categoria DAO");
+        jMenuItem2.setText("Categoria");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -444,8 +443,7 @@ public class Tela_Admin extends Heuristica {
 
         mnu_produto.setText("Produto");
 
-        mnuitemProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, 0));
-        mnuitemProduto.setText("Produto DAO");
+        mnuitemProduto.setText("Produto");
         mnuitemProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuitemProdutoActionPerformed(evt);

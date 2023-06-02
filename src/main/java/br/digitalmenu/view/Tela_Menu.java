@@ -11,6 +11,8 @@ import br.digitalmenu.model.relatorio.ItemRelatorio;
 import java.awt.TextArea;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -254,46 +256,43 @@ public class Tela_Menu extends javax.swing.JFrame {
         dtm.setNumRows(0);
     }
 
-    public void encerraPedido() {
-
-        int confirma = JOptionPane.showConfirmDialog(
-                this,
-                "Deseja encerrar o pedido?",
-                "ENCERRAR PEDIDO",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE
-        );
-        if (confirma == JOptionPane.YES_OPTION) {
-            try {
-                Pedido pedido = new Pedido();
-                pedido.setIdPedido(numeroPedido);
-                pedido.setStatus("Encerrado");
-                PedidoDao pedidoDao = new PedidoDao();
-                pedidoDao.atualizaPedido(pedido);
-                JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce"); //arrumar acentuacao
-                if (!foiAdm) {
-                    TelaDeEspera telaDeEspera = new TelaDeEspera(this.numeroMesa);
-                    this.dispose();
-                    telaDeEspera.setVisible(true);
-                } else {
-                    this.dispose();
-                }
-
-            } catch (Exception e) {
-
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            }
-
-        }
-    }
-
     public void limparQtde() {
         for (int i = 0; i < lblQtde.length; i++) {
             lblQtde[i].setText("0");
         }
     }
 
-    public void encerrarPedido() throws SQLException {
+    public void encerraPedidoSemValidar() {
+        int confirma = JOptionPane.showConfirmDialog(
+                this,
+                "Deseja encerrar o pedido?",
+                "Encerrar pedido?",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (confirma == JOptionPane.YES_OPTION) {
+            try {
+                PedidoDao pedidoDao = new PedidoDao();
+                if (pedidoVazio(numeroPedido) == true) {
+                    pedidoDao.atualizaPedidoVazio(numeroPedido);
+                } else {
+                    Pedido pedido = new Pedido();
+                    String[] palavras = lbl_numero_pedido.getText().split("\\s");
+                    System.out.println(palavras[1]);
+                    pedido.setIdPedido(Integer.parseInt(palavras[1]));
+                    pedido.setStatus("Encerrado");
+                    pedidoDao.atualizaPedido(pedido);
+                }
+                JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce.", "Encerramento de pedido.", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                new TelaDeEspera(numeroMesa).setVisible(true);
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    public void encerrarPedidoXXX() throws SQLException {
         int confirma = JOptionPane.showConfirmDialog(
                 this,
                 "Deseja encerrar o pedido?",
@@ -321,7 +320,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                         pedido.getMesa().setIdMesa(numeroMesa);
                         pedidoDao.adicionarPedido(pedido);
                         this.dispose();
-                        new Tela_Login().setVisible(true);
+                        new TelaDeEspera(numeroMesa).setVisible(true);
                     }
                 } else {
                     try {
@@ -352,7 +351,7 @@ public class Tela_Menu extends javax.swing.JFrame {
                             pedido.getMesa().setIdMesa(numeroMesa);
                             pedidoDao.adicionarPedido(pedido);
                             this.dispose();
-                            new Tela_Login().setVisible(true);
+                            new TelaDeEspera(numeroMesa).setVisible(true);
                         }
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -423,7 +422,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         lbl_Id_24 = new javax.swing.JLabel();
         lbl_Id_25 = new javax.swing.JLabel();
         lbl_fotoOrder = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbl_foto_carrinho = new javax.swing.JLabel();
         pnl_resumo = new javax.swing.JPanel();
         lbl_ResumoDoPedido = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -830,7 +829,13 @@ public class Tela_Menu extends javax.swing.JFrame {
 
         lbl_fotoOrder.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\order.png"));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\cashamarelo.png"));
+        lbl_foto_carrinho.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_foto_carrinho.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\br\\digitalmenu\\images\\cashamarelo.png"));
+        lbl_foto_carrinho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lbl_foto_carrinhoMouseReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_botoes_superiorLayout = new javax.swing.GroupLayout(pnl_botoes_superior);
         pnl_botoes_superior.setLayout(pnl_botoes_superiorLayout);
@@ -852,21 +857,17 @@ public class Tela_Menu extends javax.swing.JFrame {
                         .addComponent(pnl_LABELS_INDICES, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_icone_carrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(lbl_EncerrarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_botoes_superiorLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65))))
+                .addGap(37, 37, 37)
+                .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbl_EncerrarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(lbl_foto_carrinho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnl_botoes_superiorLayout.setVerticalGroup(
             pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lbl_Logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
-                .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
                             .addGroup(pnl_botoes_superiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -884,8 +885,8 @@ public class Tela_Menu extends javax.swing.JFrame {
                                     .addComponent(lbl_numero_mesa)))))
                     .addGroup(pnl_botoes_superiorLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_foto_carrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbl_EncerrarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1968,7 +1969,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_adiciona_2ActionPerformed
 
     private void btn_adicionaCarrinho_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionaCarrinho_2ActionPerformed
-         adicionaNoPreCarrinho(lbl_qtde_2, lbl_Id_2, txt_obs_2);
+        adicionaNoPreCarrinho(lbl_qtde_2, lbl_Id_2, txt_obs_2);
     }//GEN-LAST:event_btn_adicionaCarrinho_2ActionPerformed
 
     private void btn_remove_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_remove_3ActionPerformed
@@ -1980,7 +1981,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_adiciona_3ActionPerformed
 
     private void btn_adicionaCarrinho_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionaCarrinho_3ActionPerformed
-       adicionaNoPreCarrinho(lbl_qtde_3, lbl_Id_3, txt_obs_3);
+        adicionaNoPreCarrinho(lbl_qtde_3, lbl_Id_3, txt_obs_3);
     }//GEN-LAST:event_btn_adicionaCarrinho_3ActionPerformed
 
     private void btn_remove_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_remove_4ActionPerformed
@@ -1992,7 +1993,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_adiciona_4ActionPerformed
 
     private void btn_adicionaCarrinho_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionaCarrinho_4ActionPerformed
-         adicionaNoPreCarrinho(lbl_qtde_4, lbl_Id_4, txt_obs_4);
+        adicionaNoPreCarrinho(lbl_qtde_4, lbl_Id_4, txt_obs_4);
     }//GEN-LAST:event_btn_adicionaCarrinho_4ActionPerformed
 
     private void btn_remove_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_remove_5ActionPerformed
@@ -2004,45 +2005,26 @@ public class Tela_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_adiciona_5ActionPerformed
 
     private void btn_adicionaCarrinho_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionaCarrinho_5ActionPerformed
-         adicionaNoPreCarrinho(lbl_qtde_5, lbl_Id_5, txt_obs_5);
+        adicionaNoPreCarrinho(lbl_qtde_5, lbl_Id_5, txt_obs_5);
     }//GEN-LAST:event_btn_adicionaCarrinho_5ActionPerformed
 
     private void btn_EncerrarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EncerrarPedidoActionPerformed
 
-        encerraPedido();
+        encerraPedidoSemValidar();
 
     }//GEN-LAST:event_btn_EncerrarPedidoActionPerformed
 
     private void lbl_EncerrarPedidoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_EncerrarPedidoMouseReleased
 
-        int confirma = JOptionPane.showConfirmDialog(
-            this,
-            "Deseja encerrar o pedido?",
-            "ENCERRAR PEDIDO",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE
-        );
+        encerraPedidoSemValidar();
 
-        if (confirma == JOptionPane.YES_OPTION) {
-            try {
-                PedidoDao pedidoDao = new PedidoDao();
-                if (pedidoVazio(numeroPedido) == true) {
-                    pedidoDao.atualizaPedidoVazio(numeroPedido);
-                } else {
-                    Pedido pedido = new Pedido();
-                    String[] palavras = lbl_numero_pedido.getText().split("\\s");
-                    System.out.println(palavras[1]);
-                    pedido.setIdPedido(Integer.parseInt(palavras[1]));
-                    pedido.setStatus("Encerrado");
-                    pedidoDao.atualizaPedido(pedido);
-                }
-                JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce");
-                this.dispose();
-                new TelaDeEspera(numeroMesa).setVisible(true);
-            } catch (Exception e) {
-            }
-        }
     }//GEN-LAST:event_lbl_EncerrarPedidoMouseReleased
+
+    private void lbl_foto_carrinhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_foto_carrinhoMouseReleased
+
+        encerraPedidoSemValidar();
+
+    }//GEN-LAST:event_lbl_foto_carrinhoMouseReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -2099,7 +2081,6 @@ public class Tela_Menu extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-   
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -2135,7 +2116,6 @@ public class Tela_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btn_remove_5;
     private javax.swing.JButton btn_remover_item;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -2184,6 +2164,7 @@ public class Tela_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_foto_3;
     private javax.swing.JLabel lbl_foto_4;
     private javax.swing.JLabel lbl_foto_5;
+    private javax.swing.JLabel lbl_foto_carrinho;
     private javax.swing.JLabel lbl_icone_carrinho;
     private javax.swing.JLabel lbl_nome_1;
     private javax.swing.JLabel lbl_nome_2;

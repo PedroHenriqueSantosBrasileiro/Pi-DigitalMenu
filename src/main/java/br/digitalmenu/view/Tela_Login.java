@@ -238,9 +238,9 @@ public class Tela_Login extends javax.swing.JFrame {
         String nomeUsuario = txt_login.getText();
         String senha = txt_senha.getText();
         if (nomeUsuario.length() < 1) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo Login!");
+            JOptionPane.showMessageDialog(null, "Preencha o campo Login!", "Campos vazios!", JOptionPane.INFORMATION_MESSAGE);
         } else if (senha.length() < 1) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo Senha!");
+            JOptionPane.showMessageDialog(null, "Preencha o campo Senha!", "Campos vazios!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
                 UsuarioDAO usuarioDao = new UsuarioDAO();
@@ -254,12 +254,13 @@ public class Tela_Login extends javax.swing.JFrame {
                             JOptionPane.WARNING_MESSAGE);
                 } else if (usuario.getTipoacesso().equalsIgnoreCase("administrador")) {
                     System.out.println(usuario.getStatus());
-                    JOptionPane.showMessageDialog(null, "Bem vindo adm.");
+                    JOptionPane.showMessageDialog(null, "Bem-vindo administrador.", "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                     new Tela_Admin(usuario.getUsuario(), usuario.getTipoacesso()).setVisible(true);
+
                 } else if (usuario.getTipoacesso().equalsIgnoreCase("atendente")) {
                     System.out.println(usuario.getStatus());
-                    JOptionPane.showMessageDialog(null, "Bem vindo atendente.");
+                    JOptionPane.showMessageDialog(null, "Bem-vindo atendente.", "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                     new Tela_Atendente(usuario.getUsuario(), usuario.getTipoacesso()).setVisible(true);
                 }
