@@ -88,7 +88,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btn_categoria_sobremesas" pref="188" max="32767" attributes="0"/>
+                          <Component id="btn_categoria_sobremesas" max="32767" attributes="0"/>
                           <Component id="btn_categoria_bebidas" max="32767" attributes="0"/>
                           <Component id="btn_categoria_frutos" alignment="0" max="32767" attributes="0"/>
                           <Component id="btn_categoria_carnes" alignment="0" max="32767" attributes="0"/>
@@ -100,15 +100,15 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btn_categoria_bebidas" min="-2" pref="115" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btn_categoria_frutos" min="-2" pref="115" max="-2" attributes="0"/>
+                      <Component id="btn_categoria_entradas" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btn_categoria_carnes" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btn_categoria_entradas" min="-2" pref="115" max="-2" attributes="0"/>
+                      <Component id="btn_categoria_frutos" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btn_categoria_bebidas" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btn_categoria_sobremesas" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -162,7 +162,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Burguers"/>
+                <Property name="text" type="java.lang.String" value="Hamburguer"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_categoria_frutosActionPerformed"/>
