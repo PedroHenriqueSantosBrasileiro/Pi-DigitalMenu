@@ -43,7 +43,7 @@ public class Tela_Menu extends javax.swing.JFrame {
         if (foiAdm == false) {
             btn_Sair.setVisible(false);
         }
-        //setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.numeroPedido = numeroPedido;
         this.numeroMesa = numeroMesa;
         lbl_numero_pedido.setText("Pedido: " + String.valueOf(numeroPedido));
@@ -284,9 +284,15 @@ public class Tela_Menu extends javax.swing.JFrame {
                     pedido.setStatus("Encerrado");
                     pedidoDao.atualizaPedido(pedido);
                 }
-                JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce.", "Encerramento de pedido.", JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
-                new TelaDeEspera(numeroMesa).setVisible(true);
+                if(foiAdm == true){
+                    this.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Pedido encerrado, um atendente levará a conta até voce.", "Encerramento de pedido.", JOptionPane.INFORMATION_MESSAGE);
+                    TelaDeEspera telaEspera = new TelaDeEspera(numeroMesa);
+                    telaEspera.setVisible(true);
+                    this.dispose();
+                }
+                
             } catch (Exception e) {
             }
         }
