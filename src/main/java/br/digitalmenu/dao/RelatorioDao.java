@@ -1,6 +1,7 @@
 package br.digitalmenu.dao;
 
 import br.digitalmenu.connection.ConnectionFactory;
+import br.digitalmenu.model.Gorgeta;
 import br.digitalmenu.model.relatorio.ItemRelatorio;
 import br.digitalmenu.model.relatorio.PedidoRelatorio;
 import java.sql.Connection;
@@ -9,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RelatorioDao {
 
@@ -226,4 +229,37 @@ public class RelatorioDao {
         }
         return listaItemRelatorio;
     }
+    public List<Gorgeta> calculaGorgetas(){
+        List<Gorgeta> gorgetas = new ArrayList<>();
+        
+        try {
+            connection = new ConnectionFactory().recuperarConexao();
+            List<ItemRelatorio> listaItemRelatorio = new ArrayList<>();
+            ItemRelatorio itemRelatorio = null;
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            String sql = "SELECT DATE_FORMAT(DATA, '%m/%Y') AS MES_ANO,SUM(TOTAL * 0.1) AS GORGETA FROM PEDIDO GROUP BY DATE_FORMAT(DATA, '%m/%Y')";
+            
+            ps = connection.prepareStatement(sql);
+            ps.execute();
+            rs = ps.getResultSet();
+            
+            while(rs.next()){
+                Gorgeta gorgeta = new Gorgeta();
+                gorgeta.setData(rs.getString(1));
+                gorgeta.setValor(String.format("%.2f",rs.getDouble(2)));
+                gorgetas.add(gorgeta);
+            }
+            rs.close();
+            ps.close();
+            connection.close();
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(RelatorioDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return gorgetas;
+            
+    }
 }
+
