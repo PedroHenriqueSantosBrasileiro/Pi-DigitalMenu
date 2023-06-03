@@ -626,7 +626,11 @@ public class Tela_Categoria extends Heuristica {
     }//GEN-LAST:event_btn_deletar_categoriaActionPerformed
 
     private void btn_atualizar_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualizar_categoriaActionPerformed
+     if (jtCategoria.getSelectedRow() != -1) {
         atualizaCategoria();
+     }else{
+          JOptionPane.showMessageDialog(null, "Selecione uma categoria! ", "Categoria não definida!", JOptionPane.WARNING_MESSAGE);
+     }
     }//GEN-LAST:event_btn_atualizar_categoriaActionPerformed
 
 

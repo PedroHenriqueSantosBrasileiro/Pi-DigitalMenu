@@ -134,6 +134,7 @@ public class Panel_Alterar_Categoria extends javax.swing.JPanel {
         lbl_status_atual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_status_atual.setText("Status");
 
+        comboBox_status_novo.setBackground(new java.awt.Color(255, 232, 142));
         comboBox_status_novo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         comboBox_status_novo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativado", "Desativado" }));
 

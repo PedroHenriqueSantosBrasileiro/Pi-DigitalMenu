@@ -141,6 +141,7 @@ public class Panel_Alterar_Produto extends javax.swing.JPanel {
         lbl_categoria_atual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_categoria_atual.setText("jLabel1");
 
+        cbox_categoria_novo.setBackground(new java.awt.Color(255, 232, 142));
         cbox_categoria_novo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         lbl_descricao.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N

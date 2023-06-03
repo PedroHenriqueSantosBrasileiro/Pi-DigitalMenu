@@ -713,30 +713,35 @@ public class Tela_Produto extends Heuristica {
     }//GEN-LAST:event_btn_filtro_nomeActionPerformed
 
     private void btn_alterar_produtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterar_produtoActionPerformed
-        ProdutoDao produtoDao = new ProdutoDao();
-        Produto produto;
-        try {
-            produto = produtoDao.listarProdutoPorId(Integer.parseInt(txt_id.getText()));
-            Panel_Alterar_Produto pteste = new Panel_Alterar_Produto(produto);
-            int opcao = JOptionPane.showConfirmDialog(null, pteste, "Alterar Produto", JOptionPane.OK_CANCEL_OPTION);
-            if (opcao == JOptionPane.OK_OPTION) {
-                Produto p = new Produto();
-                p.setIdProduto(Integer.parseInt(pteste.getLbl_Id_Valor().getText()));
-                p.setNome(pteste.getTxt_Nome_Novo().getText());
-                p.setPreco(Double.parseDouble(pteste.getTxt_Preco_Novo().getText().replace(',', '.')));
-                p.getCategoria().setNomeCategoria(pteste.getCbox_Categoria_Novo().getSelectedItem().toString());
-                p.setDescricao(pteste.getTxtarea_Descricao_Novo().getText());
-                p.setStatus(pteste.getCheckbox_Status_Novo().isSelected() ? "Ativado" : "Desativado");
-                ProdutoDao pDao = new ProdutoDao();
-                pDao.alterarProduto(p);
-                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
-                listarJTableProdutosAtivados();
-                limparTxtFields();
-            } else if (opcao == JOptionPane.CANCEL_OPTION) {
-                JOptionPane.showMessageDialog(null, "cancelado");
+        if (jtProduto.getSelectedRow() != -1) {
+
+            ProdutoDao produtoDao = new ProdutoDao();
+            Produto produto;
+            try {
+                produto = produtoDao.listarProdutoPorId(Integer.parseInt(txt_id.getText()));
+                Panel_Alterar_Produto pteste = new Panel_Alterar_Produto(produto);
+                int opcao = JOptionPane.showConfirmDialog(null, pteste, "Alterar Produto", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if (opcao == JOptionPane.OK_OPTION) {
+                    Produto p = new Produto();
+                    p.setIdProduto(Integer.parseInt(pteste.getLbl_Id_Valor().getText()));
+                    p.setNome(pteste.getTxt_Nome_Novo().getText());
+                    p.setPreco(Double.parseDouble(pteste.getTxt_Preco_Novo().getText().replace(',', '.')));
+                    p.getCategoria().setNomeCategoria(pteste.getCbox_Categoria_Novo().getSelectedItem().toString());
+                    p.setDescricao(pteste.getTxtarea_Descricao_Novo().getText());
+                    p.setStatus(pteste.getCheckbox_Status_Novo().isSelected() ? "Ativado" : "Desativado");
+                    ProdutoDao pDao = new ProdutoDao();
+                    pDao.alterarProduto(p);
+                    JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
+                    listarJTableProdutosAtivados();
+                    limparTxtFields();
+                } else if (opcao == JOptionPane.CANCEL_OPTION) {
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Tela_Produto.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Tela_Produto.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um produto! ", "Produto não selecionado!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btn_alterar_produtoActionPerformed
 
