@@ -1,5 +1,9 @@
 package br.digitalmenu.heuristicas;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,7 +22,6 @@ public abstract class Heuristica extends javax.swing.JFrame {
     public boolean verificarSeCampoEstaEmBranco(JTextComponent componente, String nomeCampo) {
 
         if (componente.getText().equals("")) {
-
             componente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
             JOptionPane.showMessageDialog(null, "Campo " + nomeCampo + " em branco");
 
@@ -27,7 +30,6 @@ public abstract class Heuristica extends javax.swing.JFrame {
             componente.setBorder(bordaPadrao);
             return true;
         }
-
     }
 
     public void IniciaTabela(JTable tabela) throws SQLException {
@@ -35,7 +37,8 @@ public abstract class Heuristica extends javax.swing.JFrame {
         TableCellRenderer rendererFromHeader = tabela.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
-
+        tabela.setSelectionBackground(Color.DARK_GRAY);
+        //tabela
         //Centraliza os campos
         DefaultTableCellRenderer centroRender = new DefaultTableCellRenderer();
         centroRender.setHorizontalAlignment(JLabel.CENTER); //Alinha ao centro
@@ -44,6 +47,43 @@ public abstract class Heuristica extends javax.swing.JFrame {
 
         for (int columnIndex = 0; columnIndex < modelo.getColumnCount(); columnIndex++) {
             tabela.getColumnModel().getColumn(columnIndex).setCellRenderer(centroRender);
+        }
+    }
+
+    public class CorDoCabecalho extends DefaultTableCellRenderer {
+
+        public CorDoCabecalho() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(table, value, selected, focused, row, column);
+            
+            //FORMATA A TABELA
+            setForeground(Color.white);//cor da fonte BRANCA
+            setBackground(new java.awt.Color(227, 83, 53));//COR DO HEADER laranja
+            Font myFont1 = new Font("Segoe UI", Font.BOLD, 24); //MUDA FONTE
+            setFont(myFont1);
+            return this;
+        }
+
+    }
+
+    public void letrasApenas(JTextComponent texto, KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+            texto.setEditable(true);
+        } else {
+            texto.setEditable(false);
+        }
+    }
+
+    public void numerosApenas(JTextComponent texto, KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+            texto.setEditable(true);
+        } else {
+            texto.setEditable(false);
         }
     }
 

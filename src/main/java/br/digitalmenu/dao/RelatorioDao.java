@@ -1,6 +1,7 @@
 package br.digitalmenu.dao;
 
 import br.digitalmenu.connection.ConnectionFactory;
+import br.digitalmenu.model.Gorgeta;
 import br.digitalmenu.model.relatorio.ItemRelatorio;
 import br.digitalmenu.model.relatorio.PedidoRelatorio;
 import java.sql.Connection;
@@ -9,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RelatorioDao {
 
@@ -23,7 +26,7 @@ public class RelatorioDao {
         ResultSet rs = null;
 
         String sql
-                = "SELECT p.idproduto, p.nome, p.preco, sum(i.qtde) as qtdeTotal, sum(i.subtotal) as valorTotal "
+                = "SELECT p.idproduto, p.nome, p.preco, SUM(i.qtde) AS qtdeTotal, SUM(i.subtotal) AS valorTotal "
                 + "FROM item i "
                 + "INNER JOIN produto p "
                 + "ON i.id_produto = p.idproduto "
@@ -33,7 +36,6 @@ public class RelatorioDao {
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 item = new ItemRelatorio();
                 item.getProduto().setIdProduto(rs.getInt("p.idproduto"));
@@ -62,7 +64,7 @@ public class RelatorioDao {
         ResultSet rs = null;
 
         String sql
-                = "SELECT p.idproduto, p.nome, p.preco, sum(i.qtde) as qtdeTotal, sum(i.subtotal) as valorTotal "
+                = "SELECT p.idproduto, p.nome, p.preco, SUM(i.qtde) AS qtdeTotal, SUM(i.subtotal) AS valorTotal "
                 + "FROM item i "
                 + "INNER JOIN produto p "
                 + "ON i.id_produto = p.idproduto "
@@ -72,7 +74,6 @@ public class RelatorioDao {
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 item = new ItemRelatorio();
                 item.getProduto().setIdProduto(rs.getInt("p.idproduto"));
@@ -100,7 +101,7 @@ public class RelatorioDao {
         ResultSet rs = null;
 
         String sql
-                = "SELECT IFNULL(p.idproduto,)), p.nome, p.preco, sum(i.qtde) as qtdeTotal, sum(i.subtotal) as valorTotal "
+                = "SELECT IFNULL(p.idproduto,)), p.nome, p.preco, SUM(i.qtde) AS qtdeTotal, SUM(i.subtotal) AS valorTotal "
                 + "FROM item i "
                 + "INNER JOIN produto p "
                 + "ON i.id_produto = p.idproduto "
@@ -110,7 +111,6 @@ public class RelatorioDao {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idProduto);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 item = new ItemRelatorio();
                 item.getProduto().setIdProduto(rs.getInt("p.idproduto"));
@@ -136,13 +136,13 @@ public class RelatorioDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT COUNT(*) AS Total_Pedidos, SUM(total) AS Total_Vendido, AVG(total) as Media_Pedido FROM pedido";
+        String sql
+                = "SELECT COUNT(*) AS Total_Pedidos, SUM(total) AS Total_Vendido, AVG(total) AS Media_Pedido "
+                + "FROM pedido";
 
         try {
-
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 pedido = new PedidoRelatorio();
                 pedido.setQtdeDePedidos(rs.getInt("Total_Pedidos"));
@@ -157,7 +157,6 @@ public class RelatorioDao {
             connection.close();
         }
         return pedido;
-
     }
 
     public PedidoRelatorio totalPedidosPorMes(int mes) throws SQLException {
@@ -167,14 +166,15 @@ public class RelatorioDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT COUNT(*) AS Total_Pedidos, SUM(total) AS Total_Vendido, AVG(total) as Media_Pedido FROM pedido WHERE MONTH(data) = ?";
+        String sql
+                = "SELECT COUNT(*) AS Total_Pedidos, SUM(total) AS Total_Vendido, AVG(total) AS Media_Pedido "
+                + "FROM pedido "
+                + "WHERE MONTH(data) = ?";
 
         try {
-
             ps = connection.prepareStatement(sql);
             ps.setInt(1, mes);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 pedido = new PedidoRelatorio();
                 pedido.setQtdeDePedidos(rs.getInt("Total_Pedidos"));
@@ -191,4 +191,75 @@ public class RelatorioDao {
         return pedido;
     }
 
+    //testando trazer todos itens do pedido group by
+    public List<ItemRelatorio> listarItensPorPedidoAgrupado(int idPedido) throws SQLException {
+
+        connection = new ConnectionFactory().recuperarConexao();
+        List<ItemRelatorio> listaItemRelatorio = new ArrayList<>();
+        ItemRelatorio itemRelatorio = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql
+                = "SELECT p.nome, p.preco, SUM(i.qtde) AS qtde, (p.preco*SUM(i.qtde)) AS subtotal "
+                + "FROM item i "
+                + "INNER JOIN produto p "
+                + "ON p.idproduto = i.id_produto "
+                + "WHERE i.id_pedido = ? "
+                + "GROUP BY i.id_produto";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, idPedido);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                itemRelatorio = new ItemRelatorio();
+                itemRelatorio.getProduto().setNome(rs.getString("p.nome"));
+                itemRelatorio.getProduto().setPreco(rs.getDouble("p.preco"));
+                itemRelatorio.setQtde(rs.getInt("qtde"));
+                itemRelatorio.setSubtotal(rs.getDouble("subtotal"));
+                listaItemRelatorio.add(itemRelatorio);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ps.close();
+            rs.close();
+            connection.close();
+        }
+        return listaItemRelatorio;
+    }
+    public List<Gorgeta> calculaGorgetas(){
+        List<Gorgeta> gorgetas = new ArrayList<>();
+        
+        try {
+            connection = new ConnectionFactory().recuperarConexao();
+            List<ItemRelatorio> listaItemRelatorio = new ArrayList<>();
+            ItemRelatorio itemRelatorio = null;
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            String sql = "SELECT DATE_FORMAT(DATA, '%m/%Y') AS MES_ANO,SUM(TOTAL * 0.1) AS GORGETA FROM PEDIDO GROUP BY DATE_FORMAT(DATA, '%m/%Y')";
+            
+            ps = connection.prepareStatement(sql);
+            ps.execute();
+            rs = ps.getResultSet();
+            
+            while(rs.next()){
+                Gorgeta gorgeta = new Gorgeta();
+                gorgeta.setData(rs.getString(1));
+                gorgeta.setValor(String.format("%.2f",rs.getDouble(2)));
+                gorgetas.add(gorgeta);
+            }
+            rs.close();
+            ps.close();
+            connection.close();
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(RelatorioDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return gorgetas;
+            
+    }
 }
+

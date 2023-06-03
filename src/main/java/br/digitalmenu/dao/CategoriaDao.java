@@ -16,10 +16,11 @@ public class CategoriaDao {
     public void criarCategoria(Categoria categoria) throws SQLException {
 
         connection = new ConnectionFactory().recuperarConexao();
-
-        String sql = "INSERT INTO categoria (idcategoria, nome, status)"
-                + "VALUES (null, ?, default)";
         PreparedStatement ps = null;
+        
+        String sql
+                = "INSERT INTO categoria (idcategoria, nome, status) "
+                + "VALUES (NULL, ?, DEFAULT)";
 
         try {
             ps = connection.prepareStatement(sql);
@@ -40,12 +41,13 @@ public class CategoriaDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT idcategoria, nome, status FROM categoria";
+        String sql 
+                = "SELECT idcategoria, nome, status "
+                + "FROM categoria";
 
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Categoria categoria = new Categoria();
                 categoria.setIdCategoria(rs.getInt("idcategoria"));
@@ -70,12 +72,14 @@ public class CategoriaDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT idcategoria, nome, status FROM categoria WHERE status = 'ativado'";
+        String sql 
+                = "SELECT idcategoria, nome, status "
+                + "FROM categoria "
+                + "WHERE status = 'ativado'";
 
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Categoria categoria = new Categoria();
                 categoria.setIdCategoria(rs.getInt("idcategoria"));
@@ -100,13 +104,15 @@ public class CategoriaDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT idcategoria, nome, status FROM categoria WHERE status = ?";
+        String sql 
+                = "SELECT idcategoria, nome, status "
+                + "FROM categoria "
+                + "WHERE status = ?";
 
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, status);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Categoria categoria = new Categoria();
                 categoria.setIdCategoria(rs.getInt("idcategoria"));
@@ -129,7 +135,9 @@ public class CategoriaDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "UPDATE categoria SET idcategoria = ?, nome = ?, status = ?"
+        String sql
+                = "UPDATE categoria "
+                + "SET idcategoria = ?, nome = ?, status = ? "
                 + "WHERE idcategoria = ?";
 
         try {
@@ -154,14 +162,15 @@ public class CategoriaDao {
         Categoria categoria = null;
         ResultSet rs = null;
 
-        String sql = "SELECT idcategoria, nome, status FROM categoria WHERE idcategoria = ?";
+        String sql 
+                = "SELECT idcategoria, nome, status "
+                + "FROM categoria "
+                + "WHERE idcategoria = ?";
 
         try {
-
             ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 categoria = new Categoria();
                 categoria.setIdCategoria(rs.getInt("idcategoria"));
@@ -185,13 +194,15 @@ public class CategoriaDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT idcategoria, nome, status FROM categoria WHERE nome LIKE CONCAT('%',?,'%')";
+        String sql 
+                = "SELECT idcategoria, nome, status "
+                + "FROM categoria "
+                + "WHERE nome LIKE CONCAT('%',?,'%')";
 
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, texto);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Categoria categoria = new Categoria();
                 categoria.setIdCategoria(rs.getInt("idcategoria"));
@@ -214,13 +225,15 @@ public class CategoriaDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "UPDATE categoria SET status = 'Desativado' WHERE idcategoria = ?";
+        String sql 
+                = "UPDATE categoria "
+                + "SET status = 'Desativado' "
+                + "WHERE idcategoria = ?";
 
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, categoria.getIdCategoria());
             ps.executeUpdate();
-
         } catch (SQLException ex) {
             throw ex;
         } finally {

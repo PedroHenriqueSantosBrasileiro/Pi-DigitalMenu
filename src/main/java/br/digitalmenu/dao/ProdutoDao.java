@@ -18,8 +18,9 @@ public class ProdutoDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "INSERT INTO produto (nome, preco, descricao, id_categoria, status)"
-                + "VALUES (?, ?, ?, (SELECT idcategoria FROM categoria WHERE nome = ?), default)";
+        String sql
+                = "INSERT INTO produto (nome, preco, descricao, id_categoria, status) "
+                + "VALUES (?, ?, ?, (SELECT idcategoria FROM categoria WHERE nome = ?), DEFAULT)";
 
         try {
             ps = connection.prepareStatement(sql);
@@ -43,7 +44,8 @@ public class ProdutoDao {
         ResultSet rs = null;
         List<Produto> listaDeProdutos = new ArrayList<>();
 
-        String sql = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
+        String sql
+                = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
                 + "FROM produto p "
                 + "INNER JOIN categoria c "
                 + "ON p.id_categoria = c.idcategoria";
@@ -51,7 +53,6 @@ public class ProdutoDao {
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Produto p = new Produto();
                 p.setIdProduto(rs.getInt("p.idproduto"));
@@ -80,7 +81,8 @@ public class ProdutoDao {
         ResultSet rs = null;
         List<Produto> listaDeProdutos = new ArrayList<>();
 
-        String sql = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
+        String sql
+                = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
                 + "FROM produto p "
                 + "INNER JOIN categoria c "
                 + "ON p.id_categoria = c.idcategoria "
@@ -89,7 +91,6 @@ public class ProdutoDao {
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Produto p = new Produto();
                 p.setIdProduto(rs.getInt("p.idproduto"));
@@ -117,7 +118,9 @@ public class ProdutoDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Produto p = null;
-        String sql = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
+
+        String sql
+                = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
                 + "FROM produto p "
                 + "INNER JOIN categoria c "
                 + "ON p.id_categoria = c.idcategoria "
@@ -152,7 +155,8 @@ public class ProdutoDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "UPDATE produto SET "
+        String sql
+                = "UPDATE produto SET "
                 + "nome = ?, "
                 + "preco = ?, "
                 + "descricao = ?, "
@@ -168,7 +172,6 @@ public class ProdutoDao {
             ps.setString(5, p.getStatus());
             ps.setInt(6, p.getIdProduto());
             ps.executeUpdate();
-
         } catch (SQLException ex) {
             throw ex;
         } finally {
@@ -182,7 +185,10 @@ public class ProdutoDao {
         connection = new ConnectionFactory().recuperarConexao();
         PreparedStatement ps = null;
 
-        String sql = "UPDATE PRODUTO SET STATUS = 'desativado' where idproduto = ?";
+        String sql
+                = "UPDATE produto "
+                + "SET status = 'desativado' "
+                + "WHERE idproduto = ?";
 
         try {
             ps = connection.prepareStatement(sql);
@@ -203,7 +209,8 @@ public class ProdutoDao {
         ResultSet rs = null;
         List<Produto> listaDeProdutos = new ArrayList<>();
 
-        String sql = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
+        String sql
+                = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
                 + "FROM produto p "
                 + "INNER JOIN categoria c "
                 + "ON p.id_categoria = c.idcategoria "
@@ -213,14 +220,13 @@ public class ProdutoDao {
             ps = connection.prepareStatement(sql);
             ps.setString(1, texto);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Produto p = new Produto();
                 p.setIdProduto(rs.getInt("p.idproduto"));
                 p.setNome(rs.getString("p.nome"));
                 p.setPreco(rs.getDouble("p.preco"));
                 p.setDescricao(rs.getString("p.descricao"));
-                p.getCategoria().setStatus(rs.getString("p.status"));
+                p.setStatus(rs.getString("p.status"));
                 p.getCategoria().setNomeCategoria(rs.getString("c.nome"));
                 listaDeProdutos.add(p);
             }
@@ -241,18 +247,19 @@ public class ProdutoDao {
         ResultSet rs = null;
         List<Produto> listaDeProdutos = new ArrayList<>();
 
-        String sql = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
+        String sql
+                = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
                 + "FROM produto p "
                 + "INNER JOIN categoria c "
                 + "ON p.id_categoria = c.idcategoria "
-                + "WHERE p.preco BETWEEN ? and ? order by p.preco";
+                + "WHERE p.preco BETWEEN ? AND ? "
+                + "ORDER BY p.preco";
 
         try {
             ps = connection.prepareStatement(sql);
             ps.setDouble(1, valorInicial);
             ps.setDouble(2, valorFinal);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Produto p = new Produto();
                 p.setIdProduto(rs.getInt("p.idproduto"));
@@ -281,7 +288,8 @@ public class ProdutoDao {
         ResultSet rs = null;
         List<Produto> listaDeProdutos = new ArrayList<>();
 
-        String sql = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
+        String sql
+                = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
                 + "FROM produto p "
                 + "INNER JOIN categoria c "
                 + "ON p.id_categoria = c.idcategoria "
@@ -291,7 +299,6 @@ public class ProdutoDao {
             ps = connection.prepareStatement(sql);
             ps.setString(1, palavra);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Produto p = new Produto();
                 p.setIdProduto(rs.getInt("p.idproduto"));
@@ -320,7 +327,8 @@ public class ProdutoDao {
         ResultSet rs = null;
         List<Produto> listaDeProdutos = new ArrayList<>();
 
-        String sql = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
+        String sql
+                = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
                 + "FROM produto p "
                 + "INNER JOIN categoria c "
                 + "ON p.id_categoria = c.idcategoria "
@@ -330,7 +338,6 @@ public class ProdutoDao {
             ps = connection.prepareStatement(sql);
             ps.setString(1, nomeCategoria);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Produto p = new Produto();
                 p.setIdProduto(rs.getInt("p.idproduto"));
@@ -359,7 +366,8 @@ public class ProdutoDao {
         ResultSet rs = null;
         List<Produto> listaDeProdutos = new ArrayList<>();
 
-        String sql = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
+        String sql
+                = "SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria "
                 + "FROM produto p "
                 + "INNER JOIN categoria c "
                 + "ON p.id_categoria = c.idcategoria "
@@ -369,7 +377,6 @@ public class ProdutoDao {
             ps = connection.prepareStatement(sql);
             ps.setString(1, status);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Produto p = new Produto();
                 p.setIdProduto(rs.getInt("p.idproduto"));
