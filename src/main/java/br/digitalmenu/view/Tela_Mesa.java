@@ -443,7 +443,7 @@ public class Tela_Mesa extends Heuristica {
                 JTextField digitarNumero = new JTextField(10);
                 painel.add(numeroMesa);
                 painel.add(digitarNumero);
-                int resultado = JOptionPane.showConfirmDialog(null, painel, "PESQUISAR POR NÚMERO", JOptionPane.OK_CANCEL_OPTION, -1);
+                int resultado = JOptionPane.showConfirmDialog(null, painel, "Pesquisar por número.", JOptionPane.OK_CANCEL_OPTION, -1);
                 if (resultado == JOptionPane.OK_OPTION) {
                     listarJtablePorNumero(Integer.parseInt(digitarNumero.getText()));
                 }
@@ -464,7 +464,7 @@ public class Tela_Mesa extends Heuristica {
         comboBox.addItem("Desativado");
         painel.add(new JLabel("Status: "));
         painel.add(comboBox);
-        int result = JOptionPane.showConfirmDialog(null, painel, "ALTERAR MESA", JOptionPane.OK_CANCEL_OPTION, -1);
+        int result = JOptionPane.showConfirmDialog(null, painel, "Filtrar por status da mesa.", JOptionPane.OK_CANCEL_OPTION, -1);
         if (result == JOptionPane.OK_OPTION) {
             try {
                 String status = String.valueOf(comboBox.getSelectedItem());
@@ -521,7 +521,11 @@ public class Tela_Mesa extends Heuristica {
     }//GEN-LAST:event_btn_excluir_mesaActionPerformed
 
     private void btn_alterar_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterar_mesaActionPerformed
-        atualizaMesa();
+   if (jtMesa.getSelectedRow() != -1) {
+            atualizaMesa();
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma mesa! ", "Mesa não selecionada!", JOptionPane.WARNING_MESSAGE);
+        }       
     }//GEN-LAST:event_btn_alterar_mesaActionPerformed
 
     private void txt_numero_mesaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_numero_mesaKeyPressed

@@ -305,13 +305,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="425" max="-2" attributes="0"/>
-                      <Component id="btn_pesquisa_id" max="32767" attributes="0"/>
+                      <Component id="btn_pesquisa_id" pref="106" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_pesquisa_nome" max="32767" attributes="0"/>
+                      <Component id="btn_pesquisa_nome" pref="114" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_pesquisa_status" max="32767" attributes="0"/>
+                      <Component id="btn_pesquisa_status" pref="114" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="brn_pesquisa_todos" max="32767" attributes="0"/>
+                      <Component id="brn_pesquisa_todos" pref="114" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="407" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -410,19 +410,19 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btn_ativar" max="32767" attributes="0"/>
-                          <Component id="btn_desativar" pref="243" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btn_desativar" min="-2" pref="237" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" pref="237" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="196" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="btn_ativar" min="-2" pref="90" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jButton1" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btn_desativar" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -431,20 +431,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btn_ativar">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="cc" green="ff" red="cc" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="26" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Ativar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ativarActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JButton" name="btn_desativar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -457,6 +443,20 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_desativarActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="ff" red="cc" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="26" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Atualizar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

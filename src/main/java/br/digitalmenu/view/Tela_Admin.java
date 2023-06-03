@@ -3,6 +3,7 @@ package br.digitalmenu.view;
 import br.digitalmenu.dao.RelatorioDao;
 import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.relatorio.ItemRelatorio;
+import java.awt.Color;
 import java.awt.Component;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -33,23 +34,11 @@ public class Tela_Admin extends Heuristica {
         //Seta a label usuario e tipo de acesso
         lbl_Usuario.setText(String.valueOf(usuarioMaiusculo));
         lbl_TipoAcesso.setText(String.valueOf(tipoAcessoMaisculo));
+         
         tblRelatorio.getTableHeader().setDefaultRenderer(new CorDoCabecalho());
-
         mostraMaisVendidos();
     }
 
-    public class CorDoCabecalho extends DefaultTableCellRenderer {
-
-        public CorDoCabecalho() {
-            setOpaque(true);
-        }
-
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
-            super.getTableCellRendererComponent(table, value, selected, focused, row, column);
-            setBackground(new java.awt.Color(227, 83, 53));//COR DO HEADER
-            return this;
-        }
-    }
 
     public static void apagarTodasColunas(JTable table) {
         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) table.getModel();

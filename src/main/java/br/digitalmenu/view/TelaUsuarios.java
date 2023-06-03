@@ -6,6 +6,8 @@ import javax.swing.table.DefaultTableModel;
 import br.digitalmenu.dao.UsuarioDAO;
 import br.digitalmenu.heuristicas.Heuristica;
 import br.digitalmenu.model.Usuario;
+import java.sql.DataTruncation;
+import java.sql.SQLIntegrityConstraintViolationException;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,6 +20,43 @@ public class TelaUsuarios extends Heuristica {
         tblListaUsuarios.getTableHeader().setDefaultRenderer(new CorDoCabecalho());//Muda cor do header na classe heuristica
         IniciaTabela(tblListaUsuarios);//Formata a tabela e centraliza pela classe heuristicas
         ListaTabela();
+        
+        
+    }
+
+    public void atualizaUsuario() {
+        if (tblListaUsuarios.getRowCount() != -1) {
+            try {
+                UsuarioDAO userDAO = new UsuarioDAO();
+                Usuario user = userDAO.listarUsuariosPorId(Integer.parseInt(String.valueOf(tblListaUsuarios.getValueAt(tblListaUsuarios.getSelectedRow(), 0))));//trocar pelo TXT getTExt?
+                Panel_Alterar_Usuario panel = new Panel_Alterar_Usuario(user);
+                int resultado = JOptionPane.showConfirmDialog(null, panel, "ALTERAR USUÁRIO", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if (resultado == JOptionPane.OK_OPTION) {
+                    user.setIdusuario(Integer.parseInt(panel.getTxt_id_novo().getText()));
+                    user.setUsuario(panel.getTxt_usuario_novo().getText());
+                    user.setSenha(panel.getTxt_senha_nova().getText());
+                    user.setTipoacesso(panel.getComboBox_tipoAcesso_novo().getSelectedItem().toString());
+                    user.setStatus(panel.getComboBox_status_novo().getSelectedItem().toString());
+                    userDAO.atualizaUsuario(user);
+                    JOptionPane.showMessageDialog(this,
+                            "Usuário atualizado com sucesso!");
+                    listarJTableTodosAtivos();
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                }
+            } catch (SQLIntegrityConstraintViolationException ex) {
+                JOptionPane.showMessageDialog(null, "Usuário já existente!", "\t\tERRO", HEIGHT);
+                atualizaUsuario();
+            } catch (DataTruncation ex) {
+                JOptionPane.showMessageDialog(null, "Dado inválido, limite de 30 caracteres!", "\tErro", HEIGHT);
+                atualizaUsuario();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha.");
+        }
     }
 
     public void ListaTabela() throws SQLException {
@@ -140,8 +179,8 @@ public class TelaUsuarios extends Heuristica {
         btn_pesquisa_status = new javax.swing.JButton();
         brn_pesquisa_todos = new javax.swing.JButton();
         pnl_opcoes = new javax.swing.JPanel();
-        btn_ativar = new javax.swing.JButton();
         btn_desativar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Usuários");
@@ -298,13 +337,13 @@ public class TelaUsuarios extends Heuristica {
             pnl_filtrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_filtrosLayout.createSequentialGroup()
                 .addGap(425, 425, 425)
-                .addComponent(btn_pesquisa_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_pesquisa_id, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_pesquisa_nome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_pesquisa_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_pesquisa_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_pesquisa_status, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(brn_pesquisa_todos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(brn_pesquisa_todos, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                 .addGap(407, 407, 407))
         );
         pnl_filtrosLayout.setVerticalGroup(
@@ -322,15 +361,6 @@ public class TelaUsuarios extends Heuristica {
         pnl_opcoes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Opções", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24))); // NOI18N
         pnl_opcoes.setPreferredSize(new java.awt.Dimension(645, 203));
 
-        btn_ativar.setBackground(new java.awt.Color(204, 255, 204));
-        btn_ativar.setFont(new java.awt.Font("Segoe UI", 0, 26)); // NOI18N
-        btn_ativar.setText("Ativar");
-        btn_ativar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ativarActionPerformed(evt);
-            }
-        });
-
         btn_desativar.setBackground(new java.awt.Color(255, 153, 153));
         btn_desativar.setFont(new java.awt.Font("Segoe UI", 0, 26)); // NOI18N
         btn_desativar.setText("Desativar");
@@ -340,21 +370,30 @@ public class TelaUsuarios extends Heuristica {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(204, 255, 204));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 26)); // NOI18N
+        jButton1.setText("Atualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_opcoesLayout = new javax.swing.GroupLayout(pnl_opcoes);
         pnl_opcoes.setLayout(pnl_opcoesLayout);
         pnl_opcoesLayout.setHorizontalGroup(
             pnl_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_opcoesLayout.createSequentialGroup()
-                .addGap(199, 199, 199)
-                .addGroup(pnl_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_ativar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_desativar, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
-                .addGap(196, 196, 196))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnl_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_desativar, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(191, 191, 191))
         );
         pnl_opcoesLayout.setVerticalGroup(
             pnl_opcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_opcoesLayout.createSequentialGroup()
-                .addComponent(btn_ativar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_desativar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -369,9 +408,7 @@ public class TelaUsuarios extends Heuristica {
                 .addGroup(pnl_global_telaUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pnl_filtros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnl_global_telaUsuariosLayout.createSequentialGroup()
-
                         .addComponent(pnl_superior, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
-
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnl_opcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)))
                 .addGap(36, 36, 36))
@@ -408,36 +445,6 @@ public class TelaUsuarios extends Heuristica {
         setSize(new java.awt.Dimension(1394, 807));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btn_ativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ativarActionPerformed
-        if (tblListaUsuarios.getSelectedRow() != -1) {
-            int confirma = JOptionPane.showConfirmDialog(
-                    this,
-                    "Deseja confirmar a ativação do usuário " + String.valueOf(tblListaUsuarios.getValueAt(tblListaUsuarios.getSelectedRow(), 0).toString()) + "?",
-                    "Confirmar ativação?",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
-            );
-            if (confirma == JOptionPane.YES_OPTION) {
-                try {
-                    UsuarioDAO userDAO = new UsuarioDAO();
-                    Usuario user = new Usuario();
-                    userDAO.buscaPorID((Integer.parseInt(tblListaUsuarios.getValueAt(tblListaUsuarios.getSelectedRow(), 0).toString())), user);
-                    user.setStatus("ATIVADO");//######ATIVA O USUARIO#####
-                    userDAO.atualizaUsuario(user);//chama o metodo de atualizacao
-                    JOptionPane.showMessageDialog(null, "Usuário desativado com sucesso!");
-                    Limpar();
-                    ListaTabela();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-                }
-            } else if (confirma == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "Operacão cancelada.");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um usuário para excluir.");
-        }
-    }//GEN-LAST:event_btn_ativarActionPerformed
 
     private void btn_desativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_desativarActionPerformed
         if (tblListaUsuarios.getSelectedRow() != -1) {
@@ -584,15 +591,23 @@ public class TelaUsuarios extends Heuristica {
         }
     }//GEN-LAST:event_btn_pesquisa_idActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (tblListaUsuarios.getSelectedRow() != -1) {
+            atualizaUsuario();
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um usuário! ", "Usuário não definido!", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brn_pesquisa_todos;
     private javax.swing.JButton btn_adicionar;
-    private javax.swing.JButton btn_ativar;
     private javax.swing.JButton btn_desativar;
     private javax.swing.JButton btn_pesquisa_id;
     private javax.swing.JButton btn_pesquisa_nome;
     private javax.swing.JButton btn_pesquisa_status;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lbl_senha;
     private javax.swing.JLabel lbl_tipo_acesso;
     private javax.swing.JLabel lbl_usuario;
