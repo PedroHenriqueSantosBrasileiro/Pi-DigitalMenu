@@ -2,6 +2,7 @@ package br.digitalmenu.heuristicas;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JLabel;
@@ -57,8 +58,12 @@ public abstract class Heuristica extends javax.swing.JFrame {
 
         public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
             super.getTableCellRendererComponent(table, value, selected, focused, row, column);
-
-            setBackground(new java.awt.Color(227, 83, 53));//COR DO HEADER
+            
+            //FORMATA A TABELA
+            setForeground(Color.white);//cor da fonte BRANCA
+            setBackground(new java.awt.Color(227, 83, 53));//COR DO HEADER laranja
+            Font myFont1 = new Font("Segoe UI", Font.BOLD, 24); //MUDA FONTE
+            setFont(myFont1);
             return this;
         }
 

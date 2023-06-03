@@ -121,6 +121,7 @@ public class Panel_Alterar_Mesa extends javax.swing.JPanel {
         lbl_id_valor.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lbl_id_valor.setText("ID : ");
 
+        comboBox_status_novo.setBackground(new java.awt.Color(255, 232, 142));
         comboBox_status_novo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         comboBox_status_novo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ATIVADO", "DESATIVADO" }));
         comboBox_status_novo.addActionListener(new java.awt.event.ActionListener() {

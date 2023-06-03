@@ -9,16 +9,16 @@ public class Tela_Atendente extends javax.swing.JFrame {
     public Tela_Atendente(String usuario, String tipoAcesso) {
         initComponents();
         jDesktopPane1.enable(false);//Deixa a cor do fundo a mostra, deixa o jDesktop desativado
-        
-          //casting para a primeira letra do tipoDeAcesso ficar maiscula
+
+        //casting para a primeira letra do tipoDeAcesso ficar maiscula
         tipoAcesso = String.valueOf(tipoAcesso);
         String s1 = tipoAcesso.substring(0, 1).toUpperCase();
         String tipoAcessoMaisculo = s1 + tipoAcesso.substring(1);
-        
+
         //casting para a primeira letra do usuario ficar maiscula
         usuario = String.valueOf(usuario);
-        String s2 = tipoAcesso.substring(0, 1).toUpperCase();
-        String usuarioMaiusculo = s1 + usuario.substring(1);
+        String s2 = usuario.substring(0, 1).toUpperCase();
+        String usuarioMaiusculo = s2 + usuario.substring(1);
 
         //Seta a label usuario e tipo de acesso
         lbl_usuario.setText(String.valueOf(usuarioMaiusculo));
