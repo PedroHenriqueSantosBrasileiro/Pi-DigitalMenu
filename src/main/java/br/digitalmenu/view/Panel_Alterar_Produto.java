@@ -29,11 +29,13 @@ public class Panel_Alterar_Produto extends javax.swing.JPanel {
     }
 
     public void setDados() throws SQLException {
+        
+        String preco = String.format("%.2f", produto.getPreco());
         lbl_id_valor.setText(String.valueOf(produto.getIdProduto()));
         lbl_nome_atual.setText(String.valueOf(produto.getNome()));
         txt_nome_novo.setText(String.valueOf(produto.getNome()));
-        lbl_preco_atual.setText(String.valueOf(produto.getPreco()));
-        txt_preco_novo.setText(String.valueOf(produto.getPreco()));
+        lbl_preco_atual.setText(preco);
+        txt_preco_novo.setText(preco);
         lbl_categoria_atual.setText(String.valueOf(produto.getCategoria().getNomeCategoria()));
         cbox_categoria_novo.setSelectedItem(produto.getCategoria().getNomeCategoria());
         txtarea_descricao_atual.setText(String.valueOf(produto.getDescricao()));
